@@ -1,0 +1,24 @@
+{
+    "name": "stele/elmtr-melody",
+    "type": "Elementor addon",
+    "require": {
+        "stele/container": "^1.0.2"
+    },
+    "require-dev": {
+        "peridot-php/peridot": "^1.19"
+    },
+    "authors": [
+        {
+            "name": "Josh Arens",
+            "email": "arens.joshua@sbcglobal.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Melody\\core\\": "./core",
+            "Melody\\widgets\\": "./widgets",
+            "Melody\\controls\\": "./controls"
+        }
+    }
+}

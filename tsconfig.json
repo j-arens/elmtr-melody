@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outDir": "/",
+        "noImplicitAny": false,
+        "module": "commonjs",
+        "lib": ["es2017", "dom"],
+        "target": "es6",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./assets/src/",
+    },
+    "exclude": ["node_modules"]
+}

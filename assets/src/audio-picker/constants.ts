@@ -1,0 +1,13 @@
+export const GLOBAL = (window as any);
+export const { jQuery: $ } = GLOBAL;
+export const DEV_MODE = true;
+export const PANEL_HOOK = 'panel/open_editor/widget/melody-audio-player';
+export const TRACKS_KEY = 'melody_audio_tracks';
+export const CONTAINER_CLASS = '.repeater-fields';
+export const FIELD_SELECTOR = 'data-melody-ap-field';
+export const TRACK_TRIGGER = 'data-melody-ap-track-trigger';
+export const HIDDEN_CLASS = 'elementor-hidden';
+export const REVEAL_SELECTOR = 'data-melody-ap-reveal';
+export const IMAGE_SELECTOR = 'data-melody-ap-image-preview';
+export const IMAGE_TRIGGER = 'data-melody-ap-image-trigger';
+export const TRIGGER_DATA_ATTR = 'melody-ap-trigger-action';
