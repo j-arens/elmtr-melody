@@ -45,7 +45,7 @@ export const getTrackLengths = async tracks => await Promise.all(tracks.map(t =>
             if (isNaN(duration)) {
                 return rej(0);
             }
-            return res(duration);
+            return res(Math.round(duration));
         });
         audio.src = t.melody_track_url;
     });
