@@ -85,5 +85,26 @@ return [
                 ],
             ],
         ],
+        [
+            'handle' => 'melody_btn_max_width',
+            'config' => [
+                'label' => 'Size',
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 30,
+                    'unit' => 'px',
+                ],
+                'size_units' => ['px'],
+                'range' => [
+                    '%' => [
+                        'min' => 0,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} [data-melody-control-bar] .melody-playbackCtrl' => 'max-width: {{SIZE}}{{UNIT}};', 
+                ],
+            ],
+        ],
     ],
 ];
