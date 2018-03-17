@@ -27,35 +27,5 @@ return [
                 ],
             ],
         ],
-        [
-            'isGroup' => true,
-            'handle' => Group_Control_Border::get_type(),
-            'config' => [
-                'name' => 'melody_component_border',
-                'label' => 'Border',
-                'label_block' => true,
-                'selector' => '{{WRAPPER}} [data-melody-border]',
-                'separator' => 'before',
-            ],
-        ],
-        [
-            'handle' => 'melody_component_border_radius',
-            'config' => [
-                'label' => 'Border radius',
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px'],
-                'selectors' => [
-                    '{{WRAPPER}} [data-melody-border]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ],
-        ],
-        [
-            'isGroup' => true,
-            'handle' => Group_Control_Box_Shadow::get_type(),
-            'config' => [
-                'name' => 'melody_component_box_shadow',
-                'selector' => '{{WRAPPER}} [data-melody-border]',
-            ],
-        ],
     ],
 ];
