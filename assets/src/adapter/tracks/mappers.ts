@@ -9,7 +9,6 @@ export function external(track) {
     } = track;
     return {
         source_url: melody_track_url,
-        favorite: false,
         artwork: melody_track_artwork.url,
         media_details: {
             artist: melody_track_artist,
@@ -33,7 +32,6 @@ export function mediaPicker(track) {
     } = track;
     return {
         source_url: url,
-        favorite: false,
         artwork,
         media_details: {
             artist,
