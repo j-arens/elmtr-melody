@@ -1,8 +1,8 @@
 <?php
 
-namespace Melody\controls\custom;
+namespace Melody\Controls\custom;
 
-use Melody\core\View;
+use Melody\Core\ViewInterface;
 use Elementor\Control_Base_Multiple;
 
 // @TODO: implement on_import func?
@@ -39,9 +39,9 @@ class AudioPicker extends Control_Base_Multiple implements CustomInputInterface 
     protected $view;
 
     /**
-     * @param View
+     * @param ViewInterface
      */
-    public function __construct(View $view) {
+    public function __construct(ViewInterface $view) {
         parent::__construct();
         $this->view = $view;
     }
