@@ -1,9 +1,9 @@
 <?php
 
-namespace Melody\core;
+namespace Melody\Core;
 
-use Melody\widgets\Melody;
-use Melody\controls\custom\AudioPicker;
+use Melody\Widgets\Melody;
+use Melody\Controls\custom\AudioPicker;
 use Elementor\Widgets_Manager;
 use Elementor\Controls_Manager;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Melody\widgets;
+namespace Melody\Widgets;
 
-use Stele\Container\Container;
+use DownShift\Container\Container;
 use Elementor\Widget_Base;
 
 class Melody extends Widget_Base implements WidgetInterface {
@@ -28,7 +28,7 @@ class Melody extends Widget_Base implements WidgetInterface {
     protected $categories = ['general-elements'];
 
     /**
-     * @var View
+     * @var ViewInterface
      */
     protected $view;
 
@@ -61,8 +61,8 @@ class Melody extends Widget_Base implements WidgetInterface {
      */
     protected function injectDependencies() {
         $container = Container::getInstance();
-        $this->view = $container->resolve('Melody\core\View');
-        $this->stacks = $container->resolve('melodyControlStacks');
+        $this->view = $container->make('Melody\Core\ViewInterface');
+        $this->stacks = $container['melodyControlStacks'];
     }
     
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Melody\widgets;
+namespace Melody\Widgets;
 
 interface WidgetInterface {
 

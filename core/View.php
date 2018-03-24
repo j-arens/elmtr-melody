@@ -1,6 +1,6 @@
 <?php
 
-namespace Melody\core;
+namespace Melody\Core;
 
 use InvalidArgumentException;
 

@@ -2,7 +2,8 @@
     "name": "stele/elmtr-melody",
     "type": "Elementor addon",
     "require": {
-        "stele/container": "^1.0.2"
+        "downshiftorg/wp-router": "~3.0",
+        "downshiftorg/container": "~2.0"
     },
     "require-dev": {
         "peridot-php/peridot": "^1.19"
@@ -16,9 +17,11 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Melody\\core\\": "./core",
-            "Melody\\widgets\\": "./widgets",
-            "Melody\\controls\\": "./controls"
+            "Melody\\Core\\": "./core",
+            "Melody\\Widgets\\": "./widgets",
+            "Melody\\Controls\\": "./controls",
+            "Melody\\Http\\": "./http",
+            "Melody\\Service\\": "./service"
         }
     }
 }
