@@ -85,6 +85,25 @@ return [
                             'melody_audio_source' => 'external-source',
                         ],
                     ],
+                    [
+                        'name' => 'melody_track_downloadable',
+                        'label' => 'Enable Downloads',
+                        'type' => Controls_Manager::SWITCHER,
+                        'label_off' => 'off',
+                        'label_on' => 'on',
+                        'default' => 'off',
+                    ],
+                    [
+                        'name' => 'melody_track_download_source',
+                        'label' => 'Download URL',
+                        'type' => Controls_Manager::TEXT,
+                        'input_type' => 'url',
+                        'label_block' => true,
+                        'condition' => [
+                            'melody_audio_source' => 'external-source',
+                            'melody_track_downloadable' => 'yes',
+                        ],
+                    ],
                 ],
                 'title_field' => '
                     <# if (melody_audio_source === "external-source") { #>

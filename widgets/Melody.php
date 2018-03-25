@@ -163,6 +163,7 @@ class Melody extends Widget_Base implements WidgetInterface {
 
         wp_localize_script('melody-adapter-js', 'MELODY_ENV', [
             'pluginsUrl' => plugins_url(),
+            'siteUrl' => get_site_url(),
         ]);
 
         wp_enqueue_script('melody-adapter-js');

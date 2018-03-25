@@ -1,7 +1,23 @@
 import { defaultTrack } from './defaults';
 const mergewith = require('lodash.mergewith');
 
-const { MELODY_ENV: { pluginsUrl } } = (window as any);
+const { MELODY_ENV: { pluginsUrl, siteUrl } } = (window as any);
+
+export const getDownloadUrl = (track, origin) => {
+    if (origin === 'external') {
+        if (track.melody_track_downloadable === 'yes') {
+            return track.melody_track_download_source;
+        }
+
+        return '';
+    }
+
+    if (track.melody_track_downloadable === 'yes') {
+        return `${siteUrl}?melody=/download&clientId=${Math.round(Math.random() * 99999)}`;
+    }
+
+    return '';
+}
 
 export const assignDuration = (track, duration) =>
     Object.assign(track, { duration });
