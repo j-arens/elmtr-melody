@@ -1,3 +1,5 @@
+import { getDownloadUrl } from './helpers';
+
 export function external(track) {
     const {
         melody_track_url,
@@ -9,6 +11,7 @@ export function external(track) {
     } = track;
     return {
         source_url: melody_track_url,
+        download_url: getDownloadUrl(track, 'external'),
         artwork: melody_track_artwork.url,
         media_details: {
             artist: melody_track_artist,
@@ -16,7 +19,10 @@ export function external(track) {
             title: melody_track_title,
             length: duration,
         },
-    }
+        attributes: {
+            origin: 'external',
+        },
+    };
 }
 
 export function mediaPicker(track) {
@@ -32,12 +38,16 @@ export function mediaPicker(track) {
     } = track;
     return {
         source_url: url,
+        download_url: getDownloadUrl(track, 'internal'),
         artwork,
         media_details: {
             artist,
             title,
             album,
             length: duration,
+        },
+        attributes: {
+            origin: 'internal',
         },
     };
 }
