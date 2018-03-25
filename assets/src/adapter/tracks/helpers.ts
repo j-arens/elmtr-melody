@@ -13,7 +13,9 @@ export const getDownloadUrl = (track, origin) => {
     }
 
     if (track.melody_track_downloadable === 'yes') {
-        return `${siteUrl}?melody=/download&clientId=${Math.round(Math.random() * 99999)}`;
+        const { melody_wp_media_picker: { id } } = track;
+        const clientId = Math.round(Math.random() * 99999);
+        return `${siteUrl}?melody=/download&clientId=${clientId}&attachment=${id}`;
     }
 
     return '';

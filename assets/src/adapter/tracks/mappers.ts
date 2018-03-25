@@ -21,6 +21,7 @@ export function external(track) {
         },
         attributes: {
             origin: 'external',
+            attachment: 0,
         },
     };
 }
@@ -34,6 +35,7 @@ export function mediaPicker(track) {
             artist,
             title,
             url,
+            id,
         },
     } = track;
     return {
@@ -48,6 +50,7 @@ export function mediaPicker(track) {
         },
         attributes: {
             origin: 'internal',
+            attachment: id,
         },
     };
 }
