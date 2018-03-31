@@ -38,11 +38,6 @@ class Melody extends Widget_Base implements WidgetInterface {
     protected $stacks = [];
 
     /**
-     * @var number
-     */
-    protected static $instances = 0;
-
-    /**
      * Constructor
      * 
      * @param array $data
@@ -173,10 +168,10 @@ class Melody extends Widget_Base implements WidgetInterface {
      * Render widget template
      */
     protected function render() {
-        ++static::$instances;
+        $data = $this->get_raw_data();
         $this->view->render(STELE_MELODY_DIR . '/templates/melodyRoot.php', [
-            'settings' => $this->get_settings(),
-            'instance' => static::$instances,
+            'settings' => $data['settings'],
+            'instance' => $data['id'],
         ]);
     }
 }
