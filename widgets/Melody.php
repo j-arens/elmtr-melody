@@ -25,7 +25,7 @@ class Melody extends Widget_Base implements WidgetInterface {
     /**
      * @var string
      */
-    protected $categories = ['general-elements'];
+    protected $categories = ['melody-elements'];
 
     /**
      * @var ViewInterface
