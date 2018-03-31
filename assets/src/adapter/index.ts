@@ -14,6 +14,7 @@ async function init ({ config, selector }) {
     const { app } = MELODY;
     const store = app.getStore();
     resetApp(store);
+    setView(store, config.melody_component_style);
     await injectTracks(store, config.melody_audio_tracks);
     await injectCss(store, config);
     app.mount(selector);
@@ -21,6 +22,11 @@ async function init ({ config, selector }) {
 
 const resetApp = ({ dispatch }) => dispatch({
     type: 'melody/RESET_STATE',
+});
+
+const setView = ({ dispatch }, view) => dispatch({
+    type: 'melody/CHANGE_VIEW',
+    payload: view,
 });
 
 const injectTracks = async ({ dispatch }, tracks) => dispatch({
