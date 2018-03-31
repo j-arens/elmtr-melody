@@ -4,6 +4,7 @@ namespace Melody\Core;
 
 use Melody\Widgets\Melody;
 use Melody\Controls\custom\AudioPicker;
+use Elementor\Plugin as ElementorPlugin;
 use Elementor\Widgets_Manager;
 use Elementor\Controls_Manager;
 
@@ -30,6 +31,8 @@ class Plugin {
         $this->melodyWidget = $melodyWidget;
         $this->audioPicker = $audioPicker;
 
+        $this->registerCategory();
+
         add_action(
             'elementor/widgets/widgets_registered',
             [$this, 'registerWidgets']
@@ -38,6 +41,15 @@ class Plugin {
         add_action(
             'elementor/controls/controls_registered',
             [$this, 'registerControls']
+        );
+    }
+
+    protected function registerCategory() {
+        $manager = ElementorPlugin::instance()->elements_manager;
+        $manager->add_category(
+            'melody-elements',
+            ['title' => 'Melody Elements', 'icon' => 'eicon-font'],
+            1
         );
     }
 
