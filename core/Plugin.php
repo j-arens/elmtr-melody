@@ -2,7 +2,8 @@
 
 namespace Melody\Core;
 
-use Melody\Widgets\Melody;
+use Downshift\Container\Container;
+use Melody\Widgets\MelodyWidgetBlueprint;
 use Melody\Controls\custom\AudioPicker;
 use Elementor\Plugin as ElementorPlugin;
 use Elementor\Widgets_Manager;
@@ -11,9 +12,9 @@ use Elementor\Controls_Manager;
 class Plugin {
 
     /**
-     * @var Melody
+     * @var Container
      */
-    protected $melodyWidget;
+    protected $container;
 
     /**
      * @var AudioPicker
@@ -21,16 +22,10 @@ class Plugin {
     protected $audioPicker;
 
     /**
-     * @param Melody $melodyWidget
      * @param AudioPicker $audioLibraryControl
      */
-    public function __construct(
-        Melody $melodyWidget,
-        AudioPicker $audioPicker
-    ) {
-        $this->melodyWidget = $melodyWidget;
+    public function __construct(AudioPicker $audioPicker) {
         $this->audioPicker = $audioPicker;
-
         $this->registerCategory();
 
         add_action(
@@ -44,11 +39,23 @@ class Plugin {
         );
     }
 
+    /**
+     * Set the container instance
+     * 
+     * @param Container $container
+     */
+    protected function setContainer(Container $container) {
+        $this->container = $container;
+    }
+
+    /**
+     * Reguster melody elements category with Elementor
+     */
     protected function registerCategory() {
         $manager = ElementorPlugin::instance()->elements_manager;
         $manager->add_category(
             'melody-elements',
-            ['title' => 'Melody Elements', 'icon' => 'eicon-font'],
+            ['title' => 'Melody Audio Elements', 'icon' => 'eicon-font'],
             1
         );
     }
@@ -57,7 +64,15 @@ class Plugin {
      * Register custom widgets with Elementor
      */
     public function registerWidgets(Widgets_Manager $manager) {
-        $manager->register_widget_type($this->melodyWidget);
+        $widgets = $this->container['widgetConfigs'];
+        foreach($widgets as $widget) {
+            $manager->register_widget(
+                new MelodyWidgetBlueprint(
+                    $this->container,
+                    $widget
+                )
+            );
+        }
     }
 
     /**

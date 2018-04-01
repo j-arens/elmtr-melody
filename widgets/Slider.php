@@ -5,7 +5,7 @@ namespace Melody\Widgets;
 use DownShift\Container\Container;
 use Elementor\Widget_Base;
 
-class Melody extends Widget_Base implements WidgetInterface {
+class Slider extends Widget_Base implements WidgetInterface {
 
     /**
      * @var string
@@ -15,7 +15,7 @@ class Melody extends Widget_Base implements WidgetInterface {
     /**
      * @var string
      */
-    protected $title = 'Melody Audio Player';
+    protected $title = 'Slider';
 
     /**
      * @var string
@@ -169,7 +169,7 @@ class Melody extends Widget_Base implements WidgetInterface {
      */
     protected function render() {
         $data = $this->get_raw_data();
-        $this->view->render(STELE_MELODY_DIR . '/templates/melodyRoot.php', [
+        $this->view->render(STELE_MELODY_DIR . '/templates/widget-root.php', [
             'settings' => $data['settings'],
             'instance' => $data['id'],
         ]);

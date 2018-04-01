@@ -10,14 +10,14 @@ if (MELODY === undefined) {
 
 $(window).on('melody/init_app', throttle(init, 500));
 
-async function init ({ config, selector }) {
+async function init ({ config, id }) {
     const { app } = MELODY;
-    const store = app.getStore();
+    const store = app.createStore();
     resetApp(store);
     setView(store, config.melody_component_style);
     await injectTracks(store, config.melody_audio_tracks);
     await injectCss(store, config);
-    app.mount(selector);
+    app.mount(id, store);
 }
 
 const resetApp = ({ dispatch }) => dispatch({
