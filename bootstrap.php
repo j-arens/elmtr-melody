@@ -3,13 +3,13 @@
 require_once 'vendor/autoload.php';
 
 use DownShift\Container\Container;
+use Melody\Core\functions as f;
 
 /**
  * New up container
  */
 $container = new Container;
 $container::setInstance($container);
-
 
 
 /**
@@ -22,19 +22,11 @@ $container->bind('Melody\Core\ViewInterface', 'Melody\Core\View');
 /**
  * Bind widget control stacks
  */
-$container['melodyControlStacks'] = function() {
-    $dir = STELE_MELODY_DIR . '/controls/stacks/';
-
-    if (!is_dir($dir)) {
-        return [];
-    }
-
-    $stacks = array_diff(scandir($dir), ['..', '.']);
-
-    return array_map(function($stack) use($dir) {
-        return include $dir . $stack;
-    }, $stacks);
-};
+$container['stacks'] = [
+    'slider' => f\collect(STELE_MELODY_DIR . '/controls/stacks/slider/'),
+    // 'toolbar' => f\collect(STELE_MELODY_DIR . '/controls/stacks/toolbar/'),
+    // 'tracklist' => f\collect(STELE_MELODY_DIR . '/controls/stacks/tracklist/'),
+];
 
 
 

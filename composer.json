@@ -22,6 +22,9 @@
             "Melody\\Controls\\": "./controls",
             "Melody\\Http\\": "./http",
             "Melody\\Service\\": "./service"
-        }
+        },
+        "files": [
+            "./core/functions.php"
+        ]
     }
 }

@@ -5,37 +5,7 @@ namespace Melody\Widgets;
 use DownShift\Container\Container;
 use Elementor\Widget_Base;
 
-class Melody extends Widget_Base implements WidgetInterface {
-
-    /**
-     * @var string
-     */
-    protected $handle = 'melody-audio-player';
-
-    /**
-     * @var string
-     */
-    protected $title = 'Melody Audio Player';
-
-    /**
-     * @var string
-     */
-    protected $icon = 'eicon-play';
-
-    /**
-     * @var string
-     */
-    protected $categories = ['melody-elements'];
-
-    /**
-     * @var ViewInterface
-     */
-    protected $view;
-
-    /**
-     * @var array[]
-     */
-    protected $stacks = [];
+abstract class AbstractMelodyWidget extends Widget_Base {
 
     /**
      * Constructor
@@ -44,67 +14,37 @@ class Melody extends Widget_Base implements WidgetInterface {
      * @param mixed $args
      */
     public function __construct($data = [], $args = null) {
+        $this->setView();
+        $this->setStacks();
         parent::__construct($data, $args);
-        $this->injectDependencies();
         add_action('elementor/frontend/after_enqueue_scripts', [$this, 'enqueueApp']);
-    }
-
-    /**
-     * Elementor doesn't support dynamic dependency
-     * injection of classes that extend Widget_Base
-     * in the constructor, so we do it here
-     */
-    protected function injectDependencies() {
-        $container = Container::getInstance();
-        $this->view = $container->make('Melody\Core\ViewInterface');
-        $this->stacks = $container['melodyControlStacks'];
     }
     
     /**
-     * Get widget name
-     * 
-     * @return string
+     * Set the view implementation
      */
-    public function get_name() {
-        return $this->handle;
-    }
-
+    abstract protected function setView();
+    
     /**
-     * Get widget title
-     * 
-     * @return string
+     * Get the view implementation
      */
-    public function get_title() {
-        return $this->title;
-    }
-
+    abstract protected function getView();
+    
     /**
-     * Get widget icon
-     * 
-     * @return string
+     * Set widget control stacks
      */
-    public function get_icon() {
-        return $this->icon;
-    }
-
+    abstract protected function setStacks();
+    
     /**
-     * Get widget categories
-     * 
-     * @return array
+     * Get widget control stacks
      */
-    public function get_categories() {
-        return $this->categories;
-    }
+    abstract protected function getStacks();
 
     /**
      * Register controls with Elementor
      */
     protected function _register_controls() {
-        if (empty($this->stacks)) {
-            $this->injectDependencies();
-        }
-
-        foreach($this->stacks as $stack) {
+        foreach($this->getStacks() as $stack) {
             $this->start_controls_section(
                 $stack['handle'],
                 $stack['config']
@@ -169,7 +109,8 @@ class Melody extends Widget_Base implements WidgetInterface {
      */
     protected function render() {
         $data = $this->get_raw_data();
-        $this->view->render(STELE_MELODY_DIR . '/templates/melodyRoot.php', [
+        $view = $this->getView();
+        $this->view->render(STELE_MELODY_DIR . '/templates/widget-root.php', [
             'settings' => $data['settings'],
             'instance' => $data['id'],
         ]);

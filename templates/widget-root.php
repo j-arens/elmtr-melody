@@ -1,4 +1,4 @@
-<div id="melody__root__<?= $instance ?>">
+<div id="melody-widgetRoot:<?= $instance ?>">
     <div></div>
 </div>
 <script>
@@ -7,7 +7,7 @@
             $(window).trigger({
                 type: 'melody/init_app',
                 config: <?= json_encode($settings) ?>,
-                selector: '#melody__root__<?= $instance ?>',
+                id: 'melody-widgetRoot:<?= $instance ?>',
             });
         });
     })(jQuery);
