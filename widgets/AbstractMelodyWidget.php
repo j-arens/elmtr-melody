@@ -5,81 +5,46 @@ namespace Melody\Widgets;
 use DownShift\Container\Container;
 use Elementor\Widget_Base;
 
-class MelodyWidgetBlueprint extends Widget_Base implements WidgetInterface {
-
-    /**
-     * @var ViewInterface
-     */
-    protected $view;
-
-    /**
-     * @var array
-     */
-    protected $config;
-
-    /**
-     * @var array[]
-     */
-    protected $stacks = [];
+abstract class AbstractMelodyWidget extends Widget_Base {
 
     /**
      * Constructor
      * 
-     * @param Container $container
-     * @param array $config
+     * @param array $data
+     * @param mixed $args
      */
-    public function __construct(
-        Container $container,
-        array $config
-    ) {
-        parent::__construct([], null);
-        $this->config = $config;
-        $this->view = $container->make('Melody\Core\ViewInterface');
-        $this->stack = $container[$this->config['stack']];
+    public function __construct($data = [], $args = null) {
+        $this->setView();
+        $this->setStacks();
+        parent::__construct($data, $args);
         add_action('elementor/frontend/after_enqueue_scripts', [$this, 'enqueueApp']);
     }
     
     /**
-     * Get widget name
-     * 
-     * @return string
+     * Set the view implementation
      */
-    public function get_name() {
-        return $this->config['melody_handle'];
-    }
-
+    abstract protected function setView();
+    
     /**
-     * Get widget title
-     * 
-     * @return string
+     * Get the view implementation
      */
-    public function get_title() {
-        return $this->config['melody_title'];
-    }
-
+    abstract protected function getView();
+    
     /**
-     * Get widget icon
-     * 
-     * @return string
+     * Set widget control stacks
      */
-    public function get_icon() {
-        return $this->config['melody_icon'];
-    }
-
+    abstract protected function setStacks();
+    
     /**
-     * Get widget categories
-     * 
-     * @return array
+     * Get widget control stacks
      */
-    public function get_categories() {
-        return $this->config['melody_categories'];
-    }
+    abstract protected function getStacks();
 
     /**
      * Register controls with Elementor
      */
     protected function _register_controls() {
-        foreach($this->stacks as $stack) {
+        foreach($this->getStacks() as $stack) {
             $this->start_controls_section(
                 $stack['handle'],
                 $stack['config']
@@ -144,6 +109,7 @@ class MelodyWidgetBlueprint extends Widget_Base implements WidgetInterface {
      */
     protected function render() {
         $data = $this->get_raw_data();
+        $view = $this->getView();
         $this->view->render(STELE_MELODY_DIR . '/templates/widget-root.php', [
             'settings' => $data['settings'],
             'instance' => $data['id'],

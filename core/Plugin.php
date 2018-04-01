@@ -2,9 +2,8 @@
 
 namespace Melody\Core;
 
-use Downshift\Container\Container;
-use Melody\Widgets\MelodyWidgetBlueprint;
 use Melody\Controls\custom\AudioPicker;
+use Melody\Widgets\Slider;
 use Elementor\Plugin as ElementorPlugin;
 use Elementor\Widgets_Manager;
 use Elementor\Controls_Manager;
@@ -12,20 +11,27 @@ use Elementor\Controls_Manager;
 class Plugin {
 
     /**
-     * @var Container
-     */
-    protected $container;
-
-    /**
      * @var AudioPicker
      */
     protected $audioPicker;
 
     /**
-     * @param AudioPicker $audioLibraryControl
+     * @var Slider
      */
-    public function __construct(AudioPicker $audioPicker) {
+    protected $slider;
+
+
+    /**
+     * @param AudioPicker $audioLibraryControl
+     * @param Slider $slider
+     */
+    public function __construct(
+        AudioPicker $audioPicker,
+        Slider $slider
+    ) {
         $this->audioPicker = $audioPicker;
+        $this->slider = $slider;
+
         $this->registerCategory();
 
         add_action(
@@ -40,16 +46,7 @@ class Plugin {
     }
 
     /**
-     * Set the container instance
-     * 
-     * @param Container $container
-     */
-    protected function setContainer(Container $container) {
-        $this->container = $container;
-    }
-
-    /**
-     * Reguster melody elements category with Elementor
+     * Register melody elements category with Elementor
      */
     protected function registerCategory() {
         $manager = ElementorPlugin::instance()->elements_manager;
@@ -62,21 +59,19 @@ class Plugin {
 
     /**
      * Register custom widgets with Elementor
+     * 
+     * @param Widgets_Manager $manager
      */
     public function registerWidgets(Widgets_Manager $manager) {
-        $widgets = $this->container['widgetConfigs'];
-        foreach($widgets as $widget) {
-            $manager->register_widget(
-                new MelodyWidgetBlueprint(
-                    $this->container,
-                    $widget
-                )
-            );
-        }
+        $manager->register_widget_type($this->slider);
+        // $manager->register_widget_type(new Toolbar);
+        // $manager->register_widget_type(new Tracklist);
     }
 
     /**
      * Register custom controls with Elementor
+     * 
+     * @param Controls_Manager $manager
      */
     public function registerControls(Controls_Manager $manager) {
         $manager->register_control(
