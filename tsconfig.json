@@ -1,12 +1,30 @@
 {
     "compilerOptions": {
-        "outDir": "/",
+        "outDir": "/public",
+        "sourceMap": true,
         "noImplicitAny": false,
         "module": "commonjs",
         "lib": ["es2017", "dom"],
-        "target": "es6",
+        "target": "es5",
+        "jsx": "react",
+        "jsxFactory": "h",
         "allowSyntheticDefaultImports": true,
-        "baseUrl": "./assets/src/",
+        "baseUrl": ".",
+        "paths": {
+            "@components/*": ["src/melody/components/*"],
+            "@redux/*": ["src/melody/redux/*"],
+            "@utils/*": ["src/melody/utils/*"],
+            "@state-machine/*": ["src/melody/state-machine/*"],
+            "@constants": ["src/melody/constants"],
+            "@views/*": ["src/melody/views/*"]
+        }
     },
-    "exclude": ["node_modules"]
+    "include": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules",
+        "./src/**/__tests__"
+    ]
 }

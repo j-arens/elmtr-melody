@@ -2,27 +2,81 @@
   "name": "elementor-melody",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/melody/index.ts",
   "author": "Josh Arens",
-  "license": "ISC",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/*.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)?$": "<rootDir>/dev/preprocessor.js"
+    },
+    "moduleNameMapper": {
+      "@tracks": "<rootDir>/dev/fixtures/tracks",
+      "@customProps": "<rootDir>/dev/fixtures/custom-props",
+      "@utils": "<rootDir>/src/melody/utils",
+      "@state-machine": "<rootDir>/src/melody/state-machine"
+    }
+  },
   "devDependencies": {
+    "@types/jest": "^22.0.1",
+    "@types/webpack-env": "^1.13.3",
     "@types/backbone": "^1.3.42",
     "@types/jquery": "^3.3.0",
     "@types/node": "^9.4.6",
     "awesome-typescript-loader": "^3.4.1",
     "typescript": "^2.7.2",
-    "webpack": "^3.11.0"
+    "webpack": "^3.11.0",
+    "autoprefixer": "^7.2.5",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.9",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "husky": "^0.14.3",
+    "jest": "^22.1.2",
+    "node-sass": "^4.7.2",
+    "postcss-loader": "^2.0.10",
+    "sass-loader": "^6.0.6",
+    "tslib": "^1.8.1",
+    "tslint": "^5.9.1",
+    "tslint-react": "^3.4.0",
+    "typescript-eslint-parser": "^12.0.0",
+    "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
+    "preact": "^8.2.7",
+    "preact-redux": "^2.0.3",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "typesafe-actions": "^1.1.2",
     "lodash.mergewith": "^4.6.1",
     "lodash.throttle": "^4.1.1"
   },
   "scripts": {
-    "build:audioPicker": "webpack --config ./dev/webpack.config.js --env.index=audio-picker/index.ts --env.name=audioPicker --progress --colors",
-    "build-watch:audioPicker": "npm run build:audioPicker -- -w",
-    "build:adapter": "webpack --config ./dev/webpack.config.js --env.index=adapter/index.ts --env.name=adapter --progress --colors",
+    "build:all": "npm run build:audioPicker & npm run build:adapter & npm run build:melody",
+    "build-watch:all": "npm run build-watch:adpater & npm run build-watch:audioPicker & npm run build-watch:melody",
+    "build:adapter": "webpack --config ./dev/webpack.config.js --env.project=adapter --progress --colors",
     "build-watch:adapter": "npm run build:adapter -- -w",
-    "build": "npm run build:audioPicker & npm run build:adapter",
-    "start": "npm run build-watch:audioPicker & npm run build-watch:adapter"
+    "build:audioPicker": "webpack --config ./dev/webpack.config.js --env.project=audioPicker --progress --colors",
+    "build-watch:audioPicker": "npm run build:audioPicker -- -w",
+    "build:melody": "webpack --config ./dev/webpack.config.js --env.project=melody --progress --colors",
+    "build-watch:melody": "npm run build:melody -- -w",
+    "lint": "tslint src/**/*.{ts,tsx}",
+    "lint:fix": "npm run lint -- --fix",
+    "prepush": "",
+    "test": "export NODE_ENV=test && jest",
+    "test:no-cache": "npm run test -- --no-cache",
+    "test:watch": "npm run test -- --watchAll",
+    "start": "npm run build-watch:all"
   }
 }

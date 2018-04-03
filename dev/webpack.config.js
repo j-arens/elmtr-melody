@@ -1,25 +1,27 @@
-const webpack = require('webpack');
-const path = require('path');
-const tsPipe = require('./tsPipe');
+const paths = require('./paths');
+const pipes = require('./pipes/');
+const plugins = require('./plugins');
 
-module.exports = ({ index, name }) => ({
-    entry: path.join(__dirname, `../assets/src/${index}`),
+module.exports = ({ project }) => ({
+    entry: paths[project].js.entry,
     devtool: 'inline-cheap-module-source-map',
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts', '.tsx', '.js', '.scss'],
+        alias: {
+            '@components': paths.melody.js.components,
+            '@redux': paths.melody.js.redux,
+            '@utils': paths.melody.js.utils,
+            '@state-machine': paths.melody.js.stateMachine,
+            '@constants': paths.melody.js.constants,
+            '@views': paths.melody.js.views,
+        },
     },
     output: {
-        path: path.join(__dirname, '../assets/js/'),
-        filename: `${name}.bundle.js`,
+        path: paths[project].js.output,
+        filename: `${project}.bundle.js`,
     },
     module: {
-        rules: [
-            tsPipe,
-        ],
+        rules: Object.values(pipes),
     },
-    plugins: [
-        new webpack.EnvironmentPlugin({
-            NODE_ENV: 'development',
-        }),
-    ],
+    plugins: plugins(project),
 });

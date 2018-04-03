@@ -1,0 +1,56 @@
+.volumeCtrl {
+    position: relative;
+    cursor: ns-resize;
+
+    &--isDragging {
+        cursor: move;
+    }
+
+    &__icon {
+        max-width: 21px;
+        width: 100%;
+        height: 100%;
+        fill: $color_white;
+        overflow: visible !important;
+    }
+
+    &__level,
+    &__levelOutline {
+        fill: transparent;
+        stroke-width: 1px;
+        transform-origin: center center;
+        transform: scale(1.5) rotate(90deg);
+        transition: opacity .15s ease;
+    }
+
+    &__level {
+        stroke: $color_white;
+        stroke-dasharray: 75;
+        stroke-linecap: round;
+    }
+
+    &__levelOutline {
+        stroke: $color_silver_chalice;
+    }
+
+}
+
+@media screen and (min-width: 1025px) {
+    .volumeCtrl {
+        &__level,
+        &__levelOutline {
+            opacity: 0;
+        }
+
+        &:hover,
+        &:active {
+            .volumeCtrl__level {
+                opacity: 1;
+            }
+
+            .volumeCtrl__levelOutline {
+                opacity: 0.5;
+            }
+        }
+    }
+}

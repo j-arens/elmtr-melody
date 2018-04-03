@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+@import 'throbber';
+
+/**
+* BASE
+*/
+
+.melody__base {
+    position: relative;
+    // background-color: $color_mine_shaft;
+    // color: $color_white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    // box-shadow: 1px 1px 11px 0 rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    user-select: none !important;
+    box-sizing: border-box;
+
+    * {
+        user-select: inherit !important;
+        box-sizing: inherit;
+
+        &::before,
+        &::after {
+            box-sizing: inherit;
+        }
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.rootError {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffdede;
+    border: 1px solid #ffbdbd;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    padding: 16px 32px;
+    box-shadow: 2px 2px 5px -1px rgba(30, 30, 30, 0.25);
+    
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    p {
+        color: #ef3838;
+        font-size: initial;
+    }
+
+    &__btn {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        position: absolute;
+        top: -16px;
+        right: -16px;
+        border: none;
+        font-weight: 700;
+        border-radius: 50%;
+        background-color: #ef3838;
+        color: #fff;
+        box-shadow: 1px 1px 4px 1px rgba(30, 30, 30, 0.25);
+        cursor: pointer;
+    }
+}

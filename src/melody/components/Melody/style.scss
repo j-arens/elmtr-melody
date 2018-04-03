@@ -1,0 +1,35 @@
+.Melody {
+    height: 100%;
+    box-shadow: var(--melody_component_box_shadow, '');
+    @include borderStack(melody_component);
+
+    &--fetching {
+        display: none;
+    }
+
+    &--isDragging {
+        cursor: move;
+    }
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 50%;
+    margin-top: 25%;
+
+    &__icon {
+        width: 75px;
+        height: 75px;
+        fill: $color_tundora;
+    }
+
+    &__reloadBtn {
+        color: $color_silver_chalice;
+        border: 1px solid $color_silver_chalice;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+    }
+}

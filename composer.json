@@ -17,14 +17,14 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Melody\\Core\\": "./core",
-            "Melody\\Widgets\\": "./widgets",
-            "Melody\\Controls\\": "./controls",
-            "Melody\\Http\\": "./http",
-            "Melody\\Service\\": "./service"
+            "Melody\\Core\\": "./plugin/core",
+            "Melody\\Widgets\\": "./plugin/widgets",
+            "Melody\\Controls\\": "./plugin/controls",
+            "Melody\\Http\\": "./plugin/http",
+            "Melody\\Service\\": "./plugin/service"
         },
         "files": [
-            "./core/functions.php"
+            "./plugin/core/functions.php"
         ]
     }
 }

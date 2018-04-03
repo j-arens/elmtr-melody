@@ -10,21 +10,22 @@ Author URI: jarens.me
 License: GPL-2.0
 */
 
-define('STELE_MELODY_VERSION', '0.1.0');
-define('STELE_MELODY_ROOT', __FILE__);
-define('STELE_MELODY_DIR', __DIR__);
+define('MELODY_VERSION', '0.1.0');
+define('MELODY_ROOT', __FILE__);
+define('MELODY_BASE_DIR', __DIR__);
+define('MELODY_PLUGIN_DIR', __DIR__ . '/plugin');
 
-add_action('elementor/init', 'stele_melody_init');
+add_action('elementor/init', 'melody_init');
 
 /**
- * Entry point
+ * Entry points
  */
-function stele_melody_init() {
-    if (!stele_melody_compatible()) {   
+function melody_init() {
+    if (!melody_compatible()) {   
         return;
     }
 
-    require 'bootstrap.php';
+    require MELODY_PLUGIN_DIR . '/bootstrap.php';
 }
 
 /**
@@ -32,19 +33,19 @@ function stele_melody_init() {
  * 
  * @return boolean
  */
-function stele_melody_compatible() {
-    if (version_compare(PHP_VERSION, '5.6', '<')) { // @TODO: figure out min ver
-        add_action('all_admin_notices', 'stele_melody_php_fail');
+function melody_compatible() {
+    if (version_compare(PHP_VERSION, '5.4', '<')) { // @TODO: figure out min ver
+        add_action('all_admin_notices', 'melody_php_fail');
         return;
     }
 
     if (version_compare(get_bloginfo('version'), '4.7', '<')) { // @TODO: test compat wp
-        add_action('all_admin_notices', 'stele_melody_wp_fail');
+        add_action('all_admin_notices', 'melody_wp_fail');
         return;
     }
 
     if (defined('ELEMENTOR_VERSION') && version_compare(ELEMENTOR_VERSION, '1.9.3', '<')) { // @TODO: test elementor versions
-        add_action('all_admin_notices', 'stele_melody_elmtr_fail');
+        add_action('all_admin_notices', 'melody_elmtr_fail');
         return;
     }
 
@@ -54,7 +55,7 @@ function stele_melody_compatible() {
 /**
  * print php incompatible admin notice
  */
-function stele_melody_php_fail() {
+function melody_php_fail() {
     echo '
         <div class="notice notice-error is-dismissible">
             <p>
@@ -68,7 +69,7 @@ function stele_melody_php_fail() {
 /**
  * print wordpress incompatible admin notice
  */
-function stele_melody_wp_fail() {
+function melody_wp_fail() {
     echo '
         <div class="notice notice-error is-dismissible">
             <p>
@@ -85,7 +86,7 @@ function stele_melody_wp_fail() {
 /**
  * print elementor incompatible admin notice
  */
-function stele_melody_elmtr_fail() {
+function melody_elmtr_fail() {
     echo '
         <div class="notice notice-error is-dismissible">
             <p>

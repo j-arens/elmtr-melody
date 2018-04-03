@@ -1,0 +1,49 @@
+/**
+* KEYFRAME ANIMATIONS
+*/
+
+// throbber
+@each $number, $settings in $columns {
+    @keyframes c#{$number} {
+        @each $frame in map-get($settings, keyframes) {
+            #{nth($frame, 1)}% {
+                transform: scaleY(#{nth($frame, 2)});
+            }
+        }
+    }
+    
+    @keyframes c#{$number}-cap {
+        from {
+            transform: translateY(#{map-get($settings, cap) + '%'});
+        }    
+    }
+}
+
+// buffering
+@keyframes buffer {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    
+    50% {
+        opacity: 0;
+    }
+    
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+}
+
+// favorite btn
+@keyframes ghost {
+    from {
+        transform: scale(0);
+        opacity: 0.65;
+    }
+    to {
+        transform: scale(3);
+        opacity: 0;
+    }
+}

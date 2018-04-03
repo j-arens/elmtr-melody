@@ -1,0 +1,26 @@
+.btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    line-height: initial;
+    color: var(--melody_btn_primary_color, $color_tundora);
+
+    &:hover {
+        color: var(--melody_btn_hover_color, $color_silver_chalice);
+        background: transparent;
+    }
+    
+    &:focus {
+        outline: 0;
+        background: transparent;
+        color: var(--melody_btn_primary_color, $color_tundora);
+    }
+    
+    &:active {
+        transform: scale(0.95);
+        background: transparent;
+        color: var(--melody_btn_hover_color, $color_silver_chalice);
+    }
+}

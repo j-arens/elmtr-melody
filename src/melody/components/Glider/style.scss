@@ -1,0 +1,52 @@
+.glider {
+    position: relative;
+    margin-bottom: -2rem;
+
+    &__playback {
+        display: flex;
+        align-items: center;
+        height: 16px;
+        padding: 0 14px 0 0;
+        overflow: hidden;
+    }
+
+    &__trackbar {
+        position: relative;
+        background-color: $color_white;
+        margin-left: 0;
+        background-color: transparent;
+        
+        &--transition {
+            transition: margin 1s linear;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 5px;
+            width: 9999px;
+        }
+        
+        &::before {
+            right: 0;
+            background-color: var(--melody_sliders_primary_color, $color_white);
+        }
+        
+        &::after {
+            left: 100%;
+            background-color: var(--melody_sliders_background_color, $color_silver_chalice);
+        }
+    }
+
+    &__handle {
+        position: relative;
+        z-index: 1;
+        padding: 7px;
+        border-radius: 50%;
+        box-shadow: 2px 0px 2px 1px rgba(0, 0, 0, 0.2);
+        background-color: var(--melody_sliders_handle_color, $color_white);
+    }
+}

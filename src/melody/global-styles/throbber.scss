@@ -1,0 +1,46 @@
+/**
+* THROBBER
+*/
+
+.melody__ {
+    &loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    &loaderIcon {
+        width: 3rem;
+        height: 3rem;
+        fill: $color_tundora;
+        
+        rect {
+            transform-origin: bottom center;
+        }
+
+        @each $number, $settings in $columns {
+            &__c#{$number} {
+                rect:first-child {
+                    animation: 
+                        c#{$number}-cap
+                        #{map-get($settings, duration)}s
+                        ease
+                        0s
+                        infinite
+                        alternate;
+                }
+                rect:last-child {
+                    animation: 
+                        c#{$number}
+                        #{map-get($settings, duration)}s
+                        ease
+                        0s
+                        infinite
+                        alternate;
+                }
+            }
+        }
+    }
+}
