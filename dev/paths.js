@@ -4,6 +4,7 @@ const dir = process.cwd();
 const resolve = relPath => path.resolve(dir, relPath);
 
 module.exports = {
+    output: resolve('./public/js'),
     melody: {
         css: {
             vars: resolve('./src/melody/global-styles/variables'),
@@ -13,7 +14,6 @@ module.exports = {
         },
         js: {
             entry: resolve('./src/melody/index.tsx'),
-            output: resolve('./public/js'),
             components: resolve('./src/melody/components/'),
             redux: resolve('./src/melody/redux/'),
             utils: resolve('./src/melody/utils/'),
@@ -25,13 +25,14 @@ module.exports = {
     adapter: {
         js: {
             entry: resolve('./src/adapter/index.ts'),
-            output: resolve('./public/js'),
         },
     },
     audioPicker: {
         js: {
             entry: resolve('./src/audio-picker/index.ts'),
-            output: resolve('./public/js'),
         },
+    },
+    devServer: {
+        js: 'http://localhost:4000/wp-content/plugins/elmtr-melody/public/js/', 
     },
 };

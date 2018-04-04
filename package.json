@@ -63,20 +63,26 @@
     "lodash.throttle": "^4.1.1"
   },
   "scripts": {
-    "build:all": "npm run build:audioPicker & npm run build:adapter & npm run build:melody",
-    "build-watch:all": "npm run build-watch:adpater & npm run build-watch:audioPicker & npm run build-watch:melody",
-    "build:adapter": "webpack --config ./dev/webpack.config.js --env.project=adapter --progress --colors",
+    "build:adapter": "webpack --config ./dev/webpack.config.js --env.libs=adapter --progress --colors",
     "build-watch:adapter": "npm run build:adapter -- -w",
-    "build:audioPicker": "webpack --config ./dev/webpack.config.js --env.project=audioPicker --progress --colors",
+    "build:audioPicker": "webpack --config ./dev/webpack.config.js --env.libs=audioPicker --progress --colors",
     "build-watch:audioPicker": "npm run build:audioPicker -- -w",
-    "build:melody": "webpack --config ./dev/webpack.config.js --env.project=melody --progress --colors",
+    "build:melody": "webpack --config ./dev/webpack.config.js --env.libs=melody --progress --colors",
     "build-watch:melody": "npm run build:melody -- -w",
+    "build:all": "webpack --config ./dev/webpack.config.js --env.libs=melody,audioPicker,adapter --progress --colors",
+    "build-watch:all": "npm run build:all -- -w",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "docker:pause": "docker-compose pause",
+    "docker:start": "docker-compose start",
+    "docker:stop": "docker-compose stop",
+    "docker:bash": "docker exec -it $(docker ps -q -f name=melody_wordpress) /bin/bash",
     "lint": "tslint src/**/*.{ts,tsx}",
     "lint:fix": "npm run lint -- --fix",
     "prepush": "",
     "test": "export NODE_ENV=test && jest",
     "test:no-cache": "npm run test -- --no-cache",
     "test:watch": "npm run test -- --watchAll",
-    "start": "npm run build-watch:all"
+    "start": "webpack-dev-server --config ./dev/webpack.config.js & open http://localhost:4000/wp-admin"
   }
 }

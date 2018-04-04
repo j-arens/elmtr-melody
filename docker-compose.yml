@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+
+  melody_db:
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: 'melody-wordpress'
+      MYSQL_ROOT_USER: 'root'
+      MYSQL_ROOT_PASSWORD: 'root'
+
+  melody_wordpress:
+    depends_on:
+      - melody_db
+    image: wordpress:latest
+    restart: unless-stopped
+    ports:
+      - 4000:80
+    environment:
+      WORDPRESS_DB_HOST: melody_db:3306
+      WORDPRESS_DB_NAME: 'melody-wordpress'
+      WORDPRESS_DB_USER: 'root'
+      WORDPRESS_DB_PASSWORD: 'root'
+  
+volumes:
+  dbdata:
