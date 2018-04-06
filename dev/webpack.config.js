@@ -8,10 +8,6 @@ module.exports = ({ libs }) => ({
         return entries;
     }, {}),
     devtool: 'inline-cheap-module-source-map',
-    devServer: {
-        overlay: true,
-        port: 4000,
-    },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.scss'],
         alias: {
@@ -26,7 +22,6 @@ module.exports = ({ libs }) => ({
     output: {
         path: paths.output,
         filename: '[name].bundle.js',
-        publicPath: paths.devServer.js,
     },
     module: {
         rules: Object.values(pipes),

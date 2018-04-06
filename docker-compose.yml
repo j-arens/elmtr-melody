@@ -6,7 +6,7 @@ services:
     image: mysql:5.7
     volumes:
       - dbdata:/var/lib/mysql
-    restart: unless-stopped
+    restart: always
     environment:
       MYSQL_DATABASE: 'melody-wordpress'
       MYSQL_ROOT_USER: 'root'
@@ -16,7 +16,9 @@ services:
     depends_on:
       - melody_db
     image: wordpress:latest
-    restart: unless-stopped
+    volumes:
+      - ./:/var/www/html/wp-content/plugins/elmtr-melody
+    restart: always
     ports:
       - 4000:80
     environment:
