@@ -8,9 +8,6 @@ return [
     'config' => [
         'label' => 'Preview',
         'tab' => Controls_Manager::TAB_STYLE,
-        'condition' => [
-            'melody_component_style' => 'skinny-bar',
-        ],
     ],
     'inputs' => [
         [
