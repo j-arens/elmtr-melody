@@ -1,44 +1,56 @@
-import { prepareTracks } from './tracks/';
+import { makeApp, makeError } from '@melody/index';
+import * as actions from '@redux/actions';
+import configureStore from '@redux/index';
+import intialState from '@redux/initialState';
+import throttle from 'lodash.throttle';
+import { GLOBAL } from './constants';
 import { prepareRules } from './css/';
+import { compose } from './helpers';
+import { prepareTracks } from './tracks/';
 const throttle = require('lodash.throttle');
 
-const { MELODY, jQuery: $ } = (window as any);
+const reset = ({ store, config }) => {
+    store.dispatch(actions.resetState());
+    return { store, config };
+};
 
-if (MELODY === undefined) {
-    console.error('lol adapter cant work error'); // @TODO: make gud error msg
-}
+const view = ({ store, config }) => {
+    const style = config.melody_component_style;
+    store.dispatch(actions.changeView(style));
+    return { store, config };
+};
 
-$(window).on('melody/init_app', throttle(init, 500));
+const tracks = ({ store, config }) => {
+    const audioTracks = config.melody_audio_tracks;
+    const prepared = prepareTracks(audioTracks);
+    store.dispatch(actions.setTracks(prepared));
+    return { store, config };
+};
 
-async function init ({ config, id }) {
-    const { app } = MELODY;
-    const store = app.createStore();
-    resetApp(store);
-    setView(store, config.melody_component_style);
-    await injectTracks(store, config.melody_audio_tracks);
-    await injectCss(store, config);
-    app.mount(id, store);
-}
+const css = ({ store, config }) => {
+    const prepared = prepareRules({ ...config });
+    store.dispatch(actions.editCustomProperties(prepared));
+    return { store, config };
+};
 
-const resetApp = ({ dispatch }) => dispatch({
-    type: 'melody/RESET_STATE',
-});
+const initialize = compose(
+    reset,
+    view,
+    tracks,
+    css,
+);
 
-const setView = ({ dispatch }, view) => dispatch({
-    type: 'melody/CHANGE_VIEW',
-    payload: view,
-});
+const newInstance = throttle((config, id) => {
+    const store = configureStore(intialState);
+    initialize({ store, config });
+    try {
+        makeApp(id, store);
+    } catch (e) {
+        makeError(e);
+        console.error(Error(e));
+    }
+}, 500);
 
-const injectTracks = async ({ dispatch }, tracks) => dispatch({
-    type: 'melody/SET_TRACKS',
-    payload: await prepareTracks(tracks),
-});
-
-const injectCss = ({ dispatch }, config) => dispatch({
-    type: 'melody/EDIT_CUSTOM_PROPS',
-    payload: prepareRules({...config}),
-});
-
-MELODY.adapter = {
-    init,
+GLOBAL.MELODY = {
+    newInstance,
 };

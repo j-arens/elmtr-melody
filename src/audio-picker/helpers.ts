@@ -1,6 +1,6 @@
 /**
  * Capatilize a string
  */
-export function capatilize(string: string): string {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+export function capatilize(text: string): string {
+    return text.charAt(0).toUpperCase() + text.slice(1);
 }

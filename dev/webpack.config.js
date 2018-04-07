@@ -11,6 +11,7 @@ module.exports = ({ libs }) => ({
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.scss'],
         alias: {
+            '@melody': paths.melody.js.melody,
             '@components': paths.melody.js.components,
             '@redux': paths.melody.js.redux,
             '@utils': paths.melody.js.utils,

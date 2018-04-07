@@ -5,9 +5,8 @@ export const filterRules = (stop, config, props, key) => {
         props[key] = config[key];
         return props;
     }
-
     stop(props);
-}
+};
 
 export const assembleBorders = (stop, config, props, key) => {
     switch (true) {
@@ -38,7 +37,7 @@ export const assembleBorders = (stop, config, props, key) => {
             return props;
         }
     }
-}
+};
 
 // @TODO: fix double box_shadow?
 export const assembleBoxShadows = (stop, config, props, key) => {
@@ -59,7 +58,7 @@ export const assembleBoxShadows = (stop, config, props, key) => {
     }
 
     return props;
-}
+};
 
 export const assemblePaddings = (stop, config, props, key) => {
     if (key.endsWith('padding')) {
@@ -73,7 +72,7 @@ export const assemblePaddings = (stop, config, props, key) => {
     }
 
     return props;
-}
+};
 
 export const assembleQuantities = (stop, config, props, key) => {
     if (typeof config[key] === 'object' &&
@@ -85,4 +84,4 @@ export const assembleQuantities = (stop, config, props, key) => {
         }
 
     return props;
-}
+};

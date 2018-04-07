@@ -20,6 +20,7 @@ module.exports = {
             stateMachine: resolve('./src/melody/state-machine/'),
             constants: resolve('./src/melody/constants'),
             views: resolve('./src/melody/views/'),
+            melody: resolve('./src/melody/'),
         },
     },
     adapter: {

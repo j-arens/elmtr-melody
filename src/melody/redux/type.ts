@@ -1,22 +1,6 @@
 import { MachineStates } from '@state-machine/type';
 import { getReturnOfExpression } from 'typesafe-actions';
-import {
-    deleteCustomProperty,
-    editCustomProperties,
-    nextTrack,
-    prevTrack,
-    toggleDock,
-    toggleGliderDragging,
-    toggleRepeat,
-    toggleShuffle,
-    toggleVolDragging,
-    triggerTimeSync,
-    updateCurrentTime,
-    updateVolume,
-    changeView,
-    speedUp,
-    slowDown,
-} from './actions';
+import * as actions from './actions';
 
 export type View =
  | 'simple-toolbar'
@@ -64,21 +48,21 @@ export interface State {
 }
 
 const returnOfActions = [
-    updateCurrentTime,
-    nextTrack,
-    prevTrack,
-    toggleShuffle,
-    toggleRepeat,
-    toggleVolDragging,
-    toggleGliderDragging,
-    updateVolume,
-    triggerTimeSync,
-    editCustomProperties,
-    deleteCustomProperty,
-    toggleDock,
-    speedUp,
-    slowDown,
-    changeView,
+    actions.updateCurrentTime,
+    actions.nextTrack,
+    actions.prevTrack,
+    actions.toggleShuffle,
+    actions.toggleRepeat,
+    actions.toggleVolDragging,
+    actions.toggleGliderDragging,
+    actions.updateVolume,
+    actions.triggerTimeSync,
+    actions.editCustomProperties,
+    actions.deleteCustomProperty,
+    actions.toggleDock,
+    actions.speedUp,
+    actions.slowDown,
+    actions.changeView,
 ].map(getReturnOfExpression);
 
 interface PayloadAction {

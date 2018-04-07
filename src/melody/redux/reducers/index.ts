@@ -7,7 +7,7 @@ import initialState from '../initialState';
 /**
  * CYCLE_STATE
  */
-export function cycleStateReducer(state: State, action: Action): State {
+export function cycleState(state: State, action: Action): State {
     if (!action.payload) {
         return state;
     }
@@ -41,7 +41,7 @@ export function cycleStateReducer(state: State, action: Action): State {
 /**
  * SET_CURRENT_TRACK
  */
-export function setCurrentTrackReducer(state: State, action: Action): State {
+export function setCurrentTrack(state: State, action: Action): State {
     if (!action.payload) {
         return state;
     }
@@ -62,7 +62,7 @@ export function setCurrentTrackReducer(state: State, action: Action): State {
 /**
  * SET_TRACKS
  */
-export function setTracksReducer(state: State, action: Action): State {
+export function setTracks(state: State, action: Action): State {
     if (!action.payload) {
         return state;
     }
@@ -76,7 +76,7 @@ export function setTracksReducer(state: State, action: Action): State {
 /**
  * UPDATE_CURRENT_TIME
  */
-export function updateCurrentTimeReducer(state: State, action: Action): State {
+export function updateCurrentTime(state: State, action: Action): State {
     if (action.payload === undefined) {
         return state;
     }
@@ -90,7 +90,7 @@ export function updateCurrentTimeReducer(state: State, action: Action): State {
 /**
  * NEXT_TRACK
  */
-export function nextTrackReducer(state: State, action: Action): State {
+export function nextTrack(state: State, action: Action): State {
     const { tracks, currentTrack, shuffle } = state;
 
     if (shuffle) {
@@ -116,7 +116,7 @@ export function nextTrackReducer(state: State, action: Action): State {
 /**
  * PREV_TRACK
  */
-export function prevTrackReducer(state: State, action: Action): State {
+export function prevTrack(state: State, action: Action): State {
     const { tracks, currentTrack, lastTrack, shuffle } = state;
 
     if (shuffle) {
@@ -142,7 +142,7 @@ export function prevTrackReducer(state: State, action: Action): State {
 /**
  * TOGGLE_SHUFFLE
  */
-export function toggleShuffleReducer(state: State, action: Action): State {
+export function toggleShuffle(state: State, action: Action): State {
     return {
         ...state,
         shuffle: !state.shuffle,
@@ -152,7 +152,7 @@ export function toggleShuffleReducer(state: State, action: Action): State {
 /**
  * TOGGLE_REPEAT
  */
-export function toggleRepeatReducer(state: State, action: Action): State {
+export function toggleRepeat(state: State, action: Action): State {
     return {
         ...state,
         repeat: !state.repeat,
@@ -162,7 +162,7 @@ export function toggleRepeatReducer(state: State, action: Action): State {
 /**
  * TOGGLE_VOL_DRAGGING
  */
-export function toggleVolDraggingReducer(state: State, action: Action): State {
+export function toggleVolDragging(state: State, action: Action): State {
     return {
         ...state,
         ui: {
@@ -175,7 +175,7 @@ export function toggleVolDraggingReducer(state: State, action: Action): State {
 /**
  * TOGGLE_GLIDER_DRAGGING
  */
-export function toggleGliderDraggingReducer(state: State, action: Action): State {
+export function toggleGliderDragging(state: State, action: Action): State {
     return {
         ...state,
         ui: {
@@ -188,7 +188,7 @@ export function toggleGliderDraggingReducer(state: State, action: Action): State
 /**
  * UPDATE_VOLUME
  */
-export function updateVolumeReducer(state: State, action: Action): State {
+export function updateVolume(state: State, action: Action): State {
     if (!action.payload === undefined) {
         return state;
     }
@@ -208,7 +208,7 @@ export function updateVolumeReducer(state: State, action: Action): State {
 /**
  * TRIGGER_TIME_SYNC
  */
-export function triggerTimeSyncReducer(state: State, action: Action): State {
+export function triggerTimeSync(state: State, action: Action): State {
     return {
         ...state,
         timeSync: state.timeSync + 1,
@@ -218,7 +218,7 @@ export function triggerTimeSyncReducer(state: State, action: Action): State {
 /**
  * EDIT_CUSTOM_PROPS
  */
-export function editCustomPropsReducer(state: State, action: Action): State {
+export function editCustomProps(state: State, action: Action): State {
     return {
         ...state,
         ui: {
@@ -234,7 +234,7 @@ export function editCustomPropsReducer(state: State, action: Action): State {
 /**
  * DELETE_CUSTOM_PROP
  */
-export function deleteCustomPropReducer(state: State, action: Action): State {
+export function deleteCustomProp(state: State, action: Action): State {
     const { ui: { customProperties } } = state;
     const { payload } = action;
 
@@ -248,14 +248,14 @@ export function deleteCustomPropReducer(state: State, action: Action): State {
 /**
  * RESET_STATE
  */
-export function resetStateReducer(): State {
+export function resetState(): State {
     return initialState;
 }
 
 /**
  * TOGGLE_DOCK
  */
-export function toggleDockReducer(state: State, action: Action): State {
+export function toggleDock(state: State, action: Action): State {
     return {
         ...state,
         ui: {
@@ -268,7 +268,7 @@ export function toggleDockReducer(state: State, action: Action): State {
 /**
  * SPEED_UP
  */
-export function speedUpReducer(state: State): State {
+export function speedUp(state: State): State {
     const { playbackRate } = state;
 
     if (playbackRate === 2) {
@@ -284,7 +284,7 @@ export function speedUpReducer(state: State): State {
 /**
  * SLOW_DOWN
  */
-export function slowDownReducer(state: State): State {
+export function slowDown(state: State): State {
     const { playbackRate } = state;
 
     if (playbackRate === 0.5) {
@@ -300,7 +300,7 @@ export function slowDownReducer(state: State): State {
 /**
  * CHANGE_VIEW
  */
-export function changeViewReducer(state: State, action: Action): State {
+export function changeView(state: State, action: Action): State {
     const { ui: view } = state;
     const nextView = action.payload;
 

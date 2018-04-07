@@ -40,14 +40,12 @@ export default class MiddlewarePipeline {
      * Run the middleware with provided args
      */
     public process(...args: any[]): any {
-        if (this.repository.size) {
-            for (const middleware of (this.repository.values() as any)) {
-                if (this.stopped) {
-                    break;
-                }
-    
-                this.processedValue = middleware(this.stop, ...args);
+        for (const middleware of Array.from(this.repository.values())) {
+            if (this.stopped) {
+                break;
             }
+
+            this.processedValue = middleware(this.stop, ...args);
         }
 
         return this.resolve();
@@ -59,10 +57,10 @@ export default class MiddlewarePipeline {
     public stop = (value: any): void => {
         this.stopped = true;
         this.stoppedValue = value;
-    } 
+    }
 
     /**
-     * Get the pipeline's resulting value 
+     * Get the pipeline's resulting value
      */
     protected resolve(): any {
         return this.stopped ? this.stoppedValue : this.processedValue;

@@ -1,20 +1,20 @@
 import { defaultTrack } from './defaults';
-import * as mappers from './mappers';
 import {
-    mergeIntoDefault,
-    getTrackLengths,
     assignDuration,
+    getTrackDurations,
+    mergeIntoDefault,
 } from './helpers';
+import * as mappers from './mappers';
 
-export const prepareTracks = async tracks => {
+export const prepareTracks = tracks => {
     if (!Array.isArray(tracks)) {
         tracks = [];
     }
-    const durations = await getTrackLengths(tracks);
+    const durations = getTrackDurations(tracks);
     return tracks
         .map((t, index) => assignDuration(t, durations[index]))
         .map(normalizeTrack);
-}
+};
 
 const normalizeTrack = track => {
     let normalized = defaultTrack;
@@ -37,4 +37,4 @@ const normalizeTrack = track => {
     }
 
     return mergeIntoDefault(normalized);
-}
+};

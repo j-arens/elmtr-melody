@@ -1,50 +1,9 @@
 import { getType } from 'typesafe-actions';
-import {
-    cycleState,
-    deleteCustomProperty,
-    editCustomProperties,
-    nextTrack,
-    prevTrack,
-    resetState,
-    setCurrentTrack,
-    setTracks,
-    slowDown,
-    speedUp,
-    toggleDock,
-    toggleGliderDragging,
-    toggleRepeat,
-    toggleShuffle,
-    toggleVolDragging,
-    triggerTimeSync,
-    updateCurrentTime,
-    updateVolume,
-    changeView,
-} from './actions';
-import initialState from './initialState';
-import {
-    cycleStateReducer,
-    deleteCustomPropReducer,
-    editCustomPropsReducer,
-    nextTrackReducer,
-    prevTrackReducer,
-    resetStateReducer,
-    setCurrentTrackReducer,
-    setTracksReducer,
-    slowDownReducer,
-    speedUpReducer,
-    toggleDockReducer,
-    toggleGliderDraggingReducer,
-    toggleRepeatReducer,
-    toggleShuffleReducer,
-    toggleVolDraggingReducer,
-    triggerTimeSyncReducer,
-    updateCurrentTimeReducer,
-    updateVolumeReducer,
-    changeViewReducer,
-} from './reducers';
-import { Action, State } from './type';
-
+import * as actions from './actions';
 import { CYCLE_STATE, RESET_STATE } from './constants';
+import initialState from './initialState';
+import * as reducers from './reducers';
+import { Action, State } from './type';
 
 export default function(
     state: State = initialState,
@@ -52,61 +11,61 @@ export default function(
 ): State {
     switch (action.type) {
         case CYCLE_STATE: {
-            return cycleStateReducer(state, action);
+            return reducers.cycleState(state, action);
         }
-        case getType(updateCurrentTime): {
-            return updateCurrentTimeReducer(state, action);
+        case getType(actions.updateCurrentTime): {
+            return reducers.updateCurrentTime(state, action);
         }
-        case getType(setCurrentTrack): {
-            return setCurrentTrackReducer(state, action);
+        case getType(actions.setCurrentTrack): {
+            return reducers.setCurrentTrack(state, action);
         }
-        case getType(setTracks): {
-            return setTracksReducer(state, action);
+        case getType(actions.setTracks): {
+            return reducers.setTracks(state, action);
         }
-        case getType(nextTrack): {
-            return nextTrackReducer(state, action);
+        case getType(actions.nextTrack): {
+            return reducers.nextTrack(state, action);
         }
-        case getType(prevTrack): {
-            return prevTrackReducer(state, action);
+        case getType(actions.prevTrack): {
+            return reducers.prevTrack(state, action);
         }
-        case getType(toggleShuffle): {
-            return toggleShuffleReducer(state, action);
+        case getType(actions.toggleShuffle): {
+            return reducers.toggleShuffle(state, action);
         }
-        case getType(toggleRepeat): {
-            return toggleRepeatReducer(state, action);
+        case getType(actions.toggleRepeat): {
+            return reducers.toggleRepeat(state, action);
         }
-        case getType(toggleVolDragging): {
-            return toggleVolDraggingReducer(state, action);
+        case getType(actions.toggleVolDragging): {
+            return reducers.toggleVolDragging(state, action);
         }
-        case getType(updateVolume): {
-            return updateVolumeReducer(state, action);
+        case getType(actions.updateVolume): {
+            return reducers.updateVolume(state, action);
         }
-        case getType(toggleGliderDragging): {
-            return toggleGliderDraggingReducer(state, action);
+        case getType(actions.toggleGliderDragging): {
+            return reducers.toggleGliderDragging(state, action);
         }
-        case getType(triggerTimeSync): {
-            return triggerTimeSyncReducer(state, action);
+        case getType(actions.triggerTimeSync): {
+            return reducers.triggerTimeSync(state, action);
         }
-        case getType(editCustomProperties): {
-            return editCustomPropsReducer(state, action);
+        case getType(actions.editCustomProperties): {
+            return reducers.editCustomProps(state, action);
         }
-        case getType(deleteCustomProperty): {
-            return deleteCustomPropReducer(state, action);
+        case getType(actions.deleteCustomProperty): {
+            return reducers.deleteCustomProp(state, action);
         }
-        case getType(toggleDock): {
-            return toggleDockReducer(state, action);
+        case getType(actions.toggleDock): {
+            return reducers.toggleDock(state, action);
         }
-        case getType(speedUp): {
-            return speedUpReducer(state);
+        case getType(actions.speedUp): {
+            return reducers.speedUp(state);
         }
-        case getType(slowDown): {
-            return slowDownReducer(state);
+        case getType(actions.slowDown): {
+            return reducers.slowDown(state);
         }
-        case getType(changeView): {
-            return changeViewReducer(state, action);
+        case getType(actions.changeView): {
+            return reducers.changeView(state, action);
         }
         case RESET_STATE: {
-            return resetStateReducer();
+            return reducers.resetState();
         }
         default: {
             return state;

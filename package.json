@@ -55,13 +55,13 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "lodash.mergewith": "^4.6.1",
+    "lodash.throttle": "^4.1.1",
     "preact": "^8.2.7",
     "preact-redux": "^2.0.3",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "typesafe-actions": "^1.1.2",
-    "lodash.mergewith": "^4.6.1",
-    "lodash.throttle": "^4.1.1"
+    "typesafe-actions": "^1.1.2"
   },
   "scripts": {
     "build:adapter": "webpack --config ./dev/webpack.config.js --env.libs=adapter --progress --colors",
@@ -80,7 +80,7 @@
     "docker:bash": "docker exec -it $(docker ps -q -f name=melody_wordpress) /bin/bash",
     "lint": "tslint src/**/*.{ts,tsx}",
     "lint:fix": "npm run lint -- --fix",
-    "prepush": "",
+    "prepush": "npm run lint & npm run test",
     "test": "export NODE_ENV=test && jest",
     "test:no-cache": "npm run test -- --no-cache",
     "test:watch": "npm run test -- --watchAll",

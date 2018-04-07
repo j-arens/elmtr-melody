@@ -1,15 +1,15 @@
 import MiddlewarePipeline from '../MiddlewarePipeline';
 import {
-    filterRules,
     assembleBorders,
     assembleBoxShadows,
     assemblePaddings,
     assembleQuantities,
+    filterRules,
 } from './middleware';
 
 export const prepareRules = config => Object.keys(config)
     .reduce((rules, key) => {
-        const pipeline = new MiddlewarePipeline;
+        const pipeline = new MiddlewarePipeline();
         pipeline.use(
             filterRules,
             assembleBorders,

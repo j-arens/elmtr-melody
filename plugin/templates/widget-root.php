@@ -4,11 +4,10 @@
 <script>
     (function($) {
         $(document).ready(function() {
-            $(window).trigger({
-                type: 'melody/init_app',
-                config: <?= json_encode($settings) ?>,
-                id: 'melody-widgetRoot:<?= $instance ?>',
-            });
+            window.MELODY.newInstance(
+                <?= json_encode($settings) ?>,
+                'melody-widgetRoot:<?= $instance ?>',
+            );
         });
     })(jQuery);
 </script>
