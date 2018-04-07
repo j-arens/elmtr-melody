@@ -8,9 +8,6 @@ return [
     'config' => [
         'label' => 'Control Bar',
         'tab' => Controls_Manager::TAB_STYLE,
-        'condition' => [
-            'melody_component_style' => 'skinny-bar',
-        ],
     ],
     'inputs' => [
         [
@@ -36,9 +33,6 @@ return [
                         'min' => 0,
                         'step' => 1,
                     ],
-                ],
-                'condition' => [
-                    'melody_component_style' => 'skinny-bar',
                 ],
             ],
         ],
