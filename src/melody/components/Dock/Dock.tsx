@@ -1,9 +1,9 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
 import { Action, Track } from '@redux/type';
+import { NO_OP } from '@utils/index';
 import * as classnames from 'classnames';
 import { h } from 'preact';
-import { NO_OP } from '@utils/index';
 const s = require('./style.scss');
 
 interface Props {

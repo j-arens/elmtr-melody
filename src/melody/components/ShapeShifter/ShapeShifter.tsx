@@ -1,6 +1,6 @@
 import { View } from '@redux/type';
-import Slider from '@views/Slider/Slider';
 import SimpleToolbar from '@views/SimpleToolbar/SimpleToolbar';
+import Slider from '@views/Slider/Slider';
 import { h } from 'preact';
 
 interface Props {

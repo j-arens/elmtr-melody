@@ -19,15 +19,15 @@ export const getDownloadUrl = (track, origin) => {
     }
 
     return '';
-}
+};
 
 export const assignDuration = (track, duration) =>
     Object.assign(track, { duration });
 
 export const mergeIntoDefault = track =>
     mergewith({}, defaultTrack, track, (oV, srcV) =>
-        srcV === '' ? oV : undefined
-    )
+        srcV === '' ? oV : undefined,
+    );
 
 export const trackLengthToSeconds = (str: string): number => {
     if (!str.includes(':')) {
@@ -44,9 +44,9 @@ export const trackLengthToSeconds = (str: string): number => {
     }
 
     return s;
-}
+};
 
-export const getTrackLengths = async tracks => await Promise.all(tracks.map(t => {
+export const getTrackDurations = tracks => Promise.all(tracks.map(t => {
     if (t.melody_audio_source === 'media-library') {
         const duration = t.melody_wp_media_picker.duration;
         return trackLengthToSeconds(duration);

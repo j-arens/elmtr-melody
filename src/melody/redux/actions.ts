@@ -3,27 +3,7 @@ import { timeout } from '@utils/index';
 import { create } from 'domain';
 import { ThunkAction } from 'redux-thunk';
 import { createAction } from 'typesafe-actions';
-import {
-    CYCLE_STATE,
-    DELETE_CUSTOM_PROP,
-    EDIT_CUSTOM_PROPS,
-    NEXT_TRACK,
-    PREV_TRACK,
-    RESET_STATE,
-    SET_CURRENT_TRACK,
-    SET_TRACKS,
-    SLOW_DOWN,
-    SPEED_UP,
-    TOGGLE_DOCK,
-    TOGGLE_GLIDER_DRAGGING,
-    TOGGLE_REPEAT,
-    TOGGLE_SHUFFLE,
-    TOGGLE_VOL_DRAGGING,
-    TRIGGER_TIME_SYNC,
-    UPDATE_CURRENT_TIME,
-    UPDATE_VOLUME,
-    CHANGE_VIEW,
-} from './constants';
+import * as constants from './constants';
 import { State, View } from './type';
 
 /*
@@ -38,7 +18,7 @@ export function cycleState(machineAction: MachineAction) {
         return new Promise((resolve, reject) => {
             try {
                 dispatch({
-                    type: CYCLE_STATE,
+                    type: constants.CYCLE_STATE,
                     payload: machineAction,
                 });
                 resolve();
@@ -49,30 +29,30 @@ export function cycleState(machineAction: MachineAction) {
     };
 }
 
-export const setTracks = createAction(SET_TRACKS,
+export const setTracks = createAction(constants.SET_TRACKS,
     (tracks: object[]) => ({
-        type: SET_TRACKS,
+        type: constants.SET_TRACKS,
         payload: tracks,
     }),
 );
 
-export const setCurrentTrack = createAction(SET_CURRENT_TRACK,
+export const setCurrentTrack = createAction(constants.SET_CURRENT_TRACK,
     (index: number) => ({
-        type: SET_CURRENT_TRACK,
+        type: constants.SET_CURRENT_TRACK,
         payload: index,
     }),
 );
 
-export const updateCurrentTime = createAction(UPDATE_CURRENT_TIME,
+export const updateCurrentTime = createAction(constants.UPDATE_CURRENT_TIME,
     (nextTime: number) => ({
-        type: UPDATE_CURRENT_TIME,
+        type: constants.UPDATE_CURRENT_TIME,
         payload: nextTime,
     }),
 );
 
-export const nextTrack = createAction(NEXT_TRACK,
+export const nextTrack = createAction(constants.NEXT_TRACK,
     () => ({
-        type: NEXT_TRACK,
+        type: constants.NEXT_TRACK,
     }),
 );
 
@@ -91,88 +71,88 @@ export const nextTrack = createAction(NEXT_TRACK,
 //         }
 //     };
 
-export const prevTrack = createAction(PREV_TRACK,
+export const prevTrack = createAction(constants.PREV_TRACK,
     () => ({
-        type: PREV_TRACK,
+        type: constants.PREV_TRACK,
     }),
 );
 
-export const toggleShuffle = createAction(TOGGLE_SHUFFLE,
+export const toggleShuffle = createAction(constants.TOGGLE_SHUFFLE,
     () => ({
-        type: TOGGLE_SHUFFLE,
+        type: constants.TOGGLE_SHUFFLE,
     }),
 );
 
-export const toggleRepeat = createAction(TOGGLE_REPEAT,
+export const toggleRepeat = createAction(constants.TOGGLE_REPEAT,
     () => ({
-        type: TOGGLE_REPEAT,
+        type: constants.TOGGLE_REPEAT,
     }),
 );
 
-export const toggleVolDragging = createAction(TOGGLE_VOL_DRAGGING,
+export const toggleVolDragging = createAction(constants.TOGGLE_VOL_DRAGGING,
     () => ({
-        type: TOGGLE_VOL_DRAGGING,
+        type: constants.TOGGLE_VOL_DRAGGING,
     }),
 );
 
-export const toggleGliderDragging = createAction(TOGGLE_GLIDER_DRAGGING,
+export const toggleGliderDragging = createAction(constants.TOGGLE_GLIDER_DRAGGING,
     () => ({
-        type: TOGGLE_GLIDER_DRAGGING,
+        type: constants.TOGGLE_GLIDER_DRAGGING,
     }),
 );
 
-export const updateVolume = createAction(UPDATE_VOLUME,
+export const updateVolume = createAction(constants.UPDATE_VOLUME,
     (newLevel: number) => ({
-        type: UPDATE_VOLUME,
+        type: constants.UPDATE_VOLUME,
         payload: newLevel,
     }),
 );
 
-export const triggerTimeSync = createAction(TRIGGER_TIME_SYNC,
+export const triggerTimeSync = createAction(constants.TRIGGER_TIME_SYNC,
     () => ({
-        type: TRIGGER_TIME_SYNC,
+        type: constants.TRIGGER_TIME_SYNC,
     }),
 );
 
-export const editCustomProperties = createAction(EDIT_CUSTOM_PROPS,
+export const editCustomProperties = createAction(constants.EDIT_CUSTOM_PROPS,
     (properties: object) => ({
-        type: EDIT_CUSTOM_PROPS,
+        type: constants.EDIT_CUSTOM_PROPS,
         payload: properties,
     }),
 );
 
-export const deleteCustomProperty = createAction(DELETE_CUSTOM_PROP,
+export const deleteCustomProperty = createAction(constants.DELETE_CUSTOM_PROP,
     (key: string) => ({
-        type: DELETE_CUSTOM_PROP,
+        type: constants.DELETE_CUSTOM_PROP,
         payload: key,
     }),
 );
 
 export const resetState = () => ({
-    type: RESET_STATE,
+    type: constants.RESET_STATE,
 });
 
-export const toggleDock = createAction(TOGGLE_DOCK,
+export const toggleDock = createAction(constants.TOGGLE_DOCK,
     () => ({
-        type: TOGGLE_DOCK,
+        type: constants.TOGGLE_DOCK,
     }),
 );
 
-export const speedUp = createAction(SPEED_UP,
+export const speedUp = createAction(constants.SPEED_UP,
     () => ({
-        type: SPEED_UP,
+        type: constants.SPEED_UP,
     }),
 );
 
-export const slowDown = createAction(SLOW_DOWN,
+export const slowDown = createAction(constants.SLOW_DOWN,
     () => ({
-        type: SLOW_DOWN,
+        type: constants.SLOW_DOWN,
     }),
 );
 
-export const changeView = createAction(CHANGE_VIEW,
+export const changeView = createAction(constants.CHANGE_VIEW,
     (view: View) => ({
-        type: CHANGE_VIEW,
+        type: constants.CHANGE_VIEW,
         payload: view,
     }),
 );

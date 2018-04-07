@@ -1,8 +1,8 @@
 import {
-    REVEAL_SELECTOR,
+    FIELD_SELECTOR,
     HIDDEN_CLASS,
     IMAGE_SELECTOR,
-    FIELD_SELECTOR,
+    REVEAL_SELECTOR,
 } from './constants';
 import { capatilize } from './helpers';
 import { TriggerAction } from './type';
@@ -26,7 +26,7 @@ export function showUI($container: JQuery): void {
 }
 
 /**
- * Update audiopicker container 
+ * Update audiopicker container
  */
 export function updateUI($container: JQuery, values): void {
     const fields = [
@@ -34,17 +34,17 @@ export function updateUI($container: JQuery, values): void {
         'album',
         'artist',
     ];
-    
+
     fields.map(field => $container
         .find(`[${FIELD_SELECTOR}="${field}"] input`)
-        .val(values[field])
+        .val(values[field]),
     );
-    
+
     setImage($container, values.artwork);
 }
 
 /**
- * Set an image within a container 
+ * Set an image within a container
  */
 export function setImage($container: JQuery, url: string): void {
     $container
@@ -55,7 +55,7 @@ export function setImage($container: JQuery, url: string): void {
 }
 
 /**
- * Remove an image within a container  
+ * Remove an image within a container
  */
 export function removeImage($container: JQuery): void {
     $container
@@ -66,11 +66,11 @@ export function removeImage($container: JQuery): void {
 }
 
 /**
- * Swap the action performed by a trigger 
+ * Swap the action performed by a trigger
  */
 export function swapTrackTrigger(
     $trigger: JQuery,
-    action: TriggerAction
+    action: TriggerAction,
 ): void {
     $trigger.attr('data-melody-ap-trigger-action', action);
     $trigger.text(`${capatilize(action.split('_').shift().toLowerCase())} Track`);

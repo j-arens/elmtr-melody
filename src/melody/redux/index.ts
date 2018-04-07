@@ -1,17 +1,13 @@
+import { State } from '@redux/type';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import initialState from './initialState';
 import rootReducer from './rootReducer';
 
 const devTools = [];
-// const isDevelopment = process.env.NODE_ENV === 'development';
-const hasDevTools = window.hasOwnProperty('__REDUX_DEVTOOLS_EXTENSION__');
+const DEV = process.env.NODE_ENV === 'development';
+const hasDevTools = typeof window['__REDUX_DEVTOOLS_EXTENSION__'] !== 'undefined';
 
-// if (isDevelopment && hasDevTools) {
-//     devTools.push(window['__REDUX_DEVTOOLS_EXTENSION__']());
-// }
-
-if (hasDevTools) {
+if (DEV && hasDevTools) {
     devTools.push(window['__REDUX_DEVTOOLS_EXTENSION__']());
 }
 
@@ -20,4 +16,4 @@ const middlewares = compose(
     ...devTools,
 );
 
-export default () => createStore(rootReducer, initialState, middlewares);
+export default state => createStore(rootReducer, state, middlewares);

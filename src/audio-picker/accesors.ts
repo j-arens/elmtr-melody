@@ -1,9 +1,9 @@
-import { $, TRACKS_KEY, CONTAINER_CLASS } from './constants';
 import { Model } from 'backbone';
+import { $, CONTAINER_CLASS, TRACKS_KEY } from './constants';
 import {
+    TrackMutation,
     TrackResources,
     TrackState,
-    TrackMutation,
 } from './type';
 
 /**
@@ -11,7 +11,7 @@ import {
  */
 export const getAttr = (
     model: Model,
-    key: string
+    key: string,
 ): any => model.get(key);
 
 /**
@@ -19,7 +19,7 @@ export const getAttr = (
  */
 export const setAttrs = (
     model: Model,
-    attrs: Object
+    attrs: object,
 ): any => model.set(attrs);
 
 /**
@@ -27,7 +27,7 @@ export const setAttrs = (
  */
 export const getTrackModel = (
     model: Model,
-    index: number
+    index: number,
 ): Model => getAttr(model, TRACKS_KEY).at(index);
 
 /**
@@ -41,9 +41,8 @@ export const getFieldContainer = (
  * Get the index of a $container in the context of other $containers
  */
 export const getContainerIndex = (
-    $container: JQuery
+    $container: JQuery,
 ): number => $container.index(CONTAINER_CLASS);
-
 
 /**
  * Get TrackResources when a en event happens on a field

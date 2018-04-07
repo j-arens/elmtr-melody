@@ -1,40 +1,39 @@
 import { Model } from 'backbone';
-import { audioFrame, imageFrame } from './mediaframe';
-import {
-    SettingsModel,
-    FrameType,
-    Panel,
-    TriggerAction,
-    MelodyResources,
-    MediaFrame,
-    TrackState,
-    TrackResources,
-    AudioPickerField,
-    TrackMutation,
-} from './type';
 import {
     getTrackResources,
     setTrackState,
 } from './accesors';
 import {
-    updateUI,
-    showUI,
-    hideUI,
-    setImage,
-    removeImage,
-    swapTrackTrigger,
-} from './ui';
-import {
-    GLOBAL,
     $,
     DEV_MODE,
-    PANEL_HOOK,
     FIELD_SELECTOR,
-    TRACK_TRIGGER,
+    GLOBAL,
     IMAGE_TRIGGER,
+    PANEL_HOOK,
+    TRACK_TRIGGER,
     TRIGGER_DATA_ATTR,
 } from './constants';
-
+import { audioFrame, imageFrame } from './mediaframe';
+import {
+    AudioPickerField,
+    FrameType,
+    MediaFrame,
+    MelodyResources,
+    Panel,
+    SettingsModel,
+    TrackMutation,
+    TrackResources,
+    TrackState,
+    TriggerAction,
+} from './type';
+import {
+    hideUI,
+    removeImage,
+    setImage,
+    showUI,
+    swapTrackTrigger,
+    updateUI,
+} from './ui';
 
 /**
  * Elementor settings model interface
@@ -88,7 +87,7 @@ function resetTrack(e: JQuery.Event): void {
  */
 function loadMediaFrame(e: JQuery.Event, type: FrameType): void {
     let mediaFrame = null;
-    
+
     switch (type) {
         case 'audio':
             mediaFrame = audioFrame;
@@ -101,11 +100,11 @@ function loadMediaFrame(e: JQuery.Event, type: FrameType): void {
             return;
         }
     }
-    
+
     if (!mediaFrame) {
         return;
     }
-    
+
     const resources: TrackResources = getTrackResources(e, settings.retrieve());
     mediaFrame._melodyResources = resources;
     mediaFrame.open();
@@ -170,7 +169,7 @@ function handleTrigger(e: JQuery.Event): void {
 
     switch (action) {
         case 'SELECT_TRACK': {
-            loadMediaFrame(e, 'audio');   
+            loadMediaFrame(e, 'audio');
             break;
         }
         case 'CLEAR_TRACK': {
