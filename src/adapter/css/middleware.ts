@@ -62,12 +62,14 @@ export const assembleBoxShadows = (stop, config, props, key) => {
 
 export const assemblePaddings = (stop, config, props, key) => {
     if (key.endsWith('padding')) {
-        const { top, left, right, bottom, unit } = config[key];
-        const name = getUniqueKeyName(key, 'padding');
-        props[`${name}padding_top`] = `${top}${unit}`;
-        props[`${name}padding_bottom`] = `${bottom}${unit}`;
-        props[`${name}padding_left`] = `${left}${unit}`;
-        props[`${name}padding_right`] = `${right}${unit}`;
+        const data = config[key];
+        Object.keys(data).forEach(prop => {
+            if (prop !== 'unit' && prop !== 'isLinked' && data[prop] !== '') {
+                const name = getUniqueKeyName(key, 'padding');
+                props[`${name}padding_${prop}`] = `${data[prop]}${data.unit}`;
+            }
+        });
+
         delete props[key];
     }
 
@@ -75,13 +77,18 @@ export const assemblePaddings = (stop, config, props, key) => {
 };
 
 export const assembleQuantities = (stop, config, props, key) => {
-    if (typeof config[key] === 'object' &&
-        config[key].hasOwnProperty('size') &&
-        config[key].hasOwnProperty('unit')) {
-            const size = config[key].size;
-            const unit = config[key].unit;
-            props[key] = `${size}${unit}`;
+    if (typeof config[key] === 'object'
+        && config[key].hasOwnProperty('size')
+        && config[key].hasOwnProperty('unit')
+    ) {
+        if (config[key].size === '' || config[key].unit === '') {
+            delete props[key];
+            return props;
         }
+        const size = config[key].size;
+        const unit = config[key].unit;
+        props[key] = `${size}${unit}`;
+    }
 
     return props;
 };
