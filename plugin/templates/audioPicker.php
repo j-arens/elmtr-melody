@@ -55,8 +55,4 @@
             </button>
         </div>
     </div>
-    <input type="hidden" data-setting="{{ data.name }}" />
-    <? if (defined('MELODY_DEV') && MELODY_DEV): ?>
-    <script>{{{ console.log('audio picker content template: ', data) }}}</script>
-    <? endif; ?>
 </div>
