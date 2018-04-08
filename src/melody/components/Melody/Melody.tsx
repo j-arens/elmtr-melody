@@ -1,6 +1,9 @@
-import BaseButton from '@components/BaseButton/';
-import Icon from '@components/Icon';
+import DefaultError from '@components/Fault/DefaultError';
+import FaultContainer from '@components/Fault/FaultContainer';
+import NoTracksEditor from '@components/Fault/NoTracksEditor';
+import NoTracksFront from '@components/Fault/NoTracksFront';
 import ShapeShifter from '@components/ShapeShifter/';
+import { GLOBAL } from '@constants';
 import { Track } from '@redux/type';
 import { Action } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
@@ -224,72 +227,31 @@ export default class Melody extends Component<Props, {}> {
         );
 
         if (currentState !== 'fetching' && !tracks.length) {
-            return this.fault(`
-                Uh oh, there aren\'t any tracks loaded.
-                Check your network for connectivity issues,
-                otherwise please contact support.
-            `);
+            if (GLOBAL.elementorFrontend && GLOBAL.elementorFrontend.isEditMode()) {
+                return (
+                    <FaultContainer allowReload={false}>
+                        <NoTracksEditor />
+                    </FaultContainer>
+                );
+            }
+            return (
+                <FaultContainer allowReload={false}>
+                    <NoTracksFront />
+                </FaultContainer>
+            );
         }
 
-        // return (
-        //     <div class={classes} data-melody-border>
-        //         {this[currentState]()}
-        //     </div>
-        // );
-
         if (currentState === 'fault') {
-            return this.fault();
+            return (
+                <FaultContainer allowReload>
+                    <DefaultError />
+                </FaultContainer>
+            );
         }
 
         return (
             <div class={classes} data-melody-border>
                 <ShapeShifter />
-            </div>
-        );
-    }
-
-    // fetching() {
-    //     return null;
-    // }
-
-    // buffering() {
-    //     return (
-    //         <div class="melody__StateContainer">
-    //             <Preview />
-    //             <ControlBar machineAction="NOOP"/>
-    //         </div>
-    //     );
-    // }
-
-    // playing() {
-    //     return (
-    //         <div class="melody__StateContainer">
-    //             <Preview />
-    //             <ControlBar machineAction="STOP" />
-    //         </div>
-    //     );
-    // }
-
-    // stopped() {
-    //     return (
-    //         <div class="melody__StateContainer">
-    //             <Preview />
-    //             <ControlBar machineAction="PLAY" />
-    //         </div>
-    //     );
-    // }
-
-    fault(msg: string = '') {
-        return (
-            <div class={s.errorContainer}>
-                <Icon className={s.errorContainer__icon} name="error" />
-                <p class="melody__body">{msg || 'Something went wrong!'}</p>
-                <BaseButton
-                    onClick={window.location.reload.bind(window.location)}
-                    className={s.errorContainer__reloadBtn}
-                >
-                    Reload
-                </BaseButton>
             </div>
         );
     }

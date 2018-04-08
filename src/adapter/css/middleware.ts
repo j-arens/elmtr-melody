@@ -60,6 +60,27 @@ export const assembleBoxShadows = (stop, config, props, key) => {
     return props;
 };
 
+// @TODO: fix double text_shadow?
+// export const assembleTextShadows = (stop, config, props, key) => {
+//     if (key.endsWith('text_shadow_text_shadow')) {
+//         const name = getUniqueKeyName(key, 'text_shadow_text_shadow');
+//         const position = config[`${name}text_shadow_text_shadow_position`] || '';
+//         const { blur, color, horizontal, spread, vertical } = config[key];
+//         props[`${name}text_shadow`] = `${horizontal}px ${vertical}px ${blur}px ${spread}px ${color} ${position}`;
+//         delete props[key];
+//     }
+
+//     if (key.endsWith('shadow_position')) {
+//         delete props[key];
+//     }
+
+//     if (key.endsWith('shadow_type')) {
+//         delete props[key];
+//     }
+
+//     return props;
+// };
+
 export const assemblePaddings = (stop, config, props, key) => {
     if (key.endsWith('padding')) {
         const data = config[key];

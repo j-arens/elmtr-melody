@@ -27,6 +27,7 @@ const RepeatButton = ({ repeat, toggleRepeat }: Props) => {
             key="repeat"
             className={repeat ? activeClass : defaultClass}
             onClick={toggleRepeat}
+            data-melody-repeat-control={repeat}
         >
             <Icon className={s.playbackCtrl__icon} name="repeat" />
         </BaseButton>

@@ -14,14 +14,22 @@ return [
             'handle' => 'melody_btn_primary_color',
             'config' => [
                 'label' => 'Primary Color',
-			    'type' => Controls_Manager::COLOR,
+                'type' => Controls_Manager::COLOR,
+                'default' => '#4D4D4D',
+                'selectors' => [
+                    '{{WRAPPER}} [data-melody-control-bar] button' => 'color: {{VALUE}}'
+                ],
             ],
         ],
         [
             'handle' => 'melody_btn_hover_color',
             'config' => [
                 'label' => 'Hover Color',
-			    'type' => Controls_Manager::COLOR,
+                'type' => Controls_Manager::COLOR,
+                'default' => '#B0AFAF',
+                'selectors' => [
+                    '{{WRAPPER}} [data-melody-control-bar] button:hover' => 'color: {{VALUE}}'
+                ],
             ],
         ],
         [
@@ -29,6 +37,11 @@ return [
             'config' => [
                 'label' => 'Shuffle & Repeat Activated Color',
                 'type' => Controls_Manager::COLOR,
+                'default' => '#B0AFAF',
+                'selectors' => [
+                    '{{WRAPPER}} button[data-melody-shuffle-control="true"]' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} button[data-melody-repeat-control="true"]' => 'color: {{VALUE}}'
+                ],
             ],
         ],
         [
@@ -96,7 +109,7 @@ return [
                 ],
                 'size_units' => ['px'],
                 'range' => [
-                    '%' => [
+                    'px' => [
                         'min' => 0,
                         'step' => 1,
                     ],

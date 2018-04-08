@@ -9,12 +9,12 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
     /**
      * @var string
      */
-    protected $handle = 'melody-audio-player';
+    protected $handle = 'melody-audio-player-slider';
 
     /**
      * @var string
      */
-    protected $title = 'Slider';
+    protected $title = 'Melody Slider';
 
     /**
      * @var string

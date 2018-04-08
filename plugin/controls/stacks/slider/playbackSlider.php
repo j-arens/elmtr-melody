@@ -15,6 +15,7 @@ return [
             'config' => [
                 'label' => 'Primary Color',
                 'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-scrubber-progress]::before' => 'background-color: {{VALUE}}',
                 ],
@@ -25,6 +26,7 @@ return [
             'config' => [
                 'label' => 'Background Color',
                 'type' => Controls_Manager::COLOR,
+                'default' => '#B0AFAF',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-scrubber-progress]::after' => 'background-color: {{VALUE}}',
                 ],
@@ -35,6 +37,7 @@ return [
             'config' => [
                 'label' => 'Handle Color',
                 'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-scrubber-handle]' => 'background-color: {{VALUE}}',
                 ],

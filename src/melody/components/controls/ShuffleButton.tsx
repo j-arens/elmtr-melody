@@ -27,6 +27,7 @@ const ShuffleButton = ({ shuffle, toggleShuffle }: Props) => {
             key="shuffle"
             className={shuffle ? activeClass : defaultClass}
             onClick={toggleShuffle}
+            data-melody-repeat-control={shuffle}
         >
             <Icon className={s.playbackCtrl__icon} name="shuffle" />
         </BaseButton>

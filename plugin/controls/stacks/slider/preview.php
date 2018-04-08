@@ -19,6 +19,7 @@ return [
                     'size' => 30,
                     'unit' => 'px',
                 ],
+                'placeholder' => 30,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-preview]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -30,6 +31,7 @@ return [
             'config' => [
                 'label' => 'Background Color',
                 'type' => Controls_Manager::COLOR,
+                'default' => '#000',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-preview]' => 'background-color: {{VALUE}}',
                 ],

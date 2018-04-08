@@ -36,11 +36,11 @@
         overflow: visible !important;
     }
 
-    &--active {
-        .playbackCtrl__icon {
-            fill: var(--melody_btn_on_color, #fff);
-        }
-    }
+    // &--active {
+    //     .playbackCtrl__icon {
+    //         fill: var(--melody_btn_on_color, #fff);
+    //     }
+    // }
 
     &--buffering {
         :global(.melody-playbackCtrl__buffer-dots) circle {
@@ -104,10 +104,10 @@
             }
         }
 
-        &--active:hover {
-            .playbackCtrl__icon {
-                fill: var(--melody_btn_on_color, #fff);
-            }
-        }
+        // &--active:hover {
+        //     .playbackCtrl__icon {
+        //         fill: var(--melody_btn_on_color, #fff);
+        //     }
+        // }
     }
 }
