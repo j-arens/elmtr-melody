@@ -165,8 +165,7 @@ function handleImageSelection(): void {
  * Route events
  */
 function handleTrigger(e: JQuery.Event): void {
-    const action: TriggerAction = $(e.target).data(TRIGGER_DATA_ATTR);
-
+    const action: TriggerAction = $(e.target).attr(TRIGGER_DATA_ATTR);
     switch (action) {
         case 'SELECT_TRACK': {
             loadMediaFrame(e, 'audio');
