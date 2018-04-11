@@ -32,6 +32,8 @@ class Plugin {
         $this->audioPicker = $audioPicker;
         $this->slider = $slider;
 
+        $this->i18n();
+
         add_action(
             'elementor/elements/categories_registered',
             [$this, 'registerCategory']
@@ -61,7 +63,7 @@ class Plugin {
     public function registerCategory(Elements_Manager $manager) {
         $manager->add_category(
             'melody-elements',
-            ['title' => 'Melody Audio Elements', 'icon' => 'eicon-font']
+            ['title' => __('Melody Audio Elements', MELODY_TD), 'icon' => 'eicon-font']
         );
     }
 
@@ -100,5 +102,12 @@ class Plugin {
             }
         ';
         wp_styles()->add_inline_style('elementor-editor', $style);
+    }
+
+    /**
+     * Load plugin text domain for translation
+     */
+    protected function i18n() {
+        load_plugin_textdomain(MELODY_TD, false, MELODY_ROOT . '/languages/');
     }
 }

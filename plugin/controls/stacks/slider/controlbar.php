@@ -6,7 +6,7 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_controlbar_style',
     'config' => [
-        'label' => 'Control Bar',
+        'label' => __('Control Bar', MELODY_TD),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
@@ -42,7 +42,7 @@ return [
         [
             'handle' => 'melody_control_bar_padding',
             'config' => [
-                'label' => 'Padding',
+                'label' => __('Padding', MELODY_TD),
                 'type' => Controls_Manager::DIMENSIONS,
                 'default' => [
                     'size' => 30,
@@ -58,7 +58,7 @@ return [
         [
             'handle' => 'melody_control_bar_bg_color',
             'config' => [
-                'label' => 'Background color',
+                'label' => __('Background color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#252525',
                 'selectors' => [

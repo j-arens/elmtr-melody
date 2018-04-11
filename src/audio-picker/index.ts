@@ -5,11 +5,10 @@ import {
 } from './accesors';
 import {
     $,
-    DEV_MODE,
     FIELD_SELECTOR,
     GLOBAL,
     IMAGE_TRIGGER,
-    PANEL_HOOK,
+    PANEL_HOOKS,
     TRACK_TRIGGER,
     TRIGGER_DATA_ATTR,
 } from './constants';
@@ -204,7 +203,7 @@ function bindEvents({ currentPageView: { $el } }: Panel): void {
  * Entry point. Setup Panel, Model, and events.
  */
 function main(panel: Panel, model: Model): void {
-    if (DEV_MODE) {
+    if (process.env.NODE_ENV === 'development') {
         GLOBAL.mapPanel = panel;
         GLOBAL.mapModel = model;
         GLOBAL.mapAudioFrame = audioFrame;
@@ -216,6 +215,6 @@ function main(panel: Panel, model: Model): void {
 }
 
 /**
- * Hook
+ * Hooks
  */
-$(() => GLOBAL.elementor.hooks.addAction(PANEL_HOOK, main));
+PANEL_HOOKS.forEach(hook => $(() => GLOBAL.elementor.hooks.addAction(hook, main)));

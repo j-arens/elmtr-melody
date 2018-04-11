@@ -47,7 +47,7 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      * {@inheritdoc}
      */
     public function get_title() {
-        return $this->title;
+        return sprintf(__('%1s', MELODY_TD), $this->title);
     }
 
     /**
