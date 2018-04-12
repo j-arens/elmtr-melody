@@ -17,13 +17,13 @@ define('MELODY_BASE_DIR', __DIR__);
 define('MELODY_PLUGIN_DIR', __DIR__ . '/plugin');
 define('MELODY_TD', 'elmtr-melody');
 
-add_action('elementor/init', 'melody_init');
+add_action('elementor/init', 'melodyInit');
 
 /**
  * Entry points
  */
-function melody_init() {
-    if (!melody_compatible()) {   
+function melodyInit() {
+    if (!melodyCompatible()) {   
         return;
     }
 
@@ -35,7 +35,7 @@ function melody_init() {
  * 
  * @return boolean
  */
-function melody_compatible() {
+function melodyCompatible() {
     include MELODY_PLUGIN_DIR . '/notices.php';
     
     if (version_compare(PHP_VERSION, '5.4', '<')) { // @TODO: figure out min ver

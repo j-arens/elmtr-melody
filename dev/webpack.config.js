@@ -2,6 +2,10 @@ const paths = require('./paths');
 const pipes = require('./pipes/');
 const plugins = require('./plugins');
 
+// const defaultEntries = {
+//     i18n: './node_modules/@wordpress/i18n',
+// };
+
 module.exports = ({ libs }) => ({
     entry: libs.split(',').reduce((entries, lib) => {
         entries[lib] = paths[lib].js.entry;
