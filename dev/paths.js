@@ -9,7 +9,6 @@ module.exports = {
         css: {
             vars: resolve('./src/melody/global-styles/variables'),
             animations: resolve('./src/melody/global-styles/animations'),
-            mixins: resolve('./src/melody/global-styles/mixins'),
             output: '../css/melody.min.css',
         },
         js: {

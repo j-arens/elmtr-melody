@@ -6,10 +6,6 @@
     transform-origin: center center;
 }
 
-:global(.melody-playbackCtrl) {
-    max-width: var(--melody_btn_max_width, 30px);
-}
-
 :global(.melody-controlBar__catalyst) {
     &::after {
         content: attr(data-playbackRate);
@@ -36,15 +32,9 @@
         overflow: visible !important;
     }
 
-    // &--active {
-    //     .playbackCtrl__icon {
-    //         fill: var(--melody_btn_on_color, #fff);
-    //     }
-    // }
-
     &--buffering {
         :global(.melody-playbackCtrl__buffer-dots) circle {
-            fill: var(--melody_btn_primary_color, $color_tundora);
+            fill: currentColor;
             transform-origin: center center;
             animation-name: buffer;
             animation-timing-function: ease;
@@ -71,7 +61,7 @@
         :global(.melody-playbackCtrl__ring) {
             fill: transparent;
             stroke-width: 1px;
-            stroke: var(--melody_btn_primary_color, $color_tundora);
+            stroke: currentColor;
             transform: scale(1.4);
             transform-origin: center center;
         }
@@ -81,19 +71,10 @@
         cursor: not-allowed !important;
         opacity: 0.5 !important;
 
-        &:hover {
-            color: var(--melody_btn_primary_color, $color_tundora);
-        }
-
         &:active {
             transform: none !important;
-            color: var(--melody_btn_primary_color, $color_tundora);
         }
     }
-}
-
-.playbackCtrl + .playbackCtrl {
-    margin-left: var(--melody_btn_space, 30px);
 }
 
 @media screen and (min-width: 1025px) {
@@ -103,11 +84,5 @@
                 fill: currentColor;
             }
         }
-
-        // &--active:hover {
-        //     .playbackCtrl__icon {
-        //         fill: var(--melody_btn_on_color, #fff);
-        //     }
-        // }
     }
 }

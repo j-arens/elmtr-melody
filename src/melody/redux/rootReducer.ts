@@ -46,12 +46,6 @@ export default function(
         case getType(actions.triggerTimeSync): {
             return reducers.triggerTimeSync(state, action);
         }
-        case getType(actions.editCustomProperties): {
-            return reducers.editCustomProps(state, action);
-        }
-        case getType(actions.deleteCustomProperty): {
-            return reducers.deleteCustomProp(state, action);
-        }
         case getType(actions.toggleDock): {
             return reducers.toggleDock(state, action);
         }

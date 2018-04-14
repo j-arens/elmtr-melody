@@ -5,7 +5,6 @@ const { melody: { css } } = paths;
 const globalImports = `
     @import '${css.vars}';
     @import '${css.animations}';
-    @import '${css.mixins}';
 `;
 
 module.exports = {

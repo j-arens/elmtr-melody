@@ -17,7 +17,6 @@ export default {
         view: 'slider' as View,
         gliderIsDragging: false,
         volIsDragging: false,
-        customProperties: {},
         showDock: false,
     },
 };

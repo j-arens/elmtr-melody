@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
 @import 'throbber';
 
 /**
@@ -7,11 +6,6 @@
 
 .melody__base {
     position: relative;
-    // background-color: $color_mine_shaft;
-    // color: $color_white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    // box-shadow: 1px 1px 11px 0 rgba(0, 0, 0, 0.3);
     overflow: hidden;
     user-select: none !important;
     box-sizing: border-box;

@@ -4,7 +4,6 @@ import configureStore from '@redux/index';
 import intialState from '@redux/initialState';
 import throttle from 'lodash.throttle';
 import { GLOBAL } from './constants';
-import { prepareRules } from './css/';
 import { compose } from './helpers';
 import { prepareTracks } from './tracks/';
 const throttle = require('lodash.throttle');
@@ -27,17 +26,10 @@ const tracks = ({ store, config }) => {
     return { store, config };
 };
 
-const css = ({ store, config }) => {
-    const prepared = prepareRules({ ...config });
-    store.dispatch(actions.editCustomProperties(prepared));
-    return { store, config };
-};
-
 const initialize = compose(
     reset,
     view,
     tracks,
-    css,
 );
 
 const newInstance = throttle((config, id) => {
