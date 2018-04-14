@@ -1,6 +1,7 @@
 <?php
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Box_Shadow;
 
 return [
     'version' => '1.0.0',
@@ -10,6 +11,20 @@ return [
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
+        [
+            'handle' => 'melody_preview_min_height',
+            'config' => [
+                'label' => __('Min-height (px)', MELODY_TD),
+                'type' => Controls_Manager::NUMBER,
+                'default' => 300,
+                'min' => 0,
+                'placeholder' => 300,
+                'step' => 1,
+                'selectors' => [
+                    '{{WRAPPER}} [data-melody-preview]' => 'min-height: {{VALUE}}px;',
+                ],
+            ],
+        ],
         [
             'handle' => 'melody_preview_padding',
             'config' => [

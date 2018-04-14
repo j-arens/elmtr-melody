@@ -1,23 +1,25 @@
 .controlbar {
-    @include paddingStack(melody_control_bar, 30px);
+    // @include paddingStack(melody_control_bar, 30px);
+    padding: 30px;
     display: flex;
     align-items: center;
-    justify-content: var(--melody_btn_flex_alignment, center);
-    background-color: var(--melody_control_bar_bg_color, transparent);
+    // justify-content: var(--melody_btn_flex_alignment, center);
+    // background-color: var(--melody_control_bar_bg_color, transparent);
 }
 
 .preview {
-    @include paddingStack(melody_preview, 30px);
+    // @include paddingStack(melody_preview, 30px);
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 300px;
-    box-shadow: 0px 1px 11px 1px rgba(0, 0, 0, 0.2);
-    background-color: var(--melody_preview_bg_color, transparent);
+    padding: 30px;
+    // box-shadow: 0px 1px 11px 1px rgba(0, 0, 0, 0.2);
+    // background-color: var(--melody_preview_bg_color, transparent);
 
     &__artwork {
-        @include bgImageStack(melody_preview_image);
+        // @include bgImageStack(melody_preview_image);
         position: absolute;
         top: 0;
         left: 0;
@@ -40,21 +42,21 @@
 
     &__title,
     &__artist {
-        letter-spacing: 0.02rem;
+        // letter-spacing: 0.02rem;
         // text-shadow: 0 0 10px rgba(0, 0, 0, 0.4); @TODO: variable shadows?
     }
 
     // @TODO: tablet & mobile typography things
 
-    &__title {
-        @include typeStack(melody_title, 24px);
-        color: var(--melody-title-color, #fff);
-    }
+    // &__title {
+    //     @include typeStack(melody_title, 24px);
+    //     color: var(--melody-title-color, #fff);
+    // }
 
-    &__artist {
-        @include typeStack(melody_artist, 16px);
-        color: var(--melody-artist-color, #fff);
-    }
+    // &__artist {
+    //     @include typeStack(melody_artist, 16px);
+    //     color: var(--melody-artist-color, #fff);
+    // }
 
     &__footer {
         position: relative;
@@ -63,8 +65,8 @@
     }
 
     &__time {
-        @include typeStack(melody_time, 16px);
-        color: var(--melody-time-color, #fff);
+        // @include typeStack(melody_time, 16px);
+        // color: var(--melody-time-color, #fff);
         // text-shadow: 0 0 60px #000; @TODO: variable shadows?
     }
 }
