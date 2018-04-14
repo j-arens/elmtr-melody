@@ -8,7 +8,7 @@ interface Props extends WithOptionalClassName {
     key?: string;
 }
 
-const BaseButton = (props: Props) => (
+export default (props: Props) => (
     <button
         {...props}
         class={`${s.btn} ${props.className || ''}`}
@@ -16,5 +16,3 @@ const BaseButton = (props: Props) => (
         {props.children}
     </button>
 );
-
-export default BaseButton;

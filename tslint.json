@@ -17,6 +17,7 @@
         "jsx-boolean-value": false,
         "arrow-parens": false,
         "jsx-wrap-multiline": false,
+        "member-ordering": false,
         "no-shadowed-variable": [
             true,
             {

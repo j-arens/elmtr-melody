@@ -9,8 +9,8 @@ export function makeError(e: Error) {
     document.body.insertAdjacentHTML('beforeend', `
         <div class="${s.rootError}">
             <button class="${s.rootError__btn}">x</button>
-            <p>There was a fatal error initializing the Melody app. Please contact support.</p>
-            <code>${e.message}</code>
+            <p>There was a fatal error initializing the Melody app.</p>
+            <code>${e.name}: ${e.message}</code>
         </div>
     `);
 

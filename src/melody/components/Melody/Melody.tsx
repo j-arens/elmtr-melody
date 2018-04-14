@@ -29,7 +29,7 @@ interface Props {
     nextTrack: () => Action;
 }
 
-export default class Melody extends Component<Props, {}> {
+export default class extends Component<Props, {}> {
     AudioInterface: HTMLAudioElement = new Audio();
 
     componentDidMount() {
@@ -41,37 +41,48 @@ export default class Melody extends Component<Props, {}> {
         this.removeAudioInterfaceEvents();
     }
 
-    componentWillReceiveProps(nextProps: Props) {
-        const stateChanged = nextProps.currentState !== this.props.currentState;
-        const volumeChanged = nextProps.volume !== this.props.volume;
-        const tracksChanged = nextProps.tracks !== this.props.tracks;
-        const currentTrackChanged = nextProps.currentTrack !== this.props.currentTrack;
-        const timeSyncChanged = nextProps.timeSync !== this.props.timeSync;
-        const repeatChanged = nextProps.repeat !== this.props.repeat;
-        const playbackRateChanged = nextProps.playbackRate !== this.props.playbackRate;
+    componentDidUpdate(prevProps: Props) {
+        const {
+            currentState,
+            volume,
+            tracks,
+            currentTrack,
+            timeSync,
+            repeat,
+            playbackRate,
+            currentTime,
+        } = this.props;
+
+        const stateChanged = prevProps.currentState !== currentState;
+        const volumeChanged = prevProps.volume !== volume;
+        const tracksChanged = prevProps.tracks !== tracks;
+        const currentTrackChanged = prevProps.currentTrack !== currentTrack;
+        const timeSyncChanged = prevProps.timeSync !== timeSync;
+        const repeatChanged = prevProps.repeat !== repeat;
+        const playbackRateChanged = prevProps.playbackRate !== playbackRate;
 
         if (stateChanged) {
-            this.updateInterfaceState(nextProps.currentState);
+            this.updateInterfaceState(currentState);
         }
 
         if (tracksChanged || currentTrackChanged) {
-            this.setInterfaceSource(nextProps);
+            this.setInterfaceSource(this.props);
         }
 
         if (volumeChanged) {
-            this.setInterfaceVolume(nextProps.volume);
+            this.setInterfaceVolume(volume);
         }
 
         if (timeSyncChanged) {
-            this.setInterfaceTime(nextProps.currentTime);
+            this.setInterfaceTime(currentTime);
         }
 
         if (repeatChanged) {
-            this.setInterfaceRepeat(nextProps.repeat);
+            this.setInterfaceRepeat(repeat);
         }
 
         if (playbackRateChanged) {
-            this.setInterfacePlaybackRate(nextProps.playbackRate);
+            this.setInterfacePlaybackRate(playbackRate);
         }
     }
 

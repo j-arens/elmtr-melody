@@ -1,6 +1,10 @@
-import { getDownloadUrl } from './helpers';
+import { Track } from '@redux/type';
+import {
+    getDownloadUrl,
+    getTrackDuration,
+} from './helpers';
 
-export function external(track) {
+export function external(track): Track {
     const {
         melody_track_url,
         melody_track_artwork,
@@ -17,7 +21,7 @@ export function external(track) {
             artist: melody_track_artist,
             album: melody_track_album,
             title: melody_track_title,
-            length: duration,
+            length: getTrackDuration(track),
         },
         attributes: {
             origin: 'external',
@@ -25,7 +29,7 @@ export function external(track) {
     };
 }
 
-export function mediaPicker(track) {
+export function mediaPicker(track): Track {
     const {
         duration,
         melody_wp_media_picker: {
@@ -44,7 +48,7 @@ export function mediaPicker(track) {
             artist,
             title,
             album,
-            length: duration,
+            length: getTrackDuration(track),
         },
         attributes: {
             origin: 'internal',

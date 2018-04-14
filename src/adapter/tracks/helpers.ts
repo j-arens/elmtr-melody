@@ -21,9 +21,6 @@ export const getDownloadUrl = (track, origin) => {
     return '';
 };
 
-export const assignDuration = (track, duration) =>
-    Object.assign(track, { duration });
-
 export const mergeIntoDefault = track =>
     mergewith({}, defaultTrack, track, (oV, srcV) =>
         srcV === '' ? oV : undefined,
@@ -46,25 +43,23 @@ export const trackLengthToSeconds = (str: string): number => {
     return s;
 };
 
-export const getTrackDurations = tracks => Promise.all(tracks.map(t => {
-    if (t.melody_audio_source === 'media-library') {
-        const duration = t.melody_wp_media_picker.duration;
+export const getTrackDuration = track => {
+    if (track.melody_audio_source === 'media-library') {
+        const duration = track.melody_wp_media_picker.duration;
         return trackLengthToSeconds(duration);
     }
 
-    if (!t.melody_track_url) {
-        t.melody_track_url = `${pluginsUrl}/elmtr-melody/assets/audio/placeholder-track.mp3`;
+    if (!track.melody_track_url) {
+        track.melody_track_url = `${pluginsUrl}/elmtr-melody/assets/audio/placeholder-track.mp3`;
     }
 
-    return new Promise((res, rej) => {
-        const audio = new Audio();
-        audio.addEventListener('loadedmetadata', () => {
-            const { duration } = audio;
-            if (isNaN(duration)) {
-                return rej(0);
-            }
-            return res(Math.round(duration));
-        });
-        audio.src = t.melody_track_url;
+    const audio = new Audio();
+    audio.addEventListener('loadedmetadata', () => {
+        const { duration } = audio;
+        if (isNaN(duration)) {
+            return 0;
+        }
+        return Math.round(duration);
     });
-}));
+    audio.src = track.melody_track_url;
+};
