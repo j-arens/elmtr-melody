@@ -1,4 +1,3 @@
-import CssProvider from '@components/CssProvider/';
 import Melody from '@components/Melody';
 import { State } from '@redux/type';
 import { h, render } from 'preact';
@@ -27,9 +26,9 @@ export function makeError(e: Error) {
 export function makeApp(target: string, store: Store<State>) {
     const app = (
         <Provider store={store}>
-            <CssProvider className={s.melody__base}>
+            <div className={s.melody__base}>
                 <Melody />
-            </CssProvider>
+            </div>
         </Provider>
     );
 

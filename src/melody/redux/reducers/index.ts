@@ -216,36 +216,6 @@ export function triggerTimeSync(state: State, action: Action): State {
 }
 
 /**
- * EDIT_CUSTOM_PROPS
- */
-export function editCustomProps(state: State, action: Action): State {
-    return {
-        ...state,
-        ui: {
-            ...state.ui,
-            customProperties: {
-                ...state.ui.customProperties,
-                ...action.payload,
-            },
-        },
-    };
-}
-
-/**
- * DELETE_CUSTOM_PROP
- */
-export function deleteCustomProp(state: State, action: Action): State {
-    const { ui: { customProperties } } = state;
-    const { payload } = action;
-
-    if (customProperties.hasOwnProperty(payload)) {
-        delete state.ui.customProperties[payload];
-    }
-
-    return state;
-}
-
-/**
  * RESET_STATE
  */
 export function resetState(): State {

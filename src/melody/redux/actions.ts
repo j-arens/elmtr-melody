@@ -114,20 +114,6 @@ export const triggerTimeSync = createAction(constants.TRIGGER_TIME_SYNC,
     }),
 );
 
-export const editCustomProperties = createAction(constants.EDIT_CUSTOM_PROPS,
-    (properties: object) => ({
-        type: constants.EDIT_CUSTOM_PROPS,
-        payload: properties,
-    }),
-);
-
-export const deleteCustomProperty = createAction(constants.DELETE_CUSTOM_PROP,
-    (key: string) => ({
-        type: constants.DELETE_CUSTOM_PROP,
-        payload: key,
-    }),
-);
-
 export const resetState = () => ({
     type: constants.RESET_STATE,
 });

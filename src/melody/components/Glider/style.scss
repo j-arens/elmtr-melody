@@ -32,12 +32,10 @@
         
         &::before {
             right: 0;
-            background-color: var(--melody_sliders_primary_color, $color_white);
         }
         
         &::after {
             left: 100%;
-            background-color: var(--melody_sliders_background_color, $color_silver_chalice);
         }
     }
 
@@ -47,6 +45,5 @@
         padding: 7px;
         border-radius: 50%;
         box-shadow: 2px 0px 2px 1px rgba(0, 0, 0, 0.2);
-        background-color: var(--melody_sliders_handle_color, $color_white);
     }
 }

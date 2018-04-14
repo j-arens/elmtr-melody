@@ -22,10 +22,6 @@ export interface Track {
     };
 }
 
-export interface CustomProperties {
-    [name: string]: string;
-}
-
 export interface State {
     readonly currentState: MachineStates;
     readonly lastState: MachineStates;
@@ -42,7 +38,6 @@ export interface State {
         readonly view: View;
         readonly gliderIsDragging: boolean,
         readonly volIsDragging: boolean,
-        readonly customProperties: CustomProperties,
         readonly showDock: boolean,
     };
 }
@@ -57,8 +52,6 @@ const returnOfActions = [
     actions.toggleGliderDragging,
     actions.updateVolume,
     actions.triggerTimeSync,
-    actions.editCustomProperties,
-    actions.deleteCustomProperty,
     actions.toggleDock,
     actions.speedUp,
     actions.slowDown,

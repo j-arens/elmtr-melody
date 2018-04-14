@@ -1,7 +1,5 @@
 .Melody {
     height: 100%;
-    box-shadow: var(--melody_component_box_shadow, '');
-    @include borderStack(melody_component);
 
     &--fetching {
         display: none;

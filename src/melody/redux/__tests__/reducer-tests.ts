@@ -201,46 +201,6 @@ describe('TRIGGER_TIME_SYNC', () => {
     });
 });
 
-describe('EDIT_CUSTOM_PROPS', () => {
-    it('should add new custom properties', () => {
-        const action = actions.editCustomProperties(customProps);
-        const newState = reducer(initialState, action);
-        expect(newState.ui.customProperties.background_color).toBe('rgba(0, 0, 0, 1)');
-    });
-
-    it('should edit existing custom properties', () => {
-        const action = actions.editCustomProperties({ background_color: 'legitLavender' });
-        const state = {
-            ...initialState,
-            ui: {
-                ...initialState.ui,
-                customProperties: {
-                    ...customProps,
-                },
-            },
-        };
-        const newState = reducer(state, action);
-        expect(newState.ui.customProperties.background_color).toBe('legitLavender');
-    });
-});
-
-describe('DELETE_CUSTOM_PROP', () => {
-    it('should remove custom properties', () => {
-        const action = actions.deleteCustomProperty('background_color');
-        const state = {
-            ...initialState,
-            ui: {
-                ...initialState.ui,
-                customProperties: {
-                    ...customProps,
-                },
-            },
-        };
-        const newState = reducer(state, action);
-        expect(newState.ui.customProperties.background_color).toBeUndefined();
-    });
-});
-
 describe('RESET_STATE', () => {
     it('should reset state to initialState', () => {
         const action = actions.resetState();
