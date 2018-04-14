@@ -55,7 +55,7 @@ export default ({
                             className={s.dock__control}
                         >
                             <Icon className={s.dock__controlIcon} name="download" />
-                            <span class={s.dock__controlName}>{__('Download', 'melody')}</span>
+                            <span class={s.dock__controlName}>{__('Download')}</span>
                         </BaseButton>
                     }
                     <BaseButton
@@ -63,14 +63,14 @@ export default ({
                         className={speedUpClasses}
                     >
                         <Icon className={s.dock__controlIcon} name="plus" />
-                        <span class={s.dock__controlName}>{__('Speed up', 'melody')}</span>
+                        <span class={s.dock__controlName}>{__('Speed up')}</span>
                     </BaseButton>
                     <BaseButton
                         onClick={playbackRate === 0.5 ? NO_OP : slowDown}
                         className={slowDownClasses}
                     >
                         <Icon className={s.dock__controlIcon} name="minus" />
-                        <span class={s.dock__controlName}>{__('Slow down', 'melody')}</span>
+                        <span class={s.dock__controlName}>{__('Slow down')}</span>
                     </BaseButton>
                 </div>]
             }
