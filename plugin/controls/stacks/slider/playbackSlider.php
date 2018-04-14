@@ -6,15 +6,16 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_sliders_style',
     'config' => [
-        'label' => 'Sliders',
+        'label' => __('Sliders', MELODY_TD),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
         [
             'handle' => 'melody_sliders_primary_color',
             'config' => [
-                'label' => 'Primary Color',
+                'label' => __('Primary Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-scrubber-progress]::before' => 'background-color: {{VALUE}}',
                 ],
@@ -23,8 +24,9 @@ return [
         [
             'handle' => 'melody_sliders_background_color',
             'config' => [
-                'label' => 'Background Color',
+                'label' => __('Background Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#B0AFAF',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-scrubber-progress]::after' => 'background-color: {{VALUE}}',
                 ],
@@ -33,8 +35,9 @@ return [
         [
             'handle' => 'melody_sliders_handle_color',
             'config' => [
-                'label' => 'Handle Color',
+                'label' => __('Handle Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-scrubber-handle]' => 'background-color: {{VALUE}}',
                 ],

@@ -9,12 +9,12 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
     /**
      * @var string
      */
-    protected $handle = 'melody-audio-player';
+    protected $handle = 'melody-audio-player-slider';
 
     /**
      * @var string
      */
-    protected $title = 'Slider';
+    protected $title = 'Melody Slider';
 
     /**
      * @var string
@@ -47,7 +47,7 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      * {@inheritdoc}
      */
     public function get_title() {
-        return $this->title;
+        return sprintf(__('%1s', MELODY_TD), $this->title);
     }
 
     /**

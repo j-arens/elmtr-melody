@@ -41,7 +41,7 @@
     &__title,
     &__artist {
         letter-spacing: 0.02rem;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        // text-shadow: 0 0 10px rgba(0, 0, 0, 0.4); @TODO: variable shadows?
     }
 
     // @TODO: tablet & mobile typography things
@@ -65,6 +65,6 @@
     &__time {
         @include typeStack(melody_time, 16px);
         color: var(--melody-time-color, #fff);
-        text-shadow: 0 0 60px #000;
+        // text-shadow: 0 0 60px #000; @TODO: variable shadows?
     }
 }

@@ -6,19 +6,20 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_preview',
     'config' => [
-        'label' => 'Preview',
+        'label' => __('Preview', MELODY_TD),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
         [
             'handle' => 'melody_preview_padding',
             'config' => [
-                'label' => 'Padding',
+                'label' => __('Padding', MELODY_TD),
                 'type' => Controls_Manager::DIMENSIONS,
                 'default' => [
                     'size' => 30,
                     'unit' => 'px',
                 ],
+                'placeholder' => 30,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-preview]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -28,8 +29,9 @@ return [
         [
             'handle' => 'melody_preview_bg_color',
             'config' => [
-                'label' => 'Background Color',
+                'label' => __('Background Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#000',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-preview]' => 'background-color: {{VALUE}}',
                 ],
@@ -38,7 +40,7 @@ return [
         [
             'handle' => 'melody_preview_image_size',
             'config' => [
-                'label' => 'Track Image Size (%)',
+                'label' => __('Track Image Size (%)', MELODY_TD),
                 'label_block' => true,
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
@@ -60,15 +62,15 @@ return [
         [
             'handle' => 'melody_preview_image_repeat',
             'config' => [
-                'label' => 'Track Image Repeat',
+                'label' => __('Track Image Repeat', MELODY_TD),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
                 'default' => 'no-repeat',
                 'options' => [
-                    'no-repeat' => 'no repeat',
-                    'repeat' => 'repeat',
-                    'repeat-x' => 'repeat x',
-                    'repeat-y' => 'repeat y',
+                    'no-repeat' => __('no repeat', MELODY_TD),
+                    'repeat' => __('repeat', MELODY_TD),
+                    'repeat-x' => __('repeat x', MELODY_TD),
+                    'repeat-y' => __('repeat y', MELODY_TD),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-artwork]' => 'background-repeat: {{VALUE}}'
@@ -78,20 +80,20 @@ return [
         [
             'handle' => 'melody_preview_image_position',
             'config' => [
-                'label' => 'Track Image Position',
+                'label' => __('Track Image Position', MELODY_TD),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
                 'default' => 'center center',
                 'options' => [
-                    'center top' => 'center top',
-                    'center center' => 'center center',
-                    'center bottom' => 'center bottom',
-                    'left top' => 'left top',
-                    'left center' => 'left center',
-                    'left bottom' => 'left bottom',
-                    'right top' => 'right top',
-                    'right center' => 'right center',
-                    'right bottom' => 'right bottom',
+                    'center top' => __('center top', MELODY_TD),
+                    'center center' => __('center center', MELODY_TD),
+                    'center bottom' => __('center bottom', MELODY_TD),
+                    'left top' => __('left top', MELODY_TD),
+                    'left center' => __('left center', MELODY_TD),
+                    'left bottom' => __('left bottom', MELODY_TD),
+                    'right top' => __('right top', MELODY_TD),
+                    'right center' => __('right center', MELODY_TD),
+                    'right bottom' => __('right bottom', MELODY_TD),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-artwork]' => 'background-position: {{VALUE}}'
@@ -101,13 +103,13 @@ return [
         [
             'handle' => 'melody_preview_image_attachment',
             'config' => [
-                'label' => 'Track Image Attachment',
+                'label' => __('Track Image Attachment', MELODY_TD),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
                 'default' => 'scroll',
                 'options' => [
-                    'scroll' => 'scroll',
-                    'fixed' => 'fixed',
+                    'scroll' => __('scroll', MELODY_TD),
+                    'fixed' => __('fixed', MELODY_TD),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-artwork]' => 'background-attachment: {{VALUE}}'

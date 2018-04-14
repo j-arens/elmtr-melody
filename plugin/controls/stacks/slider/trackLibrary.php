@@ -6,7 +6,7 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_tracks',
     'config' => [
-        'label' => 'Audio Tracks',
+        'label' => __('Audio Tracks', MELODY_TD),
     ],
     'inputs' => [
         [
@@ -18,15 +18,14 @@ return [
                 'fields' => [
                     [
                         'name' => 'melody_audio_source',
-                        'label' => 'Audio Source',
+                        'label' => __('Audio Source', MELODY_TD),
                         'type' => Controls_Manager::SELECT,
                         'label_block' => true,
                         'seperator' => true,
                         'default' => 'media-library',
                         'options' => [
-                            'media-library' => 'Media Library',
-                            'external-source' => 'External Source',
-                            'rss-feed' => 'RSS Feed',
+                            'media-library' => __('Media Library', MELODY_TD),
+                            'external-source' => __('External Source', MELODY_TD),
                         ],
                     ],
                     [
@@ -39,8 +38,7 @@ return [
                     ],
                     [
                         'name' => 'melody_track_url',
-                        'label' => 'Track URL',
-                        // 'type' => Controls_Manager::URL,
+                        'label' => __('Track URL', MELODY_TD),
                         'type' => Controls_Manager::TEXT,
                         'input_type' => 'url',
                         'label_block' => true,
@@ -50,17 +48,17 @@ return [
                     ],
                     [
                         'name' => 'melody_track_title',
-                        'label' => 'Title',
+                        'label' => __('Title', MELODY_TD),
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
-                        'title' => 'Track Title',
+                        'title' => __('Track Title', MELODY_TD),
                         'condition' => [
                             'melody_audio_source' => 'external-source',
                         ],
                     ],
                     [
                         'name' => 'melody_track_album',
-                        'label' => 'Album',
+                        'label' => __('Album', MELODY_TD),
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
                         'condition' => [
@@ -69,17 +67,17 @@ return [
                     ],
                     [
                         'name' => 'melody_track_artist',
-                        'label' => 'Artist',
+                        'label' => __('Artist', MELODY_TD),
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
-                        'title' => 'Track Artist',
+                        'title' => __('Track Artist', MELODY_TD),
                         'condition' => [
                             'melody_audio_source' => 'external-source',
                         ],
                     ],
                     [
                         'name' => 'melody_track_artwork',
-                        'label' => 'Artwork',
+                        'label' => __('Artwork', MELODY_TD),
                         'type' => Controls_Manager::MEDIA,
                         'condition' => [
                             'melody_audio_source' => 'external-source',
@@ -87,7 +85,7 @@ return [
                     ],
                     [
                         'name' => 'melody_track_downloadable',
-                        'label' => 'Enable Downloads',
+                        'label' => __('Enable Downloads', MELODY_TD),
                         'type' => Controls_Manager::SWITCHER,
                         'label_off' => 'off',
                         'label_on' => 'on',
@@ -95,7 +93,7 @@ return [
                     ],
                     [
                         'name' => 'melody_track_download_source',
-                        'label' => 'Download URL',
+                        'label' => __('Download URL', MELODY_TD),
                         'type' => Controls_Manager::TEXT,
                         'input_type' => 'url',
                         'label_block' => true,
@@ -114,7 +112,7 @@ return [
                                 {{{ melody_track_title }}}
                             <# } #>
                         <# } else { #>
-                            Track #fixme
+                            ' . __('Unnamed Track', MELODY_TD) . '
                         <# } #>
                     <# } else if (melody_audio_source === "media-library") { #>
                         <# if (melody_wp_media_picker.title) { #>
@@ -124,10 +122,10 @@ return [
                                 {{{ melody_wp_media_picker.title }}}
                             <# } #>
                         <# } else { #>
-                            Track #fixme
+                            ' . __('Unnamed Track', MELODY_TD) . '
                         <# } #>
                     <# } else { #>
-                        Track #fixme
+                        ' . __('Unnamed Track', MELODY_TD) . '
                     <# } #>
                 ',
             ],

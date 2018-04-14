@@ -1,0 +1,21 @@
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: $color_mercury;
+
+    &__icon {
+        width: 75px;
+        height: 75px;
+        fill: $color_tundora;
+    }
+
+    &__reloadBtn {
+        color: $color_silver_chalice;
+        border: 1px solid $color_silver_chalice;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+    }
+}

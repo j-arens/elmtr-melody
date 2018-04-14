@@ -6,38 +6,51 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_btn_style',
     'config' => [
-        'label' => 'Buttons',
+        'label' => __('Buttons', MELODY_TD),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
         [
             'handle' => 'melody_btn_primary_color',
             'config' => [
-                'label' => 'Primary Color',
-			    'type' => Controls_Manager::COLOR,
+                'label' => __('Primary Color', MELODY_TD),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#4D4D4D',
+                'selectors' => [
+                    '{{WRAPPER}} [data-melody-control-bar] button' => 'color: {{VALUE}}'
+                ],
             ],
         ],
         [
             'handle' => 'melody_btn_hover_color',
             'config' => [
-                'label' => 'Hover Color',
-			    'type' => Controls_Manager::COLOR,
+                'label' => __('Hover Color', MELODY_TD),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#B0AFAF',
+                'selectors' => [
+                    '{{WRAPPER}} [data-melody-control-bar] button:hover' => 'color: {{VALUE}}'
+                ],
             ],
         ],
         [
             'handle' => 'melody_btn_on_color',
             'config' => [
-                'label' => 'Shuffle & Repeat Activated Color',
+                'label' => __('Shuffle & Repeat Activated Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#B0AFAF',
+                'selectors' => [
+                    '{{WRAPPER}} button[data-melody-shuffle-control="true"]' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} button[data-melody-repeat-control="true"]' => 'color: {{VALUE}}'
+                ],
             ],
         ],
         [
             'handle' => 'melody_btn_space',
             'config' => [
-                'label' => 'Spacing',
+                'label' => __('Spacing', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
-                    'size' => '30',
+                    'size' => 30,
                     'unit' => 'px',
                 ],
                 'size_units' => ['px', 'em', '%'],
@@ -63,19 +76,19 @@ return [
         [
             'handle' => 'melody_btn_flex_alignment',
             'config' => [
-                'label' => 'Alignment',
+                'label' => __('Alignment', MELODY_TD),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
-                        'title' => 'Left',
+                        'title' => __('Left', MELODY_TD),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => 'Center',
+                        'title' => __('Center', MELODY_TD),
                         'icon' => 'fa fa-align-center',
                     ],
                     'flex-end' => [
-                        'title' => 'Right',
+                        'title' => __('Right', MELODY_TD),
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
@@ -88,7 +101,7 @@ return [
         [
             'handle' => 'melody_btn_max_width',
             'config' => [
-                'label' => 'Size',
+                'label' => __('Size', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 30,
@@ -96,7 +109,7 @@ return [
                 ],
                 'size_units' => ['px'],
                 'range' => [
-                    '%' => [
+                    'px' => [
                         'min' => 0,
                         'step' => 1,
                     ],

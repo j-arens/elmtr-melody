@@ -3,6 +3,7 @@ import {
     assembleBorders,
     assembleBoxShadows,
     assemblePaddings,
+    // assembleTextShadows,
     assembleQuantities,
     filterRules,
 } from './middleware';
@@ -14,6 +15,7 @@ export const prepareRules = config => Object.keys(config)
             filterRules,
             assembleBorders,
             assembleBoxShadows,
+            // assembleTextShadows,
             assemblePaddings,
             assembleQuantities,
         );

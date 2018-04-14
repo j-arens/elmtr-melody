@@ -4,9 +4,9 @@ namespace Melody\Core;
 
 use Melody\Controls\custom\AudioPicker;
 use Melody\Widgets\Slider;
-use Elementor\Plugin as ElementorPlugin;
 use Elementor\Widgets_Manager;
 use Elementor\Controls_Manager;
+use Elementor\Elements_Manager;
 
 class Plugin {
 
@@ -32,7 +32,12 @@ class Plugin {
         $this->audioPicker = $audioPicker;
         $this->slider = $slider;
 
-        $this->registerCategory();
+        $this->i18n();
+
+        add_action(
+            'elementor/elements/categories_registered',
+            [$this, 'registerCategory']
+        );
 
         add_action(
             'elementor/widgets/widgets_registered',
@@ -43,17 +48,22 @@ class Plugin {
             'elementor/controls/controls_registered',
             [$this, 'registerControls']
         );
+
+        add_action(
+            'elementor/editor/after_enqueue_styles',
+            [$this, 'overrideEditorStyles']
+        );
     }
 
     /**
      * Register melody elements category with Elementor
+     * 
+     * @param Elements_Manager $manager
      */
-    protected function registerCategory() {
-        $manager = ElementorPlugin::instance()->elements_manager;
+    public function registerCategory(Elements_Manager $manager) {
         $manager->add_category(
             'melody-elements',
-            ['title' => 'Melody Audio Elements', 'icon' => 'eicon-font'],
-            1
+            ['title' => __('Melody Audio Elements', MELODY_TD), 'icon' => 'eicon-font']
         );
     }
 
@@ -78,5 +88,26 @@ class Plugin {
             $this->audioPicker->get_type(),
             $this->audioPicker
         );
+    }
+
+    /**
+     * Override/supplement Elementor editor styles
+     */
+    public function overrideEditorStyles() {
+        $style = '
+            div[class*="elementor-control-melody_title_text_shadow"]::before,
+            div[class*="elementor-control-melody_artist_text_shadow"]::before,
+            div[class*="elementor-control-melody_time_text_shadow"]::before {
+                display: none !important;
+            }
+        ';
+        wp_styles()->add_inline_style('elementor-editor', $style);
+    }
+
+    /**
+     * Load plugin text domain for translation
+     */
+    protected function i18n() {
+        load_plugin_textdomain(MELODY_TD, false, MELODY_ROOT . '/languages/');
     }
 }
