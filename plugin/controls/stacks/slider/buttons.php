@@ -35,7 +35,7 @@ return [
         [
             'handle' => 'melody_btn_on_color',
             'config' => [
-                'label' => __('Shuffle & Repeat Activated Color', MELODY_TD),
+                'label' => __('Shuffle/Repeat Enabled Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#B0AFAF',
                 'selectors' => [

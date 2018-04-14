@@ -1,6 +1,7 @@
 <?php
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Box_Shadow;
 
 return [
     'version' => '1.0.0',
@@ -10,35 +11,6 @@ return [
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
-        // [
-        //     'handle' => 'melody_control_bar_width',
-        //     'config' => [
-        //         'label' => 'Width',
-        //         'type' => Controls_Manager::SLIDER,
-        //         'default' => [
-        //             'size' => '100',
-        //             'unit' => '%',
-        //         ],
-        //         'size_units' => ['px', 'em', '%'],
-        //         'range' => [
-        //             'px' => [
-        //                 'min' => 0,
-        //                 'step' => 1,
-        //             ],
-        //             'em' => [
-        //                 'min' => 0,
-        //                 'step' => 1,
-        //             ],
-        //             '%' => [
-        //                 'min' => 0,
-        //                 'step' => 1,
-        //             ],
-        //         ],
-        //         'selectors' => [
-        //             '{{WRAPPER}} [data-melody-control-bar]' => 'max-width: {{SIZE}}{{UNIT}}'
-        //         ],
-        //     ],
-        // ],
         [
             'handle' => 'melody_control_bar_padding',
             'config' => [
@@ -58,12 +30,21 @@ return [
         [
             'handle' => 'melody_control_bar_bg_color',
             'config' => [
-                'label' => __('Background color', MELODY_TD),
+                'label' => __('Background Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#252525',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-control-bar]' => 'background-color: {{VALUE}}'
                 ],
+            ],
+        ],
+        [
+            'isGroup' => true,
+            'handle' => Group_Control_Box_Shadow::get_type(),
+            'config' => [
+                'name' => 'melody_control_bar_box_shadow',
+                'label' => __('Box Shadow', MELODY_TD),
+                'selector' => '{{WRAPPER}} [data-melody-control-bar]',
             ],
         ],
     ],
