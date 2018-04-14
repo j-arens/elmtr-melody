@@ -2,9 +2,9 @@ import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
 import { Action, Track } from '@redux/type';
 import { NO_OP } from '@utils/index';
+import { __ } from '@wordpress/i18n';
 import * as classnames from 'classnames';
 import { h } from 'preact';
-import { __ } from '@wordpress/i18n';
 const s = require('./style.scss');
 
 interface Props {
