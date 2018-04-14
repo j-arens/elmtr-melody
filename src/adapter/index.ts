@@ -35,11 +35,16 @@ const initialize = compose(
 const newInstance = throttle((config, id) => {
     const store = configureStore(intialState);
     initialize({ store, config });
-    try {
+
+    if (process.env.NODE_ENV === 'development') {
         makeApp(id, store);
-    } catch (e) {
-        makeError(e);
-        console.error(Error(e));
+    } else {
+        try {
+            makeApp(id, store);
+        } catch (e) {
+            makeError(e);
+            console.error(Error(e));
+        }
     }
 }, 500);
 

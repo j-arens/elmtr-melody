@@ -27,7 +27,7 @@ interface State {
 const RANGE_SENSITIVITY = 3000;
 const CIRCLE_LENGTH = 75;
 
-export default class VolumeCtrl extends Component<Props, State> {
+export default class extends Component<Props, State> {
     state = {
         originalClientY: 0,
         lastClientY: 0,

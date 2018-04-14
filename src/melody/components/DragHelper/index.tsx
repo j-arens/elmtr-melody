@@ -8,7 +8,7 @@ import {
     State,
 } from './type';
 
-const DragHelper = (WrappedComponent: AnyComponent<any, any>) => {
+export default (WrappedComponent: AnyComponent<any, any>) => {
     return class extends Component<any, State> {
         state = {
             isDragging: false,
@@ -189,5 +189,3 @@ const DragHelper = (WrappedComponent: AnyComponent<any, any>) => {
         }
     };
 };
-
-export default DragHelper;

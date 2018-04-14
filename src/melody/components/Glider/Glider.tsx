@@ -4,6 +4,7 @@ import { ELEMENTOR_NO_DRAG } from '@constants';
 import { Action } from '@redux/type';
 import { MachineStates } from '@state-machine/type';
 import { getLayerX } from '@utils/index';
+import { NO_OP } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 const s = require('./style.scss');
@@ -26,7 +27,7 @@ interface State {
 const HANDLE_AREA: number = 14;
 const HANDLE_SPACING: number = 2;
 
-export default class Glider extends Component<Props, State> {
+export default class extends Component<Props, State> {
     state = {
         transitionHandle: false,
         offset: 0,
@@ -37,20 +38,23 @@ export default class Glider extends Component<Props, State> {
 
     componentDidMount() {
         const { onDragStart, onDrag, onDragEnd } = this.props;
-
         onDragStart(this.onDragStart);
         onDrag(this.onDrag);
         onDragEnd(this.onDragEnd);
     }
 
-    componentWillReceiveProps(nextProps: Props) {
-        if (this.props.currentTime !== nextProps.currentTime) {
-            const { duration, currentTime } = nextProps;
-            const nextOffset: number = Number((100 / (duration / currentTime)).toFixed(2));
-            this.updateOffset(nextOffset);
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.currentTime !== prevProps.currentTime) {
+            const { duration, currentTime } = this.props;
+            if (duration) {
+                const nextOffset: number = Math.round(100 / (duration / currentTime));
+                this.updateOffset(nextOffset);
+            } else {
+                this.updateOffset(0);
+            }
         }
 
-        if (this.props.isDragging !== nextProps.isDragging) {
+        if (this.props.isDragging !== prevProps.isDragging) {
             this.props.toggleGliderDragging();
         }
     }
@@ -60,19 +64,26 @@ export default class Glider extends Component<Props, State> {
         this.props.setDragRef(ref);
     }
 
+    eventGuard = fn => (...args) => {
+        if (!this.props.duration) {
+            return NO_OP;
+        }
+        return fn(...args);
+    }
+
     updateOffset(nextOffset: number) {
         this.setState({ offset: nextOffset });
     }
 
-    onDragStart = ({ clientX }: MelodyDragEvent) => {
+    onDragStart = this.eventGuard(({ clientX }: MelodyDragEvent) => {
         this.setState({ clientX });
-    }
+    });
 
-    onDragEnd = (e: MelodyDragEvent) => {
+    onDragEnd = this.eventGuard((e: MelodyDragEvent) => {
         this.handleClick(e, false);
-    }
+    });
 
-    onDrag = ({ clientX }: MelodyDragEvent) => {
+    onDrag = this.eventGuard(({ clientX }: MelodyDragEvent) => {
         if (!this.ref) {
             return;
         }
@@ -100,9 +111,9 @@ export default class Glider extends Component<Props, State> {
         this.updateOffset(newOffset);
         const updatedTime: number = Number(((duration * newOffset) / 100).toFixed(0));
         updateCurrentTime(updatedTime);
-    }
+    });
 
-    handleClick = ({ clientX }: MouseEvent, ignoreHandle: boolean = true) => {
+    handleClick = this.eventGuard(({ clientX }: MouseEvent, ignoreHandle: boolean = true) => {
         if (!this.ref) {
             return;
         }
@@ -128,7 +139,7 @@ export default class Glider extends Component<Props, State> {
         const updatedTime: number = Number(((duration * xPercent) / 100).toFixed(0));
         updateCurrentTime(updatedTime);
         triggerTimeSync();
-    }
+    });
 
     render({ setDragRef, currentState, isDragging }, { offset }) {
         const defaultClass = s.glider__trackbar;

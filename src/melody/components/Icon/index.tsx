@@ -31,7 +31,7 @@ type IconType =
     | 'minus'
     | 'settings';
 
-const Icon = ({ name, className = '' }: Props) => {
+export default ({ name, className = '' }: Props) => {
     const getMarkup = (icon: IconType): JSX.Element => {
         switch (icon) {
             case 'shuffle': {
@@ -83,5 +83,3 @@ const Icon = ({ name, className = '' }: Props) => {
         </svg>
     );
 };
-
-export default Icon;

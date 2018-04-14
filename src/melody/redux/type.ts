@@ -12,13 +12,14 @@ export interface Track {
     download_url: string;
     artwork: string;
     media_details: {
+        album: string,
         artist: string,
         title: string,
         length: number,
     };
     attributes: {
         origin: 'internal' | 'external';
-        attachment: number;
+        attachment?: number;
     };
 }
 
