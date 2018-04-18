@@ -14,6 +14,7 @@ import {
 } from './constants';
 import { audioFrame, imageFrame } from './mediaframe';
 import {
+    AudioAttachment,
     AudioPickerField,
     FrameType,
     MediaFrame,
@@ -24,6 +25,7 @@ import {
     TrackResources,
     TrackState,
     TriggerAction,
+    Mutation,
 } from './type';
 import {
     hideUI,
@@ -33,6 +35,8 @@ import {
     swapTrackTrigger,
     updateUI,
 } from './ui';
+
+const get = require('lodash.get');
 
 /**
  * Elementor settings model interface
@@ -217,4 +221,165 @@ function main(panel: Panel, model: Model): void {
 /**
  * Hooks
  */
-PANEL_HOOKS.forEach(hook => $(() => GLOBAL.elementor.hooks.addAction(hook, main)));
+// PANEL_HOOKS.forEach(hook => $(() => GLOBAL.elementor.hooks.addAction(hook, main)));
+
+// const { id, title, meta: { album, artist }, image: { src }, url, fileLength } = attachment;
+
+$(() => {
+    // const { modules: { controls: { BaseData } } } = GLOBAL.elementor;
+
+    const {
+        elementor: {
+            modules: {
+                controls: {
+                    BaseData,
+                },
+            },
+        },
+        wp: {
+            media,
+        },
+    } = GLOBAL;
+
+    const TP_FRAME_TRIGGER = 'button[data-melody-tp-trigger]';
+    const TRIGGER_ACTION = 'data-melody-tp-trigger-action';
+
+    class AU extends BaseData {
+        /**
+         * Maps control handles to AudioAttachment properties
+         */
+        protected mutationMap = [
+            ['melody_track_id', 'id'],
+            ['melody_track_title', 'title'],
+            ['melody_track_album', 'meta.album'],
+            ['melody_track_artist', 'meta.artist'],
+            // ['melody_track_url', 'url'],
+            ['melody_track_image', 'image.src'],
+        ];
+
+        /**
+         * MediaFrame app
+         */
+        protected mediaFrame: MediaFrame = media({
+            button: { text: 'Select Track' },
+            states: [
+                new media.controller.Library({
+                    title: 'Select Track',
+                    library: media.query({ type: 'audio' }),
+                    multiple: false,
+                    date: false,
+                    autoSelect: false,
+                }),
+            ],
+        });
+
+        /**
+         * Entry, bind events
+         */
+        public onReady(): void {
+            if (process.env.NODE_ENV === 'development') {
+                GLOBAL.melody_trackPicker = this;
+            }
+            // this.$el.on('click', TP_FRAME_TRIGGER, this.showFrame);
+            this.$el.on('click', TP_FRAME_TRIGGER, this.onTriggerClick);
+            this.mediaFrame.on('insert select', this.handleSelection);
+        }
+
+        /**
+         * Route trigger clicks
+         */
+        onTriggerClick = (e: JQuery.Event): void => {
+            const action = $(e.target).attr(TRIGGER_ACTION);
+
+            switch (action) {
+                case 'SELECT_TRACK': {
+                    this.showFrame();
+                    this.swapTrigger({
+                        action: 'CLEAR_TRACK',
+                        text: 'Clear Track',
+                    });
+                    return;
+                }
+                case 'CLEAR_TRACK': {
+                    this.clearAll();
+                    this.swapTrigger({
+                        action: 'SELECT_TRACK',
+                        text: 'Select Track',
+                    });
+                }
+                default: {
+                    return;
+                }
+            }
+        }
+
+        swapTrigger({ action, text }): void {
+            const $trigger = this.$el.find(TP_FRAME_TRIGGER);
+            $trigger.attr(TRIGGER_ACTION, action);
+            $trigger.text(text);
+        }
+
+        clearAll() {
+            const mutation = this.mutationMapper({});
+            this.mutateSettings(mutation);
+            this.triggerChange();
+        }
+
+        /**
+         * Show the media frame
+         */
+        public showFrame = (): MediaFrame => this.mediaFrame.open();
+
+        /**
+         * Handle media frame selections
+         */
+        public handleSelection = (): void => {
+            const { mediaFrame } = this;
+            const attachment: AudioAttachment = this.getSelection();
+            const mutation: Mutation = this.mutationMapper(attachment);
+            this.mutateSettings(mutation);
+            this.triggerChange();
+            // console.log('handleSelection', attachment);
+        }
+
+        /**
+         * Get selection from the media frame
+         */
+        getSelection = (): AudioAttachment => this.mediaFrame
+            .state()
+            .get('selection')
+            .first()
+            .toJSON();
+
+        /**
+         * Map AudioAttachment properties into a mutation
+         */
+        protected mutationMapper(attachment: AudioAttachment): Mutation {
+            return this.mutationMap.reduce((mutation, mapping) => {
+                mutation[mapping[0]] = get(attachment, mapping[1], '');
+                return mutation;
+            }, {});
+        }
+
+        /**
+         * Mutates settings model
+         */
+        protected mutateSettings(mutation: Mutation): Model {
+            return this.elementSettingsModel.set(mutation);
+        }
+
+        /**
+         * Trigger change event for melody controls
+         */
+        protected triggerChange(): void {
+            const { elementSettingsModel: model } = this;
+            this.mutationMap.forEach(mapping =>
+                model.trigger(`change:external:${mapping[0]}`, model)
+            );
+        }
+    }
+
+    GLOBAL.elementor.addControlView('melody-track-picker', AU);
+
+});
+

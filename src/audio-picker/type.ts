@@ -23,6 +23,7 @@ export interface MelodyResources {
 export interface MediaFrame extends View<Model> {
     _melodyResources: MelodyResources;
     state: () => Model;
+    open: () => MediaFrame;
 }
 
 export type TriggerAction =
@@ -63,3 +64,24 @@ export type AudioPickerField =
     | 'album'
     | 'artist'
     | 'title';
+
+export interface Mutation {
+    melody_track_title?: string;
+    melody_track_album?: string;
+    melody_track_artist?: string;
+    melody_track_url?: string;
+    melody_track_image?: string;
+}
+
+export interface AudioAttachment {
+    id: number;
+    title: string;
+    meta: {
+        album: string;
+        artist: string;
+    },
+    image: {
+        src: string;
+    },
+    url: string;
+}

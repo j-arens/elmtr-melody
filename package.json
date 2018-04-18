@@ -59,6 +59,7 @@
   "dependencies": {
     "@wordpress/i18n": "^1.0.0",
     "classnames": "^2.2.5",
+    "lodash.get": "^4.4.2",
     "lodash.mergewith": "^4.6.1",
     "lodash.throttle": "^4.1.1",
     "preact": "^8.2.7",

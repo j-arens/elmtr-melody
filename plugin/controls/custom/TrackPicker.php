@@ -5,24 +5,17 @@ namespace Melody\Controls\custom;
 use Melody\Core\ViewInterface;
 use Elementor\Control_Base_Multiple;
 
-class AudioPicker extends Control_Base_Multiple implements CustomInputInterface {
+class TrackPicker extends Control_Base_Multiple implements CustomInputInterface {
 
     /**
      * @var string
      */
-    protected $handle = 'melody-audio-picker';
+    protected $handle = 'melody-track-picker';
 
     /**
      * @var array
      */
-    protected $defaultValues = [
-        'id' => '',
-        'title' => '',
-        'album' => '',
-        'artist' => '',
-        'artwork' => '',
-        'duration' => '',
-    ];
+    protected $defaultValues = [];
 
     /**
      * @var array
@@ -76,6 +69,8 @@ class AudioPicker extends Control_Base_Multiple implements CustomInputInterface 
      */
     public function enqueue() {
         wp_enqueue_media();
+
+        wp_enqueue_script('wp-api');
         
         wp_enqueue_style(
             'media',
@@ -85,7 +80,7 @@ class AudioPicker extends Control_Base_Multiple implements CustomInputInterface 
         wp_enqueue_script(
             $this->handle,
             plugins_url('public/js/audioPicker.bundle.js', MELODY_ROOT),
-            ['media-editor', 'media-audiovideo'],
+            ['media-editor', 'media-audiovideo', 'wp-api'],
             filemtime(MELODY_BASE_DIR . '/public/js/audioPicker.bundle.js'),
             true
         );
@@ -95,6 +90,6 @@ class AudioPicker extends Control_Base_Multiple implements CustomInputInterface 
      * Get input view
      */
     public function content_template() {
-        $this->view->render(MELODY_PLUGIN_DIR . '/templates/audioPicker.php');
+        $this->view->render(MELODY_PLUGIN_DIR . '/templates/track-picker.php');
     }
 }
