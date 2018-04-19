@@ -79,9 +79,9 @@ export interface AudioAttachment {
     meta: {
         album: string;
         artist: string;
-    },
+    };
     image: {
         src: string;
-    },
+    };
     url: string;
 }

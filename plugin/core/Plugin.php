@@ -3,7 +3,6 @@
 namespace Melody\Core;
 
 use Melody\Controls\custom\TrackPicker;
-use Melody\Controls\custom\AudioPicker;
 use Melody\Widgets\Slider;
 use Elementor\Widgets_Manager;
 use Elementor\Controls_Manager;
@@ -16,27 +15,19 @@ class Plugin {
     protected $trackPicker;
 
     /**
-     * @var AudioPicker
-     */
-    protected $audioPicker;
-
-    /**
      * @var Slider
      */
     protected $slider;
 
     /**
      * @param TrackPicker $trackPicker
-     * @param AudioPicker $audioPicker
      * @param Slider $slider
      */
     public function __construct(
         TrackPicker $trackPicker,
-        AudioPicker $audioPicker,
         Slider $slider
     ) {
         $this->trackPicker = $trackPicker;
-        $this->audioPicker = $audioPicker;
         $this->slider = $slider;
 
         $this->i18n();
@@ -91,10 +82,6 @@ class Plugin {
      * @param Controls_Manager $manager
      */
     public function registerControls(Controls_Manager $manager) {
-        // $manager->register_control(
-        //     $this->audioPicker->get_type(),
-        //     $this->audioPicker
-        // );
         $manager->register_control(
             $this->trackPicker->get_type(),
             $this->trackPicker

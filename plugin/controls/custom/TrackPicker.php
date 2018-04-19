@@ -69,8 +69,6 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
      */
     public function enqueue() {
         wp_enqueue_media();
-
-        wp_enqueue_script('wp-api');
         
         wp_enqueue_style(
             'media',
@@ -79,9 +77,9 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
         
         wp_enqueue_script(
             $this->handle,
-            plugins_url('public/js/audioPicker.bundle.js', MELODY_ROOT),
-            ['media-editor', 'media-audiovideo', 'wp-api'],
-            filemtime(MELODY_BASE_DIR . '/public/js/audioPicker.bundle.js'),
+            plugins_url('public/js/controls.bundle.js', MELODY_ROOT),
+            ['media-editor', 'media-audiovideo'],
+            filemtime(MELODY_BASE_DIR . '/public/js/controls.bundle.js'),
             true
         );
     }
