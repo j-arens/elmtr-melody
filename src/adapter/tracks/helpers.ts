@@ -45,12 +45,12 @@ export const trackLengthToSeconds = (str: string): number => {
 
 export const getTrackDuration = track => {
     if (track.melody_audio_source === 'media-library') {
-        const duration = track.melody_wp_media_picker.duration;
+        const duration = track.melody_internal_track_duration;
         return trackLengthToSeconds(duration);
     }
 
-    if (!track.melody_track_url) {
-        track.melody_track_url = `${pluginsUrl}/elmtr-melody/assets/audio/placeholder-track.mp3`;
+    if (!track.melody_external_track_url) {
+        track.melody_external_track_url = `${pluginsUrl}/elmtr-melody/assets/audio/placeholder-track.mp3`;
     }
 
     const audio = new Audio();
@@ -61,5 +61,5 @@ export const getTrackDuration = track => {
         }
         return Math.round(duration);
     });
-    audio.src = track.melody_track_url;
+    audio.src = track.melody_external_track_url;
 };

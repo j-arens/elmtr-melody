@@ -6,7 +6,7 @@ const { wp: { media } } = GLOBAL;
 /**
  * Initialize a wp media picker for audio
  */
-function initAudioframe(): Mediaframe {
+export function makeAudioframe(): Mediaframe {
     return media({
         button: { text: 'Select Track' },
         states: [
@@ -24,7 +24,7 @@ function initAudioframe(): Mediaframe {
 /**
  * Initialize a wp media picker for images
  */
-function initImageframe(): Mediaframe {
+export function makeImageframe(): Mediaframe {
     return media({
         button: { text: 'Select' },
         states: [
@@ -39,6 +39,3 @@ function initImageframe(): Mediaframe {
         ],
     });
 }
-
-export const audioframe: Mediaframe = initAudioframe();
-export const imageframe: Mediaframe = initImageframe();

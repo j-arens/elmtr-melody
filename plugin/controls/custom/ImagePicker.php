@@ -5,12 +5,12 @@ namespace Melody\Controls\custom;
 use Melody\Core\ViewInterface;
 use Elementor\Control_Base_Multiple;
 
-class TrackPicker extends Control_Base_Multiple implements CustomInputInterface {
+class ImagePicker extends Control_Base_Multiple implements CustomInputInterface {
 
     /**
      * @var string
      */
-    protected $handle = 'melody-track-picker';
+    protected $handle = 'melody-image-picker';
 
     /**
      * @var array
@@ -20,9 +20,7 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
     /**
      * @var array
      */
-    protected $defaultSettings = [
-        'label_block' => true,
-    ];
+    protected $defaultSettings = [];
 
     /**
      * @var View
@@ -78,7 +76,7 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
         wp_register_script(
             'melody-controls-js',
             plugins_url('public/js/controls.bundle.js', MELODY_ROOT),
-            ['media-editor', 'media-audiovideo'],
+            ['media-editor'],
             filemtime(MELODY_BASE_DIR . '/public/js/controls.bundle.js'),
             true
         );
@@ -90,6 +88,6 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
      * Get input view
      */
     public function content_template() {
-        $this->view->render(MELODY_PLUGIN_DIR . '/templates/track-picker.php');
+        $this->view->render(MELODY_PLUGIN_DIR . '/templates/image-picker.php');
     }
 }
