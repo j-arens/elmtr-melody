@@ -3,20 +3,21 @@ import { GLOBAL } from './constants';
 import {
     Attachment,
     Mediaframe,
-    SettingsModel,
-    MutationMap,
     Mutation,
+    MutationMap,
+    SettingsModel,
 } from './type';
 
+const set = require('lodash.set');
 const get = require('lodash.get');
 
 /**
- * Create an initialization fn for a new control 
+ * Create an initialization fn for a new control
  */
 export const makeControlFactory = (handle: string, onReady: () => any) => () => {
     const { elementor, elementor: { modules: { controls: { BaseData } } } } = GLOBAL;
     elementor.addControlView(handle, BaseData.extend({ onReady }));
-}
+};
 
 /**
  * Get selection from a media frame
@@ -47,6 +48,12 @@ export const mutationMapper = (
     attachment: Attachment,
 ): Mutation => map
     .reduce((mutation, mapping) => {
+        if (typeof mapping[1] === 'object') {
+            Object.entries(mapping[1]).forEach(([ key, path ]) =>
+                set(mutation, [mapping[0], key], get(attachment, path, '')),
+            );
+            return mutation;
+        }
         mutation[mapping[0]] = get(attachment, mapping[1], '');
         return mutation;
     }, {});

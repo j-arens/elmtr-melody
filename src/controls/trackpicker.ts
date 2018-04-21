@@ -1,19 +1,20 @@
-import { makeAudioframe } from './mediaframe';
+import {
+    clearAllSettings,
+    getSelection,
+    makeControlFactory,
+    mutateSettings,
+    mutationMapper,
+    triggerChange,
+} from './common';
 import {
     GLOBAL,
     TP_TRIGGER,
     TP_TRIGGER_ACTION,
 } from './constants';
-import {
-    makeControlFactory,
-    getSelection,
-    triggerChange,
-    mutationMapper,
-    clearAllSettings,
-    mutateSettings,
-} from './common';
+import { makeAudioframe } from './mediaframe';
 import {
     AudioAttachment,
+    ElementorDataModel,
     Mediaframe,
     Mutation,
     MutationMap,
@@ -21,7 +22,6 @@ import {
     SwapParams,
     TPTriggerAction,
     TriggerEvent,
-    ElementorDataModel,
  } from './type';
 
 const mutationMap: MutationMap = [
@@ -31,7 +31,8 @@ const mutationMap: MutationMap = [
     ['melody_track_artist', 'meta.artist'],
     ['melody_internal_track_url', 'url'],
     ['melody_internal_track_duration', 'fileLength'],
-    ['melody_track_image', 'image.src'],
+    ['melody_track_artwork', { url: 'image.src', id: 'image.id' }],
+    ['melody_track_picker_control', { id: 'id' }],
 ];
 
 /**
@@ -50,6 +51,11 @@ const handleSelection = ({ model, map, frame }: SelectionParams): void => {
     const mutation: Mutation = mutationMapper(map, attachment);
     mutateSettings(model, mutation);
     triggerChange(model, map);
+    swapTrigger({
+        $trigger: frame._melody_$trigger,
+        action: 'CLEAR_TRACK',
+        text: 'Clear Track',
+    });
 };
 
 /**
@@ -59,12 +65,8 @@ const onTriggerClick = ({ $trigger, model, frame }: TriggerEvent): void => {
     const action: TPTriggerAction = $trigger.attr(TP_TRIGGER_ACTION);
     switch (action) {
         case 'SELECT_TRACK': {
+            frame._melody_$trigger = $trigger;
             frame.open();
-            swapTrigger({
-                $trigger,
-                action: 'CLEAR_TRACK',
-                text: 'Clear Track',
-            });
             return;
         }
         case 'CLEAR_TRACK': {
@@ -92,7 +94,7 @@ const bindAudioframe = (model: ElementorDataModel): Mediaframe => {
         frame: audioframe,
     }));
     return audioframe;
-}
+};
 
 /**
  * Setup event listeners
@@ -111,7 +113,9 @@ const bindEvents = (
  */
 function onReady() {
     bindEvents(this, bindAudioframe(this));
-    process.env.NODE_ENV === 'development' && (GLOBAL.mtp = this);
+    if (process.env.NODE_ENV === 'development') {
+        GLOBAL.mtp = this;
+    }
 }
 
 /**

@@ -61,6 +61,7 @@
     "classnames": "^2.2.5",
     "lodash.get": "^4.4.2",
     "lodash.mergewith": "^4.6.1",
+    "lodash.set": "^4.3.2",
     "lodash.throttle": "^4.1.1",
     "preact": "^8.2.7",
     "preact-redux": "^2.0.3",

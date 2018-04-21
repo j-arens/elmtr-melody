@@ -3,7 +3,6 @@
 namespace Melody\Core;
 
 use Melody\Controls\custom\TrackPicker;
-use Melody\Controls\custom\ImagePicker;
 use Melody\Widgets\Slider;
 use Elementor\Widgets_Manager;
 use Elementor\Controls_Manager;
@@ -22,19 +21,16 @@ class Plugin {
 
     /**
      * @param TrackPicker $trackPicker
-     * @param ImagePicker $imagePicker
      * @param Slider $slider
      */
     public function __construct(
         TrackPicker $trackPicker,
-        ImagePicker $imagePicker,
         Slider $slider
     ) {
         $this->i18n();
 
         array_push($this->controls,
-            $trackPicker,
-            $imagePicker
+            $trackPicker
         );
 
         array_push($this->widgets,

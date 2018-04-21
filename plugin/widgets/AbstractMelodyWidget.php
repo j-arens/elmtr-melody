@@ -3,9 +3,12 @@
 namespace Melody\Widgets;
 
 use DownShift\Container\Container;
+use Melody\Core\EnhancesArtworkAttachments;
 use Elementor\Widget_Base;
 
 abstract class AbstractMelodyWidget extends Widget_Base {
+
+    use EnhancesArtworkAttachments;
 
     /**
      * Constructor
@@ -108,8 +111,8 @@ abstract class AbstractMelodyWidget extends Widget_Base {
      * Render widget template
      */
     protected function render() {
-        $data = $this->get_raw_data();
         $view = $this->getView();
+        $data = $this->addAttachmentSizes($this->get_raw_data());
         $this->view->render(MELODY_PLUGIN_DIR . '/templates/widget-root.php', [
             'settings' => $data['settings'],
             'instance' => $data['id'],

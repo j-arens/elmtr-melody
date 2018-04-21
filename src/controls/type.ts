@@ -14,6 +14,7 @@ export interface SettingsModel extends ElementorDataModel {
 export interface Mediaframe extends View<Model> {
     state: () => Model;
     open: () => Mediaframe;
+    _melody_$trigger: JQuery;
 }
 
 export interface TriggerEvent {
@@ -26,11 +27,6 @@ export type TPTriggerAction =
     | string
     | 'SELECT_TRACK'
     | 'CLEAR_TRACK';
-
-export type IPTriggerAction =
-    | string
-    | 'SELECT_IMAGE'
-    | 'CLEAR_IMAGE';
 
 export interface SwapParams {
     $trigger: JQuery;
@@ -46,7 +42,7 @@ export interface Mutation {
     melody_track_image?: string;
 }
 
-export type MutationMap = string[][];
+export type MutationMap = Array<[string, string | object]>;
 
 export interface AudioAttachment {
     id?: number;
@@ -61,10 +57,7 @@ export interface AudioAttachment {
     url?: string;
 }
 
-export interface ImageAttachment {};
-
 export type Attachment =
-    | ImageAttachment
     | AudioAttachment;
 
 export interface SelectionParams {

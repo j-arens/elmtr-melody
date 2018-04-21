@@ -20,22 +20,3 @@ export function makeAudioframe(): Mediaframe {
         ],
     });
 }
-
-/**
- * Initialize a wp media picker for images
- */
-export function makeImageframe(): Mediaframe {
-    return media({
-        button: { text: 'Select' },
-        states: [
-            new media.controller.Library({
-                title: 'Select Artwork',
-                button: { text: 'Select Artwork' },
-                library: media.query({ type: 'image' }),
-                multiple: false,
-                date: false,
-                autoSelect: false,
-            }),
-        ],
-    });
-}

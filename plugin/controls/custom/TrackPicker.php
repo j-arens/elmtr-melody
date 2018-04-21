@@ -15,7 +15,9 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
     /**
      * @var array
      */
-    protected $defaultValues = [];
+    protected $defaultValues = [
+        'id' => 0,
+    ];
 
     /**
      * @var array
@@ -34,7 +36,13 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
      */
     public function __construct(ViewInterface $view) {
         parent::__construct();
+
         $this->view = $view;
+
+        add_filter(
+            'wp_prepare_attachment_for_js',
+            [$this, 'enhanceAsyncAudioUpload'], 10, 2
+        );
     }
 
     /**
@@ -62,6 +70,44 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
      */
     public function get_default_settings() {
         return $this->defaultSettings;
+    }
+
+    /**
+     * Checks if the given attachment is an audio post
+     * 
+     * @param mixed $attachment
+     * @return boolean
+     */
+    protected function isAudioAttachment($attachment) {
+        if (!$attachment instanceof \WP_Post) {
+            return false;
+        }
+
+        if ($attachment->post_type !== 'attachment') {
+            return false;
+        }
+
+        if (substr($attachment->post_mime_type, 0, 5) !== 'audio') {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Enhances async audio uploads with the attached featured image id
+     * 
+     * @param array $res
+     * @param mixed $attachment
+     * @return array
+     */
+    public function enhanceAsyncAudioUpload(array $res, $attachment) {
+        if (!$this->isAudioAttachment($attachment)) {
+            return $res;
+        }
+
+        $res['image']['id'] = get_post_thumbnail_id($attachment);
+        return $res;
     }
 
     /**
