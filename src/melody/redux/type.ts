@@ -43,6 +43,8 @@ export interface State {
     };
 }
 
+export type Dispatch = (params: any) => Action;
+
 const returnOfActions = [
     actions.updateCurrentTime,
     actions.nextTrack,
