@@ -6,35 +6,45 @@ import throttle from 'lodash.throttle';
 import { GLOBAL } from './constants';
 import { compose } from './helpers';
 import { prepareTracks } from './tracks/';
+import {
+    Config,
+    TrackMiddlewareParams,
+} from './type';
 const throttle = require('lodash.throttle');
 
-const reset = ({ store, config }) => {
-    store.dispatch(actions.resetState());
-    return { store, config };
+const reset = (
+    { dispatch, config }: TrackMiddlewareParams,
+): TrackMiddlewareParams => {
+    dispatch(actions.resetState());
+    return { dispatch, config };
 };
 
-const view = ({ store, config }) => {
-    const style = config.melody_component_style;
-    store.dispatch(actions.changeView(style));
-    return { store, config };
-};
+// const view = (
+//     { dispatch, config }: TrackMiddlewareParams,
+// ): TrackMiddlewareParams => {
+//     const style = config.melody_component_style;
+//     dispatch(actions.changeView(style));
+//     return { dispatch, config };
+// };
 
-const tracks = ({ store, config }) => {
+const tracks = (
+    { dispatch, config }: TrackMiddlewareParams,
+): TrackMiddlewareParams => {
     const audioTracks = config.melody_audio_tracks;
     const prepared = prepareTracks(audioTracks);
-    store.dispatch(actions.setTracks(prepared));
-    return { store, config };
+    dispatch(actions.setTracks(prepared));
+    return { dispatch, config };
 };
 
 const initialize = compose(
     reset,
-    view,
+    // view,
     tracks,
 );
 
-const newInstance = throttle((config, id) => {
+const newInstance = throttle((config: Config, id: string): void => {
     const store = configureStore(intialState);
-    initialize({ store, config });
+    initialize({ dispatch: store.dispatch, config });
 
     if (process.env.NODE_ENV === 'development') {
         makeApp(id, store);

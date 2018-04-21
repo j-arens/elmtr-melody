@@ -1,20 +1,24 @@
 import { Track } from '@redux/type';
 import {
+    ExternalTrackData,
+    InternalTrackData,
+} from '../type';
+import {
     getDownloadUrl,
-    getTrackDuration,
+    getExternalTrackDuration,
+    getInternalTrackDuration,
 } from './helpers';
 
 /**
  * Map external tracks into a melody track shape
  */
-export function external(track): Track {
+export function external(track: ExternalTrackData): Track {
     const {
         melody_external_track_url,
         melody_track_artwork,
         melody_track_artist,
         melody_track_album,
         melody_track_title,
-        duration,
     } = track;
     return {
         source_url: melody_external_track_url,
@@ -24,7 +28,7 @@ export function external(track): Track {
             artist: melody_track_artist,
             album: melody_track_album,
             title: melody_track_title,
-            length: getTrackDuration(track),
+            length: getExternalTrackDuration(track),
         },
         attributes: {
             origin: 'external',
@@ -35,7 +39,7 @@ export function external(track): Track {
 /**
  * Map internal tracks into a melody track shape
  */
-export function mediaPicker(track): Track {
+export function mediaPicker(track: InternalTrackData): Track {
     const {
         melody_internal_track_url,
         melody_track_artwork,
@@ -51,7 +55,7 @@ export function mediaPicker(track): Track {
             artist: melody_track_artist,
             album: melody_track_album,
             title: melody_track_title,
-            length: getTrackDuration(track),
+            length: getInternalTrackDuration(track),
         },
         attributes: {
             origin: 'internal',
