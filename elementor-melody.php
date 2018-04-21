@@ -16,6 +16,7 @@ define('MELODY_ROOT', __FILE__);
 define('MELODY_BASE_DIR', __DIR__);
 define('MELODY_PLUGIN_DIR', __DIR__ . '/plugin');
 define('MELODY_TD', 'elmtr-melody');
+define('MELODY_DEV', true);
 
 add_action('elementor/init', 'melodyInit');
 

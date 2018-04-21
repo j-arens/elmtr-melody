@@ -27,9 +27,9 @@ module.exports = {
             entry: resolve('./src/adapter/index.ts'),
         },
     },
-    audioPicker: {
+    controls: {
         js: {
-            entry: resolve('./src/audio-picker/index.ts'),
+            entry: resolve('./src/controls/index.ts'),
         },
     },
     devServer: {

@@ -2,37 +2,40 @@
 
 namespace Melody\Core;
 
-use Melody\Controls\custom\AudioPicker;
+use Melody\Controls\custom\TrackPicker;
 use Melody\Widgets\Slider;
 use Elementor\Widgets_Manager;
 use Elementor\Controls_Manager;
 use Elementor\Elements_Manager;
 
 class Plugin {
-
     /**
-     * @var AudioPicker
+     * @var array
      */
-    protected $audioPicker;
+    protected $controls = [];
 
     /**
-     * @var Slider
+     * @var array
      */
-    protected $slider;
-
+    protected $widgets = [];
 
     /**
-     * @param AudioPicker $audioLibraryControl
+     * @param TrackPicker $trackPicker
      * @param Slider $slider
      */
     public function __construct(
-        AudioPicker $audioPicker,
+        TrackPicker $trackPicker,
         Slider $slider
     ) {
-        $this->audioPicker = $audioPicker;
-        $this->slider = $slider;
-
         $this->i18n();
+
+        array_push($this->controls,
+            $trackPicker
+        );
+
+        array_push($this->widgets,
+            $slider
+        );
 
         add_action(
             'elementor/elements/categories_registered',
@@ -73,9 +76,9 @@ class Plugin {
      * @param Widgets_Manager $manager
      */
     public function registerWidgets(Widgets_Manager $manager) {
-        $manager->register_widget_type($this->slider);
-        // $manager->register_widget_type(new Toolbar);
-        // $manager->register_widget_type(new Tracklist);
+        foreach($this->widgets as $widget) {
+            $manager->register_widget_type($widget);
+        }
     }
 
     /**
@@ -84,10 +87,12 @@ class Plugin {
      * @param Controls_Manager $manager
      */
     public function registerControls(Controls_Manager $manager) {
-        $manager->register_control(
-            $this->audioPicker->get_type(),
-            $this->audioPicker
-        );
+        foreach($this->controls as $control) {
+            $manager->register_control(
+                $control->get_type(),
+                $control
+            );
+        }
     }
 
     /**

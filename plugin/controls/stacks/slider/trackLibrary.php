@@ -29,15 +29,33 @@ return [
                         ],
                     ],
                     [
-                        'name' => 'melody_wp_media_picker',
+                        'name' => 'melody_track_id',
                         'label' => '',
-                        'type' => 'melody-audio-picker',
+                        'type' => Controls_Manager::HIDDEN,
+                        'default' => '',
+                    ],
+                    [
+                        'name' => 'melody_internal_track_url',
+                        'label' => '',
+                        'type' => Controls_Manager::HIDDEN,
+                        'default' => '',
+                    ],
+                    [
+                        'name' => 'melody_internal_track_duration',
+                        'label' => '',
+                        'type' => Controls_Manager::HIDDEN,
+                        'default' => '',
+                    ],
+                    [
+                        'name' => 'melody_track_picker_control',
+                        'label' => '',
+                        'type' => 'melody-track-picker',
                         'condition' => [
                             'melody_audio_source' => 'media-library',
                         ],
                     ],
                     [
-                        'name' => 'melody_track_url',
+                        'name' => 'melody_external_track_url',
                         'label' => __('Track URL', MELODY_TD),
                         'type' => Controls_Manager::TEXT,
                         'input_type' => 'url',
@@ -52,18 +70,12 @@ return [
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
                         'title' => __('Track Title', MELODY_TD),
-                        'condition' => [
-                            'melody_audio_source' => 'external-source',
-                        ],
                     ],
                     [
                         'name' => 'melody_track_album',
                         'label' => __('Album', MELODY_TD),
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
-                        'condition' => [
-                            'melody_audio_source' => 'external-source',
-                        ],
                     ],
                     [
                         'name' => 'melody_track_artist',
@@ -71,17 +83,11 @@ return [
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
                         'title' => __('Track Artist', MELODY_TD),
-                        'condition' => [
-                            'melody_audio_source' => 'external-source',
-                        ],
                     ],
                     [
                         'name' => 'melody_track_artwork',
                         'label' => __('Artwork', MELODY_TD),
                         'type' => Controls_Manager::MEDIA,
-                        'condition' => [
-                            'melody_audio_source' => 'external-source',
-                        ],
                     ],
                     [
                         'name' => 'melody_track_downloadable',
@@ -104,25 +110,11 @@ return [
                     ],
                 ],
                 'title_field' => '
-                    <# if (melody_audio_source === "external-source") { #>
-                        <# if (melody_track_title) { #>
-                            <# if (melody_track_artist) { #>
-                                {{{ melody_track_title }}} - {{{ melody_track_artist }}}
-                            <# } else { #>
-                                {{{ melody_track_title }}}
-                            <# } #>
+                    <# if (melody_track_title) { #>
+                        <# if (melody_track_artist) { #>
+                            {{{ melody_track_title }}} - {{{ melody_track_artist }}}
                         <# } else { #>
-                            ' . __('Unnamed Track', MELODY_TD) . '
-                        <# } #>
-                    <# } else if (melody_audio_source === "media-library") { #>
-                        <# if (melody_wp_media_picker.title) { #>
-                            <# if (melody_wp_media_picker.artist) { #>
-                                {{{ melody_wp_media_picker.title }}} - {{{ melody_wp_media_picker.artist }}}
-                            <# } else { #>
-                                {{{ melody_wp_media_picker.title }}}
-                            <# } #>
-                        <# } else { #>
-                            ' . __('Unnamed Track', MELODY_TD) . '
+                            {{{ melody_track_title }}}
                         <# } #>
                     <# } else { #>
                         ' . __('Unnamed Track', MELODY_TD) . '
