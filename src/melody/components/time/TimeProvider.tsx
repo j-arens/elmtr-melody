@@ -4,14 +4,10 @@ import { formatTime } from '@utils/index';
 import { AnyComponent, Component, h } from 'preact';
 import { connect } from 'preact-redux';
 
-const mapStateToProps = (state: State) => {
-    const { currentTrack, tracks, currentTime } = state;
-    const activeTrack = tracks[currentTrack];
-    return {
-        currentTime,
-        duration: activeTrack.media_details.length,
-    };
-};
+const mapStateToProps = (state: State) => ({
+    currentTime: state.currentTime,
+    duration: state.filelength,
+});
 
 interface Props extends WithOptionalClassName {
     currentTime: number;

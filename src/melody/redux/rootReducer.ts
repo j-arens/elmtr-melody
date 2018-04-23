@@ -58,6 +58,9 @@ export default function(
         case getType(actions.changeView): {
             return reducers.changeView(state, action);
         }
+        case getType(actions.setFilelength): {
+            return reducers.setFilelength(state, action);
+        }
         case RESET_STATE: {
             return reducers.resetState();
         }

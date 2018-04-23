@@ -273,3 +273,23 @@ describe('CHANGE_VIEW', () => {
         expect(newState).toEqual(initialState);
     });
 });
+
+describe('SET_FILE_LENGTH', () => {
+    it('sets the filelength', () => {
+        const action = actions.setFilelength(245);
+        const newState = reducer(initialState, action);
+        expect(newState.filelength).toBe(245);
+    });
+
+    it('rounds input to nearest whole number', () => {
+        const action = actions.setFilelength(356.235);
+        const newState = reducer(initialState, action);
+        expect(newState.filelength).toBe(356);
+    });
+
+    it('bails if input is NaN', () => {
+        const action = actions.setFilelength(NaN);
+        const newState = reducer(initialState, action);
+        expect(newState.filelength).toBe(0);
+    });
+});

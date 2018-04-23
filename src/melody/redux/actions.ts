@@ -142,3 +142,10 @@ export const changeView = createAction(constants.CHANGE_VIEW,
         payload: view,
     }),
 );
+
+export const setFilelength = createAction(constants.SET_FILE_LENGTH,
+    (filelength: number) => ({
+        type: constants.SET_FILE_LENGTH,
+        payload: filelength,
+    }),
+);

@@ -8,15 +8,11 @@ import { connect } from 'preact-redux';
 import DragHelper from '../DragHelper';
 import Glider from './Glider';
 
-const mapStateToProps = (state: State) => {
-    const { currentState, currentTime, currentTrack, tracks } = state;
-    const activeTrack = tracks[currentTrack];
-    return {
-        currentState,
-        currentTime,
-        duration: activeTrack.media_details.length,
-    };
-};
+const mapStateToProps = (state: State) => ({
+    currentState: state.currentState,
+    currentTime: state.currentTime,
+    duration: state.filelength,
+});
 
 const mapDispatchToProps = (dispatch) => ({
     updateCurrentTime: (updatedTime: number) => dispatch(updateCurrentTime(updatedTime)),

@@ -286,3 +286,21 @@ export function changeView(state: State, action: Action): State {
         },
     };
 }
+
+/**
+ * SET_FILE_LENGTH
+ */
+export function setFilelength(state: State, action: Action): State {
+    if (!action.payload) {
+        return state;
+    }
+
+    if (isNaN(action.payload)) {
+        return state;
+    }
+
+    return {
+        ...state,
+        filelength: Math.round(action.payload),
+    };
+}

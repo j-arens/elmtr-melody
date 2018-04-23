@@ -13,7 +13,6 @@ export const defaultTrack: Track = {
         artist: 'Artist',
         album: 'Album',
         title: 'Title',
-        length: 0,
     },
     attributes: {
         origin: 'internal',
