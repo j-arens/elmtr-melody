@@ -1,6 +1,7 @@
 import {
     cycleState,
     nextTrack,
+    setFilelength,
     updateCurrentTime,
 } from '@redux/actions';
 import { State } from '@redux/type';
@@ -26,6 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
     cycleState: (action: MachineAction) => dispatch(cycleState(action)),
     updateCurrentTime: (nextTime: number) => dispatch(updateCurrentTime(nextTime)),
     nextTrack: () => dispatch(nextTrack()),
+    setFilelength: (length: number) => dispatch(setFilelength(length)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Melody);

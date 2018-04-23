@@ -16,3 +16,4 @@ export const TOGGLE_DOCK = 'melody/TOGGLE_DOCK';
 export const SPEED_UP = 'melody/SPEED_UP';
 export const SLOW_DOWN = 'melody/SLOW_DOWN';
 export const CHANGE_VIEW = 'melody/CHANGE_VIEW';
+export const SET_FILE_LENGTH = 'melody/SET_FILE_LENGTH';

@@ -27,6 +27,7 @@ interface Props {
     cycleState: (action: MachineAction) => Action;
     updateCurrentTime: (nextTime: number) => Action;
     nextTrack: () => Action;
+    setFilelength: (length: number) => Action;
 }
 
 export default class extends Component<Props, {}> {
@@ -91,6 +92,7 @@ export default class extends Component<Props, {}> {
         this.AudioInterface.addEventListener('canplay', this.onCanPlay);
         this.AudioInterface.addEventListener('timeupdate', this.onTimeUpdate);
         this.AudioInterface.addEventListener('ended', this.onEnded);
+        this.AudioInterface.addEventListener('loadedmetadata', this.onLoadedMeta);
     }
 
     removeAudioInterfaceEvents() {
@@ -98,6 +100,7 @@ export default class extends Component<Props, {}> {
         this.AudioInterface.removeEventListener('canplay', this.onCanPlay);
         this.AudioInterface.removeEventListener('timeupdate', this.onTimeUpdate);
         this.AudioInterface.removeEventListener('ended', this.onEnded);
+        this.AudioInterface.removeEventListener('loadedmetadata', this.onLoadedMeta);
     }
 
     updateInterfaceState(nextState: MachineStates) {
@@ -225,6 +228,12 @@ export default class extends Component<Props, {}> {
         }
 
         nextTrack();
+    }
+
+    onLoadedMeta = () => {
+        const { setFilelength } = this.props;
+        const { duration } = this.AudioInterface;
+        setFilelength(duration);
     }
 
     getMachineAction() {

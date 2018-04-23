@@ -30,7 +30,6 @@ const mutationMap: MutationMap = [
     ['melody_track_album', 'meta.album'],
     ['melody_track_artist', 'meta.artist'],
     ['melody_internal_track_url', 'url'],
-    ['melody_internal_track_duration', 'fileLength'],
     ['melody_track_artwork', { url: 'image.src', id: 'image.id' }],
     ['melody_track_picker_control', { id: 'id' }],
 ];

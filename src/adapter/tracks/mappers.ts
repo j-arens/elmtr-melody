@@ -3,11 +3,7 @@ import {
     ExternalTrackData,
     InternalTrackData,
 } from '../type';
-import {
-    getDownloadUrl,
-    getExternalTrackDuration,
-    getInternalTrackDuration,
-} from './helpers';
+import { getDownloadUrl } from './helpers';
 
 /**
  * Map external tracks into a melody track shape
@@ -28,7 +24,6 @@ export function external(track: ExternalTrackData): Track {
             artist: melody_track_artist,
             album: melody_track_album,
             title: melody_track_title,
-            length: getExternalTrackDuration(track),
         },
         attributes: {
             origin: 'external',
@@ -55,7 +50,6 @@ export function mediaPicker(track: InternalTrackData): Track {
             artist: melody_track_artist,
             album: melody_track_album,
             title: melody_track_title,
-            length: getInternalTrackDuration(track),
         },
         attributes: {
             origin: 'internal',

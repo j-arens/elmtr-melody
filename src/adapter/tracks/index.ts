@@ -27,12 +27,12 @@ const normalizeTrack = (track: TrackData): Track => {
     switch (track.melody_audio_source) {
 
         case 'external-source': {
-            normalized = mappers.external({...track} as ExternalTrackData);
+            normalized = mappers.external(track as ExternalTrackData);
             break;
         }
 
         case 'media-library': {
-            normalized = mappers.mediaPicker({...track} as InternalTrackData);
+            normalized = mappers.mediaPicker(track as InternalTrackData);
             break;
         }
 

@@ -15,7 +15,7 @@ export interface Track {
         album: string,
         artist: string,
         title: string,
-        length: number,
+        length?: number,
     };
     attributes: {
         origin: 'internal' | 'external';
@@ -35,6 +35,7 @@ export interface State {
     readonly currentTime: number;
     readonly timeSync: number;
     readonly playbackRate: number;
+    readonly filelength: number;
     readonly ui: {
         readonly view: View;
         readonly gliderIsDragging: boolean,

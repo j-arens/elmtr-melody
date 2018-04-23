@@ -13,6 +13,7 @@ export default {
     currentTime: 0,
     timeSync: 0,
     playbackRate: 1,
+    filelength: 0,
     ui: {
         view: 'slider' as View,
         gliderIsDragging: false,
