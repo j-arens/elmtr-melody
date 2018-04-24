@@ -25,6 +25,7 @@ module.exports = {
     adapter: {
         js: {
             entry: resolve('./src/adapter/index.ts'),
+            adapter: resolve('./src/adapter/'),
         },
     },
     controls: {

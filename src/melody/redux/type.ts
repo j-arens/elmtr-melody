@@ -1,5 +1,6 @@
 import { MachineStates } from '@state-machine/type';
 import { getReturnOfExpression } from 'typesafe-actions';
+import { TrackSize } from '@adapter/type';
 import * as actions from './actions';
 
 export type View =
@@ -10,7 +11,10 @@ export type View =
 export interface Track {
     source_url: string;
     download_url: string;
-    artwork: string;
+    artwork: {
+        source_url: string;
+        sizes: TrackSize[];
+    },
     media_details: {
         album: string,
         artist: string,

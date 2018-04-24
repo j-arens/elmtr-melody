@@ -18,6 +18,7 @@ module.exports = ({ libs }) => ({
             '@state-machine': paths.melody.js.stateMachine,
             '@constants': paths.melody.js.constants,
             '@views': paths.melody.js.views,
+            '@adapter': paths.adapter.js.adapter,
         },
     },
     output: {

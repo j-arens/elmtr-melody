@@ -17,7 +17,8 @@
             "@utils/*": ["src/melody/utils/*"],
             "@state-machine/*": ["src/melody/state-machine/*"],
             "@constants": ["src/melody/constants"],
-            "@views/*": ["src/melody/views/*"]
+            "@views/*": ["src/melody/views/*"],
+            "@adapter/*": ["src/adapter/*"]
         }
     },
     "include": [
