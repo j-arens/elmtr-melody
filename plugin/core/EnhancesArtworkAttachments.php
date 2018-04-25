@@ -26,16 +26,14 @@ trait EnhancesArtworkAttachments {
             
             $track['melody_track_artwork']['sizes'] = $this->mapSizes($id, $meta);
             $track['melody_track_artwork']['sizes'][] = [
+                'file' => $meta['file'],
                 'uri' => wp_get_attachment_image_src($id, 'full')[0],
                 'width' => $meta['width'],
                 'height' => $meta['height'],
                 'mime-type' => 'image/' . substr(strrchr($meta['file'], '.'), 1),
                 'size' => 'full',
             ];
-            print '<pre>';
-            print_r($track);
-            print '</pre>';
-            die;
+
             $data['settings']['melody_audio_tracks'][$i] = $track;
         }
 

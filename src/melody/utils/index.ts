@@ -92,8 +92,8 @@ export function formatPlaybackRate(rate: number): string {
 /**
  * Takes a url and returns a background image css property
  */
-export function getArtworkCss(url: string): object {
-    return {
-        backgroundImage: `url(${url})`,
-    };
-}
+// export function getArtworkCss(url: string): object {
+//     return {
+//         backgroundImage: `url(${url})`,
+//     };
+// }

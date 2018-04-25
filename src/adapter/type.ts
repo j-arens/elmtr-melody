@@ -10,6 +10,7 @@ export interface TrackSize {
     width: number;
     'mime-type': string;
     uri: string;
+    size: string;
 }
 
 interface TrackArtwork {

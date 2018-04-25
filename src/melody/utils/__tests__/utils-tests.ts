@@ -44,9 +44,9 @@ describe('timeout()', () => {
     });
 });
 
-describe('getArtworkCss', () => {
-    it('should return a background-image property with the url set', () => {
-        const result = utils.getArtworkCss('https://lol.com');
-        expect(result.backgroundImage).toBe('url(https://lol.com)');
-    });
-});
+// describe('getArtworkCss', () => {
+//     it('should return a background-image property with the url set', () => {
+//         const result = utils.getArtworkCss('https://lol.com');
+//         expect(result.backgroundImage).toBe('url(https://lol.com)');
+//     });
+// });
