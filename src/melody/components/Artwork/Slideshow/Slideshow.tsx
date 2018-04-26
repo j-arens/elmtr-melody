@@ -8,27 +8,23 @@ const s = require('./style.scss');
 interface Props extends WithOptionalClassName {
     tracks: Track[];
     currentTrack: number;
-    duration?: number;
-    easing?: string;
 }
 
 export default ({
     tracks,
     currentTrack,
     className = '',
-    duration = 200,
-    easing = 'ease-in-out',
 }: Props) => {
     return (
         <ul
             class={`${s.Slideshow} ${className}`}
-            style={{ transform: `translate3d(${currentTrack * 100}%, 0px, 0px)` }}
+            data-melody-slideshow
+            style={{
+                transform: `translate3d(${currentTrack * -100}%, 0px, 0px)`,
+            }}
         >
             {tracks.map((track, i) => (
-                <li
-                    class={s.Slideshow__slide}
-                    style={{ transition: `transform ${duration}ms ${easing}` }}
-                >
+                <li class={s.Slideshow__slide}>
                     <ResponsiveBgImage
                         className={s.Slideshow__image}
                         artwork={track.artwork}

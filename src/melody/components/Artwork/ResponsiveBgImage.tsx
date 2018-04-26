@@ -34,13 +34,20 @@ export default class extends Component<Props, State> {
         return (innerWidth - a.width) < (innerWidth - b.width) ? -1 : 1;
     }
 
-    setArtworkSource = throttle(() => {
-        const { artwork: { sizes, source_url } } = this.props;
+    getRelevantSizes(): TrackSize[] {
+        const { artwork: { sizes } } = this.props;
         const { innerWidth } = window;
-        const sorted = sizes.sort(this.makeSortComparator(innerWidth));
+        return sizes
+            .filter(size => size.width < innerWidth)
+            .sort(this.makeSortComparator(innerWidth));
+    }
 
-        if (sorted.length) {
-            this.setState({ artworkSource: sorted[0].uri });
+    setArtworkSource = throttle(() => {
+        const { artwork: { source_url } } = this.props;
+        const relevantSizes = this.getRelevantSizes();
+
+        if (relevantSizes.length) {
+            this.setState({ artworkSource: relevantSizes[0].uri });
             return;
         }
 
