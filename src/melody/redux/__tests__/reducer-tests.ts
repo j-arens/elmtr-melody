@@ -1,5 +1,4 @@
 const tracks = require('@tracks');
-const customProps = require('@customProps');
 import { MachineStates } from '../../state-machine/type';
 import * as actions from '../actions';
 import { CYCLE_STATE } from '../constants';

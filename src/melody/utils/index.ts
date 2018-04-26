@@ -1,3 +1,4 @@
+import { TrackSize } from '@adapter/type';
 import { Track } from '@redux/type';
 
 /**
@@ -90,10 +91,17 @@ export function formatPlaybackRate(rate: number): string {
 }
 
 /**
- * Takes a url and returns a background image css property
+ * Filter track sizes that are less than the viewport width and sort DESC by width
  */
-// export function getArtworkCss(url: string): object {
-//     return {
-//         backgroundImage: `url(${url})`,
-//     };
-// }
+export function getContextualTrackSizes(sizes: TrackSize[]): TrackSize[] {
+    const { innerWidth } = window;
+    return sizes
+        .filter(size => size.width < innerWidth)
+        .sort((a: TrackSize, b: TrackSize) => {
+            if (a.width === innerWidth || b.width === innerWidth) {
+                return 0;
+            }
+
+            return (innerWidth - a.width) < (innerWidth - b.width) ? -1 : 1;
+        });
+}

@@ -1,0 +1,71 @@
+module.exports = [{
+	"file": "mtn-1140-320x213.jpg",
+	"width": 320,
+	"height": 213,
+	"mime-type": "image/jpeg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140-320x213.jpg",
+	"size": "melody-xs"
+}, {
+	"file": "mtn-1140-480x320.jpg",
+	"width": 480,
+	"height": 320,
+	"mime-type": "image/jpeg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140-480x320.jpg",
+	"size": "melody-sm"
+}, {
+	"file": "mtn-1140-768x511.jpg",
+	"width": 768,
+	"height": 511,
+	"mime-type": "image/jpeg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140-768x511.jpg",
+	"size": "melody-md"
+}, {
+	"file": "mtn-1140-992x660.jpg",
+	"width": 992,
+	"height": 660,
+	"mime-type": "image/jpeg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140-992x660.jpg",
+	"size": "melody-lg"
+}, {
+	"file": "mtn-1140-150x150.jpg",
+	"width": 150,
+	"height": 150,
+	"mime-type": "image/jpeg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140-150x150.jpg",
+	"size": "thumbnail"
+}, {
+	"file": "mtn-1140-300x200.jpg",
+	"width": 300,
+	"height": 200,
+	"mime-type": "image/jpeg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140-300x200.jpg",
+	"size": "medium"
+}, {
+	"file": "mtn-1140-768x511.jpg",
+	"width": 768,
+	"height": 511,
+	"mime-type": "image/jpeg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140-768x511.jpg",
+	"size": "medium_large"
+}, {
+	"file": "mtn-1140-1024x682.jpg",
+	"width": 1024,
+	"height": 682,
+	"mime-type": "image/jpeg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140-1024x682.jpg",
+	"size": "large"
+}, {
+	"file": "mtn-1140-100x100.jpg",
+	"width": 100,
+	"height": 100,
+	"mime-type": "image/jpeg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140-100x100.jpg",
+	"size": "twentyseventeen-thumbnail-avatar"
+}, {
+	"file": "2018/04/mtn-1140.jpg",
+	"uri": "http://localhost:4000/wp-content/uploads/2018/04/mtn-1140.jpg",
+	"width": 1140,
+	"height": 759,
+	"mime-type": "image/jpg",
+	"size": "full"
+}];
