@@ -35,6 +35,28 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      * @var ViewInterface
      */
     protected $view;
+
+    /**
+     * @var array
+     */
+    protected $imageSizes = [
+        'melody-xs' => 320,
+        'melody-sm' => 480,
+        'melody-md' => 768,
+        'melody-lg' => 992,
+        'melody-xl' => 1200,
+    ];
+
+    /**
+     * Constructor
+     * 
+     * @param array $data
+     * @param mixed $args
+     */
+    public function __construct($data = [], $args = null) {
+        parent::__construct($data, $args);
+        $this->addImageSizes();
+    }
     
     /**
      * {@inheritdoc}
@@ -92,5 +114,14 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      */
     protected function getStacks() {
         return $this->stacks;
+    }
+
+    /**
+     * Add more image sizes for better responsive images
+     */
+    protected function addImageSizes() {
+        foreach($this->imageSizes as $name => $width) {
+            add_image_size($name, $width, 9999);
+        }
     }
 }

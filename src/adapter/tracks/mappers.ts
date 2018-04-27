@@ -19,7 +19,10 @@ export function external(track: ExternalTrackData): Track {
     return {
         source_url: melody_external_track_url,
         download_url: getDownloadUrl(track, 'external'),
-        artwork: melody_track_artwork.url,
+        artwork: {
+            source_url: melody_track_artwork.url,
+            sizes: melody_track_artwork.sizes,
+        },
         media_details: {
             artist: melody_track_artist,
             album: melody_track_album,
@@ -45,7 +48,10 @@ export function mediaPicker(track: InternalTrackData): Track {
     return {
         source_url: melody_internal_track_url,
         download_url: getDownloadUrl(track, 'internal'),
-        artwork: melody_track_artwork.url,
+        artwork: {
+            source_url: melody_track_artwork.url,
+            sizes: melody_track_artwork.sizes,
+        },
         media_details: {
             artist: melody_track_artist,
             album: melody_track_album,

@@ -4,12 +4,13 @@ export type TrackOrigin = 'internal' | 'external';
 
 type TrackSource = 'media-library' | 'external-source';
 
-interface TrackSize {
+export interface TrackSize {
     file: string;
     height: number;
     width: number;
     'mime-type': string;
     uri: string;
+    size: string;
 }
 
 interface TrackArtwork {

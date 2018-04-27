@@ -20,7 +20,7 @@
     },
     "moduleNameMapper": {
       "@tracks": "<rootDir>/dev/fixtures/tracks",
-      "@customProps": "<rootDir>/dev/fixtures/custom-props",
+      "@track-sizes": "<rootDir>/dev/fixtures/track-sizes",
       "@utils": "<rootDir>/src/melody/utils",
       "@state-machine": "<rootDir>/src/melody/state-machine"
     }

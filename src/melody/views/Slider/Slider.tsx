@@ -1,4 +1,4 @@
-import Artwork from '@components/Artwork/';
+import Slideshow from '@components/Artwork/Slideshow/';
 import CatalystButton from '@components/controls/CatalystButton';
 import NextButton from '@components/controls/NextButton';
 import PrevButton from '@components/controls/PrevButton';
@@ -17,7 +17,7 @@ const s = require('./style.scss');
 export default () => (
     <div class="melody__viewContainer" data-melody-view="slider">
         <div class={s.preview} data-melody-preview>
-            <Artwork className={s.preview__artwork} />
+            <Slideshow className={s.preview__slideshow} />
             <div class={s.preview__header}>
                 <VolumeCtrl />
                 <Dock />

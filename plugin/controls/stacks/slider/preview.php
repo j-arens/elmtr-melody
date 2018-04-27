@@ -12,6 +12,13 @@ return [
     ],
     'inputs' => [
         [
+            'handle' => 'melody_preview_styles_heading',
+            'config' => [
+                'type' => Controls_Manager::HEADING,
+                'label' => __('Styles', MELODY_TD),
+            ],
+        ],
+        [
             'handle' => 'melody_preview_min_height',
             'config' => [
                 'label' => __('Min-height (px)', MELODY_TD),
@@ -53,6 +60,13 @@ return [
             ],
         ],
         [
+            'handle' => 'melody_preview_image_heading',
+            'config' => [
+                'type' => Controls_Manager::HEADING,
+                'label' => __('Image', MELODY_TD),
+            ],
+        ],
+        [
             'handle' => 'melody_preview_image_size',
             'config' => [
                 'label' => __('Track Image Size (%)', MELODY_TD),
@@ -70,7 +84,7 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-artwork]' => 'background-size: {{SIZE}}{{UNIT}}'
+                    '{{WRAPPER}} [data-melody-artwork]' => 'background-size: {{SIZE}}{{UNIT}}',
                 ],
             ],
         ],
@@ -88,7 +102,7 @@ return [
                     'repeat-y' => __('repeat y', MELODY_TD),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-artwork]' => 'background-repeat: {{VALUE}}'
+                    '{{WRAPPER}} [data-melody-artwork]' => 'background-repeat: {{VALUE}}',
                 ],
             ],
         ],
@@ -111,7 +125,7 @@ return [
                     'right bottom' => __('right bottom', MELODY_TD),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-artwork]' => 'background-position: {{VALUE}}'
+                    '{{WRAPPER}} [data-melody-artwork]' => 'background-position: {{VALUE}}',
                 ],
             ],
         ],
@@ -127,7 +141,54 @@ return [
                     'fixed' => __('fixed', MELODY_TD),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-artwork]' => 'background-attachment: {{VALUE}}'
+                    '{{WRAPPER}} [data-melody-artwork]' => 'background-attachment: {{VALUE}}',
+                ],
+            ],
+        ],
+        [
+            'handle' => 'melody_preview_animation_heading',
+            'config' => [
+                'type' => Controls_Manager::HEADING,
+                'label' => __('Animation', MELODY_TD),
+            ],
+        ],
+        [
+            'handle' => 'melody_preview_animation_duration',
+            'config' => [
+                'label' => __('Slider Duration (ms)', MELODY_TD),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 200,
+                    'unit' => 'ms',
+                ],
+                'size_units' => ['ms'],
+                'range' => [
+                    'ms' => [
+                        'min' => 0,
+                        'max' => 1000,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} [data-melody-slideshow]' => 'transition-duration: {{SIZE}}{{UNIT}}',
+                ],
+            ],
+        ],
+        [
+            'handle' => 'melody_preview_animation_timing',
+            'config' => [
+                'label' => __('Timing Function', MELODY_TD),
+                'type' => Controls_Manager::SELECT,
+                'label_block' => true,
+                'default' => 'ease',
+                'options' => [
+                    'linear' => __('linear', MELODY_TD),
+                    'ease' => __('ease', MELODY_TD),
+                    'ease-in' => __('ease-in', MELODY_TD),
+                    'ease-out' => __('ease-out', MELODY_TD),
+                    'ease-in-out' => __('ease-in-out', MELODY_TD),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} [data-melody-slideshow]' => 'transition-timing-function: {{VALUE}}',
                 ],
             ],
         ],

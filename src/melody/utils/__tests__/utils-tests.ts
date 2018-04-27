@@ -1,4 +1,5 @@
 const tracks = require('@tracks');
+const trackSizes = require('@track-sizes');
 import * as utils from '../';
 
 describe('getRandomNumberInRange()', () => {
@@ -44,9 +45,23 @@ describe('timeout()', () => {
     });
 });
 
-describe('getArtworkCss', () => {
-    it('should return a background-image property with the url set', () => {
-        const result = utils.getArtworkCss('https://lol.com');
-        expect(result.backgroundImage).toBe('url(https://lol.com)');
+describe('getContextualTrackSizes()', () => {
+    it('filters out sizes that are larger than the viewport width', () => {
+        global.innerWidth = 900;
+        const sizes = utils.getContextualTrackSizes(trackSizes);
+        expect(sizes[0].width).toBeLessThan(global.innerWidth);
+    });
+
+    it('sorts filtered sizes in DESC order', () => {
+        global.innerWidth = 500;
+        const sizes = utils.getContextualTrackSizes(trackSizes);
+        expect(sizes[1].width).toBeLessThan(sizes[0].width);
+        expect(sizes[2].width).toBeLessThan(sizes[1].width);
+    });
+
+    it('returns empty array if there are no sizes within the viewport width', () => {
+        global.innerWidth = 0;
+        const sizes = utils.getContextualTrackSizes(trackSizes);
+        expect(sizes.length).toBe(0);
     });
 });

@@ -8,7 +8,10 @@ const { MELODY_ENV: { pluginsUrl } } = GLOBAL;
 export const defaultTrack: Track = {
     source_url: `${pluginsUrl}/elmtr-melody/public/resources/placeholder-track.mp3`,
     download_url: '',
-    artwork: '',
+    artwork: {
+        source_url: '',
+        sizes: [],
+    },
     media_details: {
         artist: 'Artist',
         album: 'Album',
