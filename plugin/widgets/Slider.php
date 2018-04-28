@@ -25,6 +25,11 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      * @var string
      */
     protected $categories = ['melody-elements'];
+
+    /**
+     * @var string
+     */
+    protected $style = 'slider';
     
     /**
      * @var array[]
@@ -114,6 +119,13 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      */
     protected function getStacks() {
         return $this->stacks;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getComponentStyle() {
+        return $this->style;
     }
 
     /**

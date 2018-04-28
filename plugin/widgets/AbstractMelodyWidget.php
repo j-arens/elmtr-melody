@@ -44,6 +44,11 @@ abstract class AbstractMelodyWidget extends Widget_Base {
     abstract protected function getStacks();
 
     /**
+     * Get melody widget component style
+     */
+    abstract protected function getComponentStyle();
+
+    /**
      * Register controls with Elementor
      */
     protected function _register_controls() {
@@ -113,6 +118,7 @@ abstract class AbstractMelodyWidget extends Widget_Base {
     protected function render() {
         $view = $this->getView();
         $data = $this->addAttachmentSizes($this->get_raw_data());
+        $data['settings']['melody_component_style'] = $this->getComponentStyle();
         $this->view->render(MELODY_PLUGIN_DIR . '/templates/widget-root.php', [
             'settings' => $data['settings'],
             'instance' => $data['id'],

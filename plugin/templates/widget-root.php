@@ -1,5 +1,5 @@
 <div id="melody-widgetRoot:<?= $instance ?>">
-    <div></div>
+    <div>lol spinner</div>
 </div>
 <script>
     (function($) {
