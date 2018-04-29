@@ -1,0 +1,38 @@
+div[data-melody-view="simple-toolbar"] {
+    display: flex;
+    padding: 8px 0; // customization?
+
+    background-color: #ccc;
+
+}
+
+.controls {
+    display: flex;
+    flex: 0 0 17.5%;
+    align-items: center;
+
+    .melody-controlBar__catalyst {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.preview {
+    flex: 0 0 65%;
+    padding: 0 30px; // customization?
+
+    &__wrap,
+    &__trackInfo {
+        display: flex;
+    }
+
+    &__wrap {
+        position: relative;
+        justify-content: space-between;
+    }
+
+    &__title {
+        margin: 0;
+    }
+}

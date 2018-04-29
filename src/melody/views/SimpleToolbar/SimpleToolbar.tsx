@@ -15,24 +15,32 @@ const s = require('./style.scss');
 
 export default () => (
     <div class="melody__viewContainer" data-melody-view="simple-toolbar">
-        <div class={s.leftControls}>
+        <div
+            class={`${s.controls} ${s['controls--left']}`}
+            data-melody-controls
+            data-melody-controls-left
+        >
             <PrevButton />
             <CatalystButton />
             <NextButton />
         </div>
         <div class={s.preview}>
-            <div class={s.marquee}>
+            <div class={s.preview__wrap}>
                 <TimeElapsed className={s.preview__time} />
-                <div className={s.marquee__trackInfo}>
-                    <TrackTitle /> - <TrackArtist />
+                <div className={s.preview__trackInfo}>
+                    <TrackTitle className={s.preview__title} />
+                    <span data-melody-seperator>-</span>
+                    <TrackArtist className={s.preview__artist} />
                 </div>
                 <TimeLeft className={s.preview__time} />
             </div>
-            <div class={s.scrubber}>
-                <Glider />
-            </div>
+            <Glider />
         </div>
-        <div class={s.rightControls}>
+        <div
+            class={`${s.controls} ${s['controls--right']}`}
+            data-melody-controls
+            data-melody-controls-right
+        >
             <VolumeCtrl />
             <ShuffleButton />
             <RepeatButton />

@@ -6,7 +6,7 @@ interface Props extends WithOptionalClassName {
 }
 
 export default ({ trackTitle, className = '' }: Props) => (
-    <h1 class={className} data-melody-title>
+    <p class={className} data-melody-title>
         {trackTitle}
-    </h1>
+    </p>
 );

@@ -24,7 +24,7 @@ $container->bind('Melody\Core\ViewInterface', 'Melody\Core\View');
  */
 $container['stacks'] = [
     'slider' => f\collect(MELODY_PLUGIN_DIR . '/controls/stacks/slider/'),
-    // 'toolbar' => f\collect(STELE_MELODY_DIR . '/controls/stacks/toolbar/'),
+    'toolbar' => f\collect(MELODY_PLUGIN_DIR . '/controls/stacks/toolbar/'),
     // 'tracklist' => f\collect(STELE_MELODY_DIR . '/controls/stacks/tracklist/'),
 ];
 

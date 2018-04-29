@@ -26,7 +26,9 @@ export default () => (
                 <TrackTitle className={s.preview__title} />
                 <TrackArtist className={s.preview__artist} />
             </div>
-            <Glider />
+            <div className={s.preview__glider}>
+                <Glider />
+            </div>
             <div class={s.preview__footer}>
                 <TimeElapsed className={s.preview__time} />
                 <TimeLeft className={s.preview__time} />
