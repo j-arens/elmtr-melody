@@ -1,5 +1,6 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
+import { WithOptionalClassName } from '@melody/components/type';
 import { Action, Track } from '@redux/type';
 import { NO_OP } from '@utils/index';
 import { __ } from '@wordpress/i18n';
@@ -7,7 +8,7 @@ import * as classnames from 'classnames';
 import { h } from 'preact';
 const s = require('./style.scss');
 
-interface Props {
+interface Props extends WithOptionalClassName {
     showDock: boolean;
     track: Track;
     playbackRate: number;

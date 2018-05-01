@@ -34,12 +34,12 @@ export default () => (
                 <TimeLeft className={s.preview__time} />
             </div>
         </div>
-        <div class={s.controlbar} data-melody-control-bar>
-            <ShuffleButton />
-            <PrevButton />
-            <CatalystButton />
-            <NextButton />
-            <RepeatButton />
+        <div class={`${s.controlbar} melody-control-bar`} data-melody-control-bar>
+            <ShuffleButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
+            <PrevButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
+            <CatalystButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
+            <NextButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
+            <RepeatButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
         </div>
     </div>
 );

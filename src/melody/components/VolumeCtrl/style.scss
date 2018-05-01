@@ -1,5 +1,6 @@
 .volumeCtrl {
     position: relative;
+    color: $color_white;
     cursor: ns-resize;
 
     &--isDragging {
@@ -10,7 +11,7 @@
         max-width: 21px;
         width: 100%;
         height: 100%;
-        fill: $color_white;
+        fill: currentColor;
         overflow: visible !important;
     }
 
@@ -24,13 +25,14 @@
     }
 
     &__level {
-        stroke: $color_white;
+        stroke: currentColor;
         stroke-dasharray: 75;
         stroke-linecap: round;
     }
 
     &__levelOutline {
-        stroke: $color_silver_chalice;
+        stroke: currentColor;
+        opacity: 0.5;
     }
 
 }

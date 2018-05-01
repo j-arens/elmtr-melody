@@ -242,7 +242,8 @@ export default class extends Component<Props, {}> {
 
     render({ currentState, gliderIsDragging, volIsDragging, tracks }: Props) {
         const classes = classnames(
-            s.Melody, s[`Melody--${currentState}`],
+            s.Melody,
+            s[`Melody--${currentState}`],
             { [s['Melody--isDragging']]: gliderIsDragging || volIsDragging },
         );
 

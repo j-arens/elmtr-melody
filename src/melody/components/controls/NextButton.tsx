@@ -1,5 +1,6 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
+import { WithOptionalClassName } from '@melody/components/type';
 import { nextTrack } from '@redux/actions';
 import { Action, State } from '@redux/type';
 import { NO_OP } from '@utils/index';
@@ -15,13 +16,13 @@ const mapDispatchToProps = dispatch => ({
     nextTrack: () => dispatch(nextTrack()),
 });
 
-interface Props {
+interface Props extends WithOptionalClassName {
     totalTracks: number;
     nextTrack: () => Action;
 }
 
-const NextButton = ({ totalTracks, nextTrack }: Props) => {
-    const defaultClass = `${s.playbackCtrl} melody-playbackCtrl`;
+const NextButton = ({ totalTracks, nextTrack, className = '' }: Props) => {
+    const defaultClass = `${className} ${s.playbackCtrl} melody-playbackCtrl`;
     const disabledClass = `${defaultClass} ${s['playbackCtrl--disabled']}`;
     return (
         <BaseButton

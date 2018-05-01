@@ -15,14 +15,10 @@ const s = require('./style.scss');
 
 export default () => (
     <div class="melody__viewContainer" data-melody-view="simple-toolbar">
-        <div
-            class={`${s.controls} ${s['controls--left']}`}
-            data-melody-controls
-            data-melody-controls-left
-        >
-            <PrevButton />
-            <CatalystButton />
-            <NextButton />
+        <div class={`${s.controls} ${s['controls--left']} melody-controls-left`} >
+            <PrevButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
+            <CatalystButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
+            <NextButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
         </div>
         <div class={s.preview}>
             <div class={s.preview__wrap}>
@@ -36,14 +32,10 @@ export default () => (
             </div>
             <Glider />
         </div>
-        <div
-            class={`${s.controls} ${s['controls--right']}`}
-            data-melody-controls
-            data-melody-controls-right
-        >
-            <VolumeCtrl />
-            <ShuffleButton />
-            <RepeatButton />
+        <div class={`${s.controls} ${s['controls--right']} melody-controls-right`} >
+            <VolumeCtrl className="melody-c-btn-primary-color" />
+            <ShuffleButton className="melody-c-btn-primary-color melody-c-btn-hover-color melody-c-btn-on-color" />
+            <RepeatButton className="melody-c-btn-primary-color melody-c-btn-hover-color melody-c-btn-on-color" />
             <Dock />
         </div>
     </div>

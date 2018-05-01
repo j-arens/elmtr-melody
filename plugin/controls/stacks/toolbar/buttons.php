@@ -4,55 +4,55 @@ use Elementor\Controls_Manager;
 
 return [
     'version' => '1.0.0',
-    'handle' => 'section_melody_btn_style',
+    'handle' => 'section_melody_toolbar_btn_style',
     'config' => [
         'label' => __('Buttons', MELODY_TD),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
         [
-            'handle' => 'melody_btn_primary_color',
+            'handle' => 'melody_toolbar_btn_primary_color',
             'config' => [
                 'label' => __('Primary Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#4D4D4D',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-controls] > *' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-btn-primary-color' => 'color: {{VALUE}}',
                 ],
             ],
         ],
         [
-            'handle' => 'melody_btn_hover_color',
+            'handle' => 'melody_toolbar_btn_hover_color',
             'config' => [
                 'label' => __('Hover Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#B0AFAF',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-controls] button:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-btn-hover-color:hover' => 'color: {{VALUE}}',
                 ],
             ],
         ],
         [
-            'handle' => 'melody_btn_on_color',
+            'handle' => 'melody_toolbar_btn_on_color',
             'config' => [
                 'label' => __('Shuffle/Repeat Enabled Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#B0AFAF',
                 'selectors' => [
-                    '{{WRAPPER}} button[data-melody-shuffle-control="true"]' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} button[data-melody-repeat-control="true"]' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-shuffle.melody-c-shuffle-on' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-repeat.melody-c-repeat-on' => 'color: {{VALUE}}',
                 ],
             ],
         ],
         [
-            'handle' => 'section_melody_btns_left',
+            'handle' => 'section_melody_toolbar_btns_left',
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Left', MELODY_TD),
             ],
         ],
         [
-            'handle' => 'melody_btns_left_max_width',
+            'handle' => 'melody_toolbar_btns_left_max_width',
             'config' => [
                 'label' => __('Size', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
@@ -68,12 +68,12 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-controls-left] .melody-playbackCtrl' => 'max-width: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-left .melody-playbackCtrl' => 'max-width: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
         [
-            'handle' => 'melody_btns_left_space',
+            'handle' => 'melody_toolbar_btns_left_space',
             'config' => [
                 'label' => __('Spacing', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
@@ -97,12 +97,12 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-controls-left] button + button' => 'margin-left: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-left button + button' => 'margin-left: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
         [
-            'handle' => 'melody_btns_left_flex_alignment',
+            'handle' => 'melody_toolbar_btns_left_flex_alignment',
             'config' => [
                 'label' => __('Alignment', MELODY_TD),
                 'type' => Controls_Manager::CHOOSE,
@@ -122,19 +122,19 @@ return [
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-controls-left]' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .melody-controls-left' => 'justify-content: {{VALUE}};',
                 ],
             ],
         ],
         [
-            'handle' => 'section_melody_btns_right',
+            'handle' => 'section_melody_toolbar_btns_right',
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Right', MELODY_TD),
             ],
         ],
         [
-            'handle' => 'melody_btns_right_max_width',
+            'handle' => 'melody_toolbar_btns_right_max_width',
             'config' => [
                 'label' => __('Size', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
@@ -150,12 +150,12 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-controls-right] .melody-playbackCtrl' => 'max-width: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-right .melody-playbackCtrl' => 'max-width: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
         [
-            'handle' => 'melody_btns_right_space',
+            'handle' => 'melody_toolbar_btns_right_space',
             'config' => [
                 'label' => __('Spacing', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
@@ -179,12 +179,12 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-controls-right] button + button' => 'margin-left: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-right button + button' => 'margin-left: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
         [
-            'handle' => 'melody_btns_right_flex_alignment',
+            'handle' => 'melody_toolbar_btns_right_flex_alignment',
             'config' => [
                 'label' => __('Alignment', MELODY_TD),
                 'type' => Controls_Manager::CHOOSE,
@@ -204,7 +204,7 @@ return [
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-controls-right]' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .melody-controls-right' => 'justify-content: {{VALUE}};',
                 ],
             ],
         ],

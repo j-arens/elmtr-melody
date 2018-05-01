@@ -1,4 +1,5 @@
 import DragHelper from '@components/DragHelper/';
+import { WithOptionalClassName } from '@melody/components/type';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
 import {
@@ -16,4 +17,5 @@ const mapDispatchToProps = (dispatch) => ({
     updateVolume: (newLevel: number) => dispatch(updateVolume(newLevel)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DragHelper(VolumeCtrl));
+const connected = connect(mapStateToProps, mapDispatchToProps)(VolumeCtrl);
+export default DragHelper<WithOptionalClassName>(connected);
