@@ -65,3 +65,11 @@ describe('getContextualTrackSizes()', () => {
         expect(sizes.length).toBe(0);
     });
 });
+
+describe('prefixClasses()', () => {
+    it('namespaces customization classes', () => {
+        const classes = 'lol rofl ninja-kick';
+        const prefixed = utils.prefixClasses(classes);
+        expect(prefixed).toEqual('melody-c-lol melody-c-rofl melody-c-ninja-kick');
+    });
+});

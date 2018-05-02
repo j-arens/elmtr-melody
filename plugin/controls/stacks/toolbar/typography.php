@@ -14,7 +14,7 @@ return [
     ],
     'inputs' => [
         [
-            'handle' => 'section_melody_typography_title_artist',
+            'handle' => 'section_melody_toolbar_typography_title_artist',
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Track Title & Artist', MELODY_TD),
@@ -24,35 +24,35 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_title',
+                'name' => 'melody_toolbar_title',
                 'label' => __('Font Style', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-title], {{WRAPPER}} [data-melody-artist], {{WRAPPER}} [data-melody-seperator]',
+                'selector' => '{{WRAPPER}} [data-melody-title], {{WRAPPER}} [data-melody-artist]',
             ],
         ],
         [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_title_text_shadow',
+                'name' => 'melody_toolbar_title_text_shadow',
                 'label' => __('Shadow', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-title], {{WRAPPER}} [data-melody-artist], {{WRAPPER}} [data-melody-seperator]',
+                'selector' => '{{WRAPPER}} [data-melody-title], {{WRAPPER}} [data-melody-artist]',
                 // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
         [
-            'handle' => 'melody_title_color',
+            'handle' => 'melody_toolbar_title_color',
             'config' => [
                 'label' => __('Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#fff',
                 'separator' => 'none',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-title], {{WRAPPER}} [data-melody-artist], {{WRAPPER}} [data-melody-seperator]' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} [data-melody-title], {{WRAPPER}} [data-melody-artist]' => 'color: {{VALUE}}',
                 ],
             ],
         ],
         [
-            'handle' => 'section_melody_typography_time',
+            'handle' => 'section_melody_toolbar_typography_time',
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Time', MELODY_TD),
@@ -62,7 +62,7 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_time',
+                'name' => 'melody_toolbar_time',
                 'label' => __('Font Style', MELODY_TD),
                 'selector' => '{{WRAPPER}} [data-melody-time]',
             ],
@@ -71,14 +71,14 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_time_text_shadow',
+                'name' => 'melody_toolbar_time_text_shadow',
                 'label' => __('Shadow', MELODY_TD),
                 'selector' => '{{WRAPPER}} [data-melody-time]',
                 // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
         [
-            'handle' => 'melody_time_color',
+            'handle' => 'melody_toolbar_time_color',
             'config' => [
                 'label' => __('Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
@@ -86,6 +86,76 @@ return [
                 'separator' => 'none',
                 'selectors' => [
                     '{{WRAPPER}} [data-melody-time]' => 'color: {{VALUE}}',
+                ],
+            ],
+        ],
+        [
+            'handle' => 'section_melody_toolbar_typography_title_separator',
+            'config' => [
+                'type' => Controls_Manager::HEADING,
+                'label' => __('Separator', MELODY_TD),
+            ],
+        ],
+        [
+            'handle' => 'section_melody_toolbar_separator_text',
+            'config' => [
+                'type' => Controls_Manager::TEXT,
+                'label' => __('Text', MELODY_TD),
+                'default' => '-',
+                'placeholder' => '-',
+                'label_block' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .melody-c-separator::after' => 'content: "{{VALUE}}"',
+                ],
+            ],
+        ],
+        [
+            'isGroup' => true,
+            'handle' => Group_Control_Typography::get_type(),
+            'config' => [
+                'name' => 'melody_toolbar_separator_font',
+                'label' => __('Font Style', MELODY_TD),
+                'selector' => '{{WRAPPER}} .melody-c-separator::after',
+            ],
+        ],
+        [
+            'handle' => 'melody_toolbar_separator_color',
+            'config' => [
+                'label' => __('Color', MELODY_TD),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
+                'separator' => 'none',
+                'selectors' => [
+                    '{{WRAPPER}} .melody-c-separator::after' => 'color: {{VALUE}}',
+                ],
+            ],
+        ],
+        [
+            'handle' => 'melody_toolbar_separator_spacing',
+            'config' => [
+                'label' => __('Spacing', MELODY_TD),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 4,
+                    'unit' => 'px',
+                ],
+                'size_units' => ['px', 'em', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'step' => 1,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .melody-c-separator' => 'margin: 0 {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],

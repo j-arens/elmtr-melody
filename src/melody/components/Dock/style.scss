@@ -1,10 +1,16 @@
 .dock {
     position: relative;
 
+    &__toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     &__toggleIcon {
         width: 20px;
         height: 20px;
-        fill: $color_white;
+        fill: currentColor;
     }
 
     &__arrow {

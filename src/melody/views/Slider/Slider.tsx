@@ -11,6 +11,7 @@ import TimeLeft from '@components/time/TimeLeft';
 import TrackArtist from '@components/TrackArtist';
 import TrackTitle from '@components/TrackTitle/';
 import VolumeCtrl from '@components/VolumeCtrl/';
+import { prefixClasses } from '@utils/index';
 import { h } from 'preact';
 const s = require('./style.scss');
 
@@ -19,7 +20,7 @@ export default () => (
         <div class={s.preview} data-melody-preview>
             <Slideshow className={s.preview__slideshow} />
             <div class={s.preview__header}>
-                <VolumeCtrl />
+                <VolumeCtrl className={prefixClasses('vol-primary-color vol-hover-color vol-width')} />
                 <Dock />
             </div>
             <div class={s.preview__marquee}>
@@ -34,12 +35,12 @@ export default () => (
                 <TimeLeft className={s.preview__time} />
             </div>
         </div>
-        <div class={`${s.controlbar} melody-control-bar`} data-melody-control-bar>
-            <ShuffleButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
-            <PrevButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
-            <CatalystButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
-            <NextButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
-            <RepeatButton className="melody-c-btn-primary-color melody-c-btn-hover-color" />
+        <div class={`${s.controlbar} ${prefixClasses('controlbar')} melody-control-bar`}>
+            <ShuffleButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
+            <PrevButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
+            <CatalystButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
+            <NextButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
+            <RepeatButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
         </div>
     </div>
 );

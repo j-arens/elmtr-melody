@@ -68,7 +68,7 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-left .melody-playbackCtrl' => 'max-width: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-left .melody-c-btn-width' => 'max-width: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
@@ -97,7 +97,7 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-left button + button' => 'margin-left: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-left .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
@@ -150,7 +150,7 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-right .melody-playbackCtrl' => 'max-width: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-right .melody-c-btn-width' => 'max-width: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
@@ -179,7 +179,7 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-right button + button' => 'margin-left: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-right .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],

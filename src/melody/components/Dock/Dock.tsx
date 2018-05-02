@@ -1,6 +1,5 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
-import { WithOptionalClassName } from '@melody/components/type';
 import { Action, Track } from '@redux/type';
 import { NO_OP } from '@utils/index';
 import { __ } from '@wordpress/i18n';
@@ -8,10 +7,11 @@ import * as classnames from 'classnames';
 import { h } from 'preact';
 const s = require('./style.scss');
 
-interface Props extends WithOptionalClassName {
+interface Props {
     showDock: boolean;
     track: Track;
     playbackRate: number;
+    triggerClassName?: string;
     toggleDock: () => Action;
     speedUp: () => Action;
     slowDown: () => Action;
@@ -24,6 +24,7 @@ export default ({
     speedUp,
     slowDown,
     playbackRate,
+    triggerClassName = '',
 }: Props) => {
     const handleDownload = () => {
         const { download_url, attributes: { origin } } = track;
@@ -43,7 +44,7 @@ export default ({
         <div class={s.dock}>
             <BaseButton
                 onClick={toggleDock}
-                className={s.dock__toggle}
+                className={`${s.dock__toggle} ${triggerClassName}`}
             >
                 <Icon className={s.dock__toggleIcon} name="settings" />
             </BaseButton>
