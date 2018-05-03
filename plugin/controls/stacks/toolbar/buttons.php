@@ -97,7 +97,7 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-left .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-left .melody-c-btn-space + .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
@@ -179,7 +179,7 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-right .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-right .melody-c-btn-space + .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],

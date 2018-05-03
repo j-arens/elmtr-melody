@@ -1,5 +1,6 @@
 .Melody {
     height: 100%;
+    overflow: hidden;
 
     &--fetching {
         display: none;

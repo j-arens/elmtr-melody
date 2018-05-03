@@ -1,14 +1,12 @@
-div[data-melody-view="simple-toolbar"] {
+.toolbar {
     display: flex;
-    padding: 8px 0; // customization?
-
-    background-color: #ccc;
-
 }
 
 .controls {
     display: flex;
-    flex: 0 0 17.5%;
+    // flex: 0 0 15%;
+    flex-grow: 0;
+    flex-shrink: 0;
     align-items: center;
 
     .melody-controlBar__catalyst {
@@ -19,8 +17,9 @@ div[data-melody-view="simple-toolbar"] {
 }
 
 .preview {
-    flex: 0 0 65%;
-    padding: 0 30px; // customization?
+    // flex: 0 0 70%;
+    flex-grow: 0;
+    flex-shrink: 0;
 
     &__wrap,
     &__trackInfo {
@@ -29,7 +28,21 @@ div[data-melody-view="simple-toolbar"] {
 
     &__wrap {
         position: relative;
-        justify-content: space-between;
+        justify-content: center;
+    }
+
+    &__time {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &--left {
+            left: 0;
+        }
+
+        &--right {
+            right: 0;
+        }
     }
 
     &__title {

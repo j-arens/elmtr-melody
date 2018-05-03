@@ -2,7 +2,6 @@ import { makeApp, makeError } from '@melody/index';
 import * as actions from '@redux/actions';
 import configureStore from '@redux/index';
 import intialState from '@redux/initialState';
-import throttle from 'lodash.throttle';
 import { GLOBAL } from './constants';
 import { compose } from './helpers';
 import { prepareTracks } from './tracks/';

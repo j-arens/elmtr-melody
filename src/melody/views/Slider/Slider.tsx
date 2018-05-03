@@ -15,12 +15,15 @@ import { prefixClasses } from '@utils/index';
 import { h } from 'preact';
 const s = require('./style.scss');
 
+const volClasses = prefixClasses('vol-primary-color vol-hover-color vol-width');
+const btnClasses = prefixClasses('btn-primary-color btn-hover-color btn-space');
+
 export default () => (
     <div class="melody__viewContainer" data-melody-view="slider">
         <div class={s.preview} data-melody-preview>
             <Slideshow className={s.preview__slideshow} />
             <div class={s.preview__header}>
-                <VolumeCtrl className={prefixClasses('vol-primary-color vol-hover-color vol-width')} />
+                <VolumeCtrl className={volClasses} />
                 <Dock />
             </div>
             <div class={s.preview__marquee}>
@@ -36,11 +39,11 @@ export default () => (
             </div>
         </div>
         <div class={`${s.controlbar} ${prefixClasses('controlbar')} melody-control-bar`}>
-            <ShuffleButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
-            <PrevButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
-            <CatalystButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
-            <NextButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
-            <RepeatButton className={prefixClasses('btn-primary-color btn-hover-color btn-space')} />
+            <ShuffleButton className={btnClasses} />
+            <PrevButton className={btnClasses} />
+            <CatalystButton className={btnClasses} />
+            <NextButton className={btnClasses} />
+            <RepeatButton className={btnClasses} />
         </div>
     </div>
 );
