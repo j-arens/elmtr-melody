@@ -11,33 +11,39 @@ import TimeLeft from '@components/time/TimeLeft';
 import TrackArtist from '@components/TrackArtist';
 import TrackTitle from '@components/TrackTitle/';
 import VolumeCtrl from '@components/VolumeCtrl/';
+import { prefixClasses } from '@utils/index';
 import { h } from 'preact';
 const s = require('./style.scss');
+
+const volClasses = prefixClasses('vol-primary-color vol-hover-color vol-width');
+const btnClasses = prefixClasses('btn-primary-color btn-hover-color btn-space');
 
 export default () => (
     <div class="melody__viewContainer" data-melody-view="slider">
         <div class={s.preview} data-melody-preview>
             <Slideshow className={s.preview__slideshow} />
             <div class={s.preview__header}>
-                <VolumeCtrl />
+                <VolumeCtrl className={volClasses} />
                 <Dock />
             </div>
             <div class={s.preview__marquee}>
                 <TrackTitle className={s.preview__title} />
                 <TrackArtist className={s.preview__artist} />
             </div>
-            <Glider />
+            <div className={s.preview__glider}>
+                <Glider />
+            </div>
             <div class={s.preview__footer}>
                 <TimeElapsed className={s.preview__time} />
                 <TimeLeft className={s.preview__time} />
             </div>
         </div>
-        <div class={s.controlbar} data-melody-control-bar>
-            <ShuffleButton />
-            <PrevButton />
-            <CatalystButton />
-            <NextButton />
-            <RepeatButton />
+        <div class={`${s.controlbar} ${prefixClasses('controlbar')} melody-control-bar`}>
+            <ShuffleButton className={btnClasses} />
+            <PrevButton className={btnClasses} />
+            <CatalystButton className={btnClasses} />
+            <NextButton className={btnClasses} />
+            <RepeatButton className={btnClasses} />
         </div>
     </div>
 );

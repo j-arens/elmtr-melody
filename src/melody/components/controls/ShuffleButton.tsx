@@ -1,5 +1,6 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
+import { WithOptionalClassName } from '@components/type';
 import { toggleShuffle } from '@redux/actions';
 import { Action, State } from '@redux/type';
 import { h } from 'preact';
@@ -14,20 +15,19 @@ const mapDispatchToProps = dispatch => ({
     toggleShuffle: () => dispatch(toggleShuffle()),
 });
 
-interface Props {
+interface Props extends WithOptionalClassName {
     shuffle: boolean;
     toggleShuffle: () => Action;
 }
 
-const ShuffleButton = ({ shuffle, toggleShuffle }: Props) => {
-    const defaultClass = `${s.playbackCtrl} melody-playbackCtrl`;
-    const activeClass = `${defaultClass} ${s['playbackCtrl--active']}`;
+const ShuffleButton = ({ shuffle, toggleShuffle, className = '' }: Props) => {
+    const defaultClass = `${className} ${s.playbackCtrl} melody-playbackCtrl melody-shuffle`;
+    const activeClass = `${defaultClass} ${s['playbackCtrl--active']} melody-c-shuffle-on`;
     return (
         <BaseButton
             key="shuffle"
             className={shuffle ? activeClass : defaultClass}
             onClick={toggleShuffle}
-            data-melody-repeat-control={shuffle}
         >
             <Icon className={s.playbackCtrl__icon} name="shuffle" />
         </BaseButton>

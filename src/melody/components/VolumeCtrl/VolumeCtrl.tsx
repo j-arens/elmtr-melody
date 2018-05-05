@@ -3,6 +3,7 @@ import FullVolMarkup from '@components/Icon/svg/fullVol';
 import MediumVolMarkup from '@components/Icon/svg/mediumVol';
 import MutedMarkup from '@components/Icon/svg/muted';
 import { ELEMENTOR_NO_DRAG } from '@constants';
+import { WithOptionalClassName } from '@melody/components/type';
 import { Action } from '@redux/type';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
@@ -12,7 +13,7 @@ type VolDragDirection =
     | 'up'
     | 'down';
 
-interface Props extends DragProps {
+interface Props extends DragProps, WithOptionalClassName {
     volume: number;
     toggleVolDragging: () => Action;
     updateVolume: (newVol: number) => Action;
@@ -109,10 +110,12 @@ export default class extends Component<Props, State> {
         }
     }
 
-    render({ setDragRef, isDragging }) {
-        const classes = classnames(s.volumeCtrl, {
-            [s['volumeCtrl--isDragging']]: isDragging,
-        });
+    render({ setDragRef, isDragging, className = '' }) {
+        const classes = classnames(
+            className,
+            s.volumeCtrl,
+            { [s['volumeCtrl--isDragging']]: isDragging },
+        );
         return (
             <div
                 class={classes}

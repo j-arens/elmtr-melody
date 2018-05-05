@@ -1,0 +1,57 @@
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.controls {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-items: center;
+
+    .melody-controlBar__catalyst {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.preview {
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    &__wrap,
+    &__trackInfo {
+        display: flex;
+    }
+
+    &__wrap {
+        position: relative;
+        justify-content: center;
+    }
+
+    &__trackInfo {
+        align-items: center;
+        max-width: 50%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    &__time {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &--left {
+            left: 0;
+        }
+
+        &--right {
+            right: 0;
+        }
+    }
+
+    &__title {
+        margin: 0;
+    }
+}

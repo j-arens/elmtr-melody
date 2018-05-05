@@ -2,7 +2,6 @@ import { makeApp, makeError } from '@melody/index';
 import * as actions from '@redux/actions';
 import configureStore from '@redux/index';
 import intialState from '@redux/initialState';
-import throttle from 'lodash.throttle';
 import { GLOBAL } from './constants';
 import { compose } from './helpers';
 import { prepareTracks } from './tracks/';
@@ -12,6 +11,9 @@ import {
 } from './type';
 const throttle = require('lodash.throttle');
 
+/**
+ * Dispatch action to reset the app state
+ */
 const reset = (
     { dispatch, config }: TrackMiddlewareParams,
 ): TrackMiddlewareParams => {
@@ -19,14 +21,20 @@ const reset = (
     return { dispatch, config };
 };
 
-// const view = (
-//     { dispatch, config }: TrackMiddlewareParams,
-// ): TrackMiddlewareParams => {
-//     const style = config.melody_component_style;
-//     dispatch(actions.changeView(style));
-//     return { dispatch, config };
-// };
+/**
+ * Dispatch action to load component style view
+ */
+const view = (
+    { dispatch, config }: TrackMiddlewareParams,
+): TrackMiddlewareParams => {
+    const style = config.melody_component_style;
+    dispatch(actions.changeView(style));
+    return { dispatch, config };
+};
 
+/**
+ * Dispatch action to load the audio tracks
+ */
 const tracks = (
     { dispatch, config }: TrackMiddlewareParams,
 ): TrackMiddlewareParams => {
@@ -36,12 +44,18 @@ const tracks = (
     return { dispatch, config };
 };
 
+/**
+ * Intialization composition
+ */
 const initialize = compose(
     reset,
-    // view,
+    view,
     tracks,
 );
 
+/**
+ * Creates a new Melody App instance and configures it
+ */
 const newInstance = throttle((config: Config, id: string): void => {
     const store = configureStore(intialState);
     initialize({ dispatch: store.dispatch, config });

@@ -10,33 +10,38 @@ import TimeLeft from '@components/time/TimeLeft';
 import TrackArtist from '@components/TrackArtist';
 import TrackTitle from '@components/TrackTitle/';
 import VolumeCtrl from '@components/VolumeCtrl/';
+import { prefixClasses } from '@utils/index';
 import { h } from 'preact';
 const s = require('./style.scss');
 
+const leftBtnClasses = prefixClasses('btn-primary-color btn-hover-color btn-width btn-space');
+const shuffleRepeatClasses = prefixClasses('btn-primary-color btn-hover-color btn-on-color btn-width btn-space');
+const dockClasses = prefixClasses('btn-primary-color btn-hover-color btn-width');
+
 export default () => (
-    <div class="melody__viewContainer" data-melody-view="simple-toolbar">
-        <div class={s.leftControls}>
-            <PrevButton />
-            <CatalystButton />
-            <NextButton />
+    <div class={`melody__viewContainer ${s.toolbar} ${prefixClasses('toolbar')}`}>
+        <div class={`${s.controls} ${s['controls--left']} melody-controls-primary`} >
+            <PrevButton className={leftBtnClasses} />
+            <CatalystButton className={leftBtnClasses} />
+            <NextButton className={leftBtnClasses} />
         </div>
-        <div class={s.preview}>
-            <div class={s.marquee}>
-                <TimeElapsed className={s.preview__time} />
-                <div className={s.marquee__trackInfo}>
-                    <TrackTitle /> - <TrackArtist />
+        <div class={`${s.preview} ${prefixClasses('preview-padding trackinfo-width trackinfo-order')}`}>
+            <div class={`${s.preview__wrap} ${prefixClasses('trackinfo-margin')}`}>
+                <TimeElapsed className={`${s.preview__time} ${s['preview__time--left']}`} />
+                <div className={s.preview__trackInfo}>
+                    <TrackTitle className={s.preview__title} />
+                    <span className={prefixClasses('separator')} />
+                    <TrackArtist className={s.preview__artist} />
                 </div>
-                <TimeLeft className={s.preview__time} />
+                <TimeLeft className={`${s.preview__time} ${s['preview__time--right']}`} />
             </div>
-            <div class={s.scrubber}>
-                <Glider />
-            </div>
+            <Glider />
         </div>
-        <div class={s.rightControls}>
-            <VolumeCtrl />
-            <ShuffleButton />
-            <RepeatButton />
-            <Dock />
+        <div class={`${s.controls} ${s['controls--right']} melody-controls-secondary`} >
+            <VolumeCtrl className={prefixClasses('btn-primary-color btn-width btn-space')} />
+            <ShuffleButton className={shuffleRepeatClasses} />
+            <RepeatButton className={shuffleRepeatClasses} />
+            <Dock className={prefixClasses('btn-space')} triggerClassName={dockClasses} />
         </div>
     </div>
 );

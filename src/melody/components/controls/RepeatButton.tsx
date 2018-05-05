@@ -1,5 +1,6 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
+import { WithOptionalClassName } from '@components/type';
 import { toggleRepeat } from '@redux/actions';
 import { Action, State } from '@redux/type';
 import { h } from 'preact';
@@ -14,20 +15,19 @@ const mapDispatchToProps = dispatch => ({
     toggleRepeat: () => dispatch(toggleRepeat()),
 });
 
-interface Props {
+interface Props extends WithOptionalClassName {
     repeat: boolean;
     toggleRepeat: () => Action;
 }
 
-const RepeatButton = ({ repeat, toggleRepeat }: Props) => {
-    const defaultClass = `${s.playbackCtrl} melody-playbackCtrl`;
-    const activeClass = `${defaultClass} ${s['playbackCtrl--active']}`;
+const RepeatButton = ({ repeat, toggleRepeat, className = '' }: Props) => {
+    const defaultClass = `${className} ${s.playbackCtrl} melody-playbackCtrl melody-repeat`;
+    const activeClass = `${defaultClass} ${s['playbackCtrl--active']} melody-c-repeat-on`;
     return (
         <BaseButton
             key="repeat"
             className={repeat ? activeClass : defaultClass}
             onClick={toggleRepeat}
-            data-melody-repeat-control={repeat}
         >
             <Icon className={s.playbackCtrl__icon} name="repeat" />
         </BaseButton>

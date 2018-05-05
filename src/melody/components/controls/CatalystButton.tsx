@@ -1,5 +1,6 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
+import { WithOptionalClassName } from '@melody/components/type';
 import { cycleState } from '@redux/actions';
 import { Action, State } from '@redux/type';
 import stateMachine from '@state-machine/index';
@@ -18,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
     cycleState: (action: MachineAction) => dispatch(cycleState(action)),
 });
 
-interface Props {
+interface Props extends WithOptionalClassName {
     currentState: MachineStates;
     playbackRate: number;
     cycleState: (action: MachineAction) => Action;
@@ -45,8 +46,9 @@ const CatalystButton = ({
     playbackRate,
     currentState,
     cycleState,
+    className = '',
 }: Props) => {
-    const defaultClass = `${s.playbackCtrl} melody-playbackCtrl`;
+    const defaultClass = `${className} ${s.playbackCtrl} melody-playbackCtrl`;
     const bufferClass = `${defaultClass} ${s['playbackCtrl--buffering']}`;
     const cycle = () => cycleState(getMachineAction(currentState));
     return (currentState === 'buffering' ?

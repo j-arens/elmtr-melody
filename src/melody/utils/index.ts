@@ -1,5 +1,6 @@
 import { TrackSize } from '@adapter/type';
 import { Track } from '@redux/type';
+import { MELODY_CUSTOMIZATION_CLASS_PREFIX } from '../constants';
 
 /**
  * NOOP
@@ -105,3 +106,11 @@ export function getContextualTrackSizes(sizes: TrackSize[]): TrackSize[] {
             return (innerWidth - a.width) < (innerWidth - b.width) ? -1 : 1;
         });
 }
+
+/**
+ * Namespace customization classes
+ */
+export const prefixClasses = (classes: string): string => classes
+    .split(' ')
+    .map(classname => `${MELODY_CUSTOMIZATION_CLASS_PREFIX}-${classname}`)
+    .join(' ');

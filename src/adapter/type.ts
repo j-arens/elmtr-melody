@@ -1,4 +1,4 @@
-import { Dispatch } from '@redux/type';
+import { Dispatch, View } from '@redux/type';
 
 export type TrackOrigin = 'internal' | 'external';
 
@@ -45,6 +45,7 @@ export type TrackData =
 
 export interface Config {
     melody_audio_tracks: TrackData[];
+    melody_component_style: View;
 }
 
 export interface TrackMiddlewareParams {

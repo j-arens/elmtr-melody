@@ -4,17 +4,17 @@ namespace Melody\Widgets;
 
 use DownShift\Container\Container;
 
-final class Slider extends AbstractMelodyWidget implements WidgetInterface {
+final class SimpleToolbar extends AbstractMelodyWidget implements WidgetInterface {
 
     /**
      * @var string
      */
-    protected $handle = 'melody-audio-player-slider';
+    protected $handle = 'melody-audio-player-toolbar';
 
     /**
      * @var string
      */
-    protected $title = 'Melody Slider';
+    protected $title = 'Melody Toolbar';
 
     /**
      * @var string
@@ -29,7 +29,7 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
     /**
      * @var string
      */
-    protected $style = 'slider';
+    protected $style = 'simple-toolbar';
     
     /**
      * @var array[]
@@ -40,28 +40,6 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      * @var ViewInterface
      */
     protected $view;
-
-    /**
-     * @var array
-     */
-    protected $imageSizes = [
-        'melody-xs' => 320,
-        'melody-sm' => 480,
-        'melody-md' => 768,
-        'melody-lg' => 992,
-        'melody-xl' => 1200,
-    ];
-
-    /**
-     * Constructor
-     * 
-     * @param array $data
-     * @param mixed $args
-     */
-    public function __construct($data = [], $args = null) {
-        parent::__construct($data, $args);
-        $this->addImageSizes();
-    }
     
     /**
      * {@inheritdoc}
@@ -111,7 +89,7 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      */
     protected function setStacks() {
         $container = Container::getInstance();
-        $this->stacks = $container['stacks']['slider'];
+        $this->stacks = $container['stacks']['toolbar'];
     }
     
     /**
@@ -126,14 +104,5 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      */
     protected function getComponentStyle() {
         return $this->style;
-    }
-
-    /**
-     * Add more image sizes for better responsive images
-     */
-    protected function addImageSizes() {
-        foreach($this->imageSizes as $name => $width) {
-            add_image_size($name, $width, 9999);
-        }
     }
 }
