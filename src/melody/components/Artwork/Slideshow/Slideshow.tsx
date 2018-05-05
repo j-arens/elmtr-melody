@@ -3,7 +3,6 @@ import { WithOptionalClassName } from '@components/type';
 import { Track } from '@redux/type';
 import { h } from 'preact';
 import LazyLoadSlide from './LazyLoadSlide';
-const throttle = require('lodash.throttle');
 const s = require('./style.scss');
 
 interface Props extends WithOptionalClassName {

@@ -59,16 +59,28 @@ abstract class AbstractMelodyWidget extends Widget_Base {
             );
 
             foreach($stack['inputs'] as $input) {
-                if (isset($input['isGroup']) && $input['isGroup']) {
-                    $this->add_group_control(
-                        $input['handle'],
-                        $input['config']
-                    );
-                } else {
-                    $this->add_control(
-                        $input['handle'],
-                        $input['config']
-                    );
+                switch (true) {
+                    case (isset($input['isGroup']) && $input['isGroup']): {
+                        $this->add_group_control(
+                            $input['handle'],
+                            $input['config']
+                        );
+                        break;
+                    }
+                    case (isset($input['isResponsive']) && $input['isResponsive']): {
+                        $this->add_responsive_control(
+                            $input['handle'],
+                            $input['config']
+                        );
+                        break;
+                    }
+                    default: {
+                        $this->add_control(
+                            $input['handle'],
+                            $input['config']
+                        );
+                        break;
+                    }
                 }
             }
 
@@ -116,7 +128,7 @@ abstract class AbstractMelodyWidget extends Widget_Base {
      * Render widget template
      */
     protected function render() {
-        $view = $this->getView();
+        // $view = $this->getView();
         $data = $this->addAttachmentSizes($this->get_raw_data());
         $data['settings']['melody_component_style'] = $this->getComponentStyle();
         $this->view->render(MELODY_PLUGIN_DIR . '/templates/widget-root.php', [

@@ -1,10 +1,10 @@
 .toolbar {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .controls {
     display: flex;
-    // flex: 0 0 15%;
     flex-grow: 0;
     flex-shrink: 0;
     align-items: center;
@@ -17,7 +17,6 @@
 }
 
 .preview {
-    // flex: 0 0 70%;
     flex-grow: 0;
     flex-shrink: 0;
 
@@ -29,6 +28,13 @@
     &__wrap {
         position: relative;
         justify-content: center;
+    }
+
+    &__trackInfo {
+        align-items: center;
+        max-width: 50%;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
     &__time {

@@ -20,12 +20,12 @@ const dockClasses = prefixClasses('btn-primary-color btn-hover-color btn-width')
 
 export default () => (
     <div class={`melody__viewContainer ${s.toolbar} ${prefixClasses('toolbar')}`}>
-        <div class={`${s.controls} ${s['controls--left']} melody-controls-left`} >
+        <div class={`${s.controls} ${s['controls--left']} melody-controls-primary`} >
             <PrevButton className={leftBtnClasses} />
             <CatalystButton className={leftBtnClasses} />
             <NextButton className={leftBtnClasses} />
         </div>
-        <div class={`${s.preview} ${prefixClasses('preview-padding trackinfo-width')}`}>
+        <div class={`${s.preview} ${prefixClasses('preview-padding trackinfo-width trackinfo-order')}`}>
             <div class={`${s.preview__wrap} ${prefixClasses('trackinfo-margin')}`}>
                 <TimeElapsed className={`${s.preview__time} ${s['preview__time--left']}`} />
                 <div className={s.preview__trackInfo}>
@@ -37,7 +37,7 @@ export default () => (
             </div>
             <Glider />
         </div>
-        <div class={`${s.controls} ${s['controls--right']} melody-controls-right`} >
+        <div class={`${s.controls} ${s['controls--right']} melody-controls-secondary`} >
             <VolumeCtrl className={prefixClasses('btn-primary-color btn-width btn-space')} />
             <ShuffleButton className={shuffleRepeatClasses} />
             <RepeatButton className={shuffleRepeatClasses} />

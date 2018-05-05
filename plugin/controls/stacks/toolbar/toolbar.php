@@ -23,26 +23,31 @@ return [
         ],
         [
             'handle' => 'melody_toolbar_padding',
+            'isResponsive' => true,
             'config' => [
                 'label' => __('Padding', MELODY_TD),
                 'type' => Controls_Manager::DIMENSIONS,
-                'default' => [
-                    'top' => [
-                        'size' => '12',
-                        'unit' => 'px',
-                    ],
-                    'bottom' => [
-                        'size' => '12',
-                        'unit' => 'px',
-                    ],
-                    'left' => [
-                        'size' => '16',
-                        'unit' => 'px',
-                    ],
-                    'right' => [
-                        'size' => '16',
-                        'unit' => 'px',
-                    ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'top' => 8,
+                    'bottom' => 8,
+                    'left' => 8,
+                    'right' => 8,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'top' => 8,
+                    'bottom' => 8,
+                    'left' => 16,
+                    'right' => 16,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'top' => 20,
+                    'bottom' => 20,
+                    'left' => 16,
+                    'right' => 16,
+                    'unit' => 'px',
                 ],
                 'placeholder' => 8,
                 'size_units' => ['px', 'em', '%'],
@@ -52,14 +57,11 @@ return [
             ],
         ],
         [
-            'handle' => 'melody_toolbar_left_controls_width',
+            'handle' => 'melody_toolbar_primary_controls_width',
+            'isResponsive' => true,
             'config' => [
-                'label' => __('Left Controls Width (%)', MELODY_TD),
+                'label' => __('Primary Controls Width (%)', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 15,
-                    'unit' => '%',
-                ],
                 'size_units' => ['%'],
                 'range' => [
                     '%' => [
@@ -67,20 +69,48 @@ return [
                         'step' => 1,
                     ],
                 ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'size' => 15,
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
+                    'size' => 20,
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'size' => 100,
+                    'unit' => '%'
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-left' => 'flex-basis: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-primary' => 'flex-basis: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
         [
-            'handle' => 'melody_toolbar_right_controls_width',
+            'handle' => 'melody_toolbar_primary_controls_order',
+            'isResponsive' => true,
             'config' => [
-                'label' => __('Right Controls Width (%)', MELODY_TD),
-                'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 15,
-                    'unit' => '%',
+                'label' => __('Primary Controls Order', MELODY_TD),
+                'label_block' => true,
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 3,
+                'step' => 1,
+                'desktop_default' => 1,
+                'tablet_default' => 1,
+                'mobile_default' => 3,
+                'selectors' => [
+                    '{{WRAPPER}} .melody-controls-primary' => 'order: {{VALUE}};',
                 ],
+            ],
+        ],
+        [
+            'handle' => 'melody_toolbar_secondary_controls_width',
+            'isResponsive' => true,
+            'config' => [
+                'label' => __('Secondary Controls Width (%)', MELODY_TD),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
                 'range' => [
                     '%' => [
@@ -88,20 +118,48 @@ return [
                         'step' => 1,
                     ],
                 ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'size' => 15,
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
+                    'size' => 25,
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'size' => 100,
+                    'unit' => '%',
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-right' => 'flex-basis: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-secondary' => 'flex-basis: {{SIZE}}{{UNIT}};', 
+                ],
+            ],
+        ],
+        [
+            'handle' => 'melody_toolbar_secondary_controls_order',
+            'isResponsive' => true,
+            'config' => [
+                'label' => __('Secondary Controls Order', MELODY_TD),
+                'label_block' => true,
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 3,
+                'step' => 1,
+                'desktop_default' => 3,
+                'tablet_default' => 3,
+                'mobile_default' => 1,
+                'selectors' => [
+                    '{{WRAPPER}} .melody-controls-secondary' => 'order: {{VALUE}};',
                 ],
             ],
         ],
         [
             'handle' => 'melody_toolbar_trackinfo_width',
+            'isResponsive' => true,
             'config' => [
                 'label' => __('Track Info Width (%)', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 70,
-                    'unit' => '%',
-                ],
                 'size_units' => ['%'],
                 'range' => [
                     '%' => [
@@ -109,8 +167,39 @@ return [
                         'step' => 1,
                     ],
                 ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'size' => 70,
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
+                    'size' => 55,
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'size' => 100,
+                    'unit' => '%',
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-trackinfo-width' => 'flex-basis: {{SIZE}}{{UNIT}};', 
+                ],
+            ],
+        ],
+        [
+            'handle' => 'melody_toolbar_trackinfo_order',
+            'isResponsive' => true,
+            'config' => [
+                'label' => __('Track Info Controls Order', MELODY_TD),
+                'label_block' => true,
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 3,
+                'step' => 1,
+                'desktop_default' => 2,
+                'tablet_default' => 2,
+                'mobile_default' => 2,
+                'selectors' => [
+                    '{{WRAPPER}} .melody-c-trackinfo-order' => 'order: {{VALUE}};',
                 ],
             ],
         ],

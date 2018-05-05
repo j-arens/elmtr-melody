@@ -1,5 +1,5 @@
 <div id="melody-widgetRoot:<?= $instance ?>">
-    <div>lol spinner</div>
+    <!-- <div>lol spinner</div> -->
 </div>
 <script>
     (function($) {
@@ -12,9 +12,9 @@
     })(jQuery);
 </script>
 <?php
-    if (defined('MELODY_DEV') && MELODY_DEV) {
-        print '<pre>';
-        print_r($settings);
-        print '</pre>';
-    }
+    // if (defined('MELODY_DEV') && MELODY_DEV) {
+    //     print '<pre>';
+    //     print_r($settings);
+    //     print '</pre>';
+    // }
 ?>

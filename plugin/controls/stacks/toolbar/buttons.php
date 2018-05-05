@@ -45,19 +45,29 @@ return [
             ],
         ],
         [
-            'handle' => 'section_melody_toolbar_btns_left',
+            'handle' => 'section_melody_toolbar_btns_primary',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Left', MELODY_TD),
+                'label' => __('Primary', MELODY_TD),
             ],
         ],
         [
-            'handle' => 'melody_toolbar_btns_left_max_width',
+            'handle' => 'melody_toolbar_btns_primary_max_width',
+            'isResponsive' => true,
             'config' => [
                 'label' => __('Size', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 30,
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'size' => 25,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'size' => 20,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'size' => 25,
                     'unit' => 'px',
                 ],
                 'size_units' => ['px'],
@@ -68,16 +78,26 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-left .melody-c-btn-width' => 'max-width: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-primary .melody-c-btn-width' => 'max-width: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
         [
-            'handle' => 'melody_toolbar_btns_left_space',
+            'handle' => 'melody_toolbar_btns_primary_space',
+            'isResponsive' => true,
             'config' => [
                 'label' => __('Spacing', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'size' => 35,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'size' => 25,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
                     'size' => 30,
                     'unit' => 'px',
                 ],
@@ -97,12 +117,13 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-left .melody-c-btn-space + .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-primary .melody-c-btn-space + .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
         [
-            'handle' => 'melody_toolbar_btns_left_flex_alignment',
+            'handle' => 'melody_toolbar_btns_primary_flex_alignment',
+            'isResponsive' => true,
             'config' => [
                 'label' => __('Alignment', MELODY_TD),
                 'type' => Controls_Manager::CHOOSE,
@@ -120,29 +141,38 @@ return [
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
-                'default' => 'center',
+                'desktop_default' => 'center',
+                'tablet_default' => 'flex-start',
+                'mobile_default' => 'center',
+                'devices' => ['desktop', 'tablet', 'mobile'],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-left' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .melody-controls-primary' => 'justify-content: {{VALUE}};',
                 ],
             ],
         ],
         [
-            'handle' => 'section_melody_toolbar_btns_right',
+            'handle' => 'section_melody_toolbar_btns_secondary',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Right', MELODY_TD),
+                'label' => __('Secondary', MELODY_TD),
             ],
         ],
         [
-            'handle' => 'melody_toolbar_btns_right_max_width',
+            'handle' => 'melody_toolbar_btns_secondary_max_width',
+            'isResponsive' => true,
             'config' => [
                 'label' => __('Size', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 30,
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'size_units' => ['px'],
+                'desktop_default' => [
+                    'size' => 20,
                     'unit' => 'px',
                 ],
-                'size_units' => ['px'],
+                'tablet_default' => [
+                    'size' => 18,
+                    'unit' => 'px',
+                ],
                 'range' => [
                     'px' => [
                         'min' => 0,
@@ -150,20 +180,26 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-right .melody-c-btn-width' => 'max-width: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-secondary .melody-c-btn-width' => 'max-width: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
         [
-            'handle' => 'melody_toolbar_btns_right_space',
+            'handle' => 'melody_toolbar_btns_secondary_space',
+            'isResponsive' => true,
             'config' => [
                 'label' => __('Spacing', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 30,
+                'size_units' => ['px', 'em', '%'],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'size' => 20,
                     'unit' => 'px',
                 ],
-                'size_units' => ['px', 'em', '%'],
+                'tablet_default' => [
+                    'size' => 20,
+                    'unit' => 'px',
+                ],
                 'range' => [
                     'px' => [
                         'min' => 0,
@@ -179,12 +215,13 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-right .melody-c-btn-space + .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-controls-secondary .melody-c-btn-space + .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
         [
-            'handle' => 'melody_toolbar_btns_right_flex_alignment',
+            'handle' => 'melody_toolbar_btns_secondary_flex_alignment',
+            'isResponsive' => true,
             'config' => [
                 'label' => __('Alignment', MELODY_TD),
                 'type' => Controls_Manager::CHOOSE,
@@ -202,9 +239,12 @@ return [
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
-                'default' => 'center',
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => 'center',
+                'tablet_default' => 'flex-end',
+                'mobile_default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .melody-controls-right' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .melody-controls-secondary' => 'justify-content: {{VALUE}};',
                 ],
             ],
         ],

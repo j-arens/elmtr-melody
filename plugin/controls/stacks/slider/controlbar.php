@@ -120,7 +120,7 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .melody-control-bar .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
+                    '{{WRAPPER}} .melody-control-bar .melody-c-btn-space + .melody-c-btn-space' => 'margin-left: {{SIZE}}{{UNIT}};', 
                 ],
             ],
         ],
