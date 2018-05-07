@@ -1,6 +1,8 @@
 /vendor/
 public/js/*
 public/css/*
+/dev/elementor
+/dev/temp
 
 # Created by https://www.gitignore.io/api/node,linux,composer,visualstudiocode
 

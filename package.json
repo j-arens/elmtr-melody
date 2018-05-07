@@ -26,6 +26,7 @@
     }
   },
   "devDependencies": {
+    "@octokit/rest": "^15.2.7",
     "@types/backbone": "^1.3.42",
     "@types/jest": "^22.0.1",
     "@types/jquery": "^3.3.0",
@@ -41,6 +42,7 @@
     "babel-preset-react": "^6.24.1",
     "browser-sync": "^2.23.6",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "chalk": "^2.4.1",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
     "husky": "^0.14.3",
@@ -84,6 +86,7 @@
     "docker:start": "docker-compose start",
     "docker:stop": "docker-compose stop",
     "docker:bash": "docker exec -it $(docker ps -q -f name=melody_wordpress) /bin/bash",
+    "elementor:latest": "node -e 'require(\"./dev/elementor\").getLatest()'",
     "lint": "tslint src/**/*.{ts,tsx}",
     "lint:fix": "npm run lint -- --fix",
     "prepush": "npm run lint & npm run test",
