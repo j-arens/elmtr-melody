@@ -1,6 +1,6 @@
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
-import TrackArtist from './TrackArtist';
+import CurrentTrackArtist from './CurrentTrackArtist';
 
 const mapStateToProps = (state: State) => {
     const { currentTrack, tracks } = state;
@@ -10,4 +10,4 @@ const mapStateToProps = (state: State) => {
     };
 };
 
-export default connect(mapStateToProps)(TrackArtist);
+export default connect(mapStateToProps)(CurrentTrackArtist);

@@ -4,12 +4,12 @@ import NextButton from '@components/controls/NextButton';
 import PrevButton from '@components/controls/PrevButton';
 import RepeatButton from '@components/controls/RepeatButton';
 import ShuffleButton from '@components/controls/ShuffleButton';
+import CurrentTrackArtist from '@components/CurrentTrackArtist';
+import CurrentTrackTitle from '@components/CurrentTrackTitle/';
 import Dock from '@components/Dock';
 import Glider from '@components/Glider/';
 import TimeElapsed from '@components/time/TimeElapsed';
 import TimeLeft from '@components/time/TimeLeft';
-import TrackArtist from '@components/TrackArtist';
-import TrackTitle from '@components/TrackTitle/';
 import VolumeCtrl from '@components/VolumeCtrl/';
 import { prefixClasses } from '@utils/index';
 import { h } from 'preact';
@@ -27,8 +27,8 @@ export default () => (
                 <Dock />
             </div>
             <div class={s.preview__marquee}>
-                <TrackTitle className={s.preview__title} />
-                <TrackArtist className={s.preview__artist} />
+                <CurrentTrackTitle className={s.preview__title} />
+                <CurrentTrackArtist className={s.preview__artist} />
             </div>
             <div className={s.preview__glider}>
                 <Glider />

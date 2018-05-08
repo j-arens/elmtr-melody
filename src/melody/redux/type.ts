@@ -6,7 +6,7 @@ import * as actions from './actions';
 export type View =
  | 'simple-toolbar'
  | 'slider'
- | 'track-list';
+ | 'tracklist';
 
 export interface TrackArtwork {
     source_url: string;
@@ -21,7 +21,6 @@ export interface Track {
         album: string,
         artist: string,
         title: string,
-        length?: number,
     };
     attributes: {
         origin: 'internal' | 'external';

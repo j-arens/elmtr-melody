@@ -5,6 +5,7 @@ namespace Melody\Core;
 use Melody\Controls\custom\TrackPicker;
 use Melody\Widgets\Slider;
 use Melody\Widgets\SimpleToolbar;
+use Melody\Widgets\Tracklist;
 use Elementor\Widgets_Manager;
 use Elementor\Controls_Manager;
 use Elementor\Elements_Manager;
@@ -24,11 +25,13 @@ class Plugin {
      * @param TrackPicker $trackPicker
      * @param Slider $slider
      * @param SimpleToolbar $toolbar
+     * @param Tracklist $tracklist
      */
     public function __construct(
         TrackPicker $trackPicker,
         Slider $slider,
-        SimpleToolbar $toolbar
+        SimpleToolbar $toolbar,
+        Tracklist $tracklist
     ) {
         $this->i18n();
 
@@ -38,7 +41,8 @@ class Plugin {
 
         array_push($this->widgets,
             $slider,
-            $toolbar
+            $toolbar,
+            $tracklist
         );
 
         add_action(

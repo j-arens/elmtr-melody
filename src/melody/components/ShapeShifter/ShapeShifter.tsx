@@ -1,6 +1,7 @@
 import { View } from '@redux/type';
 import SimpleToolbar from '@views/SimpleToolbar/SimpleToolbar';
 import Slider from '@views/Slider/Slider';
+import Tracklist from '@views/Tracklist/Tracklist';
 import { h } from 'preact';
 
 interface Props {
@@ -17,10 +18,8 @@ export default ({ view }: Props) => {
         case 'slider': {
             return <Slider />;
         }
-        case 'track-list': {
-            return (
-                <div>lol tracklist</div>
-            );
+        case 'tracklist': {
+            return <Tracklist />;
         }
         default: {
             return <Slider />;
