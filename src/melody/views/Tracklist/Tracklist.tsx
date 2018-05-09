@@ -1,76 +1,59 @@
+import CatalystButton from '@components/controls/CatalystButton';
+import NextButton from '@components/controls/NextButton';
+import PrevButton from '@components/controls/PrevButton';
+import RepeatButton from '@components/controls/RepeatButton';
+import ShuffleButton from '@components/controls/ShuffleButton';
+import CurrentTrackArtist from '@components/CurrentTrackArtist/';
+import CurrentTrackTitle from '@components/CurrentTrackTitle/';
+import Dock from '@components/Dock/';
+import Glider from '@components/Glider/';
+import TimeElapsed from '@components/time/TimeElapsed';
+import TimeLeft from '@components/time/TimeLeft';
 import Tracklist from '@components/Tracklist/';
 import TracklistItem from '@components/TracklistItem/';
-import PlayTrackButton from '@melody/components/controls/PlayTrackButton';
-import { Track } from '@redux/type';
-import { MachineStates } from '@state-machine/type';
+import VolumeCtrl from '@components/VolumeCtrl/';
 import { prefixClasses } from '@utils/index';
-import { formatTime } from '@utils/index';
 import { h } from 'preact';
 const s = require('./style.scss');
 
-const ItemButton = ({
-    index,
-    currentTrack,
-    currentState,
-}) => {
-    const isCurrent = index === currentTrack;
-    const isPlaying = currentState === 'playing';
-    if (isCurrent && isPlaying) {
-        return <div>lol pause button</div>;
-    }
-    return (
-        <PlayTrackButton
-            trackIndex={index}
-            currentState={currentState}
-        />
-    );
-};
-
-interface ItemInnerProps {
-    track: Track;
-    currentState: MachineStates;
-    index: number;
-    currentTrack: number;
-}
-
-const ItemInner = ({
-    track,
-    currentState,
-    index,
-    currentTrack,
-}: ItemInnerProps) => (
-    <div>
-        {ItemButton({ index, currentTrack, currentState })}
-        <div className={s.trackitem__trackInfo}>
-            <p>
-                {track.media_details.title}
-            </p>
-            <span className={prefixClasses('separator')} />
-            <p>
-                {track.media_details.artist}
-            </p>
-        </div>
-        <p className={s.trackitem__artist}>
-            {track.media_details.album}
-        </p>
-    </div>
+const ItemInner = props => (
+    <TracklistItem
+        {...props}
+        className="lol"
+        classes={{}}
+    />
 );
 
 export default () => {
     return (
-        <div class="melody__viewContainer" data-melody-view="tracklist">
+        <div style={{ background: 'orange' }} class="melody__viewContainer" data-melody-view="tracklist">
             <div class={s.preview}>
-
+                <div class={s.preview__top}>
+                    <div class={s.preview__marquee}>
+                        <CurrentTrackTitle />
+                        <CurrentTrackArtist />
+                    </div>
+                    <div class={s.preview__controls}>
+                        <VolumeCtrl />
+                        <Dock />
+                    </div>
+                </div>
+                <div class={s.preview__scrubber}>
+                    <TimeElapsed />
+                    <Glider />
+                    <TimeLeft />
+                </div>
+                <div class={s.preview__controlbar}>
+                    <ShuffleButton />
+                    <PrevButton />
+                    <CatalystButton />
+                    <NextButton />
+                    <RepeatButton />
+                </div>
             </div>
             <Tracklist
                 className={s.tracklist}
-                renderItem={props => (
-                    <TracklistItem
-                        {...props}
-                        className={s.tracklist__item}
-                        renderInner={props => <ItemInner {...props} />}
-                    />
-                )}
+                renderItem={ItemInner}
             />
         </div>
     );

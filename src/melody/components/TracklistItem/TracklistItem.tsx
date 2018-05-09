@@ -1,28 +1,62 @@
+import PauseButton from '@components/controls/PauseButton';
+import PlayTrackButton from '@components/controls/PlayTrackButton';
 import { WithOptionalClassName } from '@melody/components/type';
 import { Track } from '@redux/type';
 import { MachineStates } from '@state-machine/type';
 import { h } from 'preact';
 
-interface CommonProps {
+interface Props extends WithOptionalClassName {
     index: number;
     track: Track;
     currentState: MachineStates;
     currentTrack: number;
+    classes?: {
+        controls?: string;
+        info?: string;
+        title?: string;
+        seperator?: string;
+        artist?: string;
+        album?: string;
+    };
 }
 
-interface Props extends CommonProps, WithOptionalClassName {
-    renderInner: (props: CommonProps) => JSX.Element;
-}
+const classesDefault = {
+    controls: '',
+    info: '',
+    title: '',
+    seperator: '',
+    artist: '',
+    album: '',
+};
 
 export default ({
     track,
     index,
-    renderInner,
     currentState,
     currentTrack,
+    classes = classesDefault,
     className = '',
-}: Props) => (
-    <li class={className}>
-        {renderInner({ track, currentState, currentTrack, index })}
-    </li>
-);
+}: Props) => {
+    const isCurrent = index === currentTrack;
+    const isPlaying = currentState === 'playing';
+    const { media_details: { title, artist, album } } = track;
+    return (
+        <li class={className}>
+            {isCurrent && isPlaying ?
+                <PauseButton className={classes.controls} />
+                :
+                <PlayTrackButton
+                    className={classes.controls}
+                    trackIndex={index}
+                    currentState={currentState}
+                />
+            }
+            <div class={classes.info}>
+                <p class={classes.title}>{title}</p>
+                <span class={classes.seperator} />
+                <p class={classes.artist}>{artist}</p>
+            </div>
+            <p class={classes.album}>{album}</p>
+        </li>
+    );
+};

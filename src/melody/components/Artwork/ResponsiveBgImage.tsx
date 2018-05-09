@@ -3,6 +3,7 @@ import { WithOptionalClassName } from '@components/type';
 import { TrackArtwork } from '@redux/type';
 import { getContextualTrackSizes } from '@utils/index';
 import { Component, h } from 'preact';
+import BgImage from './BgImage';
 const throttle = require('lodash.throttle');
 
 interface Props extends WithOptionalClassName {
@@ -40,12 +41,6 @@ export default class extends Component<Props, State> {
     }, 1000);
 
     render({ className = '' }, { artworkSource }) {
-        return (
-            <figure
-                class={className}
-                data-melody-artwork
-                style={{ backgroundImage: `url(${artworkSource})` }}
-            />
-        );
+        return <BgImage className={className} artworkUrl={artworkSource} />;
     }
 }

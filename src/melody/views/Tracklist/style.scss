@@ -1,0 +1,16 @@
+.preview {
+    min-height: 200px;
+    background: orangered;
+}
+
+.tracklist {
+    background: pink;
+
+    &__item {
+        border: 2px solid black;
+
+        button {
+            max-width: 20px;
+        }
+    }
+}

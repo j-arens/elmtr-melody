@@ -14,9 +14,9 @@ interface Props extends WithOptionalClassName {
 }
 
 export default ({
-    renderItem,
     tracks,
     currentTrack,
+    renderItem,
     className = '',
 }: Props) => (
     <ul class={className}>

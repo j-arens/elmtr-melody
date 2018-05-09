@@ -8,17 +8,21 @@ import { h } from 'preact';
 import { connect } from 'preact-redux';
 const s = require('./styles.scss');
 
-interface Props extends WithOptionalClassName {
-    currentState: MachineStates;
+interface ContainerProps {
     trackIndex: number;
+}
+
+interface Props extends WithOptionalClassName, ContainerProps {
+    currentState: MachineStates;
     setTrack: () => Action;
-    cycleState: (action: MachineAction) => Action;
+    play: () => Action;
 }
 
 const PlayTrackButton = ({
     currentState,
     trackIndex,
     setTrack,
+    play,
     className = '',
 }: Props) => {
     const handleClick = () => {
@@ -26,7 +30,7 @@ const PlayTrackButton = ({
             setTrack();
         } else {
             setTrack();
-            cycleState('PLAY');
+            play();
         }
     };
     return (
@@ -43,9 +47,9 @@ const PlayTrackButton = ({
     );
 };
 
-const mapDispatchToProps = (dispatch, { trackIndex }: Props) => ({
+const mapDispatchToProps = (dispatch, { trackIndex }: ContainerProps) => ({
     setTrack: () => dispatch(setCurrentTrack(trackIndex)),
-    cycleState: (action: MachineAction) => dispatch(cycleState(action)),
+    play: () => dispatch(cycleState('PLAY')),
 });
 
 export default connect(null, mapDispatchToProps)(PlayTrackButton);
