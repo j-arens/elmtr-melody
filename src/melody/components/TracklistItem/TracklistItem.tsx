@@ -14,7 +14,7 @@ interface Props extends WithOptionalClassName {
         controls?: string;
         info?: string;
         title?: string;
-        seperator?: string;
+        separator?: string;
         artist?: string;
         album?: string;
     };
@@ -24,7 +24,7 @@ const classesDefault = {
     controls: '',
     info: '',
     title: '',
-    seperator: '',
+    separator: '',
     artist: '',
     album: '',
 };
@@ -53,7 +53,7 @@ export default ({
             }
             <div class={classes.info}>
                 <p class={classes.title}>{title}</p>
-                <span class={classes.seperator} />
+                <span class={classes.separator} />
                 <p class={classes.artist}>{artist}</p>
             </div>
             <p class={classes.album}>{album}</p>

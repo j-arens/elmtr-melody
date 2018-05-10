@@ -4,13 +4,18 @@
 }
 
 .tracklist {
-    background: pink;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
 
-    &__item {
-        border: 2px solid black;
+.track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-        button {
-            max-width: 20px;
-        }
+    &__info {
+        display: flex;
+        margin-right: auto;
     }
 }
