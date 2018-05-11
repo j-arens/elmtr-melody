@@ -1,6 +1,64 @@
+// .preview {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+
+//     background: orangered;
+
+//     &__top {
+//         display: flex;
+//         justify-content: space-between;
+//     }
+
+//     &__playback {
+//         display: flex;
+//         justify-content: space-between;
+//     }
+// }
+
 .preview {
-    min-height: 200px;
-    background: orangered;
+    // flex-grow: 0;
+    // flex-shrink: 0;
+
+    &__wrap,
+    &__top,
+    &__trackInfo {
+        display: flex;
+    }
+
+    &__wrap {
+        position: relative;
+        justify-content: center;
+    }
+
+    &__trackInfo {
+        align-items: center;
+        max-width: 50%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    // &__time {
+    //     position: absolute;
+    //     top: 50%;
+    //     transform: translateY(-50%);
+
+    //     &--left {
+    //         left: 0;
+    //     }
+
+    //     &--right {
+    //         right: 0;
+    //     }
+    // }
+
+    &__title {
+        margin: 0;
+    }
+
+    &__playback {
+        display: flex;   
+    }
 }
 
 .tracklist {
