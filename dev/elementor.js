@@ -20,8 +20,8 @@ const styles = {
 
 const paths = {
     exists: path => fs.existsSync(path),
-    make: path => exec(`mkdir ${path}`),
-    // clear: path => execSync(`rm -rf ${path}/*`),
+    make: path => execSync(`mkdir ${path}`),
+    clear: path => execSync(`rm -r ${path}/*`),
 }
 
 const makeReqParams = href => {
@@ -61,33 +61,13 @@ const pick = (json, index) => {
 };
 
 const installZip = () => {
-    // if (paths.exists(INSTALL_PATH)) {
-    //     paths.clear(INSTALL_PATH);
-    // }
-
+    if (paths.exists(INSTALL_DIR)) {
+        paths.clear(INSTALL_DIR);
+    }
     console.log(styles.info(`🌟 Extracting to ${INSTALL_DIR}`));
     execSync(`unzip ${DOWNLOAD_PATH} -d ${INSTALL_DIR}`);
-    // execSync(`cd ${INSTALL_DIR} && mv "$(ls | head -1)"/* .`, (e, stdout, stderr) => {
-    //     console.log('e', e);
-    //     console.log('stdout', stdout);
-    //     console.log('stderr', stderr);
-    // });
-    // execSync(`rm -rf ${INSTALL_DIR}`)
-
-    execSync(`
-        #!/bin/bash
-        cd ${INSTALL_DIR}
-        PDIR=$(ls | head -1)
-        mv $PDIR/* .
-        rm $PDIR
-    `, (e, stdout, stderr) => {
-        console.log('e', e);
-        console.log('stdout', stdout);
-        console.log('stderr', stderr);
-    });
+    execSync(`cd ${INSTALL_DIR} && PDIR=$(ls | head -1) && mv $PDIR/* . && rm -r $PDIR`);
 };
-
-// mv "$(DIR)"/* .
 
 const streamToTemp = res => {
     if (!paths.exists(DOWNLOAD_DIR)) {
