@@ -67,13 +67,27 @@ const installZip = () => {
 
     console.log(styles.info(`🌟 Extracting to ${INSTALL_DIR}`));
     execSync(`unzip ${DOWNLOAD_PATH} -d ${INSTALL_DIR}`);
-    execSync(`cd ${INSTALL_DIR} && mv "\$(ls | head -1)"/* .`, (e, stdout, stderr) => {
+    // execSync(`cd ${INSTALL_DIR} && mv "$(ls | head -1)"/* .`, (e, stdout, stderr) => {
+    //     console.log('e', e);
+    //     console.log('stdout', stdout);
+    //     console.log('stderr', stderr);
+    // });
+    // execSync(`rm -rf ${INSTALL_DIR}`)
+
+    execSync(`
+        #!/bin/bash
+        cd ${INSTALL_DIR}
+        PDIR=$(ls | head -1)
+        mv $PDIR/* .
+        rm $PDIR
+    `, (e, stdout, stderr) => {
         console.log('e', e);
         console.log('stdout', stdout);
         console.log('stderr', stderr);
     });
-    // execSync(`rm -rf ${INSTALL_DIR}`)
 };
+
+// mv "$(DIR)"/* .
 
 const streamToTemp = res => {
     if (!paths.exists(DOWNLOAD_DIR)) {
