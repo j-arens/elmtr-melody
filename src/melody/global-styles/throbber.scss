@@ -2,45 +2,46 @@
 * THROBBER
 */
 
-.melody__ {
-    &loader {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
+:global(.melodyThrobber) {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    position: relative;
+    background-color: $color_mine_shaft;
+    
+    &__dot,
+    &__pulse {
+        width: 40px;
+        height: 40px;
+        background-color: $color_white;
+        border-radius: 50%;
     }
-
-    &loaderIcon {
-        width: 3rem;
-        height: 3rem;
-        fill: $color_tundora;
-        
-        rect {
-            transform-origin: bottom center;
-        }
-
-        @each $number, $settings in $columns {
-            &__c#{$number} {
-                rect:first-child {
-                    animation: 
-                        c#{$number}-cap
-                        #{map-get($settings, duration)}s
-                        ease
-                        0s
-                        infinite
-                        alternate;
-                }
-                rect:last-child {
-                    animation: 
-                        c#{$number}
-                        #{map-get($settings, duration)}s
-                        ease
-                        0s
-                        infinite
-                        alternate;
-                }
-            }
-        }
+    
+    &__note,
+    &__dot {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    &__note {
+        fill: $color_white;
+        opacity: 0.8;
+        width: 20px;
+        height: 20px;
+        transform-origin: center center;
+    }
+    
+    &__dot {
+        opacity: 0.24;
+    }
+    
+    &__pulse {
+        opacity: 0.1;
+        animation: melody-throbber-pulse 0.9s .5s ease-out forwards infinite;
     }
 }
