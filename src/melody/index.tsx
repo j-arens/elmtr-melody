@@ -33,5 +33,5 @@ export function makeApp(target: string, store: Store<State>) {
     );
 
     const root: HTMLElement = document.getElementById(target);
-    render(app, root, root.firstChild as HTMLElement);
+    render(app, root, root.firstElementChild as HTMLElement);
 }
