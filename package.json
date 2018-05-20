@@ -1,31 +1,37 @@
 {
   "name": "elementor-melody",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.0.0-alpha.1",
+  "description": "@TODO",
   "main": "public/js/melody.bundle.js",
   "author": "Josh Arens",
   "jest": {
     "moduleFileExtensions": [
       "js",
-      "ts"
+      "ts",
+      "tsx"
     ],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/*.ts"
+      "<rootDir>/src/**/__tests__/*.(ts|tsx)"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/"
     ],
     "transform": {
-      "^.+\\.(ts|tsx)?$": "<rootDir>/dev/preprocessor.js"
+      "\\.(ts|tsx)$": "<rootDir>/dev/tests-preprocessor.js"
     },
     "moduleNameMapper": {
       "mediaframe": "<rootDir>/dev/mocks/mediaframe",
-      "@mocks/elementorModel": "<rootDir>dev/mocks/elementorModel",
+      "@mocks(.*)$": "<rootDir>dev/mocks/$1",
       "@tracks": "<rootDir>/dev/fixtures/tracks",
       "@track-sizes": "<rootDir>/dev/fixtures/track-sizes",
       "@utils": "<rootDir>/src/melody/utils",
-      "@state-machine": "<rootDir>/src/melody/state-machine"
-    }
+      "@state-machine": "<rootDir>/src/melody/state-machine",
+      "@components(.*)$": "<rootDir>/src/melody/components/$1",
+      "\\.(scss)$": "identity-obj-proxy"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-html-string"
+    ]
   },
   "devDependencies": {
     "@types/backbone": "^1.3.42",
@@ -39,6 +45,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "browser-sync": "^2.23.6",
@@ -46,10 +53,13 @@
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
     "husky": "^0.14.3",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^22.1.2",
+    "jest-serializer-html-string": "^1.0.1",
     "node-sass": "^4.7.2",
     "node-wp-i18n": "^1.1.1",
     "postcss-loader": "^2.0.10",
+    "preact-render-to-string": "^3.7.0",
     "sass-loader": "^6.0.6",
     "tslib": "^1.8.1",
     "tslint": "^5.9.1",
@@ -93,6 +103,7 @@
     "test": "export NODE_ENV=test && jest",
     "test:no-cache": "npm run test -- --no-cache",
     "test:watch": "npm run test -- --watchAll",
+    "test:update-ss": "npm run test -- -u",
     "start": "export NODE_ENV=development && npm run build-watch:all"
   }
 }
