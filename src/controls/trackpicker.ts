@@ -60,13 +60,13 @@ const handleSelection = ({ model, map, frame }: SelectionParams): void => {
 /**
  * Route trigger clicks
  */
-const onTriggerClick = ({ $trigger, model, frame }: TriggerEvent): void => {
+export const onTriggerClick = ({ $trigger, model, frame }: TriggerEvent): number => {
     const action: TPTriggerAction = $trigger.attr(TP_TRIGGER_ACTION);
     switch (action) {
         case 'SELECT_TRACK': {
             frame._melody_$trigger = $trigger;
             frame.open();
-            return;
+            return 1;
         }
         case 'CLEAR_TRACK': {
             clearAllSettings(model, mutationMap);
@@ -75,9 +75,10 @@ const onTriggerClick = ({ $trigger, model, frame }: TriggerEvent): void => {
                 action: 'SELECT_TRACK',
                 text: 'Select Track',
             });
+            return 2;
         }
         default: {
-            return;
+            return 0;
         }
     }
 };
@@ -85,7 +86,7 @@ const onTriggerClick = ({ $trigger, model, frame }: TriggerEvent): void => {
 /**
  * Setup audioframe
  */
-const bindAudioframe = (model: ElementorDataModel): Mediaframe => {
+export const bindAudioframe = (model: ElementorDataModel): Mediaframe => {
     const audioframe = makeAudioframe();
     audioframe.on('insert select', () => handleSelection({
         model: model.elementSettingsModel,
@@ -98,7 +99,7 @@ const bindAudioframe = (model: ElementorDataModel): Mediaframe => {
 /**
  * Setup event listeners
  */
-const bindEvents = (
+export const bindEvents = (
     model: ElementorDataModel,
     audioframe: Mediaframe,
 ): JQuery => model.$el.on('click', TP_TRIGGER, (e: JQuery.Event) => onTriggerClick({

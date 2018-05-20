@@ -19,6 +19,8 @@
       "^.+\\.(ts|tsx)?$": "<rootDir>/dev/preprocessor.js"
     },
     "moduleNameMapper": {
+      "mediaframe": "<rootDir>/dev/mocks/mediaframe",
+      "@mocks/elementorModel": "<rootDir>dev/mocks/elementorModel",
       "@tracks": "<rootDir>/dev/fixtures/tracks",
       "@track-sizes": "<rootDir>/dev/fixtures/track-sizes",
       "@utils": "<rootDir>/src/melody/utils",

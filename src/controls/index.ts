@@ -3,4 +3,4 @@ import trackpicker from './trackpicker';
 
 const { jQuery: $ } = GLOBAL;
 
-$(() => trackpicker());
+$(trackpicker);
