@@ -1,3 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SimpleToolbar renders 1`] = `<button class="btn ">hi</button>`;
+exports[`SimpleToolbar renders 1`] = `
+<button class="btn hey">
+  <p>hi</p>
+</button>
+`;

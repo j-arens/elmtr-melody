@@ -1,13 +1,13 @@
 import { render } from 'preact-render-to-string';
 import { h } from 'preact';
-import BaseButton from '../';
+import ResponsiveBgImage from '../ResponsiveBgImage';
 
-describe('SimpleToolbar', () => {
+describe('ResponsiveBgImage', () => {
     it('renders', () => {
         const component = render(
-            <BaseButton className="hey">
-                <p>hi</p>
-            </BaseButton>
+            <ResponsiveBgImage
+                artwork={{}}
+            />
         );
         expect(component).toMatchSnapshot();
     });

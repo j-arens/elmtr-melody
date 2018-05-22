@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoTracksEditor renders 1`] = `<p class="melody__body">No tracks loaded, click here to get started.</p>`;

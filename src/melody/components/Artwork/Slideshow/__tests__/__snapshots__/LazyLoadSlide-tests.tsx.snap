@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LazyLoadSlide renders a lazy slide 1`] = `<li class="austin-yellow"></li>`;
+
+exports[`LazyLoadSlide renders a loaded slide 1`] = `
+<li class="guard-red">
+  <div>lol</div>
+</li>
+`;

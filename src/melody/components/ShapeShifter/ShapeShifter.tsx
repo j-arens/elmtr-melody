@@ -17,11 +17,6 @@ export default ({ view }: Props) => {
         case 'slider': {
             return <Slider />;
         }
-        case 'track-list': {
-            return (
-                <div>lol tracklist</div>
-            );
-        }
         default: {
             return <Slider />;
         }
