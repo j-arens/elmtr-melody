@@ -1,6 +1,6 @@
 import { WithOptionalClassName } from '@components/type';
 import { h } from 'preact';
-import TimeProvider from './TimeProvider';
+import TimeProvider from './TimeProvider/';
 
 interface Props extends WithOptionalClassName {
     currentTime: number;
@@ -8,10 +8,10 @@ interface Props extends WithOptionalClassName {
     getTime: (time: number) => string;
 }
 
-const TimeElapsed = ({ currentTime, duration, getTime, className = '' }: Props) => (
+const CurrentTimeLeft = ({ currentTime, duration, getTime, className = '' }: Props) => (
     <span class={className} data-melody-time>
         {getTime(duration - currentTime)}
     </span>
 );
 
-export default TimeProvider(TimeElapsed);
+export default TimeProvider(CurrentTimeLeft);
