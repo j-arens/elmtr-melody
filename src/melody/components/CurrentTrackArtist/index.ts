@@ -1,7 +1,7 @@
+import { WithOptionalClassName } from '@components/type';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
 import CurrentTrackArtist, { StateProps } from './CurrentTrackArtist';
-import { WithOptionalClassName } from '@components/type';
 
 const mapStateToProps = (state: State) => {
     const { currentTrack, tracks } = state;

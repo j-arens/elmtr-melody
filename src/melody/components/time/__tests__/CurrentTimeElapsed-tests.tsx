@@ -1,12 +1,13 @@
 import { h } from 'preact';
 import { render } from 'preact-render-to-string';
-import ResponsiveBgImage from '../ResponsiveBgImage';
+import { CurrentTimeElapsed } from '../CurrentTimeElapsed';
 
-describe('ResponsiveBgImage', () => {
+describe('CurrentTimeElapsed', () => {
     it('renders', () => {
         const component = render(
-            <ResponsiveBgImage
-                artwork={{}}
+            <CurrentTimeElapsed
+                currentTime={0}
+                getTime={jest.fn().mockReturnValueOnce(80)}
             />,
         );
         expect(component).toMatchSnapshot();

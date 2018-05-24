@@ -1,5 +1,5 @@
-import { render } from 'preact-render-to-string';
 import { h } from 'preact';
+import { render } from 'preact-render-to-string';
 import Slideshow from '../Slideshow';
 
 describe('Slideshow', () => {
@@ -21,7 +21,7 @@ describe('Slideshow', () => {
                 className="yas-marina-blue"
                 currentTrack={0}
                 tracks={tracks}
-            />
+            />,
         );
         expect(component).toMatchSnapshot();
     });
@@ -32,7 +32,7 @@ describe('Slideshow', () => {
                 className="yas-marina-blue"
                 currentTrack={5}
                 tracks={tracks}
-            />
+            />,
         );
         expect(component).toMatchSnapshot();
     });

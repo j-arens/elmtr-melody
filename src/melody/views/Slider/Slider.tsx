@@ -1,15 +1,15 @@
 import Slideshow from '@components/Artwork/Slideshow/';
-import CatalystButton from '@components/controls/CatalystButton';
+import CatalystButton from '@components/controls/CatalystButton/';
 import NextButton from '@components/controls/NextButton';
 import PrevButton from '@components/controls/PrevButton';
 import RepeatButton from '@components/controls/RepeatButton';
 import ShuffleButton from '@components/controls/ShuffleButton';
+import CurrentTrackArtist from '@components/CurrentTrackArtist/';
+import CurrentTrackTitle from '@components/CurrentTrackTitle/';
 import Dock from '@components/Dock';
 import Glider from '@components/Glider/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
-import CurrentTrackArtist from '@components/CurrentTrackArtist/';
-import CurrentTrackTitle from '@components/CurrentTrackTitle/';
 import VolumeCtrl from '@components/VolumeCtrl/';
 import { prefixClasses } from '@utils/index';
 import { h } from 'preact';

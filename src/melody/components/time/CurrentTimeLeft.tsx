@@ -8,7 +8,7 @@ interface Props extends WithOptionalClassName {
     getTime: (time: number) => string;
 }
 
-const CurrentTimeLeft = ({ currentTime, duration, getTime, className = '' }: Props) => (
+export const CurrentTimeLeft = ({ currentTime, duration, getTime, className = '' }: Props) => (
     <span class={className} data-melody-time>
         {getTime(duration - currentTime)}
     </span>

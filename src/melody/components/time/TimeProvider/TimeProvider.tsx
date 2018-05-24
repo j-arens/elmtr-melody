@@ -2,10 +2,12 @@ import { WithOptionalClassName } from '@components/type';
 import { formatTime } from '@utils/index';
 import { AnyComponent, Component, h } from 'preact';
 
-interface Props extends WithOptionalClassName {
+export interface StateProps {
     currentTime: number;
     duration: number;
 }
+
+type Props = StateProps & WithOptionalClassName;
 
 export default (WrappedComponent: AnyComponent<any, any>) =>
     (props: Props) => {
@@ -21,7 +23,7 @@ export default (WrappedComponent: AnyComponent<any, any>) =>
             }
 
             return formatTime(time);
-        }
+        };
 
         return (
             <WrappedComponent
@@ -29,4 +31,4 @@ export default (WrappedComponent: AnyComponent<any, any>) =>
                 {...props}
             />
         );
-    }
+    };

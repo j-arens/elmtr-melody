@@ -1,5 +1,5 @@
-import { render } from 'preact-render-to-string';
 import { h } from 'preact';
+import { render } from 'preact-render-to-string';
 import LazyLoadSlide from '../LazyLoadSlide';
 
 describe('LazyLoadSlide', () => {
@@ -12,7 +12,7 @@ describe('LazyLoadSlide', () => {
                 index={0}
             >
                 <div>lol</div>
-            </LazyLoadSlide>
+            </LazyLoadSlide>,
         );
         expect(component).toMatchSnapshot();
     });
@@ -26,7 +26,7 @@ describe('LazyLoadSlide', () => {
                 index={3}
             >
                 <div>lol</div>
-            </LazyLoadSlide>
+            </LazyLoadSlide>,
         );
         expect(component).toMatchSnapshot();
     });

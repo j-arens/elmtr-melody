@@ -1,16 +1,18 @@
+import { WithOptionalClassName } from '@components/type';
+import { State } from '@redux/type';
 import { connect } from 'preact-redux';
 import { compose } from 'redux';
-import { State } from '@redux/type';
-import TimeProvider from './TimeProvider';
-
-export const unconnected = TimeProvider;
+import TimeProvider, { StateProps } from './TimeProvider';
 
 const mapStateToProps = (state: State) => ({
     currentTime: state.currentTime,
     duration: state.filelength,
 });
 
-export default compose(connect(mapStateToProps), TimeProvider);
+export default compose(
+    connect<StateProps, {}, WithOptionalClassName>(mapStateToProps),
+    TimeProvider,
+);
 
 // compose(connect(mapStateToProps), TimeProvider)(TimeElapsed);
 // ConnectResult(TimeProvider(TimeElapsed))

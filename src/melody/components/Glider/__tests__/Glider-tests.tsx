@@ -1,6 +1,6 @@
-import { render } from 'preact-render-to-string';
-import { h } from 'preact';
 import { NO_OP } from '@utils';
+import { h } from 'preact';
+import { render } from 'preact-render-to-string';
 import Glider from '../Glider';
 
 describe('Glider', () => {
@@ -13,7 +13,7 @@ describe('Glider', () => {
                 updateCurrentTime={NO_OP}
                 toggleGliderDragging={NO_OP}
                 triggerTimeSync={NO_OP}
-            />
+            />,
         );
         expect(component).toMatchSnapshot();
     });

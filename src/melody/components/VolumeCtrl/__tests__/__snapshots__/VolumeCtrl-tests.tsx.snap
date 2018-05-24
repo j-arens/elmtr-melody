@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VolumeCtrl 50% volume is represented with a half outer circle 1`] = `
+<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+  <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24">
+    <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
+    <circle class="volumeCtrl__level" style="stroke-dashoffset: 37.5;"
+    cx="12" cy="12" r="12"></circle>
+    <path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"></path>
+  </svg>
+</div>
+`;
+
+exports[`VolumeCtrl full vol renders full vol icon 1`] = `
+<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+  <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24">
+    <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
+    <circle class="volumeCtrl__level" style="stroke-dashoffset: 0;"
+    cx="12" cy="12" r="12"></circle>
+    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path>
+  </svg>
+</div>
+`;
+
+exports[`VolumeCtrl renders 1`] = `
+<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+  <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24">
+    <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
+    <circle class="volumeCtrl__level" style="stroke-dashoffset: 0;"
+    cx="12" cy="12" r="12"></circle>
+    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path>
+  </svg>
+</div>
+`;
+
+exports[`VolumeCtrl vol < 0.8 && > 0.1 renders medium vol icon 1`] = `
+<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+  <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24">
+    <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
+    <circle class="volumeCtrl__level" style="stroke-dashoffset: 37.5;"
+    cx="12" cy="12" r="12"></circle>
+    <path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"></path>
+  </svg>
+</div>
+`;
+
+exports[`VolumeCtrl vol <= 0.1 renders muted icon 1`] = `
+<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+  <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24">
+    <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
+    <circle class="volumeCtrl__level" style="stroke-dashoffset: 67.5;"
+    cx="12" cy="12" r="12"></circle>
+    <path d="M7 9v6h4l5 5V4l-5 5H7z"></path>
+  </svg>
+</div>
+`;

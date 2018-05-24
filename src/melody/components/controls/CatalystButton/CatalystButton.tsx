@@ -1,29 +1,23 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
 import { WithOptionalClassName } from '@melody/components/type';
-import { cycleState } from '@redux/actions';
-import { Action, State } from '@redux/type';
+import { Action } from '@redux/type';
 import stateMachine from '@state-machine/index';
 import { MachineAction, MachineStates } from '@state-machine/type';
 import { formatPlaybackRate } from '@utils/index';
 import { h } from 'preact';
-import { connect } from 'preact-redux';
-const s = require('./styles.scss');
+const s = require('../styles.scss');
 
-const mapStateToProps = (state: State) => ({
-    currentState: state.currentState,
-    playbackRate: state.playbackRate,
-});
-
-const mapDispatchToProps = dispatch => ({
-    cycleState: (action: MachineAction) => dispatch(cycleState(action)),
-});
-
-interface Props extends WithOptionalClassName {
+export interface StateProps {
     currentState: MachineStates;
     playbackRate: number;
+}
+
+export interface DispatchProps {
     cycleState: (action: MachineAction) => Action;
 }
+
+type Props = StateProps & DispatchProps & WithOptionalClassName;
 
 function getMachineAction(currentState: MachineStates) {
     switch (currentState) {
@@ -42,7 +36,7 @@ function getMachineAction(currentState: MachineStates) {
     }
 }
 
-const CatalystButton = ({
+export default ({
     playbackRate,
     currentState,
     cycleState,
@@ -73,5 +67,3 @@ const CatalystButton = ({
         </BaseButton>
     );
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(CatalystButton);

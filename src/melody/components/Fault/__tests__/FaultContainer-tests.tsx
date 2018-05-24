@@ -1,5 +1,5 @@
-import { render } from 'preact-render-to-string';
 import { h } from 'preact';
+import { render } from 'preact-render-to-string';
 import FaultContainer from '../FaultContainer';
 
 describe('FaultContainer', () => {
@@ -7,7 +7,7 @@ describe('FaultContainer', () => {
         const component = render(
             <FaultContainer>
                 <div>alpine white</div>
-            </FaultContainer>
+            </FaultContainer>,
         );
         expect(component).toMatchSnapshot();
     });
@@ -16,7 +16,7 @@ describe('FaultContainer', () => {
         const component = render(
             <FaultContainer allowReload={false}>
                 <div>alpine white</div>
-            </FaultContainer>
+            </FaultContainer>,
         );
         expect(component).toMatchSnapshot();
     });
