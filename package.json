@@ -23,7 +23,6 @@
       "mediaframe": "<rootDir>/dev/mocks/mediaframe",
       "@mocks(.*)$": "<rootDir>dev/mocks/$1",
       "@tracks": "<rootDir>/dev/fixtures/tracks",
-      "@track-sizes": "<rootDir>/dev/fixtures/track-sizes",
       "@fixtures(.*)$": "<rootDir>/dev/fixtures/$1",
       "@utils": "<rootDir>/src/melody/utils",
       "@state-machine": "<rootDir>/src/melody/state-machine",

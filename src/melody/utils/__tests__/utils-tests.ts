@@ -1,5 +1,5 @@
 const tracks = require('@tracks');
-const trackSizes = require('@track-sizes');
+const trackSizes = require('@fixtures/track-sizes');
 import * as utils from '../';
 
 describe('getRandomNumberInRange()', () => {
