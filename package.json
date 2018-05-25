@@ -23,10 +23,13 @@
       "mediaframe": "<rootDir>/dev/mocks/mediaframe",
       "@mocks(.*)$": "<rootDir>dev/mocks/$1",
       "@tracks": "<rootDir>/dev/fixtures/tracks",
-      "@track-sizes": "<rootDir>/dev/fixtures/track-sizes",
+      "@fixtures(.*)$": "<rootDir>/dev/fixtures/$1",
       "@utils": "<rootDir>/src/melody/utils",
       "@state-machine": "<rootDir>/src/melody/state-machine",
+      "@constants": "<rootDir>/src/melody/constants",
       "@components(.*)$": "<rootDir>/src/melody/components/$1",
+      "@views(.*)$": "<rootDir>/src/melody/views/$1",
+      "@redux(.*)$": "<rootDir>/src/melody/redux$1",
       "\\.(scss)$": "identity-obj-proxy"
     },
     "snapshotSerializers": [

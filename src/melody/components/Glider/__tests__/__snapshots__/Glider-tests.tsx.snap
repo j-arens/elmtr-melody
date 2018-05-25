@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Glider renders 1`] = `
+<div class="glider elementor-tab-title">
+  <div class="glider__playback">
+    <div class="glider__trackbar" style="margin-left: 0%;" data-melody-scrubber-progress>
+      <div class="glider__handle" data-melody-scrubber-handle></div>
+    </div>
+  </div>
+</div>
+`;

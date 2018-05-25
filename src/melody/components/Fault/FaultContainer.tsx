@@ -4,7 +4,7 @@ const s = require('./style.scss');
 
 interface Props {
     children?: JSX.Element[];
-    allowReload: boolean;
+    allowReload?: boolean;
 }
 
 export default ({ children, allowReload = true }: Props) => (

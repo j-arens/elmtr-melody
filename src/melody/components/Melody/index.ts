@@ -7,7 +7,7 @@ import {
 import { State } from '@redux/type';
 import { MachineAction } from '@state-machine/type';
 import { connect } from 'preact-redux';
-import Melody from './Melody';
+import Melody, { DispatchProps, StateProps } from './Melody';
 
 const mapStateToProps = (state: State) => ({
     currentState: state.currentState,
@@ -30,4 +30,8 @@ const mapDispatchToProps = (dispatch) => ({
     setFilelength: (length: number) => dispatch(setFilelength(length)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Melody);
+export default connect<
+    StateProps,
+    DispatchProps,
+    {}
+>(mapStateToProps, mapDispatchToProps)(Melody);

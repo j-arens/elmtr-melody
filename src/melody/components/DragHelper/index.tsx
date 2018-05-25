@@ -1,5 +1,5 @@
 import { WithOptionalClassName } from '@melody/components/type';
-import { AnyComponent, Component, h } from 'preact';
+import { AnyComponent, Component, ComponentConstructor, h } from 'preact';
 import {
     EventRegistry,
     Handler,
@@ -9,8 +9,8 @@ import {
     State,
 } from './type';
 
-export default <Props extends WithOptionalClassName>(WrappedComponent: AnyComponent<any, any>) => {
-    return class extends Component<Props, State> {
+export default (WrappedComponent: AnyComponent<any, any>) =>
+    class extends Component<any, State> {
         state = {
             isDragging: false,
             initX: 0,
@@ -189,4 +189,3 @@ export default <Props extends WithOptionalClassName>(WrappedComponent: AnyCompon
             );
         }
     };
-};

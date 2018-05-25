@@ -5,7 +5,7 @@ import {
 } from '@redux/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
-import Dock from './Dock';
+import Dock, { DispatchProps, OwnProps, StateProps } from './Dock';
 
 const mapStateToProps = (state: State) => ({
     showDock: state.ui.showDock,
@@ -19,4 +19,8 @@ const mapDispatchToProps = dispatch => ({
     slowDown: () => dispatch(slowDown()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dock);
+export default connect<
+    StateProps,
+    DispatchProps,
+    OwnProps
+>(mapStateToProps, mapDispatchToProps)(Dock);

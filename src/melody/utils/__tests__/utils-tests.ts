@@ -1,5 +1,5 @@
 const tracks = require('@tracks');
-const trackSizes = require('@track-sizes');
+const trackSizes = require('@fixtures/track-sizes');
 import * as utils from '../';
 
 describe('getRandomNumberInRange()', () => {
@@ -71,5 +71,27 @@ describe('prefixClasses()', () => {
         const classes = 'lol rofl ninja-kick';
         const prefixed = utils.prefixClasses(classes);
         expect(prefixed).toEqual('melody-c-lol melody-c-rofl melody-c-ninja-kick');
+    });
+});
+
+describe('getNextMachineAction()', () => {
+    it('returns FAILED if the currentState doesnt map to an action', () => {
+        const result = utils.getNextMachineAction('royal-purple');
+        expect(result).toBe('FAILED');
+    });
+
+    it('returns NOOP if buffer', () => {
+        const result = utils.getNextMachineAction('buffering');
+        expect(result).toBe('NOOP');
+    });
+
+    it('returns STOP if playing', () => {
+        const result = utils.getNextMachineAction('playing');
+        expect(result).toBe('STOP');
+    });
+
+    it('returns PLAY if stopped', () => {
+        const result = utils.getNextMachineAction('stopped');
+        expect(result).toBe('PLAY');
     });
 });

@@ -5,8 +5,7 @@ import * as actions from './actions';
 
 export type View =
  | 'simple-toolbar'
- | 'slider'
- | 'track-list';
+ | 'slider';
 
 export interface TrackArtwork {
     source_url: string;

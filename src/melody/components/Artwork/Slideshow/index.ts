@@ -1,10 +1,11 @@
+import { WithOptionalClassName } from '@components/type';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
-import Slideshow from './Slideshow';
+import Slideshow, { StateProps } from './Slideshow';
 
 const mapStateToProps = (state: State) => ({
     tracks: state.tracks,
     currentTrack: state.currentTrack,
 });
 
-export default connect(mapStateToProps)(Slideshow);
+export default connect<StateProps, {}, WithOptionalClassName>(mapStateToProps)(Slideshow);

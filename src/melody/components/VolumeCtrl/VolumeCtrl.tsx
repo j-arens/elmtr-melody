@@ -13,11 +13,20 @@ type VolDragDirection =
     | 'up'
     | 'down';
 
-interface Props extends DragProps, WithOptionalClassName {
+export interface StateProps {
     volume: number;
+}
+
+export interface DispatchProps {
     toggleVolDragging: () => Action;
     updateVolume: (newVol: number) => Action;
 }
+
+type Props =
+    StateProps &
+    DispatchProps &
+    DragProps &
+    WithOptionalClassName;
 
 interface State {
     originalClientY: number;
@@ -97,7 +106,7 @@ export default class extends Component<Props, State> {
     getIcon(): JSX.Element {
         const { volume } = this.props;
 
-        if (volume < 0.1) {
+        if (volume <= 0.1) {
             return MutedMarkup;
         }
 
@@ -105,7 +114,7 @@ export default class extends Component<Props, State> {
             return MediumVolMarkup;
         }
 
-        if (volume > 0.8) {
+        if (volume >= 0.8) {
             return FullVolMarkup;
         }
     }

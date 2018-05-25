@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FaultContainer renders 1`] = `
+<div class="errorContainer">
+  <div>alpine white</div>
+  <button class="btn errorContainer__reloadBtn" role="button">Reload</button>
+</div>
+`;
+
+exports[`FaultContainer renders without a reload button 1`] = `
+<div class="errorContainer">
+  <div>alpine white</div>
+</div>
+`;

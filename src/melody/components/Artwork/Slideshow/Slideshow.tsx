@@ -5,10 +5,12 @@ import { h } from 'preact';
 import LazyLoadSlide from './LazyLoadSlide';
 const s = require('./style.scss');
 
-interface Props extends WithOptionalClassName {
+export interface StateProps {
     tracks: Track[];
     currentTrack: number;
 }
+
+type Props = StateProps & WithOptionalClassName;
 
 export default ({
     tracks,

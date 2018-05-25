@@ -1,14 +1,14 @@
-import CatalystButton from '@components/controls/CatalystButton';
-import NextButton from '@components/controls/NextButton';
-import PrevButton from '@components/controls/PrevButton';
-import RepeatButton from '@components/controls/RepeatButton';
-import ShuffleButton from '@components/controls/ShuffleButton';
+import CatalystButton from '@components/controls/CatalystButton/';
+import NextButton from '@components/controls/NextButton/';
+import PrevButton from '@components/controls/PrevButton/';
+import RepeatButton from '@components/controls/RepeatButton/';
+import ShuffleButton from '@components/controls/ShuffleButton/';
+import CurrentTrackArtist from '@components/CurrentTrackArtist/';
+import CurrentTrackTitle from '@components/CurrentTrackTitle/';
 import Dock from '@components/Dock';
 import Glider from '@components/Glider/';
-import TimeElapsed from '@components/time/TimeElapsed';
-import TimeLeft from '@components/time/TimeLeft';
-import TrackArtist from '@components/TrackArtist';
-import TrackTitle from '@components/TrackTitle/';
+import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
+import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
 import { prefixClasses } from '@utils/index';
 import { h } from 'preact';
@@ -27,13 +27,13 @@ export default () => (
         </div>
         <div class={`${s.preview} ${prefixClasses('preview-padding trackinfo-width trackinfo-order')}`}>
             <div class={`${s.preview__wrap} ${prefixClasses('trackinfo-margin')}`}>
-                <TimeElapsed className={`${s.preview__time} ${s['preview__time--left']}`} />
+                <CurrentTimeElapsed className={`${s.preview__time} ${s['preview__time--left']}`} />
                 <div className={s.preview__trackInfo}>
-                    <TrackTitle className={s.preview__title} />
+                    <CurrentTrackTitle className={s.preview__title} />
                     <span className={prefixClasses('separator')} />
-                    <TrackArtist className={s.preview__artist} />
+                    <CurrentTrackArtist className={s.preview__artist} />
                 </div>
-                <TimeLeft className={`${s.preview__time} ${s['preview__time--right']}`} />
+                <CurrentTimeLeft className={`${s.preview__time} ${s['preview__time--right']}`} />
             </div>
             <Glider />
         </div>

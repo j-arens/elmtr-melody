@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoTracksFront renders 1`] = `<p class="melody__body">Doh! It looks like there aren't any tracks loaded.</p>`;

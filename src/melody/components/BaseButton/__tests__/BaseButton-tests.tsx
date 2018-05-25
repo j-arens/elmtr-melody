@@ -1,11 +1,14 @@
-// import render from 'preact-render-to-string';
-const render = require('preact-render-to-string');
 import { h } from 'preact';
+import { render } from 'preact-render-to-string';
 import BaseButton from '../';
 
-describe('SimpleToolbar', () => {
+describe('BaseButton', () => {
     it('renders', () => {
-        const result = render(<BaseButton>hi</BaseButton>);
-        expect(result).toMatchSnapshot();
+        const component = render(
+            <BaseButton className="hey">
+                <p>hi</p>
+            </BaseButton>,
+        );
+        expect(component).toMatchSnapshot();
     });
 });
