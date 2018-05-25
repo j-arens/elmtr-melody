@@ -3,9 +3,11 @@ import SimpleToolbar from '@views/SimpleToolbar/SimpleToolbar';
 import Slider from '@views/Slider/Slider';
 import { h } from 'preact';
 
-interface Props {
+export interface StateProps {
     view: View;
 }
+
+type Props = StateProps;
 
 export default ({ view }: Props) => {
     switch (view) {

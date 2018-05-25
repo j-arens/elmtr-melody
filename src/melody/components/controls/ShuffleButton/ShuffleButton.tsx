@@ -1,26 +1,21 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
 import { WithOptionalClassName } from '@components/type';
-import { toggleShuffle } from '@redux/actions';
-import { Action, State } from '@redux/type';
+import { Action } from '@redux/type';
 import { h } from 'preact';
-import { connect } from 'preact-redux';
-const s = require('./styles.scss');
+const s = require('../styles.scss');
 
-const mapStateToProps = (state: State) => ({
-    shuffle: state.shuffle,
-});
-
-const mapDispatchToProps = dispatch => ({
-    toggleShuffle: () => dispatch(toggleShuffle()),
-});
-
-interface Props extends WithOptionalClassName {
+export interface StateProps {
     shuffle: boolean;
+}
+
+export interface DispatchProps {
     toggleShuffle: () => Action;
 }
 
-const ShuffleButton = ({ shuffle, toggleShuffle, className = '' }: Props) => {
+type Props = StateProps & DispatchProps & WithOptionalClassName;
+
+export default ({ shuffle, toggleShuffle, className = '' }: Props) => {
     const defaultClass = `${className} ${s.playbackCtrl} melody-playbackCtrl melody-shuffle`;
     const activeClass = `${defaultClass} ${s['playbackCtrl--active']} melody-c-shuffle-on`;
     return (
@@ -33,5 +28,3 @@ const ShuffleButton = ({ shuffle, toggleShuffle, className = '' }: Props) => {
         </BaseButton>
     );
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShuffleButton);

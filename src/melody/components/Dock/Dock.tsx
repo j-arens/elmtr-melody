@@ -8,15 +8,23 @@ import * as classnames from 'classnames';
 import { h } from 'preact';
 const s = require('./style.scss');
 
-interface Props extends WithOptionalClassName {
+export interface StateProps {
     showDock: boolean;
     track: Track;
     playbackRate: number;
-    triggerClassName?: string;
+}
+
+export interface DispatchProps {
     toggleDock: () => Action;
     speedUp: () => Action;
     slowDown: () => Action;
 }
+
+export interface OwnProps extends WithOptionalClassName {
+    triggerClassName?: string;
+}
+
+type Props = StateProps & DispatchProps & OwnProps;
 
 export default ({
     showDock,

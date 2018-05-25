@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CatalystButton renders with a buffering icon if current state is buffering 1`] = `
+<button data-playbackRate class="btn carrera-white playbackCtrl melody-playbackCtrl playbackCtrl--buffering melody-controlBar__catalyst"
+role="button">
+  <svg class="playbackCtrl__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g>
+      <circle class="melody-playbackCtrl__ring" cx="12" cy="12" r="12"></circle>
+      <g class="melody-playbackCtrl__buffer-dots">
+        <circle cx="4" cy="13" r="2"></circle>
+        <circle cx="12" cy="13" r="2"></circle>
+        <circle cx="20" cy="13" r="2"></circle>
+      </g>
+    </g>
+  </svg>
+</button>
+`;
+
+exports[`CatalystButton renders with a pause icon if current state is playing 1`] = `
+<button data-playbackRate="xundefined" class="btn carrera-white playbackCtrl melody-playbackCtrl melody-controlBar__catalyst"
+role="button">
+  <svg class="playbackCtrl__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g>
+      <circle class="melody-playbackCtrl__ring" cx="12" cy="12" r="12"></circle>
+      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+    </g>
+  </svg>
+</button>
+`;
+
+exports[`CatalystButton renders with a play icon if current state is stopped 1`] = `
+<button data-playbackRate="xundefined" class="btn carrera-white playbackCtrl melody-playbackCtrl melody-controlBar__catalyst"
+role="button">
+  <svg class="playbackCtrl__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g>
+      <circle class="melody-playbackCtrl__ring" cx="12" cy="12" r="12"></circle>
+      <path d="M8 5v14l11-7z"></path>
+    </g>
+  </svg>
+</button>
+`;

@@ -1,5 +1,6 @@
 import { TrackSize } from '@adapter/type';
 import { Track } from '@redux/type';
+import { MachineAction, MachineStates } from '@state-machine/type';
 import { MELODY_CUSTOMIZATION_CLASS_PREFIX } from '../constants';
 
 /**
@@ -114,3 +115,25 @@ export const prefixClasses = (classes: string): string => classes
     .split(' ')
     .map(classname => `${MELODY_CUSTOMIZATION_CLASS_PREFIX}-${classname}`)
     .join(' ');
+
+/**
+ * Get the next machine action
+ */
+export function getNextMachineAction(
+    currentState: MachineStates,
+): MachineAction {
+    switch (currentState) {
+        case 'buffering': {
+            return 'NOOP';
+        }
+        case 'playing': {
+            return 'STOP';
+        }
+        case 'stopped': {
+            return 'PLAY';
+        }
+        default: {
+            return 'FAILED';
+        }
+    }
+}

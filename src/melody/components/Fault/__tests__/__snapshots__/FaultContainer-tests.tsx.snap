@@ -3,7 +3,7 @@
 exports[`FaultContainer renders 1`] = `
 <div class="errorContainer">
   <div>alpine white</div>
-  <button class="btn errorContainer__reloadBtn">Reload</button>
+  <button class="btn errorContainer__reloadBtn" role="button">Reload</button>
 </div>
 `;
 

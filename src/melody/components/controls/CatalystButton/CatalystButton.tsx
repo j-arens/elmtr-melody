@@ -4,7 +4,10 @@ import { WithOptionalClassName } from '@melody/components/type';
 import { Action } from '@redux/type';
 import stateMachine from '@state-machine/index';
 import { MachineAction, MachineStates } from '@state-machine/type';
-import { formatPlaybackRate } from '@utils/index';
+import {
+    formatPlaybackRate,
+    getNextMachineAction,
+} from '@utils/index';
 import { h } from 'preact';
 const s = require('../styles.scss');
 
@@ -19,23 +22,6 @@ export interface DispatchProps {
 
 type Props = StateProps & DispatchProps & WithOptionalClassName;
 
-function getMachineAction(currentState: MachineStates) {
-    switch (currentState) {
-        case 'buffering': {
-            return 'NOOP';
-        }
-        case 'playing': {
-            return 'STOP';
-        }
-        case 'stopped': {
-            return 'PLAY';
-        }
-        default: {
-            return 'FAILED';
-        }
-    }
-}
-
 export default ({
     playbackRate,
     currentState,
@@ -44,7 +30,7 @@ export default ({
 }: Props) => {
     const defaultClass = `${className} ${s.playbackCtrl} melody-playbackCtrl`;
     const bufferClass = `${defaultClass} ${s['playbackCtrl--buffering']}`;
-    const cycle = () => cycleState(getMachineAction(currentState));
+    const cycle = () => cycleState(getNextMachineAction(currentState));
     return (currentState === 'buffering' ?
         <BaseButton
             key="catalyst"

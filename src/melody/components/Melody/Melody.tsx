@@ -12,7 +12,7 @@ import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 const s = require('./style.scss');
 
-interface Props {
+export interface StateProps {
     currentState: MachineStates;
     lastState: MachineStates;
     tracks: Track[];
@@ -24,11 +24,16 @@ interface Props {
     timeSync: number;
     repeat: boolean;
     playbackRate: number;
+}
+
+export interface DispatchProps {
     cycleState: (action: MachineAction) => Action;
     updateCurrentTime: (nextTime: number) => Action;
     nextTrack: () => Action;
     setFilelength: (length: number) => Action;
 }
+
+type Props = StateProps & DispatchProps;
 
 export default class extends Component<Props, {}> {
     AudioInterface: HTMLAudioElement = new Audio();

@@ -12,6 +12,7 @@ export default (props: Props) => (
     <button
         {...props}
         class={`${s.btn} ${props.className || ''}`}
+        role="button"
     >
         {props.children}
     </button>
