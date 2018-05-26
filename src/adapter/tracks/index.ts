@@ -11,12 +11,8 @@ import * as mappers from './mappers';
 /**
  * Prepare track data for use with melody
  */
-export const prepareTracks = (tracks: TrackData[]): Track[] => {
-    if (!Array.isArray(tracks)) {
-        tracks = [];
-    }
-    return tracks.map(normalizeTrack);
-};
+export const prepareTracks = (tracks: TrackData[] = []): Track[] =>
+    tracks.map(normalizeTrack);
 
 /**
  * Map track data into the expected shape for melody
