@@ -1,5 +1,5 @@
 const tsc = require('typescript');
-const tsconfig = require('../tsconfig.json');
+const tsconfig = require('../../tsconfig.json');
 const babel = require('babel-core');
 const { h } = require('preact');
 
