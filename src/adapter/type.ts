@@ -31,7 +31,6 @@ interface BaseTrackData {
 }
 
 export interface InternalTrackData extends BaseTrackData {
-    melody_internal_track_duration: string;
     melody_internal_track_url: string;
 }
 
