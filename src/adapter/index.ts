@@ -1,7 +1,7 @@
 import { makeApp, makeError } from '@melody/index';
 import * as actions from '@redux/actions';
 import configureStore from '@redux/index';
-import intialState from '@redux/initialState';
+import initialState from '@redux/initialState';
 import { GLOBAL } from './constants';
 import { compose } from './helpers';
 import { prepareTracks } from './tracks/';
@@ -14,7 +14,7 @@ const throttle = require('lodash.throttle');
 /**
  * Dispatch action to reset the app state
  */
-const reset = (
+export const reset = (
     { dispatch, config }: TrackMiddlewareParams,
 ): TrackMiddlewareParams => {
     dispatch(actions.resetState());
@@ -24,7 +24,7 @@ const reset = (
 /**
  * Dispatch action to load component style view
  */
-const view = (
+export const view = (
     { dispatch, config }: TrackMiddlewareParams,
 ): TrackMiddlewareParams => {
     const style = config.melody_component_style;
@@ -35,7 +35,7 @@ const view = (
 /**
  * Dispatch action to load the audio tracks
  */
-const tracks = (
+export const tracks = (
     { dispatch, config }: TrackMiddlewareParams,
 ): TrackMiddlewareParams => {
     const audioTracks = config.melody_audio_tracks;
@@ -57,7 +57,7 @@ const initialize = compose(
  * Creates a new Melody App instance and configures it
  */
 const newInstance = throttle((config: Config, id: string): void => {
-    const store = configureStore(intialState);
+    const store = configureStore(initialState);
     initialize({ dispatch: store.dispatch, config });
 
     if (process.env.NODE_ENV === 'development') {

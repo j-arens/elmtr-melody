@@ -4,37 +4,18 @@
   "description": "@TODO",
   "main": "public/js/melody.bundle.js",
   "author": "Josh Arens",
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "ts",
-      "tsx"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/*.(ts|tsx)"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "transform": {
-      "\\.(ts|tsx)$": "<rootDir>/dev/tests-preprocessor.js"
-    },
-    "moduleNameMapper": {
-      "mediaframe": "<rootDir>/dev/mocks/mediaframe",
-      "@mocks(.*)$": "<rootDir>dev/mocks/$1",
-      "@tracks": "<rootDir>/dev/fixtures/tracks",
-      "@fixtures(.*)$": "<rootDir>/dev/fixtures/$1",
-      "@utils": "<rootDir>/src/melody/utils",
-      "@state-machine": "<rootDir>/src/melody/state-machine",
-      "@constants": "<rootDir>/src/melody/constants",
-      "@components(.*)$": "<rootDir>/src/melody/components/$1",
-      "@views(.*)$": "<rootDir>/src/melody/views/$1",
-      "@redux(.*)$": "<rootDir>/src/melody/redux$1",
-      "\\.(scss)$": "identity-obj-proxy"
-    },
-    "snapshotSerializers": [
-      "jest-serializer-html-string"
-    ]
+  "dependencies": {
+    "@wordpress/i18n": "^1.0.0",
+    "classnames": "^2.2.5",
+    "lodash.get": "^4.4.2",
+    "lodash.mergewith": "^4.6.1",
+    "lodash.set": "^4.3.2",
+    "lodash.throttle": "^4.1.1",
+    "preact": "^8.2.7",
+    "preact-redux": "^2.0.3",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "typesafe-actions": "^1.1.2"
   },
   "devDependencies": {
     "@types/backbone": "^1.3.42",
@@ -70,19 +51,6 @@
     "typescript": "^2.8.3",
     "typescript-eslint-parser": "^12.0.0",
     "webpack": "^3.11.0"
-  },
-  "dependencies": {
-    "@wordpress/i18n": "^1.0.0",
-    "classnames": "^2.2.5",
-    "lodash.get": "^4.4.2",
-    "lodash.mergewith": "^4.6.1",
-    "lodash.set": "^4.3.2",
-    "lodash.throttle": "^4.1.1",
-    "preact": "^8.2.7",
-    "preact-redux": "^2.0.3",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "typesafe-actions": "^1.1.2"
   },
   "scripts": {
     "build:adapter": "webpack --config ./dev/webpack.config.js --env.libs=adapter --progress --colors",
