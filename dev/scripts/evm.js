@@ -13,6 +13,25 @@ const INSTALL_DIR = path.resolve(process.cwd(), './dev/elementor');
 
 process.on('unhandledRejection', () => {});
 
+function makeTaskRunner(tasks) {
+    let currentTask = 0;
+    const next = (...args) => {
+        if (currentTask < tasks.length) {
+            tasks[currentTask++](...args);
+        }
+    };
+    return { next };
+}
+
+let taskRunner;
+
+function fatalProcessError(msg = '') {
+    const defaultMsg = 'fatal error occured while trying to get the latest elementor installed!';
+    console.log(colors.error(msg || defaultMsg));
+    console.error(Error(e));
+    process.exit(0);
+}
+
 /**
  * file structure utils
  */
@@ -27,7 +46,7 @@ const paths = {
  * @param {string} href
  * @return {object} 
  */
-const makeReqParams = href => {
+function makeReqParams(href) {
     const { host, path } = url.parse(href);
     return {
         host,
@@ -59,45 +78,71 @@ const handleRedirect = next => res => {
 
 /**
  * Pick a release object at the specefied offest
- * @param {object} json 
+ * @param {object} json
  * @param {number} index
- * @return {object} 
+ * @return {object}
  */
-const pick = (json, index) => {
+function pick(json, index) {
     if (!json.length) {
-        console.log(colors.error('😱 No releases available!'));
-        process.exit(0);
+        // console.log(colors.error('😱 No releases available!'));
+        // process.exit(0);
+        fatalProcessError('😱 No releases available!');
     }
     if ((index < 0) || (index > (json.length - 1))) {
-        console.log(colors.error(`😱 No release at index ${index}!`));
-        process.exit(0);
+        // console.log(colors.error(`😱 No release at index ${index}!`));
+        // process.exit(0);
+        fatalProcessError(`😱 No release at index ${index}!`);
     }
     return json[index];
 };
 
+function install() {
+    // npm i
+    // npx grunt styles
+    // npx grunt scripts
+    // rm -rf node_modules
+    // run move and rimraf
+    console.log(colors.info('👷 Installing elementor...'));
+    // execSync(`cd ${INSTALL_DIR} * && npm i && npx grunt styles && npx grunt scripts && rm -rf node_modules`);
+    // execSync(`cd ${INSTALL_DIR} && PDIR=$(ls | head -1) && mv $PDIR/* && rm -r $PDIR`);
+    taskRunner.next();
+}
+
+
 /**
  * Unzips a release, moves it, and does a little housekeeping
  */
-const installZip = () => {
+// const installZip = () => {
+//     if (paths.exists(INSTALL_DIR)) {
+//         paths.clear(INSTALL_DIR);
+//     }
+//     console.log(colors.info(`🌟 Extracting to ${INSTALL_DIR}`));
+//     execSync(`unzip ${DOWNLOAD_PATH} -d ${INSTALL_DIR}`);
+//     execSync(`cd ${INSTALL_DIR} && PDIR=$(ls | head -1) && shopt -s dotglob && mv $PDIR/* . && rm -r $PDIR`);
+// };
+
+function unzip () {
     if (paths.exists(INSTALL_DIR)) {
         paths.clear(INSTALL_DIR);
     }
     console.log(colors.info(`🌟 Extracting to ${INSTALL_DIR}`));
-    execSync(`unzip ${DOWNLOAD_PATH} -d ${INSTALL_DIR}`);
-    execSync(`cd ${INSTALL_DIR} && PDIR=$(ls | head -1) && shopt -s dotglob && mv $PDIR/* . && rm -r $PDIR`);
-};
+    execSync(`gunzip ${DOWNLOAD_PATH} -d ${INSTALL_DIR}`);
+    taskRunner.next();
+}
 
 /**
  * Stream packaged release to temp downloads dir
  * @param {http.ClientRequest} res 
  */
-const streamToTemp = res => {
+function streamToTemp(res) {
     if (!paths.exists(DOWNLOAD_DIR)) {
         paths.make(DOWNLOAD_DIR);
     }
     const dest = fs.createWriteStream(DOWNLOAD_PATH, { encoding: 'binary' });
     res.pipe(dest);
-    res.on('end', installZip);
+    // res.on('end', installZip);
+    // res.on('end', unzip);
+    res.on('end', taskRunner.next.bind(taskRunner));
 };
 
 /**
@@ -106,21 +151,23 @@ const streamToTemp = res => {
  * @param {string} obj.name - name
  * @param {string} obj.zipball_url - zipball_url
  */
-const download = ({ name, zipball_url }) => {
+function download({ name, zipball_url }) {
     console.log(colors.info(`⬇️ Downloading release tagged ${name}...`));
     try {
         const params = makeReqParams(zipball_url);
-        https.get(params, handleRedirect(streamToTemp));
+        // https.get(params, handleRedirect(streamToTemp));
+        https.get(params, handleRedirect(taskRunner.next.bind(taskRunner)));
     } catch (e) {
-        console.log(colors.error('😱 Download of Elementor failed!'));
-        console.error(Error(e));
+        // console.log(colors.error('😱 Download of Elementor failed!'));
+        // console.error(Error(e));
+        fatalProcessError('😱 Download of Elementor failed!');
     }
 };
 
 /**
  * Get the latest tagged release of elementor and unzip it
  */
-const getLatest = () => {
+function getLatest() {
     console.log(colors.info('📡 Getting the latest release of elementor...'));
     try {
         const params = makeReqParams(`https://api.github.com/repos/${OWNER}/${REPO}/tags`);
@@ -130,13 +177,32 @@ const getLatest = () => {
             res.on('data', data => body += data);
             res.on('end', () => {
                 const release = pick(JSON.parse(body), 0);
-                download(release);
+                // download(release);
+                // next(release);
+                taskRunner.next(release);
             });
         });
     } catch (e) {
-        console.log(colors.error('😱 Unable to get latest Elementor release!'));
-        console.error(Error(e));
+        // console.log(colors.error('😱 Unable to get latest Elementor release!'));
+        // console.error(Error(e));
+        fatalProcessError('😱 Unable to get latest Elementor release!');
     }
 };
 
-module.exports = getLatest;
+const tasks = [
+    getLatest,
+    download,
+    streamToTemp,
+    unzip,
+    install,
+];
+
+// module.exports = getLatest;
+// module.exports = taskRunner(tasks).next.bind(taskRunner);
+
+// module.exports = () => taskRunner(tasks).next();
+
+module.exports = () => {
+    taskRunner = makeTaskRunner(tasks);
+    taskRunner.next();
+};
