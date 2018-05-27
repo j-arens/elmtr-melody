@@ -4,6 +4,7 @@ const http = require('http');
 const { execSync } = require('child_process');
 const url = require('url');
 const colors = require('./colors');
+const { makeTaskRunner, fatalProcessError, paths } = require('./utils');
 
 const OWNER = 'pojome';
 const REPO = 'elementor';
@@ -13,33 +14,7 @@ const INSTALL_DIR = path.resolve(process.cwd(), './dev/elementor');
 
 process.on('unhandledRejection', () => {});
 
-function makeTaskRunner(tasks) {
-    let currentTask = 0;
-    const next = (...args) => {
-        if (currentTask < tasks.length) {
-            tasks[currentTask++](...args);
-        }
-    };
-    return { next };
-}
-
 let taskRunner;
-
-function fatalProcessError(msg = '') {
-    const defaultMsg = 'fatal error occured while trying to get the latest elementor installed!';
-    console.log(colors.error(msg || defaultMsg));
-    console.error(Error(e));
-    process.exit(0);
-}
-
-/**
- * file structure utils
- */
-const paths = {
-    exists: path => fs.existsSync(path),
-    make: path => execSync(`mkdir ${path}`),
-    clear: path => execSync(`rm -r ${path}/*`),
-};
 
 /**
  * Makes a request params object with a user-agent header for github api
@@ -92,21 +67,19 @@ function pick(json, index) {
     return json[index];
 };
 
+/**
+ * Run elementor build scripts, moves it, and doesna little housekeeping
+ */
 function install() {
-    // npm i
-    // npx grunt styles
-    // npx grunt scripts
-    // rm -rf node_modules
-    // run move and rimraf
-    console.log(colors.info('👷 Installing elementor...'));
-    execSync(`cd ${INSTALL_DIR} * && npm i && npx grunt styles && npx grunt scripts && rm -rf node_modules`);
-    execSync(`cd ${INSTALL_DIR} && PDIR=$(ls | head -1) && mv $PDIR/* && rm -r $PDIR`);
+    console.log(colors.info('👷 Installing elementor, please wait...'));
+    execSync(`cd ${INSTALL_DIR}/* && npm i && npx grunt styles && npx grunt scripts && rm -rf node_modules`);
+    execSync(`cd ${INSTALL_DIR} && PDIR=$(ls | head -1) && mv $PDIR/* . && rm -r $PDIR`);
+    console.log(colors.info('🌟 Latest version of elementor has been installed!'));
     taskRunner.next();
 }
 
-
 /**
- * Unzips a release, moves it, and does a little housekeeping
+ * Unzips a release
  */
 function unzip () {
     if (paths.exists(INSTALL_DIR)) {
