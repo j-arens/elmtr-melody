@@ -84,13 +84,9 @@ const handleRedirect = next => res => {
  */
 function pick(json, index) {
     if (!json.length) {
-        // console.log(colors.error('😱 No releases available!'));
-        // process.exit(0);
         fatalProcessError('😱 No releases available!');
     }
     if ((index < 0) || (index > (json.length - 1))) {
-        // console.log(colors.error(`😱 No release at index ${index}!`));
-        // process.exit(0);
         fatalProcessError(`😱 No release at index ${index}!`);
     }
     return json[index];
@@ -103,8 +99,8 @@ function install() {
     // rm -rf node_modules
     // run move and rimraf
     console.log(colors.info('👷 Installing elementor...'));
-    // execSync(`cd ${INSTALL_DIR} * && npm i && npx grunt styles && npx grunt scripts && rm -rf node_modules`);
-    // execSync(`cd ${INSTALL_DIR} && PDIR=$(ls | head -1) && mv $PDIR/* && rm -r $PDIR`);
+    execSync(`cd ${INSTALL_DIR} * && npm i && npx grunt styles && npx grunt scripts && rm -rf node_modules`);
+    execSync(`cd ${INSTALL_DIR} && PDIR=$(ls | head -1) && mv $PDIR/* && rm -r $PDIR`);
     taskRunner.next();
 }
 
@@ -112,21 +108,12 @@ function install() {
 /**
  * Unzips a release, moves it, and does a little housekeeping
  */
-// const installZip = () => {
-//     if (paths.exists(INSTALL_DIR)) {
-//         paths.clear(INSTALL_DIR);
-//     }
-//     console.log(colors.info(`🌟 Extracting to ${INSTALL_DIR}`));
-//     execSync(`unzip ${DOWNLOAD_PATH} -d ${INSTALL_DIR}`);
-//     execSync(`cd ${INSTALL_DIR} && PDIR=$(ls | head -1) && shopt -s dotglob && mv $PDIR/* . && rm -r $PDIR`);
-// };
-
 function unzip () {
     if (paths.exists(INSTALL_DIR)) {
         paths.clear(INSTALL_DIR);
     }
     console.log(colors.info(`🌟 Extracting to ${INSTALL_DIR}`));
-    execSync(`gunzip ${DOWNLOAD_PATH} -d ${INSTALL_DIR}`);
+    execSync(`unzip ${DOWNLOAD_PATH} -d ${INSTALL_DIR}`);
     taskRunner.next();
 }
 
@@ -140,8 +127,6 @@ function streamToTemp(res) {
     }
     const dest = fs.createWriteStream(DOWNLOAD_PATH, { encoding: 'binary' });
     res.pipe(dest);
-    // res.on('end', installZip);
-    // res.on('end', unzip);
     res.on('end', taskRunner.next.bind(taskRunner));
 };
 
@@ -155,11 +140,8 @@ function download({ name, zipball_url }) {
     console.log(colors.info(`⬇️ Downloading release tagged ${name}...`));
     try {
         const params = makeReqParams(zipball_url);
-        // https.get(params, handleRedirect(streamToTemp));
         https.get(params, handleRedirect(taskRunner.next.bind(taskRunner)));
     } catch (e) {
-        // console.log(colors.error('😱 Download of Elementor failed!'));
-        // console.error(Error(e));
         fatalProcessError('😱 Download of Elementor failed!');
     }
 };
@@ -177,14 +159,10 @@ function getLatest() {
             res.on('data', data => body += data);
             res.on('end', () => {
                 const release = pick(JSON.parse(body), 0);
-                // download(release);
-                // next(release);
                 taskRunner.next(release);
             });
         });
     } catch (e) {
-        // console.log(colors.error('😱 Unable to get latest Elementor release!'));
-        // console.error(Error(e));
         fatalProcessError('😱 Unable to get latest Elementor release!');
     }
 };
@@ -196,11 +174,6 @@ const tasks = [
     unzip,
     install,
 ];
-
-// module.exports = getLatest;
-// module.exports = taskRunner(tasks).next.bind(taskRunner);
-
-// module.exports = () => taskRunner(tasks).next();
 
 module.exports = () => {
     taskRunner = makeTaskRunner(tasks);
