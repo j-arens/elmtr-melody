@@ -11,14 +11,7 @@ Text Domain: elmtr-melody
 Domain Path: /languages
 */
 
-define('MELODY_VERSION', '0.1.0');
-define('MELODY_ROOT', __FILE__);
-define('MELODY_BASE_DIR', __DIR__);
-define('MELODY_PLUGIN_DIR', __DIR__ . '/plugin');
-define('MELODY_TD', 'elmtr-melody');
-define('MELODY_DEV', true);
-
-add_action('elementor/init', 'melodyInit');
+require 'constants.php';
 
 /**
  * Entry points
@@ -56,3 +49,8 @@ function melodyCompatible() {
 
     return true;
 }
+
+/**
+ * Hook in to elementor/init
+ */
+add_action('elementor/init', 'melodyInit');
