@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "898c2b7fd22d5034ad9ecb32b45f586d",
-    "content-hash": "d07697e077e9248b8511b769e649509e",
+    "hash": "5d98c9bf5f9c9c2a836b69495fc85e99",
+    "content-hash": "383cf1a46ae3f2d524a2c5839cf2d09e",
     "packages": [
         {
             "name": "downshiftorg/container",
@@ -95,6 +95,126 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "eloquent/phony",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eloquent/phony.git",
+                "reference": "cdda528e448f717c6472f2c412f1e58dbbb740cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eloquent/phony/zipball/cdda528e448f717c6472f2c412f1e58dbbb740cb",
+                "reference": "cdda528e448f717c6472f2c412f1e58dbbb740cb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7"
+            },
+            "require-dev": {
+                "errors/exceptions": "^0.2",
+                "ext-pdo": "*",
+                "friendsofphp/php-cs-fixer": "^2",
+                "hamcrest/hamcrest-php": "^2",
+                "icecave/semver": "^3",
+                "phpunit/phpunit": "^6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eloquent\\Phony\\": "src"
+                },
+                "files": [
+                    "src/initialize.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erin Millard",
+                    "email": "ezzatron@gmail.com",
+                    "homepage": "http://ezzatron.com/"
+                }
+            ],
+            "description": "Mocks, stubs, and spies for PHP.",
+            "homepage": "http://eloquent-software.com/phony/",
+            "keywords": [
+                "Double",
+                "Dummy",
+                "fake",
+                "mock",
+                "mocking",
+                "spy",
+                "stub",
+                "stubbing",
+                "test"
+            ],
+            "time": "2017-10-05 22:07:57"
+        },
+        {
+            "name": "eloquent/phony-kahlan",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eloquent/phony-kahlan.git",
+                "reference": "2e0197c84121a94a79a038d9e4b19c750ea7fd18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eloquent/phony-kahlan/zipball/2e0197c84121a94a79a038d9e4b19c750ea7fd18",
+                "reference": "2e0197c84121a94a79a038d9e4b19c750ea7fd18",
+                "shasum": ""
+            },
+            "require": {
+                "eloquent/phony": "^2",
+                "kahlan/kahlan": "^4",
+                "php": ">=7"
+            },
+            "require-dev": {
+                "errors/exceptions": "^0.2",
+                "friendsofphp/php-cs-fixer": "^2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eloquent\\Phony\\Kahlan\\": "src"
+                },
+                "files": [
+                    "src/initialize.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erin Millard",
+                    "email": "ezzatron@gmail.com",
+                    "homepage": "http://ezzatron.com/"
+                }
+            ],
+            "description": "Phony for Kahlan.",
+            "homepage": "http://eloquent-software.com/phony/",
+            "keywords": [
+                "Double",
+                "Dummy",
+                "fake",
+                "mock",
+                "mocking",
+                "spy",
+                "stub",
+                "stubbing",
+                "test"
+            ],
+            "time": "2017-10-16 22:19:50"
+        },
         {
             "name": "evenement/evenement",
             "version": "v2.1.0",
@@ -399,7 +519,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/36f83f642443c46f3cf751d4d2ee5d047d757a27",
+                "url": "https://api.github.com/repos/symfony/console/zipball/1b97071a26d028c9bd4588264e101e14f6e7cd00",
                 "reference": "23c06f589689aa3de8bbe314be04535bdb691e51",
                 "shasum": ""
             },
@@ -524,7 +644,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/3296adf6a6454a050679cde90f95350ad604b171",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/25b83a5050c6607e2dfa814ffb15388caf7ce690",
                 "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b",
                 "shasum": ""
             },
@@ -577,7 +697,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": [],
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": []

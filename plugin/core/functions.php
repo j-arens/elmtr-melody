@@ -3,8 +3,7 @@
 namespace Melody\Core\functions;
 
 /**
- * Returns a closure that will include all of the files
- * in the given $dir
+ * Includes all of the files in the given dir and returns them
  * 
  * @param string $dir
  * @return Closure
@@ -15,11 +14,14 @@ function collect($dir) {
     }
 
     $files = array_diff(scandir($dir), ['..', '.']);
+    $included = [];
 
-    return array_map(function($file) use($dir) {
+    foreach($files as $file) {
         if (is_dir($dir . $file)) {
-            return;
+            continue;
         }
-        return include $dir . $file;
-    }, $files);
+        $included[] = include $dir . $file;
+    }
+
+    return $included;
 }

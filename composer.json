@@ -6,7 +6,8 @@
         "downshiftorg/container": "~2.0"
     },
     "require-dev": {
-        "kahlan/kahlan": "^4.1"
+        "kahlan/kahlan": "^4.1",
+        "eloquent/phony-kahlan": "^1.0"
     },
     "authors": [
         {
@@ -24,13 +25,7 @@
             "Melody\\Http\\": "./plugin/http"
         },
         "files": [
-            "./plugin/core/functions.php",
-            "./plugin/notices.php"
-        ]
-    },
-    "autoload-dev": {
-        "files": [
-            "./dev/kahlan/mocks/global-functions.php"
+            "./plugin/core/functions.php"
         ]
     },
     "scripts": {
