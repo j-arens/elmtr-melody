@@ -3,6 +3,25 @@
 namespace Melody\core;
 
 trait EnhancesArtworkAttachments {
+    /**
+     * Maps image sizes onto attachment meta
+     * 
+     * @param string $id
+     * @param array $meta
+     * @return array
+     */
+    protected function mapSizes($id, array $meta) {
+        return array_map(function($size) use($id, $meta) {
+            $uri = wp_get_attachment_image_src($id, $size)[0];
+            return array_merge(
+                $meta['sizes'][$size],
+                [
+                    'uri' => $uri,
+                    'size' => $size,
+                ]
+            );
+        }, array_keys($meta['sizes']));
+    }
     
     /**
      * Adds sizes to melody track artwork data
@@ -38,25 +57,5 @@ trait EnhancesArtworkAttachments {
         }
 
         return $data;
-    }
-
-    /**
-     * Maps image sizes onto attachment meta
-     * 
-     * @param string $id
-     * @param array $meta
-     * @return array
-     */
-    protected function mapSizes($id, array $meta) {
-        return array_map(function($size) use($id, $meta) {
-            $uri = wp_get_attachment_image_src($id, $size)[0];
-            return array_merge(
-                $meta['sizes'][$size],
-                [
-                    'uri' => $uri,
-                    'size' => $size,
-                ]
-            );
-        }, array_keys($meta['sizes']));
     }
 }

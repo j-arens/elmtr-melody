@@ -1,7 +1,7 @@
 <?php
 
-use Melody\Test\Helpers as h;
 use Melody\Core\EnhancesArtworkAttachments;
+use function Melody\Test\Helpers\overrideMethodAccess;
 use function Eloquent\Phony\Kahlan\stubGlobal;
 
 describe('EnhancesArtworkAttachments', function() {
@@ -14,9 +14,29 @@ describe('EnhancesArtworkAttachments', function() {
         $this->instance = new class { use EnhancesArtworkAttachments; };
     });
 
+    describe('mapSizes()', function() {
+        beforeEach(function() {
+            $this->mapSizes = overrideMethodAccess($this->instance, 'mapSizes');
+        });
+
+        it('maps attachment meta sizes to track artwork sizes', function() {
+            $this->wp_get_attachment_image_src->returns(
+                ['//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-150x150.jpg'],
+                ['//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-300x300.jpg'],
+                ['//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-100x100.jpg'],
+                ['//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-320x319.jpg'],
+                ['//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-480x478.jpg']
+            );
+            $result = $this->mapSizes('120', $this->meta);
+            $expected = array_slice($this->prepared['melody_track_artwork']['sizes'], 0, 5);
+            expect($result)->toHaveLength(5);
+            expect($result)->toEqual($expected);
+        });
+    });
+
     describe('addAttachmentSizes()', function() {
         beforeEach(function() {
-            $this->addAttachmentSizes = h\overrideAccess($this->instance, 'addAttachmentSizes');
+            $this->addAttachmentSizes = overrideMethodAccess($this->instance, 'addAttachmentSizes');
         });
 
         it('should not alter the data if there are no audio tracks', function() {
