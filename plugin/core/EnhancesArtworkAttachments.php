@@ -23,7 +23,7 @@ trait EnhancesArtworkAttachments {
             }
 
             $meta = wp_get_attachment_metadata($id);
-            
+
             $track['melody_track_artwork']['sizes'] = $this->mapSizes($id, $meta);
             $track['melody_track_artwork']['sizes'][] = [
                 'file' => $meta['file'],
