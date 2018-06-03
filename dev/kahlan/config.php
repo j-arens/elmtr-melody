@@ -11,3 +11,9 @@ Filters::apply($this, 'bootstrap', function($next) {
     require MELODY_PLUGIN_DIR . '/notices.php';
     return $next();
 });
+
+// elementor mocks
+Filters::apply($this, 'namespaces', function($next) {
+    $this->autoloader()->addPsr4('Elementor\\', 'dev/kahlan/mocks/elementor');
+    return $next();
+});
