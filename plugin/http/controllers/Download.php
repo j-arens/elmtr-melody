@@ -27,7 +27,7 @@ class Download extends Controller {
      * 
      * @return boolean
      */
-    protected function vaildateRequest() {
+    protected function validateRequest() {
         if (!$this->request->getParam('clientId')) {
             return false;
         }
@@ -47,16 +47,16 @@ class Download extends Controller {
      */
     protected function streamFile($path, $mime) {
         ob_end_flush();
-        header("Content-Type: audio/{$mime}");
+        header("Content-Type: $mime");
         header('Content-Disposition: attachment; filename="'.basename($path).'"');
-        @readfile($path);
+        readfile($path);
     }
 
     /**
      * {@inheritdoc}
      */
     protected function respond() {
-        if (!$this->vaildateRequest()) {
+        if (!$this->validateRequest()) {
             return http_response_code(403);
         }
 

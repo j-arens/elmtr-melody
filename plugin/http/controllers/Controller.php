@@ -17,7 +17,11 @@ abstract class Controller {
     public function __construct(Request $req) {
         $this->request = $req;
         $this->respond();
-        exit;
+        if (defined('MELODY_TEST') && MELODY_TEST) {
+            return;
+        } else {
+            exit;
+        }
     }
 
     /**

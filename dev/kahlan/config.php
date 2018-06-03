@@ -2,8 +2,9 @@
 
 use Kahlan\Filter\Filters;
 
-// load files that tests need
+// setup test env
 Filters::apply($this, 'bootstrap', function($next) {
+    define('MELODY_TEST', true);
     require 'constants.php';
     require 'dev/kahlan/helpers.php';
     require 'dev/kahlan/mocks/wordpress.php';
