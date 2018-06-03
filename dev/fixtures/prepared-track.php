@@ -1,0 +1,72 @@
+<?php
+
+return [
+    'melody_audio_source' => 'media-library',
+    'melody_track_id' => 120,
+    'melody_internal_track_url' => '//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit.mp3',
+    'melody_internal_track_duration' => '',
+    'melody_track_picker_control' => [
+        'id' => 120,
+    ],
+    'melody_external_track_url' => '',
+    'melody_track_title' => 'Masquerade Theme (skit)',
+    'melody_track_album' => 'In The Mood for Life',
+    'melody_track_artist' => 'WAX TAILOR',
+    'melody_track_artwork' => [
+        'url' => '//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image.jpg',
+        'id' => 121,
+        'sizes' => [
+            [
+                'file' => 'WAX-TAILOR-Masquerade-Theme-skit-mp3-image-150x150.jpg',
+                'width' => 150,
+                'height' => 150,
+                'mime-type' => 'image/jpeg',
+                'uri' => '//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-150x150.jpg',
+                'size' => 'thumbnail',
+            ],
+            [
+                'file' => 'WAX-TAILOR-Masquerade-Theme-skit-mp3-image-300x300.jpg',
+                'width' => 300,
+                'height' => 300,
+                'mime-type' => 'image/jpeg',
+                'uri' => '//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-300x300.jpg',
+                'size' => 'medium',
+            ],
+            [
+                'file' => 'WAX-TAILOR-Masquerade-Theme-skit-mp3-image-100x100.jpg',
+                'width' => 100,
+                'height' => 100,
+                'mime-type' => 'image/jpeg',
+                'uri' => '//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-100x100.jpg',
+                'size' => 'twentyseventeen-thumbnail-avatar',
+            ],
+            [
+                'file' => 'WAX-TAILOR-Masquerade-Theme-skit-mp3-image-320x319.jpg',
+                'width' => 320,
+                'height' => 319,
+                'mime-type' => 'image/jpeg',
+                'uri' => '//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-320x319.jpg',
+                'size' => 'melody-xs',
+            ],
+            [
+                'file' => 'WAX-TAILOR-Masquerade-Theme-skit-mp3-image-480x478.jpg',
+                'width' => 480,
+                'height' => 478,
+                'mime-type' => 'image/jpeg',
+                'uri' => '//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image-480x478.jpg',
+                'size' => 'melody-sm',
+            ],
+            [
+                'file' => '2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image.jpg',
+                'uri' => '//localhost:4001/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit-mp3-image.jpg',
+                'width' => 512,
+                'height' => 510,
+                'mime-type' => 'image/jpg',
+                'size' => 'full',
+            ],
+        ],
+    ],
+    'melody_track_downloadable' => 'off',
+    'melody_track_download_source' => '',
+    '_id' => '40927ff',
+];
