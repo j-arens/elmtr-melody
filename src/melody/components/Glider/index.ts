@@ -1,17 +1,14 @@
-import {
-    toggleGliderDragging,
-    triggerTimeSync,
-    updateCurrentTime,
-} from '@redux/actions';
+import { toggleGliderDragging } from '@redux/modules/ui/actions';
+import { triggerTimeSync, updateCurrentTime } from '@redux/modules/audio/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
 import DragHelper from '../DragHelper';
 import Glider from './Glider';
 
 const mapStateToProps = (state: State) => ({
-    currentState: state.currentState,
-    currentTime: state.currentTime,
-    duration: state.filelength,
+    currentState: state.state.currentState,
+    currentTime: state.audio.currentTime,
+    duration: state.audio.filelength,
 });
 
 const mapDispatchToProps = (dispatch) => ({

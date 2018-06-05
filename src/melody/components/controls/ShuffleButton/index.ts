@@ -1,11 +1,11 @@
 import { WithOptionalClassName } from '@components/type';
-import { toggleShuffle } from '@redux/actions';
+import { toggleShuffle } from '@redux/modules/audio/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
 import ShuffleButton, { DispatchProps, StateProps } from './ShuffleButton';
 
 const mapStateToProps = (state: State) => ({
-    shuffle: state.shuffle,
+    shuffle: state.audio.shuffle,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,7 +1,8 @@
 import { TrackSize } from '@adapter/type';
 import { MachineStates } from '@state-machine/type';
 import { getReturnOfExpression } from 'typesafe-actions';
-import * as actions from './actions';
+import * as uiActions from '@redux/modules/ui/actions';
+import * as audioActions from '@redux/modules/audio/actions';
 
 export type View =
  | 'simple-toolbar'
@@ -29,18 +30,22 @@ export interface Track {
 }
 
 export interface State {
-    readonly currentState: MachineStates;
-    readonly lastState: MachineStates;
-    readonly tracks: Track[];
-    readonly currentTrack: number;
-    readonly lastTrack: number;
-    readonly shuffle: boolean;
-    readonly repeat: boolean;
-    readonly volume: number;
-    readonly currentTime: number;
-    readonly timeSync: number;
-    readonly playbackRate: number;
-    readonly filelength: number;
+    readonly state: {
+        readonly currentState: MachineStates;
+        readonly lastState: MachineStates;
+    };
+    readonly audio: {
+        readonly tracks: Track[];
+        readonly currentTrack: number;
+        readonly lastTrack: number;
+        readonly shuffle: boolean;
+        readonly repeat: boolean;
+        readonly volume: number;
+        readonly currentTime: number;
+        readonly timeSync: number;
+        readonly playbackRate: number;
+        readonly filelength: number;
+    };
     readonly ui: {
         readonly view: View;
         readonly gliderIsDragging: boolean,
@@ -52,19 +57,8 @@ export interface State {
 export type Dispatch = (params: any) => Action;
 
 const returnOfActions = [
-    actions.updateCurrentTime,
-    actions.nextTrack,
-    actions.prevTrack,
-    actions.toggleShuffle,
-    actions.toggleRepeat,
-    actions.toggleVolDragging,
-    actions.toggleGliderDragging,
-    actions.updateVolume,
-    actions.triggerTimeSync,
-    actions.toggleDock,
-    actions.speedUp,
-    actions.slowDown,
-    actions.changeView,
+    ...Object.values(audioActions),
+    ...Object.values(uiActions),
 ].map(getReturnOfExpression);
 
 interface PayloadAction {
