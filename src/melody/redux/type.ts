@@ -1,8 +1,8 @@
 import { TrackSize } from '@adapter/type';
+import * as audioActions from '@redux/modules/audio/actions';
+import * as uiActions from '@redux/modules/ui/actions';
 import { MachineStates } from '@state-machine/type';
 import { getReturnOfExpression } from 'typesafe-actions';
-import * as uiActions from '@redux/modules/ui/actions';
-import * as audioActions from '@redux/modules/audio/actions';
 
 export type View =
  | 'simple-toolbar'

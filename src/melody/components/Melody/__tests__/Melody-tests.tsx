@@ -38,8 +38,14 @@ describe('Melody', () => {
     it('renders an error if the currentState is fault', () => {
         const testState = {
             ...state,
-            tracks: [{}],
-            currentState: 'fault',
+            state: {
+                ...state.state,
+                currentState: 'fault',
+            },
+            audio: {
+                ...state.audio,
+                tracks: [{}],
+            },
         };
         const store = configureStore(testState);
         const component = render(
@@ -53,7 +59,10 @@ describe('Melody', () => {
     it('flourishes into a nice little application if the conditions are right', () => {
         const testState = {
             ...state,
-            tracks: [track],
+            audio: {
+                ...state.audio,
+                tracks: [track],
+            },
         };
         const store = configureStore(testState);
         const component = render(

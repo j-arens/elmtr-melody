@@ -1,5 +1,5 @@
-import { createAction } from 'typesafe-actions';
 import { View } from '@redux/type';
+import { createAction } from 'typesafe-actions';
 import * as constants from './constants';
 
 export const changeView = createAction(constants.CHANGE_VIEW,

@@ -1,5 +1,5 @@
-import * as constants from './constants';
 import { MachineAction } from '@state-machine/type';
+import * as constants from './constants';
 
 /*
 there are cases (loading new track during playback) where consecutive

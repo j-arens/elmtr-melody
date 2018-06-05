@@ -1,5 +1,5 @@
-import { toggleDock } from '@redux/modules/ui/actions';
 import { slowDown, speedUp } from '@redux/modules/audio/actions';
+import { toggleDock } from '@redux/modules/ui/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
 import Dock, { DispatchProps, OwnProps, StateProps } from './Dock';

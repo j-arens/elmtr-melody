@@ -10,7 +10,7 @@ export function setCurrentTrack(state: State, action: Action): State {
     }
 
     const newIndex = action.payload;
-    const { currentTrack, tracks } = state;
+    const { audio: { currentTrack, tracks } } = state;
 
     if (newIndex < 0 || newIndex > (tracks.length - 1) || currentTrack === newIndex) {
         return state;
@@ -18,7 +18,10 @@ export function setCurrentTrack(state: State, action: Action): State {
 
     return {
         ...state,
-        currentTrack: newIndex,
+        audio: {
+            ...state.audio,
+            currentTrack: newIndex,
+        },
     };
 }
 
@@ -32,7 +35,10 @@ export function setTracks(state: State, action: Action): State {
 
     return {
         ...state,
-        tracks: action.payload,
+        audio: {
+            ...state.audio,
+            tracks: action.payload,
+        },
     };
 }
 
@@ -46,7 +52,10 @@ export function updateCurrentTime(state: State, action: Action): State {
 
     return {
         ...state,
-        currentTime: action.payload,
+        audio: {
+            ...state.audio,
+            currentTime: action.payload,
+        },
     };
 }
 
@@ -54,13 +63,16 @@ export function updateCurrentTime(state: State, action: Action): State {
  * NEXT_TRACK
  */
 export function nextTrack(state: State, action: Action): State {
-    const { tracks, currentTrack, shuffle } = state;
+    const { audio: { tracks, currentTrack, shuffle } } = state;
 
     if (shuffle) {
         return {
             ...state,
-            lastTrack: currentTrack,
-            currentTrack: shuffleTracks(tracks, currentTrack),
+            audio: {
+                ...state.audio,
+                lastTrack: currentTrack,
+                currentTrack: shuffleTracks(tracks, currentTrack),
+            },
         };
     }
 
@@ -71,8 +83,11 @@ export function nextTrack(state: State, action: Action): State {
 
     return {
         ...state,
-        lastTrack: currentTrack,
-        currentTrack: index,
+        audio: {
+            ...state.audio,
+            lastTrack: currentTrack,
+            currentTrack: index,
+        },
     };
 }
 
@@ -80,13 +95,16 @@ export function nextTrack(state: State, action: Action): State {
  * PREV_TRACK
  */
 export function prevTrack(state: State, action: Action): State {
-    const { tracks, currentTrack, lastTrack, shuffle } = state;
+    const { audio: { tracks, currentTrack, lastTrack, shuffle } } = state;
 
     if (shuffle) {
         return {
             ...state,
-            lastTrack: currentTrack,
-            currentTrack: lastTrack,
+            audio: {
+                ...state.audio,
+                lastTrack: currentTrack,
+                currentTrack: lastTrack,
+            },
         };
     }
 
@@ -97,8 +115,11 @@ export function prevTrack(state: State, action: Action): State {
 
     return {
         ...state,
-        lastTrack: currentTrack,
-        currentTrack: index,
+        audio: {
+            ...state.audio,
+            lastTrack: currentTrack,
+            currentTrack: index,
+        },
     };
 }
 
@@ -108,7 +129,10 @@ export function prevTrack(state: State, action: Action): State {
 export function toggleShuffle(state: State, action: Action): State {
     return {
         ...state,
-        shuffle: !state.shuffle,
+        audio: {
+            ...state.audio,
+            shuffle: !state.audio.shuffle,
+        },
     };
 }
 
@@ -118,7 +142,10 @@ export function toggleShuffle(state: State, action: Action): State {
 export function toggleRepeat(state: State, action: Action): State {
     return {
         ...state,
-        repeat: !state.repeat,
+        audio: {
+            ...state.audio,
+            repeat: !state.audio.repeat,
+        },
     };
 }
 
@@ -132,13 +159,16 @@ export function updateVolume(state: State, action: Action): State {
 
     const newLevel = action.payload;
 
-    if (state.volume === newLevel) {
+    if (state.audio.volume === newLevel) {
         return state;
     }
 
     return {
         ...state,
-        volume: Number(newLevel.toFixed(4)),
+        audio: {
+            ...state.audio,
+            volume: Number(newLevel.toFixed(4)),
+        },
     };
 }
 
@@ -148,7 +178,10 @@ export function updateVolume(state: State, action: Action): State {
 export function triggerTimeSync(state: State, action: Action): State {
     return {
         ...state,
-        timeSync: state.timeSync + 1,
+        audio: {
+            ...state.audio,
+            timeSync: state.audio.timeSync + 1,
+        },
     };
 }
 
@@ -156,7 +189,7 @@ export function triggerTimeSync(state: State, action: Action): State {
  * SPEED_UP
  */
 export function speedUp(state: State): State {
-    const { playbackRate } = state;
+    const { audio: { playbackRate } } = state;
 
     if (playbackRate === 2) {
         return state;
@@ -164,7 +197,10 @@ export function speedUp(state: State): State {
 
     return {
         ...state,
-        playbackRate: playbackRate + 0.25,
+        audio: {
+            ...state.audio,
+            playbackRate: playbackRate + 0.25,
+        },
     };
 }
 
@@ -172,7 +208,7 @@ export function speedUp(state: State): State {
  * SLOW_DOWN
  */
 export function slowDown(state: State): State {
-    const { playbackRate } = state;
+    const { audio: { playbackRate } } = state;
 
     if (playbackRate === 0.5) {
         return state;
@@ -180,7 +216,10 @@ export function slowDown(state: State): State {
 
     return {
         ...state,
-        playbackRate: playbackRate - 0.25,
+        audio: {
+            ...state.audio,
+            playbackRate: playbackRate - 0.25,
+        },
     };
 }
 
@@ -198,6 +237,9 @@ export function setFilelength(state: State, action: Action): State {
 
     return {
         ...state,
-        filelength: Math.round(action.payload),
+        audio: {
+            ...state.audio,
+            filelength: Math.round(action.payload),
+        },
     };
 }

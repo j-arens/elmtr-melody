@@ -1,9 +1,9 @@
-import { cycleState } from '@redux/modules/state/actions';
 import {
     nextTrack,
     setFilelength,
     updateCurrentTime,
 } from '@redux/modules/audio/actions';
+import { cycleState } from '@redux/modules/state/actions';
 import { State } from '@redux/type';
 import { MachineAction } from '@state-machine/type';
 import { connect } from 'preact-redux';

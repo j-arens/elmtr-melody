@@ -1,6 +1,6 @@
+import initialState from '@redux/initialState';
 import * as actions from '../actions';
 import reducer from '../index';
-import initialState from '@redux/initialState';
 
 describe('TOGGLE_VOL_DRAGGING', () => {
     it('should toggle volIsDragging flag', () => {

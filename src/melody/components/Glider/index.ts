@@ -1,5 +1,5 @@
-import { toggleGliderDragging } from '@redux/modules/ui/actions';
 import { triggerTimeSync, updateCurrentTime } from '@redux/modules/audio/actions';
+import { toggleGliderDragging } from '@redux/modules/ui/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
 import DragHelper from '../DragHelper';

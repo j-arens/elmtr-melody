@@ -1,8 +1,8 @@
+import initialState from '@redux/initialState';
+import { MachineStates } from '@redux/state-machine/type';
 import * as actions from '../actions';
 import { CYCLE_STATE } from '../constants';
-import { MachineStates } from '@redux/state-machine/type';
 import reducer from '../index';
-import initialState from '@redux/initialState';
 const tracks = require('@tracks');
 
 describe('CYCLE_STATE', () => {
@@ -14,13 +14,16 @@ describe('CYCLE_STATE', () => {
 
         const state = {
             ...initialState,
-            currentState: 'fetching' as MachineStates,
-            lastState: 'stopped' as MachineStates,
+            state: {
+                ...initialState.currentState,
+                currentState: 'fetching' as MachineStates,
+                lastState: 'stopped' as MachineStates,
+            },
         };
 
         const newState = reducer(state, action);
-        expect(newState.currentState).toBe('stopped');
-        expect(newState.lastState).toBe('fetching');
+        expect(newState.state.currentState).toBe('stopped');
+        expect(newState.state.lastState).toBe('fetching');
     });
 
     it('cycles to fault if invalid transition', () => {
@@ -31,13 +34,16 @@ describe('CYCLE_STATE', () => {
 
         const state = {
             ...initialState,
-            currentState: 'fetching' as MachineStates,
-            lastState: 'stopped' as MachineStates,
+            state: {
+                ...initialState.state,
+                currentState: 'fetching' as MachineStates,
+                lastState: 'stopped' as MachineStates,
+            },
         };
 
         const newState = reducer(state, action);
-        expect(newState.currentState).toBe('fault');
-        expect(newState.lastState).toBe('fetching');
+        expect(newState.state.currentState).toBe('fault');
+        expect(newState.state.lastState).toBe('fetching');
     });
 });
 

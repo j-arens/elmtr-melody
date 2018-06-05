@@ -1,7 +1,7 @@
 import DragHelper from '@components/DragHelper/';
 import { WithOptionalClassName } from '@melody/components/type';
-import { toggleVolDragging } from '@redux/modules/ui/actions';
 import { updateVolume } from '@redux/modules/audio/actions';
+import { toggleVolDragging } from '@redux/modules/ui/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
 import { compose } from 'redux';

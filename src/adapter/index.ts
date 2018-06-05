@@ -1,9 +1,9 @@
 import { makeApp, makeError } from '@melody/index';
-import * as stateActions from '@redux/modules/state/actions';
-import * as audioActions from '@redux/modules/audio/actions';
-import * as uiActions from '@redux/modules/ui/actions';
 import configureStore from '@redux/index';
 import initialState from '@redux/initialState';
+import * as audioActions from '@redux/modules/audio/actions';
+import * as stateActions from '@redux/modules/state/actions';
+import * as uiActions from '@redux/modules/ui/actions';
 import { GLOBAL } from './constants';
 import { compose } from './helpers';
 import { prepareTracks } from './tracks/';
