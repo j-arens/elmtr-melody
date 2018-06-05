@@ -1,45 +1,7 @@
-const tracks = require('@tracks');
-import { MachineStates } from '../../state-machine/type';
+import reducer from '../index';
 import * as actions from '../actions';
-import { CYCLE_STATE } from '../constants';
-import initialState from '../initialState';
-import reducer from '../rootReducer';
-
-describe('CYCLE_STATE', () => {
-    it('cycles the state machine', () => {
-        const action = {
-            type: CYCLE_STATE,
-            payload: 'SUCCESS',
-        };
-
-        const state = {
-            ...initialState,
-            currentState: 'fetching' as MachineStates,
-            lastState: 'stopped' as MachineStates,
-        };
-
-        const newState = reducer(state, action);
-        expect(newState.currentState).toBe('stopped');
-        expect(newState.lastState).toBe('fetching');
-    });
-
-    it('cycles to fault if invalid transition', () => {
-        const action = {
-            type: CYCLE_STATE,
-            payload: 'PLAY',
-        };
-
-        const state = {
-            ...initialState,
-            currentState: 'fetching' as MachineStates,
-            lastState: 'stopped' as MachineStates,
-        };
-
-        const newState = reducer(state, action);
-        expect(newState.currentState).toBe('fault');
-        expect(newState.lastState).toBe('fetching');
-    });
-});
+import initialState from '@redux/initialState';
+const tracks = require('@tracks');
 
 describe('SET_CURRENT_TRACK', () => {
     let state;
@@ -162,14 +124,6 @@ describe('TOGGLE_REPEAT', () => {
     });
 });
 
-describe('TOGGLE_VOL_DRAGGING', () => {
-    it('should toggle volIsDragging flag', () => {
-        const action = actions.toggleVolDragging();
-        const newState = reducer(initialState, action);
-        expect(newState.ui.volIsDragging).toBe(true);
-    });
-});
-
 describe('UPDATE_VOLUME', () => {
     it('should update the volume', () => {
         const action = actions.updateVolume(0.5);
@@ -184,42 +138,11 @@ describe('UPDATE_VOLUME', () => {
     });
 });
 
-describe('TOGGLE_GLIDER_DRAGGING', () => {
-    it('should toggle gliderIsDragging flag', () => {
-        const action = actions.toggleGliderDragging();
-        const newState = reducer(initialState, action);
-        expect(newState.ui.gliderIsDragging).toBe(true);
-    });
-});
-
 describe('TRIGGER_TIME_SYNC', () => {
     it('should increment timeSync', () => {
         const action = actions.triggerTimeSync();
         const newState = reducer(initialState, action);
         expect(newState.timeSync).toBe(1);
-    });
-});
-
-describe('RESET_STATE', () => {
-    it('should reset state to initialState', () => {
-        const action = actions.resetState();
-        const state = {
-            ...initialState,
-            shuffle: true,
-            currentTrack: 4,
-            lastTrack: 1,
-            tracks,
-        };
-        const newState = reducer(state, action);
-        expect(newState).toEqual(initialState);
-    });
-});
-
-describe('TOGGLE_DOCK', () => {
-    it('should toggle showing the dock', () => {
-        const action = actions.toggleDock();
-        const newState = reducer(initialState, action);
-        expect(newState.ui.showDock).toBe(true);
     });
 });
 
@@ -256,20 +179,6 @@ describe('SLOW_DOWN', () => {
         };
         const newState = reducer(state, action);
         expect(newState.playbackRate).toBe(0.5);
-    });
-});
-
-describe('CHANGE_VIEW', () => {
-    it('should change the view', () => {
-        const action = actions.changeView('simple-toolbar');
-        const newState = reducer(initialState, action);
-        expect(newState.ui.view).toBe('simple-toolbar');
-    });
-
-    it('should bail if payload matches the current view', () => {
-        const action = actions.changeView('slider');
-        const newState = reducer(initialState, action);
-        expect(newState).toEqual(initialState);
     });
 });
 
