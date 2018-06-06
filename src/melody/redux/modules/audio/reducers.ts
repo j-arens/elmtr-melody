@@ -1,16 +1,16 @@
-import { Action, State } from '@redux/type';
+import { Action, AudioState } from '@redux/type';
 import { shuffleTracks } from '@utils/index';
 
 /**
  * SET_CURRENT_TRACK
  */
-export function setCurrentTrack(state: State, action: Action): State {
+export function setCurrentTrack(state: AudioState, action: Action): AudioState {
     if (!action.payload) {
         return state;
     }
 
     const newIndex = action.payload;
-    const { audio: { currentTrack, tracks } } = state;
+    const { currentTrack, tracks } = state;
 
     if (newIndex < 0 || newIndex > (tracks.length - 1) || currentTrack === newIndex) {
         return state;
@@ -18,61 +18,49 @@ export function setCurrentTrack(state: State, action: Action): State {
 
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            currentTrack: newIndex,
-        },
+        currentTrack: newIndex,
     };
 }
 
 /**
  * SET_TRACKS
  */
-export function setTracks(state: State, action: Action): State {
+export function setTracks(state: AudioState, action: Action): AudioState {
     if (!action.payload) {
         return state;
     }
 
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            tracks: action.payload,
-        },
+        tracks: action.payload,
     };
 }
 
 /**
  * UPDATE_CURRENT_TIME
  */
-export function updateCurrentTime(state: State, action: Action): State {
+export function updateCurrentTime(state: AudioState, action: Action): AudioState {
     if (action.payload === undefined) {
         return state;
     }
 
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            currentTime: action.payload,
-        },
+        currentTime: action.payload,
     };
 }
 
 /**
  * NEXT_TRACK
  */
-export function nextTrack(state: State, action: Action): State {
-    const { audio: { tracks, currentTrack, shuffle } } = state;
+export function nextTrack(state: AudioState, action: Action): AudioState {
+    const { tracks, currentTrack, shuffle } = state;
 
     if (shuffle) {
         return {
             ...state,
-            audio: {
-                ...state.audio,
-                lastTrack: currentTrack,
-                currentTrack: shuffleTracks(tracks, currentTrack),
-            },
+            lastTrack: currentTrack,
+            currentTrack: shuffleTracks(tracks, currentTrack),
         };
     }
 
@@ -83,28 +71,22 @@ export function nextTrack(state: State, action: Action): State {
 
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            lastTrack: currentTrack,
-            currentTrack: index,
-        },
+        lastTrack: currentTrack,
+        currentTrack: index,
     };
 }
 
 /**
  * PREV_TRACK
  */
-export function prevTrack(state: State, action: Action): State {
-    const { audio: { tracks, currentTrack, lastTrack, shuffle } } = state;
+export function prevTrack(state: AudioState, action: Action): AudioState {
+    const { tracks, currentTrack, lastTrack, shuffle } = state;
 
     if (shuffle) {
         return {
             ...state,
-            audio: {
-                ...state.audio,
-                lastTrack: currentTrack,
-                currentTrack: lastTrack,
-            },
+            lastTrack: currentTrack,
+            currentTrack: lastTrack,
         };
     }
 
@@ -115,81 +97,66 @@ export function prevTrack(state: State, action: Action): State {
 
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            lastTrack: currentTrack,
-            currentTrack: index,
-        },
+        lastTrack: currentTrack,
+        currentTrack: index,
     };
 }
 
 /**
  * TOGGLE_SHUFFLE
  */
-export function toggleShuffle(state: State, action: Action): State {
+export function toggleShuffle(state: AudioState, action: Action): AudioState {
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            shuffle: !state.audio.shuffle,
-        },
+        shuffle: !state.shuffle,
     };
 }
 
 /**
  * TOGGLE_REPEAT
  */
-export function toggleRepeat(state: State, action: Action): State {
+export function toggleRepeat(state: AudioState, action: Action): AudioState {
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            repeat: !state.audio.repeat,
-        },
+        repeat: !state.repeat,
     };
 }
 
 /**
  * UPDATE_VOLUME
  */
-export function updateVolume(state: State, action: Action): State {
+export function updateVolume(state: AudioState, action: Action): AudioState {
     if (!action.payload === undefined) {
         return state;
     }
 
     const newLevel = action.payload;
 
-    if (state.audio.volume === newLevel) {
+    if (state.volume === newLevel) {
         return state;
     }
 
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            volume: Number(newLevel.toFixed(4)),
-        },
+        volume: Number(newLevel.toFixed(4)),
     };
 }
 
 /**
  * TRIGGER_TIME_SYNC
  */
-export function triggerTimeSync(state: State, action: Action): State {
+export function triggerTimeSync(state: AudioState, action: Action): AudioState {
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            timeSync: state.audio.timeSync + 1,
-        },
+        timeSync: state.timeSync + 1,
     };
 }
 
 /**
  * SPEED_UP
  */
-export function speedUp(state: State): State {
-    const { audio: { playbackRate } } = state;
+export function speedUp(state: AudioState): AudioState {
+    const { playbackRate } = state;
 
     if (playbackRate === 2) {
         return state;
@@ -197,18 +164,15 @@ export function speedUp(state: State): State {
 
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            playbackRate: playbackRate + 0.25,
-        },
+        playbackRate: playbackRate + 0.25,
     };
 }
 
 /**
  * SLOW_DOWN
  */
-export function slowDown(state: State): State {
-    const { audio: { playbackRate } } = state;
+export function slowDown(state: AudioState): AudioState {
+    const { playbackRate } = state;
 
     if (playbackRate === 0.5) {
         return state;
@@ -216,17 +180,14 @@ export function slowDown(state: State): State {
 
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            playbackRate: playbackRate - 0.25,
-        },
+        playbackRate: playbackRate - 0.25,
     };
 }
 
 /**
  * SET_FILE_LENGTH
  */
-export function setFilelength(state: State, action: Action): State {
+export function setFilelength(state: AudioState, action: Action): AudioState {
     if (!action.payload) {
         return state;
     }
@@ -237,9 +198,6 @@ export function setFilelength(state: State, action: Action): State {
 
     return {
         ...state,
-        audio: {
-            ...state.audio,
-            filelength: Math.round(action.payload),
-        },
+        filelength: Math.round(action.payload),
     };
 }

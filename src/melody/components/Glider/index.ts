@@ -6,7 +6,7 @@ import DragHelper from '../DragHelper';
 import Glider from './Glider';
 
 const mapStateToProps = (state: State) => ({
-    currentState: state.state.currentState,
+    currentState: state.machine.currentState,
     currentTime: state.audio.currentTime,
     duration: state.audio.filelength,
 });

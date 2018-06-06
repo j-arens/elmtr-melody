@@ -20,7 +20,6 @@ module.exports = {
     moduleNameMapper: {
         'mediaframe': '<rootDir>/dev/jest/mocks/mediaframe',
         '@redux/modules/ui/actions': '<rootDir>/dev/jest/mocks/uiActions',
-        '@redux/modules/state/actions': '<rootDir>/dev/jest/mocks/stateActions',
         '@redux/modules/audio/actions': '<rootDir>/dev/jest/mocks/audioActions',
         '@mocks(.*)$': '<rootDir>/dev/jest/mocks/$1',
         '@tracks': '<rootDir>/dev/fixtures/tracks',

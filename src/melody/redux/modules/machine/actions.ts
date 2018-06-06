@@ -23,7 +23,3 @@ export function cycleState(machineAction: MachineAction) {
         });
     };
 }
-
-export const resetState = () => ({
-    type: constants.RESET_STATE,
-});

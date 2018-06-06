@@ -2,7 +2,7 @@ import { MachineStates } from '@state-machine/type';
 import { View } from './type';
 
 export default {
-    state: {
+    machine: {
         currentState: 'stopped' as MachineStates,
         lastState: 'stopped' as MachineStates,
     },

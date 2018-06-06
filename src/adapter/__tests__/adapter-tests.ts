@@ -1,12 +1,10 @@
 import { compose } from '../helpers';
 import {
-    reset,
     tracks,
     view,
 } from '../index';
 const track = require('@fixtures/track');
 const uiActions = require('@mocks/uiActions');
-const stateActions = require('@mocks/stateActions');
 const audioActions = require('@mocks/audioActions');
 
 describe('compose', () => {
@@ -29,15 +27,6 @@ describe('initialize middlewares', () => {
         melody_audio_tracks: [track],
         melody_component_style: 'slider',
     };
-
-    describe('reset', () => {
-        it('resets the state', () => {
-            const returnVal = reset({ dispatch, config });
-            expect(dispatch).toHaveBeenCalled();
-            expect(stateActions.resetState).toHaveBeenCalled();
-            expect(returnVal).toMatchObject({ dispatch, config });
-        });
-    });
 
     describe('view', () => {
         it('sets the view', () => {

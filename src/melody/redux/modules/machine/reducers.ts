@@ -1,18 +1,18 @@
 import initialState from '@redux/initialState';
-import { Action, State } from '@redux/type';
+import { Action, MachineState } from '@redux/type';
 import StateMachine from '@state-machine/index';
 import { MachineStates } from '@state-machine/type';
 
 /**
  * CYCLE_STATE
  */
-export function cycleState(state: State, action: Action): State {
+export function cycleState(state: MachineState, action: Action): MachineState {
     if (!action.payload) {
         return state;
     }
 
     const machineAction = action.payload;
-    const { state: { currentState } } = state;
+    const { currentState } = state;
     const nextState = StateMachine[currentState][machineAction];
 
     if (!nextState) {
@@ -23,21 +23,15 @@ export function cycleState(state: State, action: Action): State {
         const failedState = StateMachine[currentState].FAILED;
         return {
             ...state,
-            state: {
-                ...state.state,
-                currentState: failedState as MachineStates,
-                lastState: currentState,
-            },
+            currentState: failedState as MachineStates,
+            lastState: currentState,
         };
     }
 
     const newState = {
         ...state,
-        state: {
-            ...state.state,
-            currentState: nextState,
-            lastState: currentState,
-        },
+        currentState: nextState,
+        lastState: currentState,
     };
 
     return newState;
@@ -46,6 +40,6 @@ export function cycleState(state: State, action: Action): State {
 /**
  * RESET_STATE
  */
-export function resetState(): State {
+export function resetState(): MachineState {
     return initialState;
 }

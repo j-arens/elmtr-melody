@@ -1,13 +1,13 @@
 import initialState from '@redux/initialState';
-import { Action, State } from '@redux/type';
+import { Action, AudioState } from '@redux/type';
 import { getType } from 'typesafe-actions';
 import * as actions from './actions';
 import * as reducers from './reducers';
 
 export default function(
-    state: State = initialState,
+    state: AudioState = initialState.audio,
     action: Action,
-): State {
+): AudioState {
     switch (action.type) {
         case getType(actions.setCurrentTrack): {
             return reducers.setCurrentTrack(state, action);

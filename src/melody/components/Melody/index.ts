@@ -3,15 +3,15 @@ import {
     setFilelength,
     updateCurrentTime,
 } from '@redux/modules/audio/actions';
-import { cycleState } from '@redux/modules/state/actions';
+import { cycleState } from '@redux/modules/machine/actions';
 import { State } from '@redux/type';
 import { MachineAction } from '@state-machine/type';
 import { connect } from 'preact-redux';
 import Melody, { DispatchProps, StateProps } from './Melody';
 
 const mapStateToProps = (state: State) => ({
-    currentState: state.state.currentState,
-    lastState: state.state.lastState,
+    currentState: state.machine.currentState,
+    lastState: state.machine.lastState,
     tracks: state.audio.tracks,
     currentTrack: state.audio.currentTrack,
     currentTime: state.audio.currentTime,

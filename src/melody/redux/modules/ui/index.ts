@@ -1,13 +1,13 @@
 import initialState from '@redux/initialState';
-import { Action, State } from '@redux/type';
+import { Action, UiState } from '@redux/type';
 import { getType } from 'typesafe-actions';
 import * as actions from './actions';
 import * as reducers from './reducers';
 
 export default function(
-    state: State = initialState,
+    state: UiState = initialState.ui,
     action: Action,
-): State {
+): UiState {
     switch (action.type) {
         case getType(actions.changeView): {
             return reducers.changeView(state, action);

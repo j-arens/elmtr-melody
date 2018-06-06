@@ -38,8 +38,8 @@ describe('Melody', () => {
     it('renders an error if the currentState is fault', () => {
         const testState = {
             ...state,
-            state: {
-                ...state.state,
+            machine: {
+                ...state.machine,
                 currentState: 'fault',
             },
             audio: {

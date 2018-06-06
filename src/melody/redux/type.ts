@@ -29,29 +29,35 @@ export interface Track {
     };
 }
 
+export interface MachineState {
+    readonly currentState: MachineStates;
+    readonly lastState: MachineStates;
+}
+
+export interface AudioState {
+    readonly tracks: Track[];
+    readonly currentTrack: number;
+    readonly lastTrack: number;
+    readonly shuffle: boolean;
+    readonly repeat: boolean;
+    readonly volume: number;
+    readonly currentTime: number;
+    readonly timeSync: number;
+    readonly playbackRate: number;
+    readonly filelength: number;
+}
+
+export interface UiState {
+    readonly view: View;
+    readonly gliderIsDragging: boolean,
+    readonly volIsDragging: boolean,
+    readonly showDock: boolean,
+}
+
 export interface State {
-    readonly state: {
-        readonly currentState: MachineStates;
-        readonly lastState: MachineStates;
-    };
-    readonly audio: {
-        readonly tracks: Track[];
-        readonly currentTrack: number;
-        readonly lastTrack: number;
-        readonly shuffle: boolean;
-        readonly repeat: boolean;
-        readonly volume: number;
-        readonly currentTime: number;
-        readonly timeSync: number;
-        readonly playbackRate: number;
-        readonly filelength: number;
-    };
-    readonly ui: {
-        readonly view: View;
-        readonly gliderIsDragging: boolean,
-        readonly volIsDragging: boolean,
-        readonly showDock: boolean,
-    };
+    readonly machine: MachineState,
+    readonly audio: AudioState,
+    readonly ui: UiState,
 }
 
 export type Dispatch = (params: any) => Action;
