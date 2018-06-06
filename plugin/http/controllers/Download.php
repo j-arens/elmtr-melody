@@ -46,7 +46,9 @@ class Download extends Controller {
      * @param string $mime
      */
     protected function streamFile($path, $mime) {
-        ob_end_flush();
+        if (ob_get_length()) {
+            ob_end_flush();
+        }
         header("Content-Type: $mime");
         header('Content-Disposition: attachment; filename="'.basename($path).'"');
         readfile($path);
