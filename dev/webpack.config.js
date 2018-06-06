@@ -1,13 +1,15 @@
 const paths = require('./paths');
 const pipes = require('./pipes/');
 const plugins = require('./plugins');
+const optimizations = require('./optimizations');
 
-module.exports = ({ libs }) => ({
+module.exports = ({ mode = 'development', libs }) => ({
+    mode,
     entry: libs.split(',').reduce((entries, lib) => {
         entries[lib] = paths[lib].js.entry;
         return entries;
     }, {}),
-    devtool: 'inline-cheap-module-source-map',
+    devtool: mode === 'development' ? 'inline-cheap-module-source-map' : false,
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.scss'],
         alias: {
@@ -28,5 +30,6 @@ module.exports = ({ libs }) => ({
     module: {
         rules: Object.values(pipes),
     },
-    plugins: plugins(libs),
+    optimization: optimizations(mode),
+    plugins: plugins(mode, libs),
 });
