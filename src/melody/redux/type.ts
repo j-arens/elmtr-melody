@@ -1,7 +1,8 @@
 import { TrackSize } from '@adapter/type';
+import * as audioActions from '@redux/modules/audio/actions';
+import * as uiActions from '@redux/modules/ui/actions';
 import { MachineStates } from '@state-machine/type';
 import { getReturnOfExpression } from 'typesafe-actions';
-import * as actions from './actions';
 
 export type View =
  | 'simple-toolbar'
@@ -28,9 +29,12 @@ export interface Track {
     };
 }
 
-export interface State {
+export interface MachineState {
     readonly currentState: MachineStates;
     readonly lastState: MachineStates;
+}
+
+export interface AudioState {
     readonly tracks: Track[];
     readonly currentTrack: number;
     readonly lastTrack: number;
@@ -41,30 +45,26 @@ export interface State {
     readonly timeSync: number;
     readonly playbackRate: number;
     readonly filelength: number;
-    readonly ui: {
-        readonly view: View;
-        readonly gliderIsDragging: boolean,
-        readonly volIsDragging: boolean,
-        readonly showDock: boolean,
-    };
+}
+
+export interface UiState {
+    readonly view: View;
+    readonly gliderIsDragging: boolean,
+    readonly volIsDragging: boolean,
+    readonly showDock: boolean,
+}
+
+export interface State {
+    readonly machine: MachineState,
+    readonly audio: AudioState,
+    readonly ui: UiState,
 }
 
 export type Dispatch = (params: any) => Action;
 
 const returnOfActions = [
-    actions.updateCurrentTime,
-    actions.nextTrack,
-    actions.prevTrack,
-    actions.toggleShuffle,
-    actions.toggleRepeat,
-    actions.toggleVolDragging,
-    actions.toggleGliderDragging,
-    actions.updateVolume,
-    actions.triggerTimeSync,
-    actions.toggleDock,
-    actions.speedUp,
-    actions.slowDown,
-    actions.changeView,
+    ...Object.values(audioActions),
+    ...Object.values(uiActions),
 ].map(getReturnOfExpression);
 
 interface PayloadAction {

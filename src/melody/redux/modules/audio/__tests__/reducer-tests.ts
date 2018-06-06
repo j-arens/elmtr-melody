@@ -1,52 +1,14 @@
-const tracks = require('@tracks');
-import { MachineStates } from '../../state-machine/type';
+import initialState from '@redux/initialState';
 import * as actions from '../actions';
-import { CYCLE_STATE } from '../constants';
-import initialState from '../initialState';
-import reducer from '../rootReducer';
-
-describe('CYCLE_STATE', () => {
-    it('cycles the state machine', () => {
-        const action = {
-            type: CYCLE_STATE,
-            payload: 'SUCCESS',
-        };
-
-        const state = {
-            ...initialState,
-            currentState: 'fetching' as MachineStates,
-            lastState: 'stopped' as MachineStates,
-        };
-
-        const newState = reducer(state, action);
-        expect(newState.currentState).toBe('stopped');
-        expect(newState.lastState).toBe('fetching');
-    });
-
-    it('cycles to fault if invalid transition', () => {
-        const action = {
-            type: CYCLE_STATE,
-            payload: 'PLAY',
-        };
-
-        const state = {
-            ...initialState,
-            currentState: 'fetching' as MachineStates,
-            lastState: 'stopped' as MachineStates,
-        };
-
-        const newState = reducer(state, action);
-        expect(newState.currentState).toBe('fault');
-        expect(newState.lastState).toBe('fetching');
-    });
-});
+import reducer from '../index';
+const tracks = require('@tracks');
 
 describe('SET_CURRENT_TRACK', () => {
     let state;
 
     beforeEach(() => {
         state = {
-            ...initialState,
+            ...initialState.audio,
             tracks: [{}, {}],
         };
     });
@@ -79,7 +41,7 @@ describe('SET_CURRENT_TRACK', () => {
 describe('SET_TRACKS', () => {
     it('should set tracks on state', () => {
         const action = actions.setTracks(tracks);
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.tracks).toEqual(tracks);
     });
 });
@@ -87,7 +49,7 @@ describe('SET_TRACKS', () => {
 describe('UPDATE_CURRENT_TIME', () => {
     it('should update the current time', () => {
         const action = actions.updateCurrentTime(808);
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.currentTime).toBe(808);
     });
 });
@@ -96,7 +58,7 @@ describe('NEXT_TRACK', () => {
     it('if there is more than one track it should increment the currentTrack', () => {
         const action = actions.nextTrack();
         const state = {
-            ...initialState,
+            ...initialState.audio,
             tracks,
         };
         const newState = reducer(state, action);
@@ -107,7 +69,7 @@ describe('NEXT_TRACK', () => {
     it('should pick a random track if shuffle is true', () => {
         const action = actions.nextTrack();
         const state = {
-            ...initialState,
+            ...initialState.audio,
             shuffle: true,
             tracks,
         };
@@ -121,7 +83,7 @@ describe('PREV_TRACK', () => {
     it('if there is more than one track and shuffle is false it should decrement the currentTrack', () => {
         const action = actions.prevTrack();
         const state = {
-            ...initialState,
+            ...initialState.audio,
             currentTrack: 2,
             lastTrack: 1,
             tracks,
@@ -134,7 +96,7 @@ describe('PREV_TRACK', () => {
     it('should set the currentTrack as the lastTrack if shuffle is true', () => {
         const action = actions.prevTrack();
         const state = {
-            ...initialState,
+            ...initialState.audio,
             shuffle: true,
             currentTrack: 4,
             lastTrack: 1,
@@ -149,7 +111,7 @@ describe('PREV_TRACK', () => {
 describe('TOGGLE_SHUFFLE', () => {
     it('should toggle shuffle', () => {
         const action = actions.toggleShuffle();
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.shuffle).toBe(true);
     });
 });
@@ -157,83 +119,44 @@ describe('TOGGLE_SHUFFLE', () => {
 describe('TOGGLE_REPEAT', () => {
     it('should toggle repeat', () => {
         const action = actions.toggleRepeat();
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.repeat).toBe(true);
-    });
-});
-
-describe('TOGGLE_VOL_DRAGGING', () => {
-    it('should toggle volIsDragging flag', () => {
-        const action = actions.toggleVolDragging();
-        const newState = reducer(initialState, action);
-        expect(newState.ui.volIsDragging).toBe(true);
     });
 });
 
 describe('UPDATE_VOLUME', () => {
     it('should update the volume', () => {
         const action = actions.updateVolume(0.5);
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.volume).toBe(0.5);
     });
 
     it('should return original state if newLevel is the same as the current level', () => {
         const action = actions.updateVolume(1);
-        const newState = reducer(initialState, action);
-        expect(newState).toEqual(initialState);
-    });
-});
-
-describe('TOGGLE_GLIDER_DRAGGING', () => {
-    it('should toggle gliderIsDragging flag', () => {
-        const action = actions.toggleGliderDragging();
-        const newState = reducer(initialState, action);
-        expect(newState.ui.gliderIsDragging).toBe(true);
+        const newState = reducer(initialState.audio, action);
+        expect(newState).toEqual(initialState.audio);
     });
 });
 
 describe('TRIGGER_TIME_SYNC', () => {
     it('should increment timeSync', () => {
         const action = actions.triggerTimeSync();
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.timeSync).toBe(1);
-    });
-});
-
-describe('RESET_STATE', () => {
-    it('should reset state to initialState', () => {
-        const action = actions.resetState();
-        const state = {
-            ...initialState,
-            shuffle: true,
-            currentTrack: 4,
-            lastTrack: 1,
-            tracks,
-        };
-        const newState = reducer(state, action);
-        expect(newState).toEqual(initialState);
-    });
-});
-
-describe('TOGGLE_DOCK', () => {
-    it('should toggle showing the dock', () => {
-        const action = actions.toggleDock();
-        const newState = reducer(initialState, action);
-        expect(newState.ui.showDock).toBe(true);
     });
 });
 
 describe('SPEED_UP', () => {
     it('should increase playback rate in quarter intervals', () => {
         const action = actions.speedUp();
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.playbackRate).toBe(1.25);
     });
 
     it('should not increase past 2', () => {
         const action = actions.speedUp();
         const state = {
-            ...initialState,
+            ...initialState.audio,
             playbackRate: 2,
         };
         const newState = reducer(state, action);
@@ -244,14 +167,14 @@ describe('SPEED_UP', () => {
 describe('SLOW_DOWN', () => {
     it('should decrease playback rate in quarter intervals', () => {
         const action = actions.slowDown();
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.playbackRate).toBe(0.75);
     });
 
     it('should not decrease past 0.5', () => {
         const action = actions.slowDown();
         const state = {
-            ...initialState,
+            ...initialState.audio,
             playbackRate: 0.5,
         };
         const newState = reducer(state, action);
@@ -259,36 +182,22 @@ describe('SLOW_DOWN', () => {
     });
 });
 
-describe('CHANGE_VIEW', () => {
-    it('should change the view', () => {
-        const action = actions.changeView('simple-toolbar');
-        const newState = reducer(initialState, action);
-        expect(newState.ui.view).toBe('simple-toolbar');
-    });
-
-    it('should bail if payload matches the current view', () => {
-        const action = actions.changeView('slider');
-        const newState = reducer(initialState, action);
-        expect(newState).toEqual(initialState);
-    });
-});
-
 describe('SET_FILE_LENGTH', () => {
     it('sets the filelength', () => {
         const action = actions.setFilelength(245);
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.filelength).toBe(245);
     });
 
     it('rounds input to nearest whole number', () => {
         const action = actions.setFilelength(356.235);
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.filelength).toBe(356);
     });
 
     it('bails if input is NaN', () => {
         const action = actions.setFilelength(NaN);
-        const newState = reducer(initialState, action);
+        const newState = reducer(initialState.audio, action);
         expect(newState.filelength).toBe(0);
     });
 });

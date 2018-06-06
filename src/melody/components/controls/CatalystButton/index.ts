@@ -1,13 +1,13 @@
 import { WithOptionalClassName } from '@components/type';
-import { cycleState } from '@redux/actions';
+import { cycleState } from '@redux/modules/machine/actions';
 import { State } from '@redux/type';
 import { MachineAction } from '@state-machine/type';
 import { connect } from 'preact-redux';
 import CatalystButton, { DispatchProps, StateProps } from './CatalystButton';
 
 const mapState = (state: State) => ({
-    currentState: state.currentState,
-    playbackRate: state.playbackRate,
+    currentState: state.machine.currentState,
+    playbackRate: state.audio.playbackRate,
 });
 
 const mapDispatch = dispatch => ({

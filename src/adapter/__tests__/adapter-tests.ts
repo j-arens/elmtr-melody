@@ -1,11 +1,11 @@
 import { compose } from '../helpers';
 import {
-    reset,
     tracks,
     view,
 } from '../index';
 const track = require('@fixtures/track');
-const mockactions = require('@mocks/actions');
+const uiActions = require('@mocks/uiActions');
+const audioActions = require('@mocks/audioActions');
 
 describe('compose', () => {
     it('composes', () => {
@@ -28,21 +28,12 @@ describe('initialize middlewares', () => {
         melody_component_style: 'slider',
     };
 
-    describe('reset', () => {
-        it('resets the state', () => {
-            const returnVal = reset({ dispatch, config });
-            expect(dispatch).toHaveBeenCalled();
-            expect(mockactions.resetState).toHaveBeenCalled();
-            expect(returnVal).toMatchObject({ dispatch, config });
-        });
-    });
-
     describe('view', () => {
         it('sets the view', () => {
             const returnValue = view({ dispatch, config });
             expect(dispatch).toHaveBeenCalled();
-            expect(mockactions.changeView).toHaveBeenCalled();
-            expect(mockactions.changeView.mock.calls[0][0]).toBe('slider');
+            expect(uiActions.changeView).toHaveBeenCalled();
+            expect(uiActions.changeView.mock.calls[0][0]).toBe('slider');
             expect(returnValue).toMatchObject({ dispatch, config });
         });
     });
@@ -51,7 +42,7 @@ describe('initialize middlewares', () => {
         it('prepares and sets the tracks', () => {
             const returnValue = tracks({ dispatch, config });
             expect(dispatch).toHaveBeenCalled();
-            expect(mockactions.setTracks).toHaveBeenCalled();
+            expect(audioActions.setTracks).toHaveBeenCalled();
             expect(returnValue).toMatchObject({ dispatch, config });
         });
     });

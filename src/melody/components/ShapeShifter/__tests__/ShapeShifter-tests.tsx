@@ -12,7 +12,10 @@ describe('Melody', () => {
     beforeEach(() => {
         state = {
             ...initialState,
-            tracks: [track],
+            audio: {
+                ...initialState.audio,
+                tracks: [track],
+            },
         };
     });
 

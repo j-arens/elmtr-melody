@@ -5,8 +5,8 @@ import { compose } from 'redux';
 import TimeProvider, { StateProps } from './TimeProvider';
 
 const mapStateToProps = (state: State) => ({
-    currentTime: state.currentTime,
-    duration: state.filelength,
+    currentTime: state.audio.currentTime,
+    duration: state.audio.filelength,
 });
 
 export default compose(

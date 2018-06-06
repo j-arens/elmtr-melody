@@ -4,7 +4,7 @@ import { connect } from 'preact-redux';
 import CurrentTrackTitle, { StateProps } from './CurrentTrackTitle';
 
 const mapStateToProps = (state: State) => {
-    const { currentTrack, tracks } = state;
+    const { audio: { currentTrack, tracks } } = state;
     const activeTrack = tracks[currentTrack];
     return {
         currentTrackTitle: activeTrack.media_details.title,
