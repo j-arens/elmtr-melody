@@ -35,7 +35,7 @@
     "browser-sync": "^2.23.6",
     "browser-sync-webpack-plugin": "^2.2.2",
     "css-loader": "^0.28.9",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.1.2",
@@ -50,7 +50,8 @@
     "tslint-react": "^3.4.0",
     "typescript": "^2.8.3",
     "typescript-eslint-parser": "^12.0.0",
-    "webpack": "^3.11.0"
+    "webpack": "^4.11.1",
+    "webpack-cli": "^3.0.3"
   },
   "scripts": {
     "build:adapter": "webpack --config ./dev/webpack.config.js --env.libs=adapter --progress --colors",
@@ -69,7 +70,7 @@
     "docker:bash": "docker exec -it $(docker ps -q -f name=melody_wordpress) /bin/bash",
     "lint": "tslint src/**/*.{ts,tsx}",
     "lint:fix": "npm run lint -- --fix",
-    "php:dumpautoload": "composer dumpautoload --no-dev", 
+    "php:dumpautoload": "composer dumpautoload --no-dev",
     "pot:php": "npx makepot plugin languages --force",
     "prepush": "npm run lint & npm run test & npm run test:php",
     "test": "export NODE_ENV=test && jest",

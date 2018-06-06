@@ -1,20 +1,20 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const paths = require('./paths');
 
-module.exports = libs => {
+module.exports = (mode, libs) => {
     const plugins = [
         new webpack.EnvironmentPlugin({
-            NODE_ENV: 'development',
+            NODE_ENV: `${mode}`,
         }),
     ];
 
     if (libs.includes('melody')) {
-        plugins.push(new ExtractTextPlugin(paths.melody.css.output));
+        plugins.push(new ExtractPlugin(paths.melody.css.output));
     }
 
-    if (process.env.NODE_ENV === 'development') {
+    if (mode === 'development') {
         plugins.push(new BrowserSyncPlugin({
             host: 'localhost',
             port: 4001,

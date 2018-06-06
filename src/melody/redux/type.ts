@@ -49,15 +49,15 @@ export interface AudioState {
 
 export interface UiState {
     readonly view: View;
-    readonly gliderIsDragging: boolean,
-    readonly volIsDragging: boolean,
-    readonly showDock: boolean,
+    readonly gliderIsDragging: boolean;
+    readonly volIsDragging: boolean;
+    readonly showDock: boolean;
 }
 
 export interface State {
-    readonly machine: MachineState,
-    readonly audio: AudioState,
-    readonly ui: UiState,
+    readonly machine: MachineState;
+    readonly audio: AudioState;
+    readonly ui: UiState;
 }
 
 export type Dispatch = (params: any) => Action;
