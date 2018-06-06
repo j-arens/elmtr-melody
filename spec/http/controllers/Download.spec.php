@@ -59,11 +59,23 @@ describe('Download', function() {
     });
 
     describe('streamFile()', function() {
-        it('streams a file for download', function() {
-            error_reporting(0);
+        beforeEach(function() {
             $this->get_attached_file->returns('lol/path/to/file/cool-song.mp3');
             $this->get_post_mime_type->returns('audio/mp3');
+        });
+
+        it('flushes the buffer if needed', function() {
+            ob_start();
+            echo ' ';
+            error_reporting(0);
+            expect('ob_get_length')->toBeCalled()->once();
             expect('ob_end_flush')->toBeCalled()->once();
+            $this->makeInstance('123', '456');
+            error_reporting(E_ALL);
+        });
+
+        it('streams a file for download', function() {
+            error_reporting(0);
             expect('header')->toBeCalled()->with('Content-Type: audio/mp3');
             expect('header')->toBeCalled()->with('Content-Disposition: attachment; filename="cool-song.mp3"');
             expect('readfile')->toBeCalled()->once()->with('lol/path/to/file/cool-song.mp3');
