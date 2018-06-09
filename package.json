@@ -89,7 +89,6 @@
     "test:php": "composer test",
     "test:watch": "npm run test -- --watchAll",
     "test:update-ss": "npm run test -- -u",
-    "version": "node dev/release/version.js && git add .",
-    "postversion": "git push && git push --tags"
+    "version": "node dev/release/version.js && git add ."
   }
 }

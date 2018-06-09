@@ -41,6 +41,6 @@ const paths = {
 
 module.exports = {
     makeTaskRunner,
-    fatalProcessError,
+    fatalError,
     paths,
 };
