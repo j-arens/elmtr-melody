@@ -3,6 +3,7 @@
 /*
 Plugin Name: Elementor-Melody
 Plugin URI: 
+Version: 1.0.0.alpha-1
 Description:
 Author: <a href="https://jarens.me">Josh Arens</a>
 Author URI: https://jarens.me
@@ -15,26 +16,6 @@ Tags:
  * Load constants
  */
 require 'constants.php';
-
-// /**
-//  * 
-//  */
-// function melodyPluginMeta(array $headers) {
-//     return array_merge($headers, [
-//         'version' => 'lol-version',
-//     ]);
-// }
-
-// add_filter('extra_plugin_headers', 'melodyPluginMeta', 10, 1);
-
-add_filter('plugin_row_meta', function($meta, $file, $data) {
-    var_dump($file);
-    var_dump(basename(__DIR__) . __FILE__);
-    if ($file === MELODY_ROOT) {
-        $meta[] = 'lol-version';
-    }
-    return $meta;
-}, 10, 3);
 
 /**
  * Entry point

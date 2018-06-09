@@ -34,6 +34,7 @@
     "babel-preset-react": "^6.24.1",
     "browser-sync": "^2.23.6",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "chalk": "^2.4.1",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "husky": "^0.14.3",
@@ -44,6 +45,7 @@
     "node-wp-i18n": "^1.1.1",
     "postcss-loader": "^2.0.10",
     "preact-render-to-string": "^3.7.0",
+    "replace-in-file": "^3.4.0",
     "sass-loader": "^6.0.6",
     "tslib": "^1.8.1",
     "tslint": "^5.9.1",
@@ -73,11 +75,21 @@
     "php:dumpautoload": "composer dumpautoload --no-dev",
     "pot:php": "npx makepot plugin languages --force",
     "prepush": "npm run lint & npm run test & npm run test:php",
+    "release": "node dev/release/prepare.js && pushd dev/release/temp/ && npm version $NEXT_VERSION && popd && npm run release:zip",
+    "release:major": "npm run release --NEXT_VERSION major",
+    "release:minor": "npm run release --NEXT_VERSION minor",
+    "release:patch": "npm run release --NEXT_VERSION patch",
+    "release:zip": "zip -r elementor-melody.zip dev/release/temp",
+    "release:cleanup": "rm -rf dev/release/temp",
+    "prerelease": "npm run release:cleanup",
+    "postrelease": "npm run release:cleanup",
+    "start": "export NODE_ENV=development && npm run build-watch:all",
     "test": "export NODE_ENV=test && jest",
     "test:no-cache": "npm run test -- --no-cache",
     "test:php": "composer test",
     "test:watch": "npm run test -- --watchAll",
     "test:update-ss": "npm run test -- -u",
-    "start": "export NODE_ENV=development && npm run build-watch:all"
+    "version": "node dev/release/version.js && git add .",
+    "postversion": "git push && git push --tags"
   }
 }
