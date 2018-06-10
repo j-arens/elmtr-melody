@@ -1,7 +1,6 @@
 const { execSync } = require('child_process');
 const colors = require('../scripts/colors');
 const { makeTaskRunner } = require('../scripts/utils');
-const prune = require('./prune');
 const {
     CHECKOUT_BRANCH,
     REPO_URL,
@@ -22,7 +21,7 @@ function checkout(next) {
  */
 function install(next) {
     console.log(colors.info('📦 installing dependencies...'));
-    execSync(`cd ${TEMP_DIR} && npm i && composer install --no-dev`);
+    execSync(`cd ${TEMP_DIR} && npm ci && composer install --no-dev`);
     next();
 }
 
@@ -39,7 +38,6 @@ const tasks = [
     checkout,
     install,
     build,
-    prune,
 ];
 
 const taskRunner = makeTaskRunner(tasks);

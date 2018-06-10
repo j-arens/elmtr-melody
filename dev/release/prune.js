@@ -20,11 +20,9 @@ const DIRS = [
     'node_modules',
     'dev',
     '.vscode',
+    '.git',
 ];
 
-module.exports = (next) => {
-    console.log(colors.info('pruning unwanted files and directories'));
-    FILES.forEach(file => fs.unlinkSync(path.resolve(TEMP_DIR, file)));
-    DIRS.forEach(dir => paths.clear(path.resolve(TEMP_DIR, dir)));
-    next();
-};
+console.log(colors.info('pruning unwanted files and directories'));
+FILES.forEach(file => fs.unlinkSync(path.resolve(TEMP_DIR, file)));
+DIRS.forEach(dir => paths.clear(path.resolve(TEMP_DIR, dir)));

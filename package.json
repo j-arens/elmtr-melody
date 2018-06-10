@@ -75,20 +75,20 @@
     "php:dumpautoload": "composer dumpautoload --no-dev",
     "pot:php": "npx makepot plugin languages --force",
     "prepush": "npm run lint & npm run test & npm run test:php",
-    "release": "node dev/release/prepare.js && pushd dev/release/temp && npm version $NEXT_VERSION && popd && npm run release:zip",
+    "release": "node dev/release/prepare.js && cd dev/release/temp && npm version $NEXT_VERSION && cd - && npm run release:zip",
     "release:major": "npm run release --NEXT_VERSION major",
     "release:minor": "npm run release --NEXT_VERSION minor",
     "release:patch": "npm run release --NEXT_VERSION patch",
-    "release:zip": "zip -r elementor-melody.zip dev/release/temp",
+    "release:zip": "node dev/release/prune.js && cd dev/release/temp && zip -q -r elementor-melody.zip . && mv elementor-melody.zip $(cd -)",
     "release:cleanup": "rm -rf dev/release/temp",
     "prerelease": "npm run release:cleanup",
-    "postrelease": "npm run release:cleanup",
     "start": "export NODE_ENV=development && npm run build-watch:all",
     "test": "export NODE_ENV=test && jest",
     "test:no-cache": "npm run test -- --no-cache",
     "test:php": "composer test",
     "test:watch": "npm run test -- --watchAll",
     "test:update-ss": "npm run test -- -u",
-    "version": "node dev/release/version.js && git add ."
+    "version": "node dev/release/version.js && cd dev/release/temp && git add elementor-melody.php",
+    "postversion": "git push && git push --tags"
   }
 }
