@@ -75,7 +75,7 @@
     "php:dumpautoload": "composer dumpautoload --no-dev",
     "pot:php": "npx makepot plugin languages --force",
     "prepush": "npm run lint & npm run test & npm run test:php",
-    "release": "node dev/release/prepare.js && pushd dev/release/temp/ && npm version $NEXT_VERSION && popd && npm run release:zip",
+    "release": "node dev/release/prepare.js && pushd dev/release/temp && npm version $NEXT_VERSION && popd && npm run release:zip",
     "release:major": "npm run release --NEXT_VERSION major",
     "release:minor": "npm run release --NEXT_VERSION minor",
     "release:patch": "npm run release --NEXT_VERSION patch",

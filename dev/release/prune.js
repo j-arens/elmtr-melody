@@ -12,7 +12,6 @@ const FILES = [
     'jest.config.js',
     'docker-compose.yml',
     '.gitignore',
-    '.vscode',
 ];
 
 const DIRS = [
@@ -20,11 +19,12 @@ const DIRS = [
     'spec',
     'node_modules',
     'dev',
+    '.vscode',
 ];
 
 module.exports = (next) => {
     console.log(colors.info('pruning unwanted files and directories'));
-    FILES.forEach(file => fs.unlink(path.resolve(TEMP_DIR, file)));
+    FILES.forEach(file => fs.unlinkSync(path.resolve(TEMP_DIR, file)));
     DIRS.forEach(dir => paths.clear(path.resolve(TEMP_DIR, dir)));
     next();
 };
