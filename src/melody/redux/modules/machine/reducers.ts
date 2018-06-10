@@ -36,10 +36,3 @@ export function cycleState(state: MachineState, action: Action): MachineState {
 
     return newState;
 }
-
-/**
- * RESET_STATE
- */
-export function resetState(): MachineState {
-    return initialState;
-}

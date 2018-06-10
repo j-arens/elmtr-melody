@@ -1,7 +1,7 @@
 import { MachineStates } from '@state-machine/type';
-import { View } from './type';
+import { State, View } from './type';
 
-export default {
+const initial: State = {
     machine: {
         currentState: 'stopped' as MachineStates,
         lastState: 'stopped' as MachineStates,
@@ -25,3 +25,5 @@ export default {
         showDock: false,
     },
 };
+
+export default initial;
