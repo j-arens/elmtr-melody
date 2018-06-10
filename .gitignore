@@ -1,6 +1,7 @@
-/vendor/
 public/js/*
 public/css/*
+dev/release/temp
+elementor-melody.zip
 
 # Created by https://www.gitignore.io/api/node,linux,composer,visualstudiocode
 

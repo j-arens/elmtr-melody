@@ -3,18 +3,22 @@
 /*
 Plugin Name: Elementor-Melody
 Plugin URI: 
+Version: 1.0.0.alpha-1
 Description:
-Version: 0.1.0
-Author: Josh Arens
-Author URI: jarens.me
+Author: <a href="https://jarens.me">Josh Arens</a>
+Author URI: https://jarens.me
 Text Domain: elmtr-melody
 Domain Path: /languages
+Tags:
 */
 
+/**
+ * Load constants
+ */
 require 'constants.php';
 
 /**
- * Entry points
+ * Entry point
  */
 function melodyInit() {
     if (!melodyCompatible()) {   

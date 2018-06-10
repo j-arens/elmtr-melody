@@ -9,7 +9,7 @@ module.exports = {
         css: {
             vars: resolve('./src/melody/global-styles/variables'),
             animations: resolve('./src/melody/global-styles/animations'),
-            output: '../css/melody.min.css',
+            output: resolve('./public/css/melody.min.css'),
         },
         js: {
             entry: resolve('./src/melody/index.tsx'),
@@ -32,8 +32,5 @@ module.exports = {
         js: {
             entry: resolve('./src/controls/index.ts'),
         },
-    },
-    devServer: {
-        js: 'http://localhost:4000/wp-content/plugins/elmtr-melody/public/js/', 
     },
 };
