@@ -1,4 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 const paths = require('../paths');
 const { melody: { css } } = paths;
 
@@ -7,31 +9,46 @@ const globalImports = `
     @import '${css.animations}';
 `;
 
-module.exports = {
-    test: /\.scss$/,
-    exclude: /node_modules/,
-    loader: ExtractTextPlugin.extract({
-        use: [{
-            loader: 'css-loader',
-            options: {
-                modules: true,
-                sourceMap: true,
-                importLoaders: 2,
-                localIdentName: 'melody [local]__[hash:base64:5]',
-            }
-        }, {
-            loader: 'postcss-loader',
-            options: {
-                plugins: (loader) => [
-                    require('autoprefixer')(),
-                    // require('cssnano')(), // prod-build?
-                ],
-            },
-        }, {
-            loader: 'sass-loader',
-            options: {
-                data: globalImports
-            },
-        }],
-    }),
+module.exports = (mode, libs) => {
+    if (!libs.includes('melody')) {
+        return {};
+    }
+    
+    const plugins = [
+        autoprefixer(),
+    ];
+
+    if (mode === 'production') {
+        plugins.push(
+            cssnano()
+        );
+    }
+
+    return {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+            use: [{
+                loader: 'css-loader',
+                options: {
+                    modules: true,
+                    sourceMap: true,
+                    importLoaders: 2,
+                    localIdentName: 'melody [local]__[hash:base64:5]',
+                }
+            }, {
+                loader: 'postcss-loader',
+                options: {
+                    sourceMap: mode === 'development',
+                    ident: 'postcss',
+                    plugins,
+                },
+            }, {
+                loader: 'sass-loader',
+                options: {
+                    data: globalImports
+                },
+            }],
+        }),
+    };
 };

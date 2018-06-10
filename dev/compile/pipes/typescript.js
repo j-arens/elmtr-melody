@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = () => ({
     test: /\.tsx?$/,
     exclude: /node_modules/,
     use: [
@@ -19,4 +19,4 @@ module.exports = {
         },
         'awesome-typescript-loader',
     ],
-};
+});

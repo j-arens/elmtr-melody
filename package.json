@@ -37,6 +37,7 @@
     "browser-sync-webpack-plugin": "^2.2.2",
     "chalk": "^2.4.1",
     "css-loader": "^0.28.9",
+    "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
@@ -93,6 +94,7 @@
     "test:watch": "npm run test -- --watchAll",
     "test:update-ss": "npm run test -- -u",
     "version": "node dev/release/version.js && git add elementor-melody.php",
-    "postversion": "git push --no-verify && git push --no-verify --tags"
+    "postversion": "git push --no-verify && git push --no-verify --tags",
+    "prodbuild": "export NODE_ENV=production && npm run build:all -- --env.mode=production"
   }
 }

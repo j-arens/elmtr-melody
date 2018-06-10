@@ -1,7 +1,6 @@
 const paths = require('./paths');
 const pipes = require('./pipes/');
 const plugins = require('./plugins');
-const optimizations = require('./optimizations');
 
 module.exports = ({ mode = 'development', libs }) => ({
     mode,
@@ -28,8 +27,7 @@ module.exports = ({ mode = 'development', libs }) => ({
         filename: '[name].bundle.js',
     },
     module: {
-        rules: Object.values(pipes),
+        rules: pipes.map(pipe => pipe(mode, libs)),
     },
-    optimization: optimizations(mode),
     plugins: plugins(mode, libs),
 });
