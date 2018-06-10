@@ -5,7 +5,7 @@
         "noImplicitAny": false,
         "module": "commonjs",
         "lib": ["es2017", "dom"],
-        "target": "es5",
+        "target": "es6",
         "jsx": "react",
         "jsxFactory": "h",
         "allowSyntheticDefaultImports": true,
