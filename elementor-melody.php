@@ -3,7 +3,7 @@
 /*
 Plugin Name: Elementor-Melody
 Plugin URI: 
-Version: 1.0.0.alpha-1
+Version: 1.0.0
 Description:
 Author: <a href="https://jarens.me">Josh Arens</a>
 Author URI: https://jarens.me
