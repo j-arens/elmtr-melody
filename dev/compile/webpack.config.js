@@ -29,5 +29,11 @@ module.exports = ({ mode = 'development', libs }) => ({
     module: {
         rules: pipes.map(pipe => pipe(mode, libs)),
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            maxInitialRequests: 3,
+        },
+    },
     plugins: plugins(mode, libs),
 });

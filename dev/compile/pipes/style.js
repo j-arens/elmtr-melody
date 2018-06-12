@@ -10,7 +10,7 @@ const globalImports = `
 `;
 
 module.exports = (mode, libs) => {
-    if (!libs.includes('melody')) {
+    if (libs.length === 1 && libs[0] === 'controls') {
         return {};
     }
     
