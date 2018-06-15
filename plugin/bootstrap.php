@@ -30,6 +30,14 @@ $container['stacks'] = [
 
 
 /**
+ * Bind assets manifest
+ */
+$manifest = file_get_contents(MELODY_BASE_DIR . '/public/js/manifest.json');
+$container['manifest'] = $manifest ? json_decode($manifest) : [];
+
+
+
+/**
  * Resolve Plugin object, kick things off
  */
 $container->make('Melody\Core\Plugin');

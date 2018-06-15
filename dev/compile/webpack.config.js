@@ -1,6 +1,7 @@
 const paths = require('./paths');
 const pipes = require('./pipes/');
 const plugins = require('./plugins');
+const optimizations = require('./optimizations');
 
 module.exports = ({ mode = 'development', libs }) => ({
     mode,
@@ -24,16 +25,11 @@ module.exports = ({ mode = 'development', libs }) => ({
     },
     output: {
         path: paths.output,
-        filename: '[name].bundle.js',
+        filename: mode === 'development' ? '[name].dev.js' : '[name].[chunkhash].js',
     },
     module: {
         rules: pipes.map(pipe => pipe(mode, libs)),
     },
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-            maxInitialRequests: 3,
-        },
-    },
+    optimization: optimizations(),
     plugins: plugins(mode, libs),
 });

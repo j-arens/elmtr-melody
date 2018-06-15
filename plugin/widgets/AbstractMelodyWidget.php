@@ -11,27 +11,36 @@ abstract class AbstractMelodyWidget extends Widget_Base {
     use EnhancesArtworkAttachments;
 
     /**
+     * @var Container
+     */
+    protected $container;
+
+    /**
+     * @var ViewInterface
+     */
+    protected $view;
+
+    /**
      * Constructor
      * 
      * @param array $data
      * @param mixed $args
      */
     public function __construct($data = [], $args = null) {
-        $this->setView();
-        $this->setStacks();
         parent::__construct($data, $args);
+        $this->initialize();
         add_action('elementor/frontend/after_enqueue_scripts', [$this, 'enqueueApp']);
     }
-    
+
     /**
-     * Set the view implementation
+     * Can't use dependency injection in classes that extend widget_base,
+     * so we're using our own pretend constructor to set things up
      */
-    abstract protected function setView();
-    
-    /**
-     * Get the view implementation
-     */
-    abstract protected function getView();
+    protected function initialize() {
+        $this->container = Container::getInstance();
+        $this->view = $this->container->make('Melody\Core\ViewInterface');
+        $this->setStacks($this->container);
+    }
     
     /**
      * Set widget control stacks
@@ -92,12 +101,45 @@ abstract class AbstractMelodyWidget extends Widget_Base {
      * Enqueue Melody styles & scripts
      */
     public function enqueueApp() {
+        // $manifest = $this->container['manifest'];
+
+        // foreach($manifest as $script => $path) {
+        //     wp_enqueue_script(
+        //         "melody-$script",
+        //         plugins_url($path, MELODY_ROOT),
+        //     );
+        // }
+
         wp_enqueue_style(
             'melody-app-style',
             plugins_url('public/css/melody.min.css', MELODY_ROOT),
             null,
             filemtime(MELODY_BASE_DIR . '/public/css/melody.min.css'),
             'all'
+        );
+
+        wp_enqueue_script(
+            'vendors-melody-adapter',
+            plugins_url('public/js/vendors~adapter~melody.bundle.js', MELODY_ROOT),
+            null,
+            filemtime(MELODY_BASE_DIR . '/public/js/vendors~adapter~melody.bundle.js'),
+            true
+        );
+
+        wp_enqueue_script(
+            'vendors-adapter',
+            plugins_url('public/js/vendors~adapter.bundle.js', MELODY_ROOT),
+            null,
+            filemtime(MELODY_BASE_DIR . '/public/js/vendors~adapter.bundle.js'),
+            true
+        );
+
+        wp_enqueue_script(
+            'vendors-controls',
+            plugins_url('public/js/vendors~controls.bundle.js', MELODY_ROOT),
+            null,
+            filemtime(MELODY_BASE_DIR . '/public/js/vendors-controls.bundle.js'),
+            true
         );
         
         wp_enqueue_script(
@@ -125,12 +167,22 @@ abstract class AbstractMelodyWidget extends Widget_Base {
     }
 
     /**
+     * Supplement widget data
+     * 
+     * @return array
+     */
+    protected function prepareData() {
+        $data = $this->get_raw_data();
+        $data = $this->addAttachmentSizes($data);
+        $data['settings']['melody_component_style'] = $this->getComponentStyle();
+        return $data;
+    }
+
+    /**
      * Render widget template
      */
     protected function render() {
-        // $view = $this->getView();
-        $data = $this->addAttachmentSizes($this->get_raw_data());
-        $data['settings']['melody_component_style'] = $this->getComponentStyle();
+        $data = $this->prepareData();
         $this->view->render(MELODY_PLUGIN_DIR . '/templates/widget-root.php', [
             'settings' => $data['settings'],
             'instance' => $data['id'],

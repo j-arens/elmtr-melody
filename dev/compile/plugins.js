@@ -1,14 +1,21 @@
-const webpack = require('webpack');
+const { EnvironmentPlugin } = require('webpack');
 const ExtractPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const paths = require('./paths');
-const WordpressChunksPlugin = require('./WordpressChunksPlugin');
 
 module.exports = (mode, libs) => {
     const plugins = [
-        new WordpressChunksPlugin(),
-        new webpack.EnvironmentPlugin({
+        new EnvironmentPlugin({
             NODE_ENV: `${mode}`,
+        }),
+        new ManifestPlugin({
+            publicPath: 'public/js/',
+            filter: ({ path }) => !path.endsWith('.css'),
+            map: asset => {
+                asset.name = asset.name.replace(/\.js$/, '');
+                return asset;
+            },
         }),
     ];
 

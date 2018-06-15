@@ -2,8 +2,6 @@
 
 namespace Melody\Widgets;
 
-use DownShift\Container\Container;
-
 final class Slider extends AbstractMelodyWidget implements WidgetInterface {
 
     /**
@@ -35,11 +33,6 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      * @var array[]
      */
     protected $stacks = [];
-    
-    /**
-     * @var ViewInterface
-     */
-    protected $view;
 
     /**
      * @var array
@@ -94,23 +87,7 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
     /**
      * {@inheritdoc}
      */
-    protected function setView() {
-        $container = Container::getInstance();
-        $this->view = $container->make('Melody\Core\ViewInterface');
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    protected function getView() {
-        return $this->view;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    protected function setStacks() {
-        $container = Container::getInstance();
+    protected function setStacks(Container $container) {
         $this->stacks = $container['stacks']['slider'];
     }
     
