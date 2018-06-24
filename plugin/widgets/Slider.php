@@ -2,6 +2,8 @@
 
 namespace Melody\Widgets;
 
+use DownShift\Container\Container;
+
 final class Slider extends AbstractMelodyWidget implements WidgetInterface {
 
     /**

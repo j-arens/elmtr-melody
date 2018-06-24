@@ -12,6 +12,6 @@ module.exports = () => ({
                 ],
             },
         },
-        'awesome-typescript-loader',
+        'ts-loader',
     ],
 });

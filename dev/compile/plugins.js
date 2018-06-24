@@ -1,21 +1,20 @@
 const { EnvironmentPlugin } = require('webpack');
 const ExtractPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const WordPressChunkLoaderPlugin = require('../WordPressChunkLoaderPlugin/index');
 const paths = require('./paths');
 
 module.exports = (mode, libs) => {
     const plugins = [
+        new WordPressChunkLoaderPlugin({
+            context: 'plugin',
+            assetPath: 'elmtr-melody/public/js',
+            phpOutputDir: './plugin/assets',
+            handleNamespace: 'melody',
+        }),
         new EnvironmentPlugin({
             NODE_ENV: `${mode}`,
-        }),
-        new ManifestPlugin({
-            publicPath: 'public/js/',
-            filter: ({ path }) => !path.endsWith('.css'),
-            map: asset => {
-                asset.name = asset.name.replace(/\.js$/, '');
-                return asset;
-            },
         }),
     ];
 
@@ -24,12 +23,20 @@ module.exports = (mode, libs) => {
     }
 
     if (mode === 'development') {
-        plugins.push(new BrowserSyncPlugin({
-            host: 'localhost',
-            port: 4001,
-            files: ['./**/*.php'],
-            proxy: 'http://localhost:4000',
-        }));
+        plugins.push(
+            new BrowserSyncPlugin({
+                host: 'localhost',
+                port: 4001,
+                files: ['./**/*.php'],
+                proxy: 'http://localhost:4000',
+            }),
+            // new BundleAnalyzerPlugin({
+            //     analyzerMode: 'disabled',
+            //     generateStatsFile: true,
+            //     statsFilename: 'bundle-stats.json',
+            //     openAnalyzer: false,
+            // }),
+        );
     }
 
     return plugins;

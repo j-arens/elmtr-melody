@@ -4,12 +4,14 @@ require_once MELODY_BASE_DIR . '/vendor/autoload.php';
 
 use DownShift\Container\Container;
 use Melody\Core\functions as f;
+use WordPressChunkLoaderPlugin as wpcl;
 
 /**
  * New up container
  */
 $container = new Container;
 $container::setInstance($container);
+
 
 
 /**
@@ -27,13 +29,7 @@ $container['stacks'] = [
     'toolbar' => f\collect(MELODY_PLUGIN_DIR . '/controls/stacks/toolbar/'),
 ];
 
-
-
-/**
- * Bind assets manifest
- */
-$manifest = file_get_contents(MELODY_BASE_DIR . '/public/js/manifest.json');
-$container['manifest'] = $manifest ? json_decode($manifest) : [];
+wpcl\processManifest();
 
 
 

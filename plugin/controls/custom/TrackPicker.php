@@ -36,9 +36,7 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
      */
     public function __construct(ViewInterface $view) {
         parent::__construct();
-
         $this->view = $view;
-
         add_filter(
             'wp_prepare_attachment_for_js',
             [$this, 'enhanceAsyncAudioUpload'], 10, 2
@@ -115,21 +113,13 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
      */
     public function enqueue() {
         wp_enqueue_media();
-        
+
         wp_enqueue_style(
             'media',
             admin_url('/css/media.min.css')
         );
-        
-        wp_register_script(
-            'melody-controls-js',
-            plugins_url('public/js/controls.bundle.js', MELODY_ROOT),
-            ['media-editor', 'media-audiovideo'],
-            filemtime(MELODY_BASE_DIR . '/public/js/controls.bundle.js'),
-            true
-        );
 
-        wp_enqueue_script('melody-controls-js');
+        wp_enqueue_script('melody-controls');
     }
 
     /**

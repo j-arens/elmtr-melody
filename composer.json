@@ -22,10 +22,11 @@
             "Melody\\Core\\": "./plugin/core",
             "Melody\\Widgets\\": "./plugin/widgets",
             "Melody\\Controls\\": "./plugin/controls",
-            "Melody\\Http\\": "./plugin/http"
+            "Melody\\Http\\": "./plugin/http",
         },
         "files": [
-            "./plugin/core/functions.php"
+            "./plugin/core/functions.php",
+            "./plugin/assets/WordPressChunkLoaderPlugin.php"
         ]
     },
     "scripts": {

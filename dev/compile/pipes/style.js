@@ -19,9 +19,7 @@ module.exports = (mode, libs) => {
     ];
 
     if (mode === 'production') {
-        plugins.push(
-            cssnano()
-        );
+        plugins.push(cssnano());
     }
 
     return {
