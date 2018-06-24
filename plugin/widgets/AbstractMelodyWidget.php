@@ -3,6 +3,7 @@
 namespace Melody\Widgets;
 
 use DownShift\Container\Container;
+use WordPressChunkLoaderPlugin as wpcl;
 use Melody\Core\EnhancesArtworkAttachments;
 use Elementor\Widget_Base;
 
@@ -56,6 +57,12 @@ abstract class AbstractMelodyWidget extends Widget_Base {
      * Register controls with Elementor
      */
     protected function _register_controls() {
+        // Somewhere along the line elementor does some weird stuff
+        // and we loose reference to our stacks, getting and setting
+        // stacks in the final widget class would solve this problem
+        if (empty($this->getStacks())) {
+            $this->setStacks(Container::getInstance());
+        }
         foreach($this->getStacks() as $stack) {
             $this->start_controls_section(
                 $stack['handle'],
@@ -104,14 +111,15 @@ abstract class AbstractMelodyWidget extends Widget_Base {
             'all'
         );
 
-        wp_localize_script('melody-adapter', 'MELODY_ENV', [
+        wpcl\processManifest();
+
+        wp_localize_script('melody-js-adapter', 'MELODY_ENV', [
             'pluginsUrl' => plugins_url(),
             'siteUrl' => get_site_url(),
         ]);
 
-        wp_enqueue_script('melody-adapter');
-
-        wp_enqueue_script('melody-melody');
+        wp_enqueue_script('melody-js-adapter');
+        wp_enqueue_script('melody-js-melody');
     }
 
     /**

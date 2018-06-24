@@ -11,7 +11,7 @@ module.exports = (mode, libs) => {
             context: 'plugin',
             assetPath: 'elmtr-melody/public/js',
             phpOutputDir: './plugin/assets',
-            handleNamespace: 'melody',
+            handleNamespace: 'melody-js',
         }),
         new EnvironmentPlugin({
             NODE_ENV: `${mode}`,

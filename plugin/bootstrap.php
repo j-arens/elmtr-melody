@@ -4,7 +4,6 @@ require_once MELODY_BASE_DIR . '/vendor/autoload.php';
 
 use DownShift\Container\Container;
 use Melody\Core\functions as f;
-use WordPressChunkLoaderPlugin as wpcl;
 
 /**
  * New up container
@@ -28,8 +27,6 @@ $container['stacks'] = [
     'slider' => f\collect(MELODY_PLUGIN_DIR . '/controls/stacks/slider/'),
     'toolbar' => f\collect(MELODY_PLUGIN_DIR . '/controls/stacks/toolbar/'),
 ];
-
-wpcl\processManifest();
 
 
 
