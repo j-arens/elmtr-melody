@@ -25,7 +25,8 @@
             "Melody\\Http\\": "./plugin/http"
         },
         "files": [
-            "./plugin/core/functions.php"
+            "./plugin/core/functions.php",
+            "./plugin/assets/WordPressChunkLoaderPlugin.php"
         ]
     },
     "scripts": {

@@ -3,6 +3,7 @@
 namespace Melody\Widgets;
 
 use DownShift\Container\Container;
+use WordPressChunkLoaderPlugin as wpcl;
 use Melody\Core\EnhancesArtworkAttachments;
 use Elementor\Widget_Base;
 
@@ -11,32 +12,36 @@ abstract class AbstractMelodyWidget extends Widget_Base {
     use EnhancesArtworkAttachments;
 
     /**
+     * @var ViewInterface
+     */
+    protected $view;
+
+    /**
      * Constructor
      * 
      * @param array $data
      * @param mixed $args
      */
     public function __construct($data = [], $args = null) {
-        $this->setView();
-        $this->setStacks();
         parent::__construct($data, $args);
+        $this->initialize();
+    }
+
+    /**
+     * Can't use dependency injection in classes that extend Widget_Base,
+     * so we're using our own pretend constructor to set things up
+     */
+    protected function initialize() {
+        $container = Container::getInstance();
+        $this->view = $container->make('Melody\Core\ViewInterface');
+        $this->setStacks($container);
         add_action('elementor/frontend/after_enqueue_scripts', [$this, 'enqueueApp']);
     }
     
     /**
-     * Set the view implementation
-     */
-    abstract protected function setView();
-    
-    /**
-     * Get the view implementation
-     */
-    abstract protected function getView();
-    
-    /**
      * Set widget control stacks
      */
-    abstract protected function setStacks();
+    abstract protected function setStacks(Container $container);
     
     /**
      * Get widget control stacks
@@ -52,6 +57,12 @@ abstract class AbstractMelodyWidget extends Widget_Base {
      * Register controls with Elementor
      */
     protected function _register_controls() {
+        // Somewhere along the line elementor does some weird stuff
+        // and we loose reference to our stacks, getting and setting
+        // stacks in the final widget class would solve this problem
+        if (empty($this->getStacks())) {
+            $this->setStacks(Container::getInstance());
+        }
         foreach($this->getStacks() as $stack) {
             $this->start_controls_section(
                 $stack['handle'],
@@ -89,7 +100,7 @@ abstract class AbstractMelodyWidget extends Widget_Base {
     }
 
     /**
-     * Enqueue Melody styles & scripts
+     * Enqueue app styles & scripts
      */
     public function enqueueApp() {
         wp_enqueue_style(
@@ -99,38 +110,35 @@ abstract class AbstractMelodyWidget extends Widget_Base {
             filemtime(MELODY_BASE_DIR . '/public/css/melody.min.css'),
             'all'
         );
-        
-        wp_enqueue_script(
-            'melody-app-js',
-            plugins_Url('public/js/melody.bundle.js', MELODY_ROOT),
-            null,
-            filemtime(MELODY_BASE_DIR . '/public/js/melody.bundle.js'),
-            true
-        );
 
-        wp_register_script(
-            'melody-adapter-js',
-            plugins_url('public/js/adapter.bundle.js', MELODY_ROOT),
-            ['elementor-frontend', 'melody-app-js'],
-            filemtime(MELODY_BASE_DIR . '/public/js/adapter.bundle.js'),
-            true
-        );
+        wpcl\processManifest();
 
-        wp_localize_script('melody-adapter-js', 'MELODY_ENV', [
+        wp_localize_script('melody-js-adapter', 'MELODY_ENV', [
             'pluginsUrl' => plugins_url(),
             'siteUrl' => get_site_url(),
         ]);
 
-        wp_enqueue_script('melody-adapter-js');
+        wp_enqueue_script('melody-js-adapter');
+        wp_enqueue_script('melody-js-melody');
+    }
+
+    /**
+     * Supplement widget data
+     * 
+     * @return array
+     */
+    protected function prepareData() {
+        $data = $this->get_raw_data();
+        $data = $this->addAttachmentSizes($data);
+        $data['settings']['melody_component_style'] = $this->getComponentStyle();
+        return $data;
     }
 
     /**
      * Render widget template
      */
     protected function render() {
-        // $view = $this->getView();
-        $data = $this->addAttachmentSizes($this->get_raw_data());
-        $data['settings']['melody_component_style'] = $this->getComponentStyle();
+        $data = $this->prepareData();
         $this->view->render(MELODY_PLUGIN_DIR . '/templates/widget-root.php', [
             'settings' => $data['settings'],
             'instance' => $data['id'],

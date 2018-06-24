@@ -3,6 +3,7 @@
 namespace Melody\Controls\custom;
 
 use Melody\Core\ViewInterface;
+use WordPressChunkLoaderPlugin as wpcl;
 use Elementor\Control_Base_Multiple;
 
 class TrackPicker extends Control_Base_Multiple implements CustomInputInterface {
@@ -36,8 +37,9 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
      */
     public function __construct(ViewInterface $view) {
         parent::__construct();
-
         $this->view = $view;
+
+        add_filter('wpclp_register_script', [$this, 'addWpDeps']);
 
         add_filter(
             'wp_prepare_attachment_for_js',
@@ -111,25 +113,31 @@ class TrackPicker extends Control_Base_Multiple implements CustomInputInterface 
     }
 
     /**
+     * Adds wp script dependencies to controls js
+     * 
+     * @param array $scriptArgs
+     * @return array
+     */
+    public function addWpDeps(array $scriptArgs) {
+        if ($scriptArgs['handle'] === 'melody-js-controls') {
+            array_push($scriptArgs['deps'], 'media-editor', 'media-audiovideo');
+        }
+        return $scriptArgs;
+    }
+
+    /**
      * Enqueue input assets
      */
     public function enqueue() {
         wp_enqueue_media();
-        
+
         wp_enqueue_style(
             'media',
             admin_url('/css/media.min.css')
         );
-        
-        wp_register_script(
-            'melody-controls-js',
-            plugins_url('public/js/controls.bundle.js', MELODY_ROOT),
-            ['media-editor', 'media-audiovideo'],
-            filemtime(MELODY_BASE_DIR . '/public/js/controls.bundle.js'),
-            true
-        );
 
-        wp_enqueue_script('melody-controls-js');
+        wpcl\processManifest();
+        wp_enqueue_script('melody-js-controls');
     }
 
     /**

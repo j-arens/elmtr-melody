@@ -25,11 +25,11 @@ module.exports = ({ mode = 'development', libs }) => ({
     },
     output: {
         path: paths.output,
-        filename: '[name].bundle.js',
+        filename: mode === 'development' ? '[name].dev.js' : '[name].[chunkhash].js',
     },
     module: {
-        rules: Object.values(pipes),
+        rules: pipes.map(pipe => pipe(mode, libs)),
     },
-    optimization: optimizations(mode),
+    optimization: optimizations(),
     plugins: plugins(mode, libs),
 });

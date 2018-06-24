@@ -1,4 +1,4 @@
-module.exports = {
-    ts: require('./typescript'),
-    style: require('./style'),
-};
+module.exports = [
+    require('./typescript'),
+    require('./style'),
+];

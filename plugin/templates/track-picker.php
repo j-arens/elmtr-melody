@@ -9,7 +9,6 @@
                 data-melody-tp-trigger-action="{{{ data.controlValue.id ? 'CLEAR_TRACK' : 'SELECT_TRACK' }}}"
             >
                 {{{ data.controlValue.id ? 'Clear Track' : 'Select Track' }}}
-                {{{ console.log(data) }}}
             </button>
         </div>
     </div>

@@ -1,3 +1,4 @@
+plugin/assets/WordPressChunkLoaderPlugin.php
 public/js/*
 public/css/*
 dev/release/temp
