@@ -76,7 +76,7 @@
     "php:dumpautoload": "composer dumpautoload --no-dev",
     "pot:php": "npx makepot plugin languages --force",
     "prepush": "npm run lint & npm run test & npm run test:php",
-    "release": "node dev/release/prepare.js && cd $npm_package_release_temp && npm version ${NEXT_VERSION=patch} && cd - && npm run release:zip",
+    "release": "node dev/release/prepare.js && cd $npm_package_release_temp && npm version ${NEXT_VERSION=patch} -f && cd - && npm run release:zip",
     "release:major": "npm run release --NEXT_VERSION major",
     "release:minor": "npm run release --NEXT_VERSION minor",
     "release:patch": "npm run release --NEXT_VERSION patch",
@@ -92,6 +92,7 @@
     "test:php": "composer test",
     "test:watch": "npm run test -- --watchAll",
     "test:update-ss": "npm run test -- -u",
-    "version": "node dev/release/version.js && git add elementor-melody.php plugin/assets/WordPressChunkLoaderPlugin.php"
+    "version": "node dev/release/version.js && git add .",
+    "postversion": "git push --no-verify && git push --no-verify --tags"
   }
 }
