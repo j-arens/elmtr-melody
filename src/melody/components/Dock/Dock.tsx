@@ -3,7 +3,6 @@ import Icon from '@components/Icon/';
 import { WithOptionalClassName } from '@melody/components/type';
 import { Action, Track } from '@redux/type';
 import { NO_OP } from '@utils/index';
-import { __ } from '@wordpress/i18n';
 import * as classnames from 'classnames';
 import { h } from 'preact';
 const s = require('./style.scss');
@@ -67,7 +66,7 @@ export default ({
                             className={s.dock__control}
                         >
                             <Icon className={s.dock__controlIcon} name="download" />
-                            <span class={s.dock__controlName}>{__('Download')}</span>
+                            <span class={s.dock__controlName}>Download</span>
                         </BaseButton>
                     }
                     <BaseButton
@@ -75,14 +74,14 @@ export default ({
                         className={speedUpClasses}
                     >
                         <Icon className={s.dock__controlIcon} name="plus" />
-                        <span class={s.dock__controlName}>{__('Speed up')}</span>
+                        <span class={s.dock__controlName}>Speed up</span>
                     </BaseButton>
                     <BaseButton
                         onClick={playbackRate === 0.5 ? NO_OP : slowDown}
                         className={slowDownClasses}
                     >
                         <Icon className={s.dock__controlIcon} name="minus" />
-                        <span class={s.dock__controlName}>{__('Slow down')}</span>
+                        <span class={s.dock__controlName}>Slow down</span>
                     </BaseButton>
                 </div>]
             }
