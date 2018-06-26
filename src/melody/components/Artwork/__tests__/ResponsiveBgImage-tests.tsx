@@ -6,6 +6,7 @@ describe('ResponsiveBgImage', () => {
     it('renders', () => {
         const component = render(
             <ResponsiveBgImage
+                className="british-racing-green"
                 artwork={{}}
             />,
         );

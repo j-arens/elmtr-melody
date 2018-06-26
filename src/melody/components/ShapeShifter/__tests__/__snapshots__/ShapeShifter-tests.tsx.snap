@@ -27,13 +27,13 @@ exports[`Melody renders the simple toolbar view 1`] = `
   </div>
   <div class="preview melody-c-preview-padding melody-c-trackinfo-width melody-c-trackinfo-order">
     <div class="preview__wrap melody-c-trackinfo-margin">
-      <span class="preview__time preview__time--left" data-melody-time>0:00</span>
+      <span class="preview__time preview__time--left melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
       <div class="preview__trackInfo">
-        <p class="preview__title" data-melody-title>lol-title</p>
+        <p class="preview__title melody-c-title-font melody-c-title-shadow melody-c-title-color">lol-title</p>
         <span class="melody-c-separator"></span>
-        <p class="preview__artist" data-melody-artist>lol-artist</p>
+        <p class="preview__artist melody-c-artist-font melody-c-artist-shadow melody-c-artist-color">lol-artist</p>
       </div>
-      <span class="preview__time preview__time--right" data-melody-time>0:00</span>
+      <span class="preview__time preview__time--right melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
     </div>
     <div class="glider elementor-tab-title">
       <div class="glider__playback">
@@ -79,10 +79,12 @@ exports[`Melody renders the simple toolbar view 1`] = `
 
 exports[`Melody renders the slider view 1`] = `
 <div class="melody__viewContainer" data-melody-view="slider">
-  <div class="preview" data-melody-preview>
-    <ul class="Slideshow preview__slideshow" data-melody-slideshow style="transform: translate3d(0%, 0px, 0px);">
+  <div class="preview melody-c-preview-bg melody-c-preview-min-height melody-c-preview-padding">
+    <ul class="Slideshow preview__slideshow melody-c-slider-transition melody-c-slider-timing"
+    style="transform: translate3d(0%, 0px, 0px);">
       <li class="Slideshow__slide">
-        <figure class="Slideshow__image" data-melody-artwork style="background-image: url();"></figure>
+        <figure class="Slideshow__image melody-c-artwork-size melody-c-artwork-repeat melody-c-artwork-position melody-c-artwork-attachment"
+        style="background-image: url();"></figure>
       </li>
     </ul>
     <div class="preview__header">
@@ -104,8 +106,8 @@ exports[`Melody renders the slider view 1`] = `
       </div>
     </div>
     <div class="preview__marquee">
-      <p class="preview__title" data-melody-title>lol-title</p>
-      <p class="preview__artist" data-melody-artist>lol-artist</p>
+      <p class="preview__title melody-c-title-font melody-c-title-shadow melody-c-title-color">lol-title</p>
+      <p class="preview__artist melody-c-artist-font melody-c-artist-shadow melody-c-artist-color">lol-artist</p>
     </div>
     <div class="preview__glider">
       <div class="glider elementor-tab-title">
@@ -117,8 +119,8 @@ exports[`Melody renders the slider view 1`] = `
       </div>
     </div>
     <div class="preview__footer">
-      <span class="preview__time" data-melody-time>0:00</span>
-      <span class="preview__time" data-melody-time>0:00</span>
+      <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
+      <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
     </div>
   </div>
   <div class="controlbar melody-c-controlbar melody-control-bar">

@@ -11,6 +11,13 @@ return [
     ],
     'inputs' => [
         [
+            'handle' => 'section_melody_toolbar_btns_heading_colors',
+            'config' => [
+                'type' => Controls_Manager::HEADING,
+                'label' => __('Colors', MELODY_TD),
+            ],
+        ],
+        [
             'handle' => 'melody_toolbar_btn_primary_color',
             'config' => [
                 'label' => __('Primary Color', MELODY_TD),
@@ -27,6 +34,7 @@ return [
                 'label' => __('Hover Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#B0AFAF',
+                'separator' => 'none',
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-btn-hover-color:hover' => 'color: {{VALUE}}',
                 ],
@@ -38,6 +46,7 @@ return [
                 'label' => __('Shuffle/Repeat Enabled Color', MELODY_TD),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#B0AFAF',
+                'separator' => 'none',
                 'selectors' => [
                     '{{WRAPPER}} .melody-shuffle.melody-c-shuffle-on' => 'color: {{VALUE}}',
                     '{{WRAPPER}} .melody-repeat.melody-c-repeat-on' => 'color: {{VALUE}}',
@@ -88,6 +97,7 @@ return [
             'config' => [
                 'label' => __('Spacing', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
+                'separator' => 'none',
                 'devices' => ['desktop', 'tablet', 'mobile'],
                 'desktop_default' => [
                     'size' => 35,
@@ -127,6 +137,7 @@ return [
             'config' => [
                 'label' => __('Alignment', MELODY_TD),
                 'type' => Controls_Manager::CHOOSE,
+                'separator' => 'none',
                 'options' => [
                     'flex-start' => [
                         'title' => __('Left', MELODY_TD),
@@ -190,6 +201,7 @@ return [
             'config' => [
                 'label' => __('Spacing', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
+                'separator' => 'none',
                 'size_units' => ['px', 'em', '%'],
                 'devices' => ['desktop', 'tablet', 'mobile'],
                 'desktop_default' => [
@@ -225,6 +237,7 @@ return [
             'config' => [
                 'label' => __('Alignment', MELODY_TD),
                 'type' => Controls_Manager::CHOOSE,
+                'separator' => 'none',
                 'options' => [
                     'flex-start' => [
                         'title' => __('Left', MELODY_TD),

@@ -104,9 +104,7 @@ class Plugin {
      */
     public function overrideEditorStyles() {
         $style = '
-            div[class*="elementor-control-melody_title_text_shadow"]::before,
-            div[class*="elementor-control-melody_artist_text_shadow"]::before,
-            div[class*="elementor-control-melody_time_text_shadow"]::before {
+            *[class*="!melody-no-separator"]::before {
                 display: none !important;
             }
         ';

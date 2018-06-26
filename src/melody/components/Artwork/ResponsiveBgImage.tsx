@@ -43,7 +43,6 @@ export default class extends Component<Props, State> {
         return (
             <figure
                 class={className}
-                data-melody-artwork
                 style={{ backgroundImage: `url(${artworkSource})` }}
             />
         );
