@@ -17,6 +17,9 @@ const s = require('./style.scss');
 const leftBtnClasses = prefixClasses('btn-primary-color btn-hover-color btn-width btn-space');
 const shuffleRepeatClasses = prefixClasses('btn-primary-color btn-hover-color btn-on-color btn-width btn-space');
 const dockClasses = prefixClasses('btn-primary-color btn-hover-color btn-width');
+const titleClasses = prefixClasses('title-font title-shadow title-color');
+const artistClasses = prefixClasses('artist-font artist-shadow artist-color');
+const timeClasses = prefixClasses('time-font time-shadow time-color');
 
 export default () => (
     <div class={`melody__viewContainer ${s.toolbar} ${prefixClasses('toolbar')}`}>
@@ -27,13 +30,17 @@ export default () => (
         </div>
         <div class={`${s.preview} ${prefixClasses('preview-padding trackinfo-width trackinfo-order')}`}>
             <div class={`${s.preview__wrap} ${prefixClasses('trackinfo-margin')}`}>
-                <CurrentTimeElapsed className={`${s.preview__time} ${s['preview__time--left']}`} />
+                <CurrentTimeElapsed
+                    className={`${s.preview__time} ${s['preview__time--left']} ${timeClasses}`}
+                />
                 <div className={s.preview__trackInfo}>
-                    <CurrentTrackTitle className={s.preview__title} />
+                    <CurrentTrackTitle className={`${s.preview__title} ${titleClasses}`} />
                     <span className={prefixClasses('separator')} />
-                    <CurrentTrackArtist className={s.preview__artist} />
+                    <CurrentTrackArtist className={`${s.preview__artist} ${artistClasses}`} />
                 </div>
-                <CurrentTimeLeft className={`${s.preview__time} ${s['preview__time--right']}`} />
+                <CurrentTimeLeft
+                    className={`${s.preview__time} ${s['preview__time--right']} ${timeClasses}`}
+                />
             </div>
             <Glider />
         </div>

@@ -6,6 +6,7 @@ describe('CurrentTimeLeft', () => {
     it('renders', () => {
         const component = render(
             <CurrentTimeLeft
+                className="yas-marina-blue"
                 currentTime={0}
                 duration={0}
                 getTime={jest.fn().mockReturnValueOnce(80)}

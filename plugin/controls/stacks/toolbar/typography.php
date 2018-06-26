@@ -26,16 +26,16 @@ return [
             'config' => [
                 'name' => 'melody_toolbar_title',
                 'label' => __('Font Style', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-title], {{WRAPPER}} [data-melody-artist]',
+                'selector' => '{{WRAPPER}} .melody-c-title-font, {{WRAPPER}} .melody-c-artist-font',
             ],
         ],
         [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_toolbar_title_text_shadow',
+                'name' => 'melody_toolbar_title_text_shadow!melody-no-separator',
                 'label' => __('Shadow', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-title], {{WRAPPER}} [data-melody-artist]',
+                'selector' => '{{WRAPPER}} .melody-c-title-shadow, {{WRAPPER}} .melody-c-artist-shadow',
                 // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
@@ -47,7 +47,7 @@ return [
                 'default' => '#fff',
                 'separator' => 'none',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-title], {{WRAPPER}} [data-melody-artist]' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-title-color, {{WRAPPER}} .melody-c-artist-color' => 'color: {{VALUE}}',
                 ],
             ],
         ],
@@ -64,16 +64,16 @@ return [
             'config' => [
                 'name' => 'melody_toolbar_time',
                 'label' => __('Font Style', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-time]',
+                'selector' => '{{WRAPPER}} .melody-c-time-font',
             ],
         ],
         [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_toolbar_time_text_shadow',
+                'name' => 'melody_toolbar_time_text_shadow!melody-no-separator',
                 'label' => __('Shadow', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-time]',
+                'selector' => '{{WRAPPER}} .melody-c-time-shadow',
                 // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
@@ -85,7 +85,7 @@ return [
                 'default' => '#fff',
                 'separator' => 'none',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-time]' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-time-color' => 'color: {{VALUE}}',
                 ],
             ],
         ],
@@ -97,7 +97,7 @@ return [
             ],
         ],
         [
-            'handle' => 'section_melody_toolbar_separator_text',
+            'handle' => 'section_melody_toolbar_typography_separator_text',
             'config' => [
                 'type' => Controls_Manager::TEXT,
                 'label' => __('Text', MELODY_TD),
@@ -113,7 +113,7 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_toolbar_separator_font',
+                'name' => 'melody_toolbar_separator_font!melody-no-separator',
                 'label' => __('Font Style', MELODY_TD),
                 'selector' => '{{WRAPPER}} .melody-c-separator::after',
             ],
@@ -131,7 +131,7 @@ return [
             ],
         ],
         [
-            'handle' => 'melody_toolbar_separator_spacing',
+            'handle' => 'melody_toolbar_typography_separator_spacing',
             'config' => [
                 'label' => __('Spacing', MELODY_TD),
                 'type' => Controls_Manager::SLIDER,
@@ -139,6 +139,7 @@ return [
                     'size' => 4,
                     'unit' => 'px',
                 ],
+                'separator' => 'none',
                 'size_units' => ['px', 'em', '%'],
                 'range' => [
                     'px' => [

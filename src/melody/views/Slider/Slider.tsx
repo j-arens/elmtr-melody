@@ -17,25 +17,34 @@ const s = require('./style.scss');
 
 const volClasses = prefixClasses('vol-primary-color vol-hover-color vol-width');
 const btnClasses = prefixClasses('btn-primary-color btn-hover-color btn-space');
+const previewClasses = prefixClasses('preview-bg preview-min-height preview-padding');
+const slideshowClasses = prefixClasses('slider-transition slider-timing');
+const artworkClasses = prefixClasses('artwork-size artwork-repeat artwork-position artwork-attachment');
+const titleClasses = prefixClasses('title-font title-shadow title-color');
+const artistClasses = prefixClasses('artist-font artist-shadow artist-color');
+const timeClasses = prefixClasses('time-font time-shadow time-color');
 
 export default () => (
     <div class="melody__viewContainer" data-melody-view="slider">
-        <div class={s.preview} data-melody-preview>
-            <Slideshow className={s.preview__slideshow} />
+        <div class={`${s.preview} ${previewClasses}`}>
+            <Slideshow
+                className={`${s.preview__slideshow} ${slideshowClasses}`}
+                artworkClassName={artworkClasses}
+            />
             <div class={s.preview__header}>
                 <VolumeCtrl className={volClasses} />
                 <Dock />
             </div>
             <div class={s.preview__marquee}>
-                <CurrentTrackTitle className={s.preview__title} />
-                <CurrentTrackArtist className={s.preview__artist} />
+                <CurrentTrackTitle className={`${s.preview__title} ${titleClasses}`} />
+                <CurrentTrackArtist className={`${s.preview__artist} ${artistClasses}`} />
             </div>
             <div className={s.preview__glider}>
                 <Glider />
             </div>
             <div class={s.preview__footer}>
-                <CurrentTimeElapsed className={s.preview__time} />
-                <CurrentTimeLeft className={s.preview__time} />
+                <CurrentTimeElapsed className={`${s.preview__time} ${timeClasses}`} />
+                <CurrentTimeLeft className={`${s.preview__time} ${timeClasses}`} />
             </div>
         </div>
         <div class={`${s.controlbar} ${prefixClasses('controlbar')} melody-control-bar`}>

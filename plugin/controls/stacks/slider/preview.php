@@ -19,16 +19,28 @@ return [
             ],
         ],
         [
+            'handle' => 'melody_preview_bg_color',
+            'config' => [
+                'label' => __('Background Color', MELODY_TD),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#000',
+                'selectors' => [
+                    '{{WRAPPER}} .melody-c-preview-bg' => 'background-color: {{VALUE}}',
+                ],
+            ],
+        ],
+        [
             'handle' => 'melody_preview_min_height',
             'config' => [
                 'label' => __('Min-height (px)', MELODY_TD),
                 'type' => Controls_Manager::NUMBER,
+                'separator' => 'none',
                 'default' => 300,
                 'min' => 0,
                 'placeholder' => 300,
                 'step' => 1,
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-preview]' => 'min-height: {{VALUE}}px;',
+                    '{{WRAPPER}} .melody-c-preview-min-height' => 'min-height: {{VALUE}}px;',
                 ],
             ],
         ],
@@ -37,6 +49,7 @@ return [
             'config' => [
                 'label' => __('Padding', MELODY_TD),
                 'type' => Controls_Manager::DIMENSIONS,
+                'separator' => 'none',
                 'default' => [
                     'size' => 30,
                     'unit' => 'px',
@@ -44,18 +57,7 @@ return [
                 'placeholder' => 30,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-preview]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ],
-        ],
-        [
-            'handle' => 'melody_preview_bg_color',
-            'config' => [
-                'label' => __('Background Color', MELODY_TD),
-                'type' => Controls_Manager::COLOR,
-                'default' => '#000',
-                'selectors' => [
-                    '{{WRAPPER}} [data-melody-preview]' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-preview-padding' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ],
         ],
@@ -84,7 +86,7 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-artwork]' => 'background-size: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .melody-c-artwork-size' => 'background-size: {{SIZE}}{{UNIT}}',
                 ],
             ],
         ],
@@ -93,6 +95,7 @@ return [
             'config' => [
                 'label' => __('Track Image Repeat', MELODY_TD),
                 'type' => Controls_Manager::SELECT,
+                'separator' => 'none',
                 'label_block' => true,
                 'default' => 'no-repeat',
                 'options' => [
@@ -102,7 +105,7 @@ return [
                     'repeat-y' => __('repeat y', MELODY_TD),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-artwork]' => 'background-repeat: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-artwork-repeat' => 'background-repeat: {{VALUE}}',
                 ],
             ],
         ],
@@ -111,6 +114,7 @@ return [
             'config' => [
                 'label' => __('Track Image Position', MELODY_TD),
                 'type' => Controls_Manager::SELECT,
+                'separator' => 'none',
                 'label_block' => true,
                 'default' => 'center center',
                 'options' => [
@@ -125,7 +129,7 @@ return [
                     'right bottom' => __('right bottom', MELODY_TD),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-artwork]' => 'background-position: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-artwork-position' => 'background-position: {{VALUE}}',
                 ],
             ],
         ],
@@ -134,6 +138,7 @@ return [
             'config' => [
                 'label' => __('Track Image Attachment', MELODY_TD),
                 'type' => Controls_Manager::SELECT,
+                'separator' => 'none',
                 'label_block' => true,
                 'default' => 'scroll',
                 'options' => [
@@ -141,7 +146,7 @@ return [
                     'fixed' => __('fixed', MELODY_TD),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-artwork]' => 'background-attachment: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-artwork-attachment' => 'background-attachment: {{VALUE}}',
                 ],
             ],
         ],
@@ -169,16 +174,17 @@ return [
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-slideshow]' => 'transition-duration: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .melody-c-slider-transition' => 'transition-duration: {{SIZE}}{{UNIT}}',
                 ],
             ],
         ],
         [
-            'handle' => 'melody_preview_animation_timing',
+            'handle' => 'melody_preview_animation_timing!melody-no-separator',
             'config' => [
                 'label' => __('Timing Function', MELODY_TD),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
+                // 'separator' => 'none',
                 'default' => 'ease',
                 'options' => [
                     'linear' => __('linear', MELODY_TD),
@@ -188,7 +194,7 @@ return [
                     'ease-in-out' => __('ease-in-out', MELODY_TD),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-slideshow]' => 'transition-timing-function: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-slider-timing' => 'transition-timing-function: {{VALUE}}',
                 ],
             ],
         ],

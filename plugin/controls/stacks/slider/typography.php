@@ -26,16 +26,16 @@ return [
             'config' => [
                 'name' => 'melody_title',
                 'label' => __('Font Style', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-title]',
+                'selector' => '{{WRAPPER}} .melody-c-title-font',
             ],
         ],
         [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_title_text_shadow',
+                'name' => 'melody_title_text_shadow!melody-no-separator',
                 'label' => __('Shadow', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-title]',
+                'selector' => '{{WRAPPER}} .melody-c-title-shadow',
                 // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
@@ -47,7 +47,7 @@ return [
                 'default' => '#fff',
                 'separator' => 'none',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-title]' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-title-color' => 'color: {{VALUE}}',
                 ],
             ],
         ],
@@ -64,16 +64,16 @@ return [
             'config' => [
                 'name' => 'melody_artist',
                 'label' => __('Font Style', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-artist]',
+                'selector' => '{{WRAPPER}} .melody-c-artist-font',
             ],
         ],
         [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_artist_text_shadow',
+                'name' => 'melody_artist_text_shadow!melody-no-separator',
                 'label' => __('Shadow', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-artist]',
+                'selector' => '{{WRAPPER}} .melody-c-artist-shadow',
                 // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
@@ -85,7 +85,7 @@ return [
                 'default' => '#fff',
                 'separator' => 'none',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-artist]' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-artist-color' => 'color: {{VALUE}}',
                 ],
             ],
         ],
@@ -102,16 +102,16 @@ return [
             'config' => [
                 'name' => 'melody_time',
                 'label' => __('Font Style', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-time]',
+                'selector' => '{{WRAPPER}} .melody-c-time-font',
             ],
         ],
         [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_time_text_shadow',
+                'name' => 'melody_time_text_shadow!melody-no-separator',
                 'label' => __('Shadow', MELODY_TD),
-                'selector' => '{{WRAPPER}} [data-melody-time]',
+                'selector' => '{{WRAPPER}} .melody-c-time-shadow',
                 // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
@@ -123,7 +123,7 @@ return [
                 'default' => '#fff',
                 'separator' => 'none',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-time]' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-time-color' => 'color: {{VALUE}}',
                 ],
             ],
         ],

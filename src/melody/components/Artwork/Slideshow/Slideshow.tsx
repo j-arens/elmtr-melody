@@ -10,16 +10,20 @@ export interface StateProps {
     currentTrack: number;
 }
 
-type Props = StateProps & WithOptionalClassName;
+interface OwnProps extends WithOptionalClassName {
+    artworkClassName?: string;
+}
+
+type Props = StateProps & OwnProps;
 
 export default ({
     tracks,
     currentTrack,
     className = '',
+    artworkClassName = '',
 }: Props) => (
     <ul
         class={`${s.Slideshow} ${className}`}
-        data-melody-slideshow
         style={{
             transform: `translate3d(${currentTrack * -100}%, 0px, 0px)`,
         }}
@@ -32,7 +36,7 @@ export default ({
                 currentTrack={currentTrack}
             >
                 <ResponsiveBgImage
-                    className={s.Slideshow__image}
+                    className={`${s.Slideshow__image} ${artworkClassName}`}
                     artwork={track.artwork}
                 />
             </LazyLoadSlide>

@@ -8,7 +8,7 @@ export interface StateProps {
 type Props = StateProps & WithOptionalClassName;
 
 export default ({ currentTrackTitle, className = '' }: Props) => (
-    <p class={className} data-melody-title>
+    <p class={className}>
         {currentTrackTitle}
     </p>
 );
