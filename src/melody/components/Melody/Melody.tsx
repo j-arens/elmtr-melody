@@ -1,13 +1,14 @@
-import DefaultError from '@components/Fault/DefaultError';
-import FaultContainer from '@components/Fault/FaultContainer';
-import NoTracksEditor from '@components/Fault/NoTracksEditor';
-import NoTracksFront from '@components/Fault/NoTracksFront';
+import { ErrorCodes } from '@components/Fault/codes';
+import ErrorHandler from '@components/Fault/ErrorHandler';
 import ShapeShifter from '@components/ShapeShifter/';
-import { GLOBAL } from '@constants';
 import { Track } from '@redux/type';
 import { Action } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
-import { getRandomNumInRange, timeout } from '@utils/index';
+import {
+    getRandomNumInRange,
+    NetworkStates,
+    timeout,
+} from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 const s = require('./style.scss');
@@ -210,6 +211,7 @@ export default class extends Component<Props, {}> {
     onPlayError = (e) => {
         const { cycleState } = this.props;
         if (e.name && e.name !== 'AbortError') {
+            console.error('Melody', Error(e));
             cycleState('FAILED');
         }
     }
@@ -241,42 +243,39 @@ export default class extends Component<Props, {}> {
         setFilelength(duration);
     }
 
-    getMachineAction() {
-        const { currentState } = this.props;
+    getErrors(): Set<ErrorCodes> {
+        const { currentState, tracks } = this.props;
+        const errors = new Set();
+
+        if (currentState === 'fault') {
+            errors.add(ErrorCodes.MELODY_GENERIC_FAULT);
+            const networkState = this.AudioInterface.networkState;
+            if (networkState === NetworkStates.NETWORK_NO_SOURCE) {
+                errors.add(ErrorCodes.MELODY_BAD_SOURCE);
+            }
+        }
+
+        if (currentState !== 'fetching' && !tracks.length) {
+            errors.add(ErrorCodes.MELODY_NO_TRACKS);
+        }
+
+        return errors;
     }
 
     render({ currentState, gliderIsDragging, volIsDragging, tracks }: Props) {
+        const errors = this.getErrors();
+        if (errors.size) {
+            return <ErrorHandler errors={errors} />;
+        }
+
         const classes = classnames(
             s.Melody,
             s[`Melody--${currentState}`],
             { [s['Melody--isDragging']]: gliderIsDragging || volIsDragging },
         );
 
-        if (currentState !== 'fetching' && !tracks.length) {
-            if (GLOBAL.elementorFrontend && GLOBAL.elementorFrontend.isEditMode()) {
-                return (
-                    <FaultContainer allowReload={false}>
-                        <NoTracksEditor />
-                    </FaultContainer>
-                );
-            }
-            return (
-                <FaultContainer allowReload={false}>
-                    <NoTracksFront />
-                </FaultContainer>
-            );
-        }
-
-        if (currentState === 'fault') {
-            return (
-                <FaultContainer allowReload>
-                    <DefaultError />
-                </FaultContainer>
-            );
-        }
-
         return (
-            <div class={classes} data-melody-border>
+            <div class={classes}>
                 <ShapeShifter />
             </div>
         );

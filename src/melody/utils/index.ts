@@ -4,6 +4,16 @@ import { MachineAction, MachineStates } from '@state-machine/type';
 import { MELODY_CUSTOMIZATION_CLASS_PREFIX } from '../constants';
 
 /**
+ * HTML Audio networkState
+ */
+export enum NetworkStates {
+    NETWORK_EMPTY,
+    NETWORK_IDLE,
+    NETWORK_LOADING,
+    NETWORK_NO_SOURCE,
+}
+
+/**
  * NOOP
  */
 export const NO_OP = () => {}; // tslint:disable-line no-empty
