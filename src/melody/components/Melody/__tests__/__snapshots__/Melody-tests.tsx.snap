@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Melody flourishes into a nice little application if the conditions are right 1`] = `
-<div class="Melody Melody--stopped" data-melody-border>
+<div class="Melody Melody--stopped">
   <div class="melody__viewContainer" data-melody-view="slider">
     <div class="preview melody-c-preview-bg melody-c-preview-min-height melody-c-preview-padding">
       <ul class="Slideshow preview__slideshow melody-c-slider-transition melody-c-slider-timing"
