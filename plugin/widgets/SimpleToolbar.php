@@ -47,7 +47,7 @@ final class SimpleToolbar extends AbstractMelodyWidget implements WidgetInterfac
      * {@inheritdoc}
      */
     public function get_title() {
-        return sprintf(__('%1s'), $this->title);
+        return sprintf(__('%1s', 'melody'), $this->title);
     }
 
     /**

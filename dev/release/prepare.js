@@ -34,10 +34,20 @@ function build(next) {
     next();
 }
 
+/**
+ * Runs i18n scripts 
+ */
+function i18n(next) {
+    console.log(colors.info('📖 running i18n scripts'));
+    execSync(`cd ${TEMP_DIR} && npm run i18n`);
+    next();
+}
+
 const tasks = [
     checkout,
     install,
     build,
+    i18n,
 ];
 
 const taskRunner = makeTaskRunner(tasks);

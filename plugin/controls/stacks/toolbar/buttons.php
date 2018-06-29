@@ -6,7 +6,7 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_toolbar_btn_style',
     'config' => [
-        'label' => __('Buttons'),
+        'label' => __('Buttons', 'melody'),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
@@ -14,13 +14,13 @@ return [
             'handle' => 'section_melody_toolbar_btns_heading_colors',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Colors'),
+                'label' => __('Colors', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_toolbar_btn_primary_color',
             'config' => [
-                'label' => __('Primary Color'),
+                'label' => __('Primary Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#4D4D4D',
                 'selectors' => [
@@ -31,7 +31,7 @@ return [
         [
             'handle' => 'melody_toolbar_btn_hover_color',
             'config' => [
-                'label' => __('Hover Color'),
+                'label' => __('Hover Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#B0AFAF',
                 'separator' => 'none',
@@ -43,7 +43,7 @@ return [
         [
             'handle' => 'melody_toolbar_btn_on_color',
             'config' => [
-                'label' => __('Shuffle/Repeat Enabled Color'),
+                'label' => __('Shuffle/Repeat Enabled Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#B0AFAF',
                 'separator' => 'none',
@@ -57,14 +57,14 @@ return [
             'handle' => 'section_melody_toolbar_btns_primary',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Primary'),
+                'label' => __('Primary', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_toolbar_btns_primary_max_width',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Size'),
+                'label' => __('Size', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'devices' => ['desktop', 'tablet', 'mobile'],
                 'desktop_default' => [
@@ -95,7 +95,7 @@ return [
             'handle' => 'melody_toolbar_btns_primary_space',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Spacing'),
+                'label' => __('Spacing', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'separator' => 'none',
                 'devices' => ['desktop', 'tablet', 'mobile'],
@@ -135,20 +135,20 @@ return [
             'handle' => 'melody_toolbar_btns_primary_flex_alignment',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Alignment'),
+                'label' => __('Alignment', 'melody'),
                 'type' => Controls_Manager::CHOOSE,
                 'separator' => 'none',
                 'options' => [
                     'flex-start' => [
-                        'title' => __('Left'),
+                        'title' => __('Left', 'melody'),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __('Center'),
+                        'title' => __('Center', 'melody'),
                         'icon' => 'fa fa-align-center',
                     ],
                     'flex-end' => [
-                        'title' => __('Right'),
+                        'title' => __('Right', 'melody'),
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
@@ -165,14 +165,14 @@ return [
             'handle' => 'section_melody_toolbar_btns_secondary',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Secondary'),
+                'label' => __('Secondary', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_toolbar_btns_secondary_max_width',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Size'),
+                'label' => __('Size', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'devices' => ['desktop', 'tablet', 'mobile'],
                 'size_units' => ['px'],
@@ -199,7 +199,7 @@ return [
             'handle' => 'melody_toolbar_btns_secondary_space',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Spacing'),
+                'label' => __('Spacing', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'separator' => 'none',
                 'size_units' => ['px', 'em', '%'],
@@ -235,20 +235,20 @@ return [
             'handle' => 'melody_toolbar_btns_secondary_flex_alignment',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Alignment'),
+                'label' => __('Alignment', 'melody'),
                 'type' => Controls_Manager::CHOOSE,
                 'separator' => 'none',
                 'options' => [
                     'flex-start' => [
-                        'title' => __('Left'),
+                        'title' => __('Left', 'melody'),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __('Center'),
+                        'title' => __('Center', 'melody'),
                         'icon' => 'fa fa-align-center',
                     ],
                     'flex-end' => [
-                        'title' => __('Right'),
+                        'title' => __('Right', 'melody'),
                         'icon' => 'fa fa-align-right',
                     ],
                 ],

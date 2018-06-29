@@ -70,7 +70,7 @@ class Plugin {
     public function registerCategory(Elements_Manager $manager) {
         $manager->add_category(
             'melody-elements',
-            ['title' => __('Melody Audio Elements'), 'icon' => 'eicon-font']
+            ['title' => __('Melody Audio Elements', 'melody'), 'icon' => 'eicon-font']
         );
     }
 
