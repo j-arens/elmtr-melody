@@ -5,6 +5,7 @@
   "author": "Josh Arens",
   "main": "public/js/melody.bundle.js",
   "release_temp": "dev/release/temp",
+  "text_domain": "elmtr-melody",
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash.get": "^4.4.2",
@@ -71,7 +72,7 @@
     "lint": "tslint src/**/*.{ts,tsx}",
     "lint:fix": "npm run lint -- --fix",
     "php:dumpautoload": "composer dumpautoload --no-dev",
-    "pot:php": "npx makepot plugin languages --force",
+    "i18n": "npx wpi18n addtextdomain $npm_package_text_domain && npx wpi18n makepot plugin languages --force",
     "prepush": "npm run lint & npm run test & npm run test:php",
     "release": "node dev/release/prepare.js && cd $npm_package_release_temp && npm version ${NEXT_VERSION=patch} -f && cd - && npm run release:zip",
     "release:major": "npm run release --NEXT_VERSION major",

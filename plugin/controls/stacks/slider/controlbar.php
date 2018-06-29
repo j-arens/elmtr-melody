@@ -7,14 +7,14 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_controlbar_style',
     'config' => [
-        'label' => __('Control Bar', MELODY_TD),
+        'label' => __('Control Bar'),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
         [
             'handle' => 'melody_slider_control_bar_padding',
             'config' => [
-                'label' => __('Padding', MELODY_TD),
+                'label' => __('Padding'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'default' => [
                     'size' => 30,
@@ -30,7 +30,7 @@ return [
         [
             'handle' => 'melody_slider_control_bar_bg_color',
             'config' => [
-                'label' => __('Background Color', MELODY_TD),
+                'label' => __('Background Color'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#252525',
                 'selectors' => [
@@ -43,7 +43,7 @@ return [
             'handle' => Group_Control_Box_Shadow::get_type(),
             'config' => [
                 'name' => 'melody_slider_control_bar_box_shadow',
-                'label' => __('Box Shadow', MELODY_TD),
+                'label' => __('Box Shadow'),
                 'selector' => '{{WRAPPER}} .melody-c-controlbar',
             ],
         ],

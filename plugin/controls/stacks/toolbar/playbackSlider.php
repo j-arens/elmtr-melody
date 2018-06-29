@@ -6,14 +6,14 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_sliders_style',
     'config' => [
-        'label' => __('Sliders', MELODY_TD),
+        'label' => __('Sliders'),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
         [
             'handle' => 'melody_sliders_primary_color',
             'config' => [
-                'label' => __('Primary Color', MELODY_TD),
+                'label' => __('Primary Color'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#fff',
                 'selectors' => [
@@ -24,7 +24,7 @@ return [
         [
             'handle' => 'melody_sliders_background_color',
             'config' => [
-                'label' => __('Background Color', MELODY_TD),
+                'label' => __('Background Color'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#B0AFAF',
                 'selectors' => [
@@ -35,7 +35,7 @@ return [
         [
             'handle' => 'melody_sliders_handle_color',
             'config' => [
-                'label' => __('Handle Color', MELODY_TD),
+                'label' => __('Handle Color'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#fff',
                 'selectors' => [

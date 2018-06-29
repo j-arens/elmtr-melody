@@ -6,7 +6,7 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_tracks',
     'config' => [
-        'label' => __('Audio Tracks', MELODY_TD),
+        'label' => __('Audio Tracks'),
     ],
     'inputs' => [
         [
@@ -18,14 +18,14 @@ return [
                 'fields' => [
                     [
                         'name' => 'melody_audio_source',
-                        'label' => __('Audio Source', MELODY_TD),
+                        'label' => __('Audio Source'),
                         'type' => Controls_Manager::SELECT,
                         'label_block' => true,
                         'seperator' => true,
                         'default' => 'media-library',
                         'options' => [
-                            'media-library' => __('Media Library', MELODY_TD),
-                            'external-source' => __('External Source', MELODY_TD),
+                            'media-library' => __('Media Library'),
+                            'external-source' => __('External Source'),
                         ],
                     ],
                     [
@@ -56,7 +56,7 @@ return [
                     ],
                     [
                         'name' => 'melody_external_track_url',
-                        'label' => __('Track URL', MELODY_TD),
+                        'label' => __('Track URL'),
                         'type' => Controls_Manager::TEXT,
                         'input_type' => 'url',
                         'label_block' => true,
@@ -66,32 +66,32 @@ return [
                     ],
                     [
                         'name' => 'melody_track_title',
-                        'label' => __('Title', MELODY_TD),
+                        'label' => __('Title'),
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
-                        'title' => __('Track Title', MELODY_TD),
+                        'title' => __('Track Title'),
                     ],
                     [
                         'name' => 'melody_track_album',
-                        'label' => __('Album', MELODY_TD),
+                        'label' => __('Album'),
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
                     ],
                     [
                         'name' => 'melody_track_artist',
-                        'label' => __('Artist', MELODY_TD),
+                        'label' => __('Artist'),
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
-                        'title' => __('Track Artist', MELODY_TD),
+                        'title' => __('Track Artist'),
                     ],
                     [
                         'name' => 'melody_track_artwork',
-                        'label' => __('Artwork', MELODY_TD),
+                        'label' => __('Artwork'),
                         'type' => Controls_Manager::MEDIA,
                     ],
                     [
                         'name' => 'melody_track_downloadable',
-                        'label' => __('Enable Downloads', MELODY_TD),
+                        'label' => __('Enable Downloads'),
                         'type' => Controls_Manager::SWITCHER,
                         'label_off' => 'off',
                         'label_on' => 'on',
@@ -99,7 +99,7 @@ return [
                     ],
                     [
                         'name' => 'melody_track_download_source',
-                        'label' => __('Download URL', MELODY_TD),
+                        'label' => __('Download URL'),
                         'type' => Controls_Manager::TEXT,
                         'input_type' => 'url',
                         'label_block' => true,
@@ -117,7 +117,7 @@ return [
                             {{{ melody_track_title }}}
                         <# } #>
                     <# } else { #>
-                        ' . __('Unnamed Track', MELODY_TD) . '
+                        ' . __('Unnamed Track') . '
                     <# } #>
                 ',
             ],

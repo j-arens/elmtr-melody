@@ -70,7 +70,7 @@ class Plugin {
     public function registerCategory(Elements_Manager $manager) {
         $manager->add_category(
             'melody-elements',
-            ['title' => __('Melody Audio Elements', MELODY_TD), 'icon' => 'eicon-font']
+            ['title' => __('Melody Audio Elements'), 'icon' => 'eicon-font']
         );
     }
 
@@ -115,6 +115,6 @@ class Plugin {
      * Load plugin text domain for translation
      */
     protected function i18n() {
-        load_plugin_textdomain(MELODY_TD, false, MELODY_ROOT . '/languages/');
+        load_plugin_textdomain(MELODY_TEXT_DOMAIN, false, MELODY_ROOT . '/languages/');
     }
 }

@@ -6,14 +6,14 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_toolbar_trackinfo',
     'config' => [
-        'label' => __('Track Info', MELODY_TD),
+        'label' => __('Track Info'),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
         [
             'handle' => 'melody_toolbar_trackinfo_margin_bottom',
             'config' => [
-                'label' => __('Bottom Margin', MELODY_TD),
+                'label' => __('Bottom Margin'),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 8,
@@ -43,7 +43,7 @@ return [
             'handle' => 'melody_toolbar_trackinfo_padding',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Padding', MELODY_TD),
+                'label' => __('Padding'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'devices' => ['desktop', 'tablet', 'mobile'],
                 'desktop_default' => [

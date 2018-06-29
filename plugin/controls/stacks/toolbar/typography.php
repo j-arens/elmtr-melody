@@ -9,7 +9,7 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_typography',
     'config' => [
-        'label' => __('Typography', MELODY_TD),
+        'label' => __('Typography'),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
@@ -17,7 +17,7 @@ return [
             'handle' => 'section_melody_toolbar_typography_title_artist',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Track Title & Artist', MELODY_TD),
+                'label' => __('Track Title & Artist'),
             ],
         ],
         [
@@ -25,7 +25,7 @@ return [
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
                 'name' => 'melody_toolbar_title',
-                'label' => __('Font Style', MELODY_TD),
+                'label' => __('Font Style'),
                 'selector' => '{{WRAPPER}} .melody-c-title-font, {{WRAPPER}} .melody-c-artist-font',
             ],
         ],
@@ -34,7 +34,7 @@ return [
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
                 'name' => 'melody_toolbar_title_text_shadow!melody-no-separator',
-                'label' => __('Shadow', MELODY_TD),
+                'label' => __('Shadow'),
                 'selector' => '{{WRAPPER}} .melody-c-title-shadow, {{WRAPPER}} .melody-c-artist-shadow',
                 // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
@@ -42,7 +42,7 @@ return [
         [
             'handle' => 'melody_toolbar_title_color',
             'config' => [
-                'label' => __('Color', MELODY_TD),
+                'label' => __('Color'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#fff',
                 'separator' => 'none',
@@ -55,7 +55,7 @@ return [
             'handle' => 'section_melody_toolbar_typography_time',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Time', MELODY_TD),
+                'label' => __('Time'),
             ],
         ],
         [
@@ -63,7 +63,7 @@ return [
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
                 'name' => 'melody_toolbar_time',
-                'label' => __('Font Style', MELODY_TD),
+                'label' => __('Font Style'),
                 'selector' => '{{WRAPPER}} .melody-c-time-font',
             ],
         ],
@@ -72,7 +72,7 @@ return [
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
                 'name' => 'melody_toolbar_time_text_shadow!melody-no-separator',
-                'label' => __('Shadow', MELODY_TD),
+                'label' => __('Shadow'),
                 'selector' => '{{WRAPPER}} .melody-c-time-shadow',
                 // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
@@ -80,7 +80,7 @@ return [
         [
             'handle' => 'melody_toolbar_time_color',
             'config' => [
-                'label' => __('Color', MELODY_TD),
+                'label' => __('Color'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#fff',
                 'separator' => 'none',
@@ -93,14 +93,14 @@ return [
             'handle' => 'section_melody_toolbar_typography_title_separator',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Separator', MELODY_TD),
+                'label' => __('Separator'),
             ],
         ],
         [
             'handle' => 'section_melody_toolbar_typography_separator_text',
             'config' => [
                 'type' => Controls_Manager::TEXT,
-                'label' => __('Text', MELODY_TD),
+                'label' => __('Text'),
                 'default' => '-',
                 'placeholder' => '-',
                 'label_block' => true,
@@ -114,14 +114,14 @@ return [
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
                 'name' => 'melody_toolbar_separator_font!melody-no-separator',
-                'label' => __('Font Style', MELODY_TD),
+                'label' => __('Font Style'),
                 'selector' => '{{WRAPPER}} .melody-c-separator::after',
             ],
         ],
         [
             'handle' => 'melody_toolbar_separator_color',
             'config' => [
-                'label' => __('Color', MELODY_TD),
+                'label' => __('Color'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#fff',
                 'separator' => 'none',
@@ -133,7 +133,7 @@ return [
         [
             'handle' => 'melody_toolbar_typography_separator_spacing',
             'config' => [
-                'label' => __('Spacing', MELODY_TD),
+                'label' => __('Spacing'),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 4,
