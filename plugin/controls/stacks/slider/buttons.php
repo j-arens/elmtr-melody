@@ -6,7 +6,7 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_slider_buttons',
     'config' => [
-        'label' => __('Buttons', MELODY_TD),
+        'label' => __('Buttons', 'melody'),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
@@ -14,13 +14,13 @@ return [
             'handle' => 'section_melody_slider_buttons_colors_heading',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Colors', MELODY_TD),
+                'label' => __('Colors', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_slider_buttons_primary_color',
             'config' => [
-                'label' => __('Primary Color', MELODY_TD),
+                'label' => __('Primary Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#4D4D4D',
                 'selectors' => [
@@ -31,7 +31,7 @@ return [
         [
             'handle' => 'melody_slider_buttons_hover_color',
             'config' => [
-                'label' => __('Hover Color', MELODY_TD),
+                'label' => __('Hover Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'separator' => 'none',
                 'default' => '#B0AFAF',
@@ -43,7 +43,7 @@ return [
         [
             'handle' => 'melody_slider_buttons_on_color',
             'config' => [
-                'label' => __('Shuffle/Repeat Enabled Color', MELODY_TD),
+                'label' => __('Shuffle/Repeat Enabled Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'separator' => 'none',
                 'default' => '#B0AFAF',
@@ -57,13 +57,13 @@ return [
             'handle' => 'section_melody_slider_buttons_placement_heading',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Placement', MELODY_TD),
+                'label' => __('Placement', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_slider_buttons_btn_max_width',
             'config' => [
-                'label' => __('Size', MELODY_TD),
+                'label' => __('Size', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 30,
@@ -84,7 +84,7 @@ return [
         [
             'handle' => 'melody_slider_buttons_btn_space',
             'config' => [
-                'label' => __('Spacing', MELODY_TD),
+                'label' => __('Spacing', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'separator' => 'none',
                 'default' => [
@@ -114,20 +114,20 @@ return [
         [
             'handle' => 'melody_slider_buttons_btn_flex_alignment',
             'config' => [
-                'label' => __('Alignment', MELODY_TD),
+                'label' => __('Alignment', 'melody'),
                 'type' => Controls_Manager::CHOOSE,
                 'separator' => 'none',
                 'options' => [
                     'flex-start' => [
-                        'title' => __('Left', MELODY_TD),
+                        'title' => __('Left', 'melody'),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __('Center', MELODY_TD),
+                        'title' => __('Center', 'melody'),
                         'icon' => 'fa fa-align-center',
                     ],
                     'flex-end' => [
-                        'title' => __('Right', MELODY_TD),
+                        'title' => __('Right', 'melody'),
                         'icon' => 'fa fa-align-right',
                     ],
                 ],

@@ -1,0 +1,473 @@
+# Copyright (C) 2018 <a href="https://jarens.me">Josh Arens</a>
+# This file is distributed under the same license as the Elementor-Melody package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Elementor-Melody 1.0.0-alpha.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elementor-melody\n"
+"POT-Creation-Date: 2018-06-29 01:59:47+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: node-wp-i18n 1.2.0\n"
+
+#: plugin/controls/stacks/common/trackLibrary.php:9
+msgid "Audio Tracks"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:21
+msgid "Audio Source"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:27
+msgid "Media Library"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:28
+msgid "External Source"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:59
+msgid "Track URL"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:69
+msgid "Title"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:72
+#: plugin/controls/stacks/slider/typography.php:20
+msgid "Track Title"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:76
+msgid "Album"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:82
+#: plugin/controls/stacks/slider/typography.php:58
+msgid "Artist"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:85
+msgid "Track Artist"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:89
+msgid "Artwork"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:94
+msgid "Enable Downloads"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:102
+msgid "Download URL"
+msgstr ""
+
+#: plugin/controls/stacks/common/trackLibrary.php:120
+msgid "Unnamed Track"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:9
+#: plugin/controls/stacks/toolbar/buttons.php:9
+msgid "Buttons"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:17
+#: plugin/controls/stacks/toolbar/buttons.php:17
+msgid "Colors"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:23
+#: plugin/controls/stacks/slider/playbackSlider.php:16
+#: plugin/controls/stacks/slider/volumeControl.php:16
+#: plugin/controls/stacks/toolbar/buttons.php:23
+#: plugin/controls/stacks/toolbar/playbackSlider.php:16
+msgid "Primary Color"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:34
+#: plugin/controls/stacks/slider/volumeControl.php:27
+#: plugin/controls/stacks/toolbar/buttons.php:34
+msgid "Hover Color"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:46
+#: plugin/controls/stacks/toolbar/buttons.php:46
+msgid "Shuffle/Repeat Enabled Color"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:60
+msgid "Placement"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:66
+#: plugin/controls/stacks/slider/volumeControl.php:38
+#: plugin/controls/stacks/toolbar/buttons.php:67
+#: plugin/controls/stacks/toolbar/buttons.php:175
+msgid "Size"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:87
+#: plugin/controls/stacks/toolbar/buttons.php:98
+#: plugin/controls/stacks/toolbar/buttons.php:202
+#: plugin/controls/stacks/toolbar/typography.php:136
+msgid "Spacing"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:117
+#: plugin/controls/stacks/toolbar/buttons.php:138
+#: plugin/controls/stacks/toolbar/buttons.php:238
+msgid "Alignment"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:122
+#: plugin/controls/stacks/toolbar/buttons.php:143
+#: plugin/controls/stacks/toolbar/buttons.php:243
+msgid "Left"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:126
+#: plugin/controls/stacks/toolbar/buttons.php:147
+#: plugin/controls/stacks/toolbar/buttons.php:247
+msgid "Center"
+msgstr ""
+
+#: plugin/controls/stacks/slider/buttons.php:130
+#: plugin/controls/stacks/toolbar/buttons.php:151
+#: plugin/controls/stacks/toolbar/buttons.php:251
+msgid "Right"
+msgstr ""
+
+#: plugin/controls/stacks/slider/controlbar.php:10
+msgid "Control Bar"
+msgstr ""
+
+#: plugin/controls/stacks/slider/controlbar.php:17
+#: plugin/controls/stacks/slider/preview.php:50
+#: plugin/controls/stacks/toolbar/toolbar.php:28
+#: plugin/controls/stacks/toolbar/trackInfo.php:46
+msgid "Padding"
+msgstr ""
+
+#: plugin/controls/stacks/slider/controlbar.php:33
+#: plugin/controls/stacks/slider/playbackSlider.php:27
+#: plugin/controls/stacks/slider/preview.php:24
+#: plugin/controls/stacks/toolbar/playbackSlider.php:27
+#: plugin/controls/stacks/toolbar/toolbar.php:16
+msgid "Background Color"
+msgstr ""
+
+#: plugin/controls/stacks/slider/controlbar.php:46
+msgid "Box Shadow"
+msgstr ""
+
+#: plugin/controls/stacks/slider/playbackSlider.php:9
+#: plugin/controls/stacks/toolbar/playbackSlider.php:9
+msgid "Sliders"
+msgstr ""
+
+#: plugin/controls/stacks/slider/playbackSlider.php:38
+#: plugin/controls/stacks/toolbar/playbackSlider.php:38
+msgid "Handle Color"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:10
+msgid "Preview"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:18
+msgid "Styles"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:35
+msgid "Min-height (px)"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:68
+msgid "Image"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:74
+msgid "Track Image Size (%)"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:96
+msgid "Track Image Repeat"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:102
+msgid "no repeat"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:103
+msgid "repeat"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:104
+msgid "repeat x"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:105
+msgid "repeat y"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:115
+msgid "Track Image Position"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:121
+msgid "center top"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:122
+msgid "center center"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:123
+msgid "center bottom"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:124
+msgid "left top"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:125
+msgid "left center"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:126
+msgid "left bottom"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:127
+msgid "right top"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:128
+msgid "right center"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:129
+msgid "right bottom"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:139
+msgid "Track Image Attachment"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:145
+msgid "scroll"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:146
+msgid "fixed"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:157
+msgid "Animation"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:163
+msgid "Slider Duration (ms)"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:184
+msgid "Timing Function"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:190
+msgid "linear"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:191
+msgid "ease"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:192
+msgid "ease-in"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:193
+msgid "ease-out"
+msgstr ""
+
+#: plugin/controls/stacks/slider/preview.php:194
+msgid "ease-in-out"
+msgstr ""
+
+#: plugin/controls/stacks/slider/typography.php:12
+#: plugin/controls/stacks/toolbar/typography.php:12
+msgid "Typography"
+msgstr ""
+
+#: plugin/controls/stacks/slider/typography.php:28
+#: plugin/controls/stacks/slider/typography.php:66
+#: plugin/controls/stacks/slider/typography.php:104
+#: plugin/controls/stacks/toolbar/typography.php:28
+#: plugin/controls/stacks/toolbar/typography.php:66
+#: plugin/controls/stacks/toolbar/typography.php:117
+msgid "Font Style"
+msgstr ""
+
+#: plugin/controls/stacks/slider/typography.php:37
+#: plugin/controls/stacks/slider/typography.php:75
+#: plugin/controls/stacks/slider/typography.php:113
+#: plugin/controls/stacks/toolbar/typography.php:37
+#: plugin/controls/stacks/toolbar/typography.php:75
+msgid "Shadow"
+msgstr ""
+
+#: plugin/controls/stacks/slider/typography.php:45
+#: plugin/controls/stacks/slider/typography.php:83
+#: plugin/controls/stacks/slider/typography.php:121
+#: plugin/controls/stacks/toolbar/typography.php:45
+#: plugin/controls/stacks/toolbar/typography.php:83
+#: plugin/controls/stacks/toolbar/typography.php:124
+msgid "Color"
+msgstr ""
+
+#: plugin/controls/stacks/slider/typography.php:96
+#: plugin/controls/stacks/toolbar/typography.php:58
+msgid "Time"
+msgstr ""
+
+#: plugin/controls/stacks/slider/volumeControl.php:9
+msgid "Volume Control"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/buttons.php:60
+msgid "Primary"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/buttons.php:168
+msgid "Secondary"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:9
+msgid "Toolbar"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:63
+msgid "Primary Controls"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:70
+msgid "Primary Controls Width (%)"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:101
+msgid "Primary Controls Order"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:120
+msgid "Secondary Controls"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:127
+msgid "Secondary Controls Width (%)"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:158
+msgid "Secondary Controls Order"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:177
+#: plugin/controls/stacks/toolbar/trackInfo.php:9
+msgid "Track Info"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:184
+msgid "Track Info Width (%)"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/toolbar.php:215
+msgid "Track Info Controls Order"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/trackInfo.php:16
+msgid "Bottom Margin"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/typography.php:20
+msgid "Track Title & Artist"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/typography.php:96
+msgid "Separator"
+msgstr ""
+
+#: plugin/controls/stacks/toolbar/typography.php:103
+msgid "Text"
+msgstr ""
+
+#: plugin/core/Plugin.php:73
+msgid "Melody Audio Elements"
+msgstr ""
+
+#: plugin/notices.php:9
+msgid "elementor_melody requires a minimum PHP version of"
+msgstr ""
+
+#: plugin/notices.php:10
+msgid "5.6"
+msgstr ""
+
+#: plugin/notices.php:11
+msgid "Please contact your webhost to upgrade to a safe, modern version of PHP."
+msgstr ""
+
+#: plugin/notices.php:22
+msgid "elementor_melody requires a minimum WordPress version of"
+msgstr ""
+
+#: plugin/notices.php:23
+msgid "4.7"
+msgstr ""
+
+#: plugin/notices.php:24
+msgid "Click here"
+msgstr ""
+
+#: plugin/notices.php:25
+msgid "to view instructions on updating WordPress."
+msgstr ""
+
+#: plugin/notices.php:38
+msgid "elementor_melody requires a minimum Elementor version of"
+msgstr ""
+
+#: plugin/notices.php:39
+msgid "1.9.3"
+msgstr ""
+
+#: plugin/notices.php:40
+msgid "If you do not have Elementor installed there is a helpful guide"
+msgstr ""
+
+#: plugin/notices.php:41
+msgid "here"
+msgstr ""
+
+#: plugin/notices.php:42
+msgid "to get you started."
+msgstr ""
+
+#: plugin/widgets/SimpleToolbar.php:50 plugin/widgets/Slider.php:72
+msgid "%1s"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Elementor-Melody"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "<a href=\"https://jarens.me\">Josh Arens</a>"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://jarens.me"
+msgstr ""

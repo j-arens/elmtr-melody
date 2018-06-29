@@ -6,14 +6,14 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_toolbar',
     'config' => [
-        'label' => __('Toolbar', MELODY_TD),
+        'label' => __('Toolbar', 'melody'),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
         [
             'handle' => 'melody_toolbar_bg_color',
             'config' => [
-                'label' => __('Background Color', MELODY_TD),
+                'label' => __('Background Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#252525',
                 'selectors' => [
@@ -25,7 +25,7 @@ return [
             'handle' => 'melody_toolbar_padding',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Padding', MELODY_TD),
+                'label' => __('Padding', 'melody'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'devices' => ['desktop', 'tablet', 'mobile'],
                 'desktop_default' => [
@@ -60,14 +60,14 @@ return [
             'handle' => 'section_melody_toolbar_primary_controls_heading',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Primary Controls', MELODY_TD),
+                'label' => __('Primary Controls', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_toolbar_primary_controls_width',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Primary Controls Width (%)', MELODY_TD),
+                'label' => __('Primary Controls Width (%)', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
                 'range' => [
@@ -98,7 +98,7 @@ return [
             'handle' => 'melody_toolbar_primary_controls_order',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Primary Controls Order', MELODY_TD),
+                'label' => __('Primary Controls Order', 'melody'),
                 'separator' => 'none',
                 'label_block' => true,
                 'type' => Controls_Manager::NUMBER,
@@ -117,14 +117,14 @@ return [
             'handle' => 'section_melody_toolbar_secondary_controls_heading',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Secondary Controls', MELODY_TD),
+                'label' => __('Secondary Controls', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_toolbar_secondary_controls_width',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Secondary Controls Width (%)', MELODY_TD),
+                'label' => __('Secondary Controls Width (%)', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
                 'range' => [
@@ -155,7 +155,7 @@ return [
             'handle' => 'melody_toolbar_secondary_controls_order',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Secondary Controls Order', MELODY_TD),
+                'label' => __('Secondary Controls Order', 'melody'),
                 'separator' => 'none',
                 'label_block' => true,
                 'type' => Controls_Manager::NUMBER,
@@ -174,14 +174,14 @@ return [
             'handle' => 'section_melody_toolbar_track_info_heading',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Track Info', MELODY_TD),
+                'label' => __('Track Info', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_toolbar_trackinfo_width',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Track Info Width (%)', MELODY_TD),
+                'label' => __('Track Info Width (%)', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
                 'range' => [
@@ -212,7 +212,7 @@ return [
             'handle' => 'melody_toolbar_trackinfo_order',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Track Info Controls Order', MELODY_TD),
+                'label' => __('Track Info Controls Order', 'melody'),
                 'separator' => 'none',
                 'label_block' => true,
                 'type' => Controls_Manager::NUMBER,

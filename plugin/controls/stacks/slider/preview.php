@@ -7,7 +7,7 @@ return [
     'version' => '1.0.0',
     'handle' => 'section_melody_preview',
     'config' => [
-        'label' => __('Preview', MELODY_TD),
+        'label' => __('Preview', 'melody'),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
@@ -15,13 +15,13 @@ return [
             'handle' => 'melody_preview_styles_heading',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Styles', MELODY_TD),
+                'label' => __('Styles', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_preview_bg_color',
             'config' => [
-                'label' => __('Background Color', MELODY_TD),
+                'label' => __('Background Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#000',
                 'selectors' => [
@@ -32,7 +32,7 @@ return [
         [
             'handle' => 'melody_preview_min_height',
             'config' => [
-                'label' => __('Min-height (px)', MELODY_TD),
+                'label' => __('Min-height (px)', 'melody'),
                 'type' => Controls_Manager::NUMBER,
                 'separator' => 'none',
                 'default' => 300,
@@ -47,7 +47,7 @@ return [
         [
             'handle' => 'melody_preview_padding',
             'config' => [
-                'label' => __('Padding', MELODY_TD),
+                'label' => __('Padding', 'melody'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'separator' => 'none',
                 'default' => [
@@ -65,13 +65,13 @@ return [
             'handle' => 'melody_preview_image_heading',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Image', MELODY_TD),
+                'label' => __('Image', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_preview_image_size',
             'config' => [
-                'label' => __('Track Image Size (%)', MELODY_TD),
+                'label' => __('Track Image Size (%)', 'melody'),
                 'label_block' => true,
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
@@ -93,16 +93,16 @@ return [
         [
             'handle' => 'melody_preview_image_repeat',
             'config' => [
-                'label' => __('Track Image Repeat', MELODY_TD),
+                'label' => __('Track Image Repeat', 'melody'),
                 'type' => Controls_Manager::SELECT,
                 'separator' => 'none',
                 'label_block' => true,
                 'default' => 'no-repeat',
                 'options' => [
-                    'no-repeat' => __('no repeat', MELODY_TD),
-                    'repeat' => __('repeat', MELODY_TD),
-                    'repeat-x' => __('repeat x', MELODY_TD),
-                    'repeat-y' => __('repeat y', MELODY_TD),
+                    'no-repeat' => __('no repeat', 'melody'),
+                    'repeat' => __('repeat', 'melody'),
+                    'repeat-x' => __('repeat x', 'melody'),
+                    'repeat-y' => __('repeat y', 'melody'),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-artwork-repeat' => 'background-repeat: {{VALUE}}',
@@ -112,21 +112,21 @@ return [
         [
             'handle' => 'melody_preview_image_position',
             'config' => [
-                'label' => __('Track Image Position', MELODY_TD),
+                'label' => __('Track Image Position', 'melody'),
                 'type' => Controls_Manager::SELECT,
                 'separator' => 'none',
                 'label_block' => true,
                 'default' => 'center center',
                 'options' => [
-                    'center top' => __('center top', MELODY_TD),
-                    'center center' => __('center center', MELODY_TD),
-                    'center bottom' => __('center bottom', MELODY_TD),
-                    'left top' => __('left top', MELODY_TD),
-                    'left center' => __('left center', MELODY_TD),
-                    'left bottom' => __('left bottom', MELODY_TD),
-                    'right top' => __('right top', MELODY_TD),
-                    'right center' => __('right center', MELODY_TD),
-                    'right bottom' => __('right bottom', MELODY_TD),
+                    'center top' => __('center top', 'melody'),
+                    'center center' => __('center center', 'melody'),
+                    'center bottom' => __('center bottom', 'melody'),
+                    'left top' => __('left top', 'melody'),
+                    'left center' => __('left center', 'melody'),
+                    'left bottom' => __('left bottom', 'melody'),
+                    'right top' => __('right top', 'melody'),
+                    'right center' => __('right center', 'melody'),
+                    'right bottom' => __('right bottom', 'melody'),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-artwork-position' => 'background-position: {{VALUE}}',
@@ -136,14 +136,14 @@ return [
         [
             'handle' => 'melody_preview_image_attachment',
             'config' => [
-                'label' => __('Track Image Attachment', MELODY_TD),
+                'label' => __('Track Image Attachment', 'melody'),
                 'type' => Controls_Manager::SELECT,
                 'separator' => 'none',
                 'label_block' => true,
                 'default' => 'scroll',
                 'options' => [
-                    'scroll' => __('scroll', MELODY_TD),
-                    'fixed' => __('fixed', MELODY_TD),
+                    'scroll' => __('scroll', 'melody'),
+                    'fixed' => __('fixed', 'melody'),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-artwork-attachment' => 'background-attachment: {{VALUE}}',
@@ -154,13 +154,13 @@ return [
             'handle' => 'melody_preview_animation_heading',
             'config' => [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Animation', MELODY_TD),
+                'label' => __('Animation', 'melody'),
             ],
         ],
         [
             'handle' => 'melody_preview_animation_duration',
             'config' => [
-                'label' => __('Slider Duration (ms)', MELODY_TD),
+                'label' => __('Slider Duration (ms)', 'melody'),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 200,
@@ -181,17 +181,17 @@ return [
         [
             'handle' => 'melody_preview_animation_timing!melody-no-separator',
             'config' => [
-                'label' => __('Timing Function', MELODY_TD),
+                'label' => __('Timing Function', 'melody'),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
                 // 'separator' => 'none',
                 'default' => 'ease',
                 'options' => [
-                    'linear' => __('linear', MELODY_TD),
-                    'ease' => __('ease', MELODY_TD),
-                    'ease-in' => __('ease-in', MELODY_TD),
-                    'ease-out' => __('ease-out', MELODY_TD),
-                    'ease-in-out' => __('ease-in-out', MELODY_TD),
+                    'linear' => __('linear', 'melody'),
+                    'ease' => __('ease', 'melody'),
+                    'ease-in' => __('ease-in', 'melody'),
+                    'ease-out' => __('ease-out', 'melody'),
+                    'ease-in-out' => __('ease-in-out', 'melody'),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-slider-timing' => 'transition-timing-function: {{VALUE}}',
