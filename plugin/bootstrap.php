@@ -1,9 +1,9 @@
 <?php
 
-require_once MELODY_BASE_DIR . '/vendor/autoload.php';
-
 use DownShift\Container\Container;
 use Melody\Core\functions as f;
+
+require_once MELODY_BASE_DIR . '/vendor/autoload.php';
 
 /**
  * New up container

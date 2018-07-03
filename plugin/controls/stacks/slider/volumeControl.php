@@ -4,7 +4,7 @@ use Elementor\Controls_Manager;
 
 return [
     'version' => '1.0.0',
-    'handle' => 'section_melody_vol_control_style',
+    'handle' => 'section_melody_slider_vol_control_style',
     'config' => [
         'label' => __('Volume Control', 'melody'),
         'tab' => Controls_Manager::TAB_STYLE,
@@ -13,22 +13,11 @@ return [
         [
             'handle' => 'melody_slider_vol_control_primary_color',
             'config' => [
-                'label' => __('Primary Color', 'melody'),
+                'label' => __('Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#fff',
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-vol-primary-color' => 'color: {{VALUE}}'
-                ],
-            ],
-        ],
-        [
-            'handle' => 'melody_slider_vol_control_hover_color',
-            'config' => [
-                'label' => __('Hover Color', 'melody'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '#fff',
-                'selectors' => [
-                    '{{WRAPPER}} .melody-c-vol-hover-color:hover' => 'color: {{VALUE}}'
                 ],
             ],
         ],
