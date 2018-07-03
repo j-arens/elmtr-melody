@@ -12,16 +12,14 @@ Domain Path: /languages
 Tags:
 */
 
-/**
- * Load constants
- */
 require 'constants.php';
+require MELODY_PLUGIN_DIR . '/notices.php';
 
 /**
  * Entry point
  */
 function melodyInit() {
-    if (!melodyCompatible()) {   
+    if (!melodyCompatible()) {
         return;
     }
 
@@ -34,27 +32,29 @@ function melodyInit() {
  * @return boolean
  */
 function melodyCompatible() {
-    include MELODY_PLUGIN_DIR . '/notices.php';
-    
-    if (version_compare(PHP_VERSION, '5.4', '<')) { // @TODO: figure out min ver
+    if (version_compare(PHP_VERSION, '5.4', '<')) {
         add_action('all_admin_notices', 'Melody\\Notices\\phpVersionNotice');
         return false;
     }
 
-    if (version_compare(get_bloginfo('version'), '4.7', '<')) { // @TODO: test compat wp
+    if (version_compare(get_bloginfo('version'), '4.7', '<')) {
         add_action('all_admin_notices', 'Melody\\Notices\\wpVersionNotice');
         return false;
     }
 
-    if (defined('ELEMENTOR_VERSION') && version_compare(ELEMENTOR_VERSION, '1.9.3', '<')) { // @TODO: test elementor versions
-        add_action('all_admin_notices', 'Melody\\Notices\\elementorVersionNotice');
-        return false;
-    }
+    // if (version_compare(ELEMENTOR_VERSION, '2.1.0', '<')) { // @TODO: 2.1.0 for css filter control
+    //     add_action('all_admin_notices', 'Melody\\Notices\\elementorVersionNotice');
+    //     return false;
+    // }
 
     return true;
 }
 
 /**
- * Hook in to elementor/init
+ * Check for elementor and hook in to elementor/init
  */
-add_action('elementor/init', 'melodyInit');
+if (defined('ELEMENTOR_VERSION')) {
+    add_action('elementor/init', 'melodyInit');
+} else {
+    add_action('all_admin_notices', 'Melody\\Notices\\elementorVersionNotice');
+}
