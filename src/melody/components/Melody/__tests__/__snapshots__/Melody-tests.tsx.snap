@@ -88,24 +88,21 @@ exports[`Melody flourishes into a nice little application if the conditions are 
 
 exports[`Melody renders an editor specific error message if there arent any tracks 1`] = `
 <div class="errorContainer">
-  <p class="melody__body">No tracks loaded, click here to get started.</p>
+  <p class="ErrorMsg">No tracks loaded, click here to get started.</p>
 </div>
 `;
 
 exports[`Melody renders an error if the currentState is fault 1`] = `
 <div class="errorContainer">
-  <span>
-    <svg class="errorContainer__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="m110 150 20 0 0 20-20 0zm0-80 20 0 0 60-20 0zm9.9-50C64.7 20 20 64.8 20 120 20 175.2 64.7 220 119.9 220 175.2 220 220 175.2 220 120 220 64.8 175.2 20 119.9 20Zm0.1 180c-44.2 0-80-35.8-80-80 0-44.2 35.8-80 80-80 44.2 0 80 35.8 80 80 0 44.2-35.8 80-80 80z"></path>
-    </svg>
-    <p class="melody__body">Something went wrong!</p>
-  </span>
+  <p class="ErrorMsg">Something went wrong! Please try refreshing the page, otherwise contact
+    support.</p>
   <button class="btn errorContainer__reloadBtn" role="button">Reload</button>
 </div>
 `;
 
 exports[`Melody renders an error if there arent any tracks 1`] = `
 <div class="errorContainer">
-  <p class="melody__body">Doh! It looks like there aren't any tracks loaded.</p>
+  <p class="ErrorMsg">No tracks are loaded. If you think this an error try refreshing the page,
+    otherwise please contact support.</p>
 </div>
 `;

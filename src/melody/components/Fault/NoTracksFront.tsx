@@ -1,7 +1,8 @@
 import { h } from 'preact';
+const s = require('./style.scss');
 
 export default () => (
-    <p class="melody__body">
-        Doh! It looks like there aren't any tracks loaded.
+    <p class={s.ErrorMsg}>
+        No tracks are loaded. If you think this an error try refreshing the page, otherwise please contact support.
     </p>
 );

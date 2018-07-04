@@ -6,16 +6,16 @@
     padding: 1rem;
     background-color: $color_mercury;
 
-    &__icon {
-        width: 75px;
-        height: 75px;
-        fill: $color_tundora;
-    }
-
     &__reloadBtn {
-        color: $color_silver_chalice;
-        border: 1px solid $color_silver_chalice;
-        padding: 1rem 1.5rem;
+        background-color: $color_tundora !important;
+        color: $color_mercury !important;
+        border: 1px solid $color_silver_chalice !important;
+        padding: 0.5rem 1.5rem !important;
         border-radius: 5px;
+        margin: 1rem 0 0 0 !important;
     }
+}
+
+.ErrorMsg {
+    text-align: center;
 }

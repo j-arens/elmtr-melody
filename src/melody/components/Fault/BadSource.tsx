@@ -1,7 +1,8 @@
 import { h } from 'preact';
+const s = require('./style.scss');
 
 export default () => (
-    <p class="melody__body">
-        Unable to play track, the source was not found.
+    <p class={s.ErrorMsg}>
+        Unable to load track, the source was not found.
     </p>
 );

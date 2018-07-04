@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DefaultError renders 1`] = `<p class="melody__body">Unable to play track, the source was not found.</p>`;
+exports[`DefaultError renders 1`] = `<p class="ErrorMsg">Unable to load track, the source was not found.</p>`;
