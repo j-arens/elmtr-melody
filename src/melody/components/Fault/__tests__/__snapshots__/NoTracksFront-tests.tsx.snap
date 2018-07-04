@@ -1,3 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NoTracksFront renders 1`] = `<p class="melody__body">Doh! It looks like there aren't any tracks loaded.</p>`;
+exports[`NoTracksFront renders 1`] = `
+<p class="ErrorMsg">No tracks are loaded. If you think this an error try refreshing the page,
+  otherwise please contact support.</p>
+`;
