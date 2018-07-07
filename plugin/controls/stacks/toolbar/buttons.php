@@ -23,6 +23,7 @@ return [
                 'label' => __('Primary Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#4D4D4D',
+                'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-btn-primary-color' => 'color: {{VALUE}}',
                 ],
@@ -58,6 +59,7 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Primary', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
@@ -65,6 +67,7 @@ return [
             'isResponsive' => true,
             'config' => [
                 'label' => __('Size', 'melody'),
+                'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'devices' => ['desktop', 'tablet', 'mobile'],
                 'desktop_default' => [
@@ -166,6 +169,7 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Secondary', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
@@ -173,6 +177,7 @@ return [
             'isResponsive' => true,
             'config' => [
                 'label' => __('Size', 'melody'),
+                'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'devices' => ['desktop', 'tablet', 'mobile'],
                 'size_units' => ['px'],

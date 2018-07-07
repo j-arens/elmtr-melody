@@ -24,8 +24,9 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_title',
+                'name' => 'melody_title!melody-top-separator',
                 'label' => __('Font Style', 'melody'),
+                'separator' => 'none', // elementor bug - separators don't work on group controls
                 'selector' => '{{WRAPPER}} .melody-c-title-font',
             ],
         ],
@@ -33,10 +34,9 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_title_text_shadow!melody-no-separator',
+                'name' => 'melody_title_text_shadow',
                 'label' => __('Shadow', 'melody'),
                 'selector' => '{{WRAPPER}} .melody-c-title-shadow',
-                // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
         [
@@ -56,14 +56,16 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Artist', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_artist',
+                'name' => 'melody_artist!melody-top-separator',
                 'label' => __('Font Style', 'melody'),
+                'separator' => 'none', // elementor bug - separators don't work on group controls
                 'selector' => '{{WRAPPER}} .melody-c-artist-font',
             ],
         ],
@@ -71,10 +73,9 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_artist_text_shadow!melody-no-separator',
+                'name' => 'melody_artist_text_shadow',
                 'label' => __('Shadow', 'melody'),
                 'selector' => '{{WRAPPER}} .melody-c-artist-shadow',
-                // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
         [
@@ -94,13 +95,15 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Time', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_time',
+                'name' => 'melody_time!melody-top-separator',
+                'separator' => 'none', // elementor bug - separators don't work on group controls
                 'label' => __('Font Style', 'melody'),
                 'selector' => '{{WRAPPER}} .melody-c-time-font',
             ],
@@ -109,10 +112,9 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Text_Shadow::get_type(),
             'config' => [
-                'name' => 'melody_time_text_shadow!melody-no-separator',
+                'name' => 'melody_time_text_shadow',
                 'label' => __('Shadow', 'melody'),
                 'selector' => '{{WRAPPER}} .melody-c-time-shadow',
-                // 'separator' => 'none', no separator options exposed for text shadow group control
             ],
         ],
         [

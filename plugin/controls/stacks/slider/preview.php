@@ -24,6 +24,7 @@ return [
                 'label' => __('Background Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#000',
+                'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-preview-bg' => 'background-color: {{VALUE}}',
                 ],
@@ -66,12 +67,14 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Image', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
             'handle' => 'melody_preview_image_size',
             'config' => [
                 'label' => __('Track Image Size (%)', 'melody'),
+                'separator' => 'before',
                 'label_block' => true,
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
@@ -155,12 +158,14 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Animation', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
             'handle' => 'melody_preview_animation_duration',
             'config' => [
                 'label' => __('Slider Duration (ms)', 'melody'),
+                'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 200,
@@ -179,12 +184,11 @@ return [
             ],
         ],
         [
-            'handle' => 'melody_preview_animation_timing!melody-no-separator',
+            'handle' => 'melody_preview_animation_timing',
             'config' => [
                 'label' => __('Timing Function', 'melody'),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
-                // 'separator' => 'none',
                 'default' => 'ease',
                 'options' => [
                     'linear' => __('linear', 'melody'),
