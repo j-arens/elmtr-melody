@@ -23,6 +23,7 @@ return [
                 'label' => __('Primary Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#4D4D4D',
+                'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-btn-primary-color' => 'color: {{VALUE}}'
                 ],
@@ -58,12 +59,14 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Placement', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
             'handle' => 'melody_slider_buttons_btn_max_width',
             'config' => [
                 'label' => __('Size', 'melody'),
+                'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 30,

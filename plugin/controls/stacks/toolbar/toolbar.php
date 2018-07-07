@@ -61,6 +61,7 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Primary Controls', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
@@ -68,6 +69,7 @@ return [
             'isResponsive' => true,
             'config' => [
                 'label' => __('Primary Controls Width (%)', 'melody'),
+                'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
                 'range' => [
@@ -118,6 +120,7 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Secondary Controls', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
@@ -125,6 +128,7 @@ return [
             'isResponsive' => true,
             'config' => [
                 'label' => __('Secondary Controls Width (%)', 'melody'),
+                'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
                 'range' => [
@@ -175,6 +179,7 @@ return [
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Track Info', 'melody'),
+                'separator' => 'before',
             ],
         ],
         [
@@ -182,6 +187,7 @@ return [
             'isResponsive' => true,
             'config' => [
                 'label' => __('Track Info Width (%)', 'melody'),
+                'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
                 'range' => [

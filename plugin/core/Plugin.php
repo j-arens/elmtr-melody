@@ -104,10 +104,21 @@ class Plugin {
      */
     public function overrideEditorStyles() {
         $style = '
-            *[class*="!melody-no-separator"]::before {
-                display: none !important;
+            *[class*="!melody-top-separator"] {
+                padding-top: 15px;
+            }
+
+            *[class*="!melody-top-separator"]::before {
+                content: "";
+                position: absolute;
+                height: 1px;
+                width: 100%;
+                top: 0;
+                left: 0;
+                background-color: #d5dadf;
             }
         ';
+
         wp_styles()->add_inline_style('elementor-editor', $style);
     }
 
