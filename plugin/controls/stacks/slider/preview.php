@@ -1,7 +1,7 @@
 <?php
 
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Css_Filter;
 
 return [
     'version' => '1.0.0',
@@ -151,6 +151,23 @@ return [
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-artwork-attachment' => 'background-attachment: {{VALUE}}',
                 ],
+            ],
+        ],
+        [
+            'isGroup' => true,
+            'handle' => Group_Control_Css_Filter::get_type(),
+            'config' => [
+                'name' => 'meldoy_slider_preview_image_filters',
+                'label' => __('Track Image Filters'),
+                'separator' => 'none',
+                'fields_options' => [
+                    'brightness' => [
+                        'default' => [
+                            'size' => 50,
+                        ],
+                    ],
+                ],
+                'selector' => '{{WRAPPER}} .melody-c-image-filters',
             ],
         ],
         [
