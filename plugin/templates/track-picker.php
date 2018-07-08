@@ -6,9 +6,9 @@
                 type="button"
                 class="button"
                 data-melody-tp-trigger
-                data-melody-tp-trigger-action="{{{ data.controlValue.id ? 'CLEAR_TRACK' : 'SELECT_TRACK' }}}"
+                data-melody-tp-trigger-action="{{{ data.controlValue && data.controlValue.id ? 'CLEAR_TRACK' : 'SELECT_TRACK' }}}"
             >
-                {{{ data.controlValue.id ? 'Clear Track' : 'Select Track' }}}
+                {{{ data.controlValue && data.controlValue.id ? 'Clear Track' : 'Select Track' }}}
             </button>
         </div>
     </div>

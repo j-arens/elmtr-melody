@@ -20,10 +20,3 @@
         });
     })(window.jQuery);
 </script>
-<?php
-    // if (defined('MELODY_DEV') && MELODY_DEV) {
-    //     print '<pre>';
-    //     print_r($settings);
-    //     print '</pre>';
-    // }
-?>

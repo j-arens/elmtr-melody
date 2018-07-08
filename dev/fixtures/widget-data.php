@@ -8,7 +8,6 @@ return [
                 'melody_audio_source' => 'media-library',
                 'melody_track_id' => '120',
                 'melody_internal_track_url' => 'http://localhost:4000/wp-content/uploads/2018/06/WAX-TAILOR-Masquerade-Theme-skit.mp3',
-                'melody_internal_track_duration' => '',
                 'melody_track_picker_control' => [
                     'id' => '120',
                 ],

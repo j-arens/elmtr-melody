@@ -32,19 +32,22 @@ return [
                         'name' => 'melody_track_id',
                         'label' => '',
                         'type' => Controls_Manager::HIDDEN,
-                        'default' => '',
+                        'default'=> '', // default needs to be set, otherwise the field isn't added to settings obj
                     ],
                     [
                         'name' => 'melody_internal_track_url',
                         'label' => '',
                         'type' => Controls_Manager::HIDDEN,
-                        'default' => '',
+                        'default'=> '', // default needs to be set, otherwise the field isn't added to settings obj
                     ],
                     [
-                        'name' => 'melody_internal_track_duration',
+                        'name' => 'melody_track_artwork', // set for compatibility with adapter
                         'label' => '',
                         'type' => Controls_Manager::HIDDEN,
-                        'default' => '',
+                        'default'=> [
+                            'id' => '',
+                            'url' => '',
+                        ],
                     ],
                     [
                         'name' => 'melody_track_picker_control',
@@ -58,6 +61,7 @@ return [
                         'name' => 'melody_external_track_url',
                         'label' => __('Track URL', 'melody'),
                         'type' => Controls_Manager::TEXT,
+                        'default'=> '', // default needs to be set, otherwise the field isn't added to settings obj
                         'input_type' => 'url',
                         'label_block' => true,
                         'condition' => [
@@ -69,18 +73,21 @@ return [
                         'label' => __('Title', 'melody'),
                         'type' => Controls_Manager::TEXT,
                         'label_block' => true,
+                        'default'=> '', // default needs to be set, otherwise the field isn't added to settings obj
                         'title' => __('Track Title', 'melody'),
                     ],
                     [
                         'name' => 'melody_track_album',
                         'label' => __('Album', 'melody'),
                         'type' => Controls_Manager::TEXT,
+                        'default'=> '', // default needs to be set, otherwise the field isn't added to settings obj
                         'label_block' => true,
                     ],
                     [
                         'name' => 'melody_track_artist',
                         'label' => __('Artist', 'melody'),
                         'type' => Controls_Manager::TEXT,
+                        'default'=> '', // default needs to be set, otherwise the field isn't added to settings obj
                         'label_block' => true,
                         'title' => __('Track Artist', 'melody'),
                     ],
@@ -96,6 +103,7 @@ return [
                         'name' => 'melody_track_download_source',
                         'label' => __('Download URL', 'melody'),
                         'type' => Controls_Manager::TEXT,
+                        'default'=> '', // default needs to be set, otherwise the field isn't added to settings obj
                         'input_type' => 'url',
                         'label_block' => true,
                         'condition' => [
