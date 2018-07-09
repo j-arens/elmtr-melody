@@ -1,58 +1,47 @@
 <?php
 
-use Melody\Controls\custom\TrackPicker;
-use Melody\Core\View;
+use Melody\Enhancers\EnhancesAudioAttachments;
 use Kahlan\Plugin\Double;
-use function Melody\Test\Helpers\overrideMethodAccess;
 use function Eloquent\Phony\Kahlan\stubGlobal;
 
-describe('TrackPicker', function() {
+describe('EnhancesAudioAttachments', function() {
     beforeEach(function() {
-        $view = new View;
-        $this->instance = new TrackPicker($view);
+        $this->instance = new class { use EnhancesAudioAttachments; };
         $this->attachment = Double::instance(['class' => 'WP_Post']);
         $this->attachment->post_type = 'attachment';
         $this->attachment->post_mime_type = 'audio/mpeg';
-        $this->get_post_thumbnail_id = stubGlobal('get_post_thumbnail_id', 'Melody\Controls\custom');
+        $this->get_post_thumbnail_id = stubGlobal('get_post_thumbnail_id', 'Melody\Enhancers');
     });
 
     describe('isAudioAttachment()', function() {
-        beforeEach(function() {
-            $this->isAudioAttachment = overrideMethodAccess($this->instance, 'isAudioAttachment');
-        });
-
         it('returns false if the attachment is not a WP_Post', function() {
-            $result = $this->isAudioAttachment(new stdClass);
+            $result = $this->instance->isAudioAttachment(new stdClass);
             expect($result)->toBe(false);
         });
 
         it('return false if the attachment post type is not attachment', function() {
             $this->attachment->post_type = 'rocinante';
-            $result = $this->isAudioAttachment($this->attachment);
+            $result = $this->instance->isAudioAttachment($this->attachment);
             expect($result)->toBe(false);
         });
 
         it('return false if the attachment mime type is not audio', function() {
             $this->attachment->post_mime_type = 'image/jpeg';
-            $result = $this->isAudioAttachment($this->attachment);
+            $result = $this->instance->isAudioAttachment($this->attachment);
             expect($result)->toBe(false);
         });
     });
 
-    describe('enhanceAsyncAudioUpload()', function() {
-        beforeEach(function() {
-            $this->enhanceAsyncAudioUpload = overrideMethodAccess($this->instance, 'enhanceAsyncAudioUpload');
-        });
-
+    describe('addArtworkId()', function() {
         it('bails if the attachment is not an audio attachment', function() {
             $this->attachment->post_mime_type = 'image/jpeg';
-            $result = $this->enhanceAsyncAudioUpload([], $this->attachment);
+            $result = $this->instance->addArtworkId([], $this->attachment);
             expect($result)->toBe([]);
         });
 
         it('adds the attachment thumbnail id to the response', function() {
             $this->get_post_thumbnail_id->returns(1);
-            $result = $this->enhanceAsyncAudioUpload([], $this->attachment);
+            $result = $this->instance->addArtworkId([], $this->attachment);
             $expected = [
                 'image' => [
                     'id' => 1,

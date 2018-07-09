@@ -4,12 +4,12 @@ namespace Melody\Widgets;
 
 use DownShift\Container\Container;
 use WordPressChunkLoaderPlugin as wpcl;
-use Melody\Core\EnhancesArtworkAttachments;
+use Melody\Enhancers\EnhancesImageAttachments;
 use Elementor\Widget_Base;
 
 abstract class AbstractMelodyWidget extends Widget_Base {
 
-    use EnhancesArtworkAttachments;
+    use EnhancesImageAttachments;
 
     /**
      * @var ViewInterface

@@ -55,7 +55,7 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      */
     public function __construct($data = [], $args = null) {
         parent::__construct($data, $args);
-        $this->addImageSizes();
+        $this->addImageSizes($this->imageSizes);
     }
     
     /**
@@ -105,14 +105,5 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      */
     protected function getComponentStyle() {
         return $this->style;
-    }
-
-    /**
-     * Add more image sizes for better responsive images
-     */
-    protected function addImageSizes() {
-        foreach($this->imageSizes as $name => $width) {
-            add_image_size($name, $width, 9999);
-        }
     }
 }
