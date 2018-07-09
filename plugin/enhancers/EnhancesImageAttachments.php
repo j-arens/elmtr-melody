@@ -1,8 +1,17 @@
 <?php
 
-namespace Melody\core;
+namespace Melody\Enhancers;
 
-trait EnhancesArtworkAttachments {
+trait EnhancesImageAttachments {
+    /**
+     * Add more image sizes for better responsive images
+     */
+    public function addImageSizes(array $sizes) {
+        foreach($sizes as $name => $width) {
+            add_image_size($name, $width, 9999);
+        }
+    }
+
     /**
      * Maps image sizes onto attachment meta
      * 
@@ -10,7 +19,7 @@ trait EnhancesArtworkAttachments {
      * @param array $meta
      * @return array
      */
-    protected function mapSizes($id, array $meta) {
+    public function mapSizes($id, array $meta) {
         return array_map(function($size) use($id, $meta) {
             $uri = wp_get_attachment_image_src($id, $size)[0];
             return array_merge(
@@ -29,7 +38,7 @@ trait EnhancesArtworkAttachments {
      * @param array $data
      * @return array
      */
-    protected function addAttachmentSizes(array $data) {
+    public function addAttachmentSizes(array $data) {
         if (!isset($data['settings']['melody_audio_tracks'])) {
             return $data;
         }

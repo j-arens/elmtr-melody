@@ -22,7 +22,8 @@
             "Melody\\Core\\": "./plugin/core",
             "Melody\\Widgets\\": "./plugin/widgets",
             "Melody\\Controls\\": "./plugin/controls",
-            "Melody\\Http\\": "./plugin/http"
+            "Melody\\Http\\": "./plugin/http",
+            "Melody\\Enhancers\\": "./plugin/enhancers"
         },
         "files": [
             "./plugin/core/functions.php",
