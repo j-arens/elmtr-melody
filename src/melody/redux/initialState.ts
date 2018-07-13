@@ -1,3 +1,4 @@
+import { DockToggleDims } from '@melody/redux/modules/ui/type';
 import { MachineStates } from '@state-machine/type';
 import { State, View } from './type';
 
@@ -23,6 +24,11 @@ const initial: State = {
         gliderIsDragging: false,
         volIsDragging: false,
         showDock: false,
+        dockCoordinates: {
+            width: 0,
+            x: 0,
+            y: 0,
+        } as DockToggleDims,
     },
 };
 

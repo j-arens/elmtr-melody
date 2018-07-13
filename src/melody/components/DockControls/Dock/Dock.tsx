@@ -1,40 +1,45 @@
 import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
+import Portal from '@components/Portal/Portal';
 import { WithOptionalClassName } from '@melody/components/type';
+import { DockToggleDims } from '@melody/redux/modules/ui/type';
 import { Action, Track } from '@redux/type';
 import { NO_OP } from '@utils/index';
 import * as classnames from 'classnames';
 import { h } from 'preact';
-const s = require('./style.scss');
+import { dockPosition } from './helpers';
+const s = require('../style.scss');
 
 export interface StateProps {
     showDock: boolean;
     track: Track;
     playbackRate: number;
+    coordinates: DockToggleDims;
 }
 
 export interface DispatchProps {
-    toggleDock: () => Action;
     speedUp: () => Action;
     slowDown: () => Action;
 }
 
 export interface OwnProps extends WithOptionalClassName {
-    triggerClassName?: string;
+    className?: string;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
 
 export default ({
     showDock,
-    toggleDock,
     track,
     speedUp,
     slowDown,
     playbackRate,
+    coordinates,
     className = '',
-    triggerClassName = '',
 }: Props) => {
+    if (!showDock) {
+        return null;
+    }
     const handleDownload = () => {
         const { download_url, attributes: { origin } } = track;
         if (origin === 'internal') {
@@ -50,15 +55,9 @@ export default ({
         [s['dock__control--disabled']]: playbackRate === 0.5,
     });
     return (
-        <div class={`${s.dock} ${className}`}>
-            <BaseButton
-                onClick={toggleDock}
-                className={`${s.dock__toggle} ${triggerClassName}`}
-            >
-                <Icon className={s.dock__toggleIcon} name="settings" />
-            </BaseButton>
-            {showDock && [
-                <span key="arrow" class={s.dock__arrow} />,
+        <Portal into="body">
+            <div class={`${s.dock} ${className}`} style={{ ...dockPosition(coordinates) }}>
+                <span key="arrow" class={s.dock__arrow} />
                 <div key="group" class={s.dock__controlsGroup}>
                     {track.download_url &&
                         <BaseButton
@@ -83,8 +82,8 @@ export default ({
                         <Icon className={s.dock__controlIcon} name="minus" />
                         <span class={s.dock__controlName}>Slow down</span>
                     </BaseButton>
-                </div>]
-            }
-        </div>
+                </div>
+            </div>
+        </Portal>
     );
 };

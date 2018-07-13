@@ -21,9 +21,14 @@ export function changeView(state: UiState, action: Action): UiState {
  * TOGGLE_DOCK
  */
 export function toggleDock(state: UiState, action: Action): UiState {
+    if (!action.payload) {
+        return state;
+    }
+
     return {
         ...state,
         showDock: !state.showDock,
+        dockCoordinates: action.payload,
     };
 }
 

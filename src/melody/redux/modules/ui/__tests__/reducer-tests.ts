@@ -20,7 +20,11 @@ describe('TOGGLE_GLIDER_DRAGGING', () => {
 
 describe('TOGGLE_DOCK', () => {
     it('should toggle showing the dock', () => {
-        const action = actions.toggleDock();
+        const action = actions.toggleDock({
+            width: 10,
+            x: 100,
+            y: 100,
+        });
         const newState = reducer(initialState.ui, action);
         expect(newState.showDock).toBe(true);
     });

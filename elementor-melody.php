@@ -42,10 +42,10 @@ function melodyCompatible() {
         return false;
     }
 
-    // if (version_compare(ELEMENTOR_VERSION, '2.1.0', '<')) { // @TODO: 2.1.0 for css filter control
-    //     add_action('all_admin_notices', 'Melody\\Notices\\elementorVersionNotice');
-    //     return false;
-    // }
+    if (version_compare(ELEMENTOR_VERSION, '2.1.0', '<')) {
+        add_action('all_admin_notices', 'Melody\\Notices\\elementorVersionNotice');
+        return false;
+    }
 
     return true;
 }

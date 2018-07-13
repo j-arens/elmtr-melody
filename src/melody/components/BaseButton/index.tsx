@@ -4,7 +4,7 @@ const s = require('./style.scss');
 
 interface Props extends WithOptionalClassName {
     children?: JSX.Element[];
-    onClick?: () => any;
+    onClick?: (e: Event) => any;
     key?: string;
 }
 
