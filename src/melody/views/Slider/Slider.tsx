@@ -26,7 +26,7 @@ const artistClasses = prefixClasses('artist-font artist-shadow artist-color');
 const timeClasses = prefixClasses('time-font time-shadow time-color');
 
 export default () => (
-    <div class="melody__viewContainer" data-melody-view="slider">
+    <div class="melody__viewContainer">
         <div class={`${s.preview} ${previewClasses}`}>
             <Slideshow
                 className={`${s.preview__slideshow} ${slideshowClasses}`}

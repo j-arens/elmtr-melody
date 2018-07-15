@@ -6,7 +6,7 @@ import { DockToggleDims } from '@melody/redux/modules/ui/type';
 import { Action, Track } from '@redux/type';
 import { NO_OP } from '@utils/index';
 import * as classnames from 'classnames';
-import { h } from 'preact';
+import { Component, h } from 'preact';
 import { dockPosition } from './helpers';
 const s = require('../style.scss');
 
@@ -22,46 +22,84 @@ export interface DispatchProps {
     slowDown: () => Action;
 }
 
-export interface OwnProps extends WithOptionalClassName {
-    className?: string;
+interface State {
+    width: number;
 }
 
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps & WithOptionalClassName;
 
-export default ({
-    showDock,
-    track,
-    speedUp,
-    slowDown,
-    playbackRate,
-    coordinates,
-    className = '',
-}: Props) => {
-    if (!showDock) {
-        return null;
+export default class extends Component<Props, State> {
+    static defaultProps = {
+        className: '',
+    };
+
+    state = {
+        width: null,
+    };
+
+    el: HTMLElement;
+
+    componentDidMount() {
+        if (this.el) {
+            this.setState({
+                width: this.el.offsetWidth,
+            });
+        }
     }
-    const handleDownload = () => {
-        const { download_url, attributes: { origin } } = track;
+
+    handleDownload = () => {
+        const { track: { download_url, attributes: { origin } } } = this.props;
         if (origin === 'internal') {
             window.location.href = download_url;
         } else {
             window.open(download_url);
         }
-    };
-    const speedUpClasses = classnames(s.dock__control, {
-        [s['dock__control--disabled']]: playbackRate === 2,
-    });
-    const slowDownClasses = classnames(s.dock__control, {
-        [s['dock__control--disabled']]: playbackRate === 0.5,
-    });
-    return (
-        <Portal into="body">
-            <div class={`${s.dock} ${className}`} style={{ ...dockPosition(coordinates) }}>
-                <span key="arrow" class={s.dock__arrow} />
-                <div key="group" class={s.dock__controlsGroup}>
+    }
+
+    portalDock(inner) {
+        return (
+            <Portal into="body">
+                {inner}
+            </Portal>
+        );
+    }
+
+    render(props: Props, { width }: State) {
+        const {
+            showDock,
+            track,
+            speedUp,
+            slowDown,
+            playbackRate,
+            coordinates,
+            className,
+        } = props;
+
+        const speedUpClasses = classnames(s.dock__control, {
+            [s['dock__control--disabled']]: playbackRate === 2,
+        });
+
+        const slowDownClasses = classnames(s.dock__control, {
+            [s['dock__control--disabled']]: playbackRate === 0.5,
+        });
+
+        const { controls, arrow } = dockPosition(coordinates, width);
+
+        const dockControls = (
+            <div
+                ref={el => this.el = el as HTMLElement}
+                class={`${s.dock} ${className}`}
+                style={{
+                    pointerEvents: showDock ? 'all' : 'none',
+                    visibility: showDock ? 'visible' : 'hidden',
+                    ...controls,
+                }}
+            >
+                <span class={s.dock__arrow} style={arrow} />
+                <div class={s.dock__controlsGroup}>
                     {track.download_url &&
                         <BaseButton
-                            onClick={handleDownload}
+                            onClick={this.handleDownload}
                             className={s.dock__control}
                         >
                             <Icon className={s.dock__controlIcon} name="download" />
@@ -84,6 +122,12 @@ export default ({
                     </BaseButton>
                 </div>
             </div>
-        </Portal>
-    );
-};
+        );
+
+        if (process.env.NODE_ENV !== 'test') {
+            return this.portalDock(dockControls);
+        }
+
+        return dockControls;
+    }
+}

@@ -1,7 +1,7 @@
 import { slowDown, speedUp } from '@redux/modules/audio/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
-import Dock, { DispatchProps, OwnProps, StateProps } from './Dock';
+import Dock, { DispatchProps, StateProps } from './Dock';
 
 const mapStateToProps = (state: State) => ({
     showDock: state.ui.showDock,
@@ -18,5 +18,5 @@ const mapDispatchToProps = dispatch => ({
 export default connect<
     StateProps,
     DispatchProps,
-    OwnProps
+    {}
 >(mapStateToProps, mapDispatchToProps)(Dock);
