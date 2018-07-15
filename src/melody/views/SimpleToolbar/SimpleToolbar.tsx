@@ -5,7 +5,8 @@ import RepeatButton from '@components/controls/RepeatButton/';
 import ShuffleButton from '@components/controls/ShuffleButton/';
 import CurrentTrackArtist from '@components/CurrentTrackArtist/';
 import CurrentTrackTitle from '@components/CurrentTrackTitle/';
-import Dock from '@components/Dock';
+import Dock from '@components/DockControls/Dock/index';
+import DockToggle from '@components/DockControls/toggle/';
 import Glider from '@components/Glider/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
@@ -16,7 +17,7 @@ const s = require('./style.scss');
 
 const leftBtnClasses = prefixClasses('btn-primary-color btn-hover-color btn-width btn-space');
 const shuffleRepeatClasses = prefixClasses('btn-primary-color btn-hover-color btn-on-color btn-width btn-space');
-const dockClasses = prefixClasses('btn-primary-color btn-hover-color btn-width');
+const dockToggleClasses = prefixClasses('btn-primary-color btn-hover-color btn-width');
 const titleClasses = prefixClasses('title-font title-shadow title-color');
 const artistClasses = prefixClasses('artist-font artist-shadow artist-color');
 const timeClasses = prefixClasses('time-font time-shadow time-color');
@@ -48,7 +49,8 @@ export default () => (
             <VolumeCtrl className={prefixClasses('btn-primary-color btn-width btn-space')} />
             <ShuffleButton className={shuffleRepeatClasses} />
             <RepeatButton className={shuffleRepeatClasses} />
-            <Dock className={prefixClasses('btn-space')} triggerClassName={dockClasses} />
+            <DockToggle className={dockToggleClasses} />
         </div>
+        <Dock />
     </div>
 );

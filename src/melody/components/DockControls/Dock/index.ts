@@ -1,17 +1,16 @@
 import { slowDown, speedUp } from '@redux/modules/audio/actions';
-import { toggleDock } from '@redux/modules/ui/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
-import Dock, { DispatchProps, OwnProps, StateProps } from './Dock';
+import Dock, { DispatchProps, StateProps } from './Dock';
 
 const mapStateToProps = (state: State) => ({
     showDock: state.ui.showDock,
     track: state.audio.tracks[state.audio.currentTrack],
     playbackRate: state.audio.playbackRate,
+    coordinates: state.ui.dockCoordinates,
 });
 
 const mapDispatchToProps = dispatch => ({
-    toggleDock: () => dispatch(toggleDock()),
     speedUp: () => dispatch(speedUp()),
     slowDown: () => dispatch(slowDown()),
 });
@@ -19,5 +18,5 @@ const mapDispatchToProps = dispatch => ({
 export default connect<
     StateProps,
     DispatchProps,
-    OwnProps
+    {}
 >(mapStateToProps, mapDispatchToProps)(Dock);

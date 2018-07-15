@@ -1,4 +1,5 @@
 import { TrackSize } from '@adapter/type';
+import { DockToggleDims } from '@melody/redux/modules/ui/type';
 import * as audioActions from '@redux/modules/audio/actions';
 import * as uiActions from '@redux/modules/ui/actions';
 import { MachineStates } from '@state-machine/type';
@@ -52,6 +53,7 @@ export interface UiState {
     readonly gliderIsDragging: boolean;
     readonly volIsDragging: boolean;
     readonly showDock: boolean;
+    readonly dockCoordinates: DockToggleDims;
 }
 
 export interface State {

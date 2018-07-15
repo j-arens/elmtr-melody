@@ -6,7 +6,8 @@ import RepeatButton from '@components/controls/RepeatButton/';
 import ShuffleButton from '@components/controls/ShuffleButton/';
 import CurrentTrackArtist from '@components/CurrentTrackArtist/';
 import CurrentTrackTitle from '@components/CurrentTrackTitle/';
-import Dock from '@components/Dock';
+import Dock from '@components/DockControls/Dock/index';
+import DockToggle from '@components/DockControls/toggle/';
 import Glider from '@components/Glider/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
@@ -25,7 +26,7 @@ const artistClasses = prefixClasses('artist-font artist-shadow artist-color');
 const timeClasses = prefixClasses('time-font time-shadow time-color');
 
 export default () => (
-    <div class="melody__viewContainer" data-melody-view="slider">
+    <div class="melody__viewContainer">
         <div class={`${s.preview} ${previewClasses}`}>
             <Slideshow
                 className={`${s.preview__slideshow} ${slideshowClasses}`}
@@ -33,7 +34,7 @@ export default () => (
             />
             <div class={s.preview__header}>
                 <VolumeCtrl className={volClasses} />
-                <Dock />
+                <DockToggle />
             </div>
             <div class={s.preview__marquee}>
                 <CurrentTrackTitle className={`${s.preview__title} ${titleClasses}`} />
@@ -54,5 +55,6 @@ export default () => (
             <NextButton className={btnClasses} />
             <RepeatButton className={btnClasses} />
         </div>
+        <Dock />
     </div>
 );

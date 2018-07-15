@@ -1,5 +1,6 @@
 .dock {
-    position: relative;
+    position: absolute;
+    z-index: 9991;
 
     &__toggle {
         display: flex;
@@ -8,6 +9,7 @@
     }
 
     &__toggleIcon {
+        pointer-events: none;
         width: 20px;
         height: 20px;
         fill: currentColor;
@@ -15,28 +17,22 @@
 
     &__arrow {
         position: absolute;
-        top: 100%;
-        right: 4px;
         width: 12px;
         height: 12px;
+        top: -6px;
         background-color: $color_mine_shaft;
         border-top: 1px solid #000;
         border-left: 1px solid #000;
         pointer-events: none;
         transform: rotate(45deg);
         z-index: 2;
-        box-shadow: 1px 2px 3px 1px rgba(30, 30, 30, 0.5);
     }
 
     &__controlsGroup {
-        position: absolute;
-        top: calc(100% + 6px);
-        right: -11px;
         background-color: $color_mine_shaft;
         border: 1px solid #000;
         border-radius: 2px;
         box-shadow: 1px 2px 2px 1px rgba(30, 30, 30, 0.2);
-        z-index: 1;
     }
 
     &__control {
