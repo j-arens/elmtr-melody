@@ -8,6 +8,7 @@ const mapStateToProps = (state: State) => ({
     track: state.audio.tracks[state.audio.currentTrack],
     playbackRate: state.audio.playbackRate,
     coordinates: state.ui.dockCoordinates,
+    wrapperId: state.ui.wrapperId,
 });
 
 const mapDispatchToProps = dispatch => ({

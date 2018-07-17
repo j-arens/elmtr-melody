@@ -4,7 +4,7 @@ import Portal from '@components/Portal/Portal';
 import { WithOptionalClassName } from '@melody/components/type';
 import { DockToggleDims } from '@melody/redux/modules/ui/type';
 import { Action, Track } from '@redux/type';
-import { NO_OP } from '@utils/index';
+import { NO_OP, prefixClasses } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 import { dockPosition } from './helpers';
@@ -15,6 +15,7 @@ export interface StateProps {
     track: Track;
     playbackRate: number;
     coordinates: DockToggleDims;
+    wrapperId: string;
 }
 
 export interface DispatchProps {
@@ -31,6 +32,7 @@ type Props = StateProps & DispatchProps & WithOptionalClassName;
 export default class extends Component<Props, State> {
     static defaultProps = {
         className: '',
+        customizationClasses: '',
     };
 
     state = {
@@ -58,7 +60,7 @@ export default class extends Component<Props, State> {
 
     portalDock(inner) {
         return (
-            <Portal into="body">
+            <Portal into="#elementor">
                 {inner}
             </Portal>
         );
@@ -73,13 +75,22 @@ export default class extends Component<Props, State> {
             playbackRate,
             coordinates,
             className,
+            wrapperId,
         } = props;
 
-        const speedUpClasses = classnames(s.dock__control, {
+        const baseBtnClasses = classnames(
+            s.dock__control,
+            prefixClasses(
+                `elementor-element-${wrapperId}-`,
+                'dock-controls-secondary-color',
+            ),
+        );
+
+        const speedUpClasses = classnames(baseBtnClasses, {
             [s['dock__control--disabled']]: playbackRate === 2,
         });
 
-        const slowDownClasses = classnames(s.dock__control, {
+        const slowDownClasses = classnames(baseBtnClasses, {
             [s['dock__control--disabled']]: playbackRate === 0.5,
         });
 
@@ -88,19 +99,43 @@ export default class extends Component<Props, State> {
         const dockControls = (
             <div
                 ref={el => this.el = el as HTMLElement}
-                class={`${s.dock} ${className}`}
+                class={classnames(
+                    s.dock,
+                    className,
+                    prefixClasses(
+                        `elementor-element-${wrapperId}-`,
+                        'dock-controls-primary-color',
+                    ),
+                )}
                 style={{
                     pointerEvents: showDock ? 'all' : 'none',
                     visibility: showDock ? 'visible' : 'hidden',
                     ...controls,
                 }}
             >
-                <span class={s.dock__arrow} style={arrow} />
-                <div class={s.dock__controlsGroup}>
+                <span
+                    class={classnames(
+                        s.dock__arrow,
+                        prefixClasses(
+                            `elementor-element-${wrapperId}-`,
+                            'dock-controls-arrow-color dock-controls-border-color',
+                        ),
+                    )}
+                    style={arrow}
+                />
+                <div
+                    class={classnames(
+                        s.dock__controlsGroup,
+                        prefixClasses(
+                            `elementor-element-${wrapperId}-`,
+                            'dock-controls-border-color',
+                        ),
+                    )}
+                >
                     {track.download_url &&
                         <BaseButton
                             onClick={this.handleDownload}
-                            className={s.dock__control}
+                            className={baseBtnClasses}
                         >
                             <Icon className={s.dock__controlIcon} name="download" />
                             <span class={s.dock__controlName}>Download</span>

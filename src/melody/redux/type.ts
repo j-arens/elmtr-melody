@@ -49,6 +49,7 @@ export interface AudioState {
 }
 
 export interface UiState {
+    readonly wrapperId: string;
     readonly view: View;
     readonly gliderIsDragging: boolean;
     readonly volIsDragging: boolean;

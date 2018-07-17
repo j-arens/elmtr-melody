@@ -51,3 +51,16 @@ export function toggleVolDragging(state: UiState, action: Action): UiState {
         volIsDragging: !state.volIsDragging,
     };
 }
+
+/**
+ * SET_WRAPPER_ID
+ */
+export function setWrapperId(state: UiState, action: Action): UiState {
+    if (!action.payload) {
+        return state;
+    }
+    return {
+        ...state,
+        wrapperId: action.payload,
+    };
+}

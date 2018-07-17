@@ -12,31 +12,32 @@ import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
 import { prefixClasses } from '@utils/index';
+import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
 import { h } from 'preact';
 const s = require('./style.scss');
 
-const leftBtnClasses = prefixClasses('btn-primary-color btn-hover-color btn-width btn-space');
-const shuffleRepeatClasses = prefixClasses('btn-primary-color btn-hover-color btn-on-color btn-width btn-space');
-const dockToggleClasses = prefixClasses('btn-primary-color btn-hover-color btn-width');
-const titleClasses = prefixClasses('title-font title-shadow title-color');
-const artistClasses = prefixClasses('artist-font artist-shadow artist-color');
-const timeClasses = prefixClasses('time-font time-shadow time-color');
+const leftBtnClasses = prefixClasses(c_prefix, 'btn-primary-color btn-hover-color btn-width btn-space');
+const shuffleRepeatClasses = prefixClasses(c_prefix, 'btn-primary-color btn-hover-color btn-on-color btn-width btn-space');
+const dockToggleClasses = prefixClasses(c_prefix, 'btn-primary-color btn-hover-color btn-width');
+const titleClasses = prefixClasses(c_prefix, 'title-font title-shadow title-color');
+const artistClasses = prefixClasses(c_prefix, 'artist-font artist-shadow artist-color');
+const timeClasses = prefixClasses(c_prefix, 'time-font time-shadow time-color');
 
 export default () => (
-    <div class={`melody__viewContainer ${s.toolbar} ${prefixClasses('toolbar')}`}>
+    <div class={`melody__viewContainer ${s.toolbar} ${prefixClasses(c_prefix, 'toolbar')}`}>
         <div class={`${s.controls} ${s['controls--left']} melody-controls-primary`} >
             <PrevButton className={leftBtnClasses} />
             <CatalystButton className={leftBtnClasses} />
             <NextButton className={leftBtnClasses} />
         </div>
-        <div class={`${s.preview} ${prefixClasses('preview-padding trackinfo-width trackinfo-order')}`}>
-            <div class={`${s.preview__wrap} ${prefixClasses('trackinfo-margin')}`}>
+        <div class={`${s.preview} ${prefixClasses(c_prefix, 'preview-padding trackinfo-width trackinfo-order')}`}>
+            <div class={`${s.preview__wrap} ${prefixClasses(c_prefix, 'trackinfo-margin')}`}>
                 <CurrentTimeElapsed
                     className={`${s.preview__time} ${s['preview__time--left']} ${timeClasses}`}
                 />
                 <div className={s.preview__trackInfo}>
                     <CurrentTrackTitle className={`${s.preview__title} ${titleClasses}`} />
-                    <span className={prefixClasses('separator')} />
+                    <span className={prefixClasses(c_prefix, 'separator')} />
                     <CurrentTrackArtist className={`${s.preview__artist} ${artistClasses}`} />
                 </div>
                 <CurrentTimeLeft
@@ -46,7 +47,7 @@ export default () => (
             <Glider />
         </div>
         <div class={`${s.controls} ${s['controls--right']} melody-controls-secondary`} >
-            <VolumeCtrl className={prefixClasses('btn-primary-color btn-width btn-space')} />
+            <VolumeCtrl className={prefixClasses(c_prefix, 'btn-primary-color btn-width btn-space')} />
             <ShuffleButton className={shuffleRepeatClasses} />
             <RepeatButton className={shuffleRepeatClasses} />
             <DockToggle className={dockToggleClasses} />

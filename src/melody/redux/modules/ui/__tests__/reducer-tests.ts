@@ -43,3 +43,11 @@ describe('CHANGE_VIEW', () => {
         expect(newState).toEqual(initialState.ui);
     });
 });
+
+describe('SET_WRAPPER_ID', () => {
+    it('should set the wrapper id', () => {
+        const action = actions.setWrapperId('lol123');
+        const newState = reducer(initialState.ui, action);
+        expect(newState.wrapperId).toBe('lol123');
+    });
+});
