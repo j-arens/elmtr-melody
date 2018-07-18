@@ -1,4 +1,5 @@
 import { View } from '@redux/type';
+import { create } from 'domain';
 import { createAction } from 'typesafe-actions';
 import * as constants from './constants';
 import { DockToggleDims } from './type';
@@ -26,5 +27,12 @@ export const toggleVolDragging = createAction(constants.TOGGLE_VOL_DRAGGING,
 export const toggleGliderDragging = createAction(constants.TOGGLE_GLIDER_DRAGGING,
     () => ({
         type: constants.TOGGLE_GLIDER_DRAGGING,
+    }),
+);
+
+export const setWrapperId = createAction(constants.SET_WRAPPER_ID,
+    (id: string) => ({
+        type: constants.SET_WRAPPER_ID,
+        payload: id,
     }),
 );

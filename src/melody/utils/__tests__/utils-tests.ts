@@ -67,10 +67,10 @@ describe('getContextualTrackSizes()', () => {
 });
 
 describe('prefixClasses()', () => {
-    it('namespaces customization classes', () => {
+    it('namespaces classes', () => {
         const classes = 'lol rofl ninja-kick';
-        const prefixed = utils.prefixClasses(classes);
-        expect(prefixed).toEqual('melody-c-lol melody-c-rofl melody-c-ninja-kick');
+        const prefixed = utils.prefixClasses('riverdog-', classes);
+        expect(prefixed).toEqual('riverdog-lol riverdog-rofl riverdog-ninja-kick');
     });
 });
 

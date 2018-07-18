@@ -130,6 +130,7 @@ abstract class AbstractMelodyWidget extends Widget_Base {
     protected function prepareData() {
         $data = $this->get_raw_data();
         $data = $this->addAttachmentSizes($data);
+        $data['settings']['wrapper_id'] = $data['id'];
         $data['settings']['melody_component_style'] = $this->getComponentStyle();
         return $data;
     }

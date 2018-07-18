@@ -1,17 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dock is hidden if showDock is false 1`] = `
-<div class="dock " style="pointer-events: none; visibility: hidden; top: NaNpx; left: NaNpx;">
-  <span class="dock__arrow" style="left: -6px;"></span>
-  <div class="dock__controlsGroup">
-    <button class="btn dock__control" role="button">
-      <svg class="dock__controlIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<div class="dock elementor-element-undefined-dock-controls-primary-color"
+style="pointer-events: none; visibility: hidden; top: NaNpx; left: NaNpx;">
+  <span class="dock__arrow elementor-element-undefined-dock-controls-arrow-color elementor-element-undefined-dock-controls-border-color"
+  style="left: -6px;"></span>
+  <div class="dock__controlsGroup elementor-element-undefined-dock-controls-border-color">
+    <button class="btn dock__control elementor-element-undefined-dock-controls-secondary-color elementor-element-undefined-dock-controls-text-color elementor-element-undefined-dock-controls-font"
+    role="button">
+      <svg class="dock__controlIcon elementor-element-undefined-dock-controls-icon-color"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
       </svg>
       <span class="dock__controlName">Speed up</span>
     </button>
-    <button class="btn dock__control" role="button">
-      <svg class="dock__controlIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <button class="btn dock__control elementor-element-undefined-dock-controls-secondary-color elementor-element-undefined-dock-controls-text-color elementor-element-undefined-dock-controls-font"
+    role="button">
+      <svg class="dock__controlIcon elementor-element-undefined-dock-controls-icon-color"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M19 13H5v-2h14v2z"></path>
       </svg>
       <span class="dock__controlName">Slow down</span>

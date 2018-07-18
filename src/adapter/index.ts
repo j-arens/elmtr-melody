@@ -19,7 +19,8 @@ const throttle = require('lodash.throttle');
 export const view = (
     { dispatch, config }: TrackMiddlewareParams,
 ): TrackMiddlewareParams => {
-    const { melody_component_style } = config;
+    const { melody_component_style, wrapper_id } = config;
+    dispatch(uiActions.setWrapperId(wrapper_id));
     dispatch(uiActions.changeView(melody_component_style));
     return { dispatch, config };
 };

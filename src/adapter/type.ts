@@ -45,6 +45,7 @@ export type TrackData =
 export interface Config {
     melody_audio_tracks: TrackData[];
     melody_component_style: View;
+    wrapper_id: string;
 }
 
 export interface TrackMiddlewareParams {

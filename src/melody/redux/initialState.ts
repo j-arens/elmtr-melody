@@ -20,6 +20,7 @@ const initial: State = {
         filelength: 0,
     },
     ui: {
+        wrapperId: '',
         view: 'slider' as View,
         gliderIsDragging: false,
         volIsDragging: false,

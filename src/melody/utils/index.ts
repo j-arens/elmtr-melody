@@ -1,7 +1,6 @@
 import { TrackSize } from '@adapter/type';
 import { Track } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
-import { MELODY_CUSTOMIZATION_CLASS_PREFIX } from '../constants';
 
 /**
  * HTML Audio networkState
@@ -121,9 +120,9 @@ export function getContextualTrackSizes(sizes: TrackSize[]): TrackSize[] {
 /**
  * Namespace customization classes
  */
-export const prefixClasses = (classes: string): string => classes
+export const prefixClasses = (prefix: string, classes: string): string => classes
     .split(' ')
-    .map(classname => `${MELODY_CUSTOMIZATION_CLASS_PREFIX}-${classname}`)
+    .map(classname => `${prefix}${classname}`)
     .join(' ');
 
 /**
