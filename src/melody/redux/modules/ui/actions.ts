@@ -1,8 +1,8 @@
 import { View } from '@redux/type';
+import { create } from 'domain';
 import { createAction } from 'typesafe-actions';
 import * as constants from './constants';
 import { DockToggleDims } from './type';
-import { create } from 'domain';
 
 export const changeView = createAction(constants.CHANGE_VIEW,
     (view: View) => ({

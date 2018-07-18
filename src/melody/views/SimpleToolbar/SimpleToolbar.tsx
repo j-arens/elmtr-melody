@@ -12,16 +12,39 @@ import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
 import { prefixClasses } from '@utils/index';
-import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
 import { h } from 'preact';
+import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
 const s = require('./style.scss');
 
-const leftBtnClasses = prefixClasses(c_prefix, 'btn-primary-color btn-hover-color btn-width btn-space');
-const shuffleRepeatClasses = prefixClasses(c_prefix, 'btn-primary-color btn-hover-color btn-on-color btn-width btn-space');
-const dockToggleClasses = prefixClasses(c_prefix, 'btn-primary-color btn-hover-color btn-width');
-const titleClasses = prefixClasses(c_prefix, 'title-font title-shadow title-color');
-const artistClasses = prefixClasses(c_prefix, 'artist-font artist-shadow artist-color');
-const timeClasses = prefixClasses(c_prefix, 'time-font time-shadow time-color');
+const leftBtnClasses = prefixClasses(
+    c_prefix,
+    'btn-primary-color btn-hover-color btn-width btn-space',
+);
+
+const shuffleRepeatClasses = prefixClasses(
+    c_prefix,
+    'btn-primary-color btn-hover-color btn-on-color btn-width btn-space',
+);
+
+const dockToggleClasses = prefixClasses(
+    c_prefix,
+    'btn-primary-color btn-hover-color btn-width btn-space',
+);
+
+const titleClasses = prefixClasses(
+    c_prefix,
+    'title-font title-shadow title-color',
+);
+
+const artistClasses = prefixClasses(
+    c_prefix,
+    'artist-font artist-shadow artist-color',
+);
+
+const timeClasses = prefixClasses(
+    c_prefix,
+    'time-font time-shadow time-color',
+);
 
 export default () => (
     <div class={`melody__viewContainer ${s.toolbar} ${prefixClasses(c_prefix, 'toolbar')}`}>

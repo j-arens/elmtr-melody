@@ -13,19 +13,54 @@ import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
 import { prefixClasses } from '@utils/index';
-import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
 import { h } from 'preact';
+import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
 const s = require('./style.scss');
 
-const volClasses = prefixClasses(c_prefix, 'vol-primary-color vol-hover-color vol-width');
-const btnClasses = prefixClasses(c_prefix, 'btn-primary-color btn-hover-color btn-space');
-const previewClasses = prefixClasses(c_prefix, 'preview-bg preview-min-height preview-padding');
-const slideshowClasses = prefixClasses(c_prefix, 'slider-transition slider-timing');
-const artworkClasses = prefixClasses(c_prefix, 'artwork-size artwork-repeat artwork-position artwork-attachment image-filters');
-const titleClasses = prefixClasses(c_prefix, 'title-font title-shadow title-color');
-const artistClasses = prefixClasses(c_prefix, 'artist-font artist-shadow artist-color');
-const timeClasses = prefixClasses(c_prefix, 'time-font time-shadow time-color');
-const dockToggleClasses = prefixClasses(c_prefix, 'dock-toggle-color dock-toggle-size');
+const volClasses = prefixClasses(
+    c_prefix,
+    'vol-primary-color vol-hover-color vol-width',
+);
+
+const btnClasses = prefixClasses(
+    c_prefix,
+    'btn-primary-color btn-hover-color btn-space',
+);
+
+const previewClasses = prefixClasses(
+    c_prefix,
+    'preview-bg preview-min-height preview-padding',
+);
+
+const slideshowClasses = prefixClasses(
+    c_prefix,
+    'slider-transition slider-timing',
+);
+
+const artworkClasses = prefixClasses(
+    c_prefix,
+    'artwork-size artwork-repeat artwork-position artwork-attachment image-filters',
+);
+
+const titleClasses = prefixClasses(
+    c_prefix,
+    'title-font title-shadow title-color',
+);
+
+const artistClasses = prefixClasses(
+    c_prefix,
+    'artist-font artist-shadow artist-color',
+);
+
+const timeClasses = prefixClasses(
+    c_prefix,
+    'time-font time-shadow time-color',
+);
+
+const dockToggleClasses = prefixClasses(
+    c_prefix,
+    'dock-toggle-color dock-toggle-size',
+);
 
 export default () => (
     <div class="melody__viewContainer">

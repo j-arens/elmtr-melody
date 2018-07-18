@@ -82,7 +82,7 @@ export default class extends Component<Props, State> {
             s.dock__control,
             prefixClasses(
                 `elementor-element-${wrapperId}-`,
-                'dock-controls-secondary-color',
+                'dock-controls-secondary-color dock-controls-text-color dock-controls-font',
             ),
         );
 
@@ -137,7 +137,16 @@ export default class extends Component<Props, State> {
                             onClick={this.handleDownload}
                             className={baseBtnClasses}
                         >
-                            <Icon className={s.dock__controlIcon} name="download" />
+                            <Icon
+                                className={classnames(
+                                    s.dock__controlIcon,
+                                    prefixClasses(
+                                        `elementor-element-${wrapperId}-`,
+                                        'dock-controls-icon-color',
+                                    ),
+                                )}
+                                name="download"
+                            />
                             <span class={s.dock__controlName}>Download</span>
                         </BaseButton>
                     }
@@ -145,14 +154,32 @@ export default class extends Component<Props, State> {
                         onClick={playbackRate === 2 ? NO_OP : speedUp}
                         className={speedUpClasses}
                     >
-                        <Icon className={s.dock__controlIcon} name="plus" />
+                        <Icon
+                            className={classnames(
+                                s.dock__controlIcon,
+                                prefixClasses(
+                                    `elementor-element-${wrapperId}-`,
+                                    'dock-controls-icon-color',
+                                ),
+                            )}
+                            name="plus"
+                        />
                         <span class={s.dock__controlName}>Speed up</span>
                     </BaseButton>
                     <BaseButton
                         onClick={playbackRate === 0.5 ? NO_OP : slowDown}
                         className={slowDownClasses}
                     >
-                        <Icon className={s.dock__controlIcon} name="minus" />
+                        <Icon
+                            className={classnames(
+                                s.dock__controlIcon,
+                                prefixClasses(
+                                    `elementor-element-${wrapperId}-`,
+                                    'dock-controls-icon-color',
+                                ),
+                            )}
+                            name="minus"
+                        />
                         <span class={s.dock__controlName}>Slow down</span>
                     </BaseButton>
                 </div>
