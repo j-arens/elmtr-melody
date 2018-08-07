@@ -95,3 +95,22 @@ describe('getNextMachineAction()', () => {
         expect(result).toBe('PLAY');
     });
 });
+
+describe('cySelector()', () => {
+    afterEach(() => {
+        process.env.NODE_ENV = 'test';
+    });
+
+    it('returns a cy selector object if the current process is not production', () => {
+        const result = utils.cySelector('lol');
+        expect(result).toMatchObject({
+            'data-cy': 'lol',
+        });
+    });
+
+    it('returns a blank object if current process is production', () => {
+        process.env.NODE_ENV = 'production';
+        const result = utils.cySelector('lol');
+        expect(result).toMatchObject({});
+    });
+});

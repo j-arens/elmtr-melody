@@ -12,6 +12,7 @@ const FILES = [
     'jest.config.js',
     'docker-compose.yml',
     '.gitignore',
+    'cypress.json',
 ];
 
 const DIRS = [
@@ -21,6 +22,7 @@ const DIRS = [
     'dev',
     '.vscode',
     '.git',
+    'cypress',
 ];
 
 console.log(colors.info('pruning unwanted files and directories'));

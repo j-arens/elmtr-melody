@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CurrentTrackTitle renders 1`] = `<p class="purple-silk">rofl</p>`;
+exports[`CurrentTrackTitle renders 1`] = `<p class="purple-silk" data-cy="track-title">rofl</p>`;
