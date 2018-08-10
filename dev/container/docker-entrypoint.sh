@@ -1,36 +1,46 @@
 #!/bin/bash
 set -euo pipefail
 
+# configure some php ini settings
+touch /usr/local/etc/php/conf.d/melody.ini
+
+SETTINGS[0]="upload_max_filesize=100M"
+SETTINGS[1]="post_max_size=100M"
+
+for i in "${SETTINGS[@]}"; do
+    echo $i >> /usr/local/etc/php/conf.d/melody.ini
+done
+
 # alias the wp command with allow-root and path args set
 shopt -s expand_aliases
 echo 'alias wp="/usr/local/bin/wp --allow-root --path=/var/www/html"' >> ~/.bashrc
 
-# add functions to bashrc so they can used in any process
+# add functions to bashrc so they can used wherever
 cat /usr/local/bin/functions.sh >> ~/.bashrc
 
 # reload bashrc
 source ~/.bashrc
 
-# if wp isn't installed download and setup config
-# if FLUSH_DB do a fresh install, otherwise do a normal install
-# if wp is already installed, give the option to wipe everything and start from scratch
+# if wp isn't installed download core, setup config, and install
+# if FLUSH_DB do a fresh install
 if ! $(wp core is-installed); then
     prepare_wp_install
-    if [ $FLUSH_DB ]; then
-        fresh_wp_install
-    else
-        install_wp
-    fi
-else
-    if [ $FLUSH_DB ]; then
-        fresh_wp_install
-    fi
+    install_wp
+elif [ $FLUSH_DB ]; then
+    install_wp
 fi
 
+# give the apache user access to uploads
+chown -R www-data /var/www/html/wp-content/uploads
 
 # install and activate elementor
 if ! $(wp plugin is-installed elementor); then
     wp plugin install elementor --activate
+fi
+
+# insert seed data
+if [ $SEED_DB ]; then
+    run_seeds
 fi
 
 # restart apache and run it in the foreground so that the process doesn't exit
@@ -38,28 +48,3 @@ apachectl -D FOREGROUND
 
 # run passed in commands
 exec "$@"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# create a page and assign the elementor canvas template
-#wp --allow-root post create --post_type=page --guid=99 --post_title='slider build 1' --meta_input=["_wp_page_template":"elementor_canvas"]
-
-# wp post update 99 --meta_input=["_wp_page_template":"elementor-canvas","_elementor_data":""]
-# copy and echo??
-# {"id":"c27316f","elType":"section","settings":[],"elements":[{"id":"dbd9ec6","elType":"column","settings":{"_column_size":100},"elements":[{"id":"0d6b549","elType":"widget","settings":{"section_melody_toolbar_typography_separator_text":"-"},"elements":[],"widgetType":"melody-audio-player-toolbar"}],"isInner":false}],"isInner":false}]
-
-#wp media
-#wp media import filepath or url

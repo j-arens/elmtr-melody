@@ -12,8 +12,12 @@ prepare_wp_install () {
 
 # run wp install process
 install_wp () {
+    if [ $FLUSH_DB ]; then
+        wp db reset --yes
+    fi
+
     wp core install \
-        --url=localhost \
+        --url=localhost:4000 \
         --title=dev \
         --admin_user=admin \
         --admin_password=z \
@@ -21,8 +25,7 @@ install_wp () {
         --skip-email
 }
 
-# flush the db and install wp
-fresh_wp_install () {
-    wp db reset --yes
-    install_wp
+# run php seed scripts
+run_seeds () {
+    wp eval-file /usr/local/bin/seed-data/main.php
 }

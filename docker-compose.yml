@@ -30,6 +30,7 @@ services:
       WORDPRESS_DB_PASSWORD: 'root'
       WP_DEBUG: 1
       FLUSH_DB: 1
+      SEED_DB: 1
   
 volumes:
   dbdata:

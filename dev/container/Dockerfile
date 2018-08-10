@@ -14,10 +14,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-ext-install mysqli
 
-# copy global functions into container
+# copy files/folders into container
 COPY dev/container/functions.sh /usr/local/bin
-
-# copy entrypoint script into container and make it executable
+COPY dev/container/.htaccess /var/www/html
+COPY public/resources /var/www/html/resources
+COPY dev/container/seed-data /usr/local/bin/seed-data
 COPY dev/container/docker-entrypoint.sh /usr/local/bin
 
 # make entrypoint and functions executable
