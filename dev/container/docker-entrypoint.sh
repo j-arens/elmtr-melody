@@ -2,14 +2,16 @@
 set -euo pipefail
 
 # configure some php ini settings
-touch /usr/local/etc/php/conf.d/melody.ini
+if ! [ -e /usr/local/etc/php/conf.d/melody.ini ]; then
+    touch /usr/local/etc/php/conf.d/melody.ini
 
-SETTINGS[0]="upload_max_filesize=100M"
-SETTINGS[1]="post_max_size=100M"
+    SETTINGS[0]="upload_max_filesize=100M"
+    SETTINGS[1]="post_max_size=100M"
 
-for i in "${SETTINGS[@]}"; do
-    echo $i >> /usr/local/etc/php/conf.d/melody.ini
-done
+    for i in "${SETTINGS[@]}"; do
+        echo $i >> /usr/local/etc/php/conf.d/melody.ini
+    done
+fi
 
 # alias the wp command with allow-root and path args set
 shopt -s expand_aliases
@@ -42,6 +44,9 @@ fi
 if [ $SEED_DB ]; then
     run_seeds
 fi
+
+# ensure melody is activated
+wp plugin activate elmtr-melody
 
 # restart apache and run it in the foreground so that the process doesn't exit
 apachectl -D FOREGROUND
