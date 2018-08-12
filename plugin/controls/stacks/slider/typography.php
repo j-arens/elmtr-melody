@@ -14,7 +14,7 @@ return [
     ],
     'inputs' => [
         [
-            'handle' => 'section_melody_typography_title',
+            'handle' => 'section_melody_typography_title!melody-bottom-separator',
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Track Title', 'melody'),
@@ -24,9 +24,9 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_title!melody-top-separator',
+                'name' => 'melody_title',
                 'label' => __('Font Style', 'melody'),
-                'separator' => 'none', // elementor bug - separators don't work on group controls
+                // 'separator' => 'none', // elementor bug - separators don't work on group controls
                 'selector' => '{{WRAPPER}} .melody-c-title-font',
             ],
         ],
@@ -52,7 +52,7 @@ return [
             ],
         ],
         [
-            'handle' => 'section_melody_typography_artist',
+            'handle' => 'section_melody_typography_artist!melody-bottom-separator',
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Artist', 'melody'),
@@ -63,9 +63,9 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_artist!melody-top-separator',
+                'name' => 'melody_artist',
                 'label' => __('Font Style', 'melody'),
-                'separator' => 'none', // elementor bug - separators don't work on group controls
+                // 'separator' => 'none', // elementor bug - separators don't work on group controls
                 'selector' => '{{WRAPPER}} .melody-c-artist-font',
             ],
         ],
@@ -91,7 +91,7 @@ return [
             ],
         ],
         [
-            'handle' => 'section_melody_typography_time',
+            'handle' => 'section_melody_typography_time!melody-bottom-separator',
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Time', 'melody'),
@@ -102,8 +102,8 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_time!melody-top-separator',
-                'separator' => 'none', // elementor bug - separators don't work on group controls
+                'name' => 'melody_time',
+                // 'separator' => 'none', // elementor bug - separators don't work on group controls
                 'label' => __('Font Style', 'melody'),
                 'selector' => '{{WRAPPER}} .melody-c-time-font',
             ],

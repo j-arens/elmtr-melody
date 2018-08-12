@@ -14,7 +14,7 @@ return [
     ],
     'inputs' => [
         [
-            'handle' => 'section_melody_toolbar_typography_title_artist',
+            'handle' => 'section_melody_toolbar_typography_title_artist!melody-bottom-separator',
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Track Title & Artist', 'melody'),
@@ -24,9 +24,9 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_toolbar_title!melody-top-separator',
+                'name' => 'melody_toolbar_title',
                 'label' => __('Font Style', 'melody'),
-                'separator' => 'none', // elementor bug - separators don't work on group controls
+                // 'separator' => 'none', // elementor bug - separators don't work on group controls
                 'selector' => '{{WRAPPER}} .melody-c-title-font, {{WRAPPER}} .melody-c-artist-font',
             ],
         ],
@@ -52,7 +52,7 @@ return [
             ],
         ],
         [
-            'handle' => 'section_melody_toolbar_typography_time',
+            'handle' => 'section_melody_toolbar_typography_time!melody-bottom-separator',
             'config' => [
                 'type' => Controls_Manager::HEADING,
                 'label' => __('Time', 'melody'),
@@ -63,9 +63,9 @@ return [
             'isGroup' => true,
             'handle' => Group_Control_Typography::get_type(),
             'config' => [
-                'name' => 'melody_toolbar_time!melody-top-separator',
+                'name' => 'melody_toolbar_time',
                 'label' => __('Font Style', 'melody'),
-                'separator' => 'none', // elementor bug - separators don't work on group controls
+                // 'separator' => 'none', // elementor bug - separators don't work on group controls
                 'selector' => '{{WRAPPER}} .melody-c-time-font',
             ],
         ],

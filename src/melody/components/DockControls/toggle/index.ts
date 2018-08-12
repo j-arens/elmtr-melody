@@ -9,11 +9,12 @@ const mapState = (state: State) => ({
 
 const mapDispatchToProps = dispatch => ({
     toggleDock: ({ target }: Event) => {
-        const { width, bottom, left } = (target as HTMLElement).getBoundingClientRect();
+        const wrapperRect = document.getElementById('elementor').getBoundingClientRect();
+        const toggleRect = (target as HTMLElement).getBoundingClientRect();
         return dispatch(toggleDock({
-            width,
-            x: left,
-            y: bottom,
+            width: toggleRect.width,
+            x: toggleRect.left - wrapperRect.left,
+            y: toggleRect.bottom - wrapperRect.top,
         }));
     },
 });
