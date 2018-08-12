@@ -1,7 +1,7 @@
 import { TrackSize } from '@adapter/type';
 import { WithOptionalClassName } from '@components/type';
 import { TrackArtwork } from '@redux/type';
-import { getContextualTrackSizes } from '@utils/index';
+import { cySelector, getContextualTrackSizes } from '@utils/index';
 import { Component, h } from 'preact';
 const throttle = require('lodash.throttle');
 
@@ -44,6 +44,7 @@ export default class extends Component<Props, State> {
             <figure
                 class={className}
                 style={{ backgroundImage: `url(${artworkSource})` }}
+                {...cySelector('track-artwork')}
             />
         );
     }

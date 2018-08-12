@@ -3,7 +3,7 @@
 exports[`Slideshow renders 1`] = `
 <ul class="Slideshow yas-marina-blue" style="transform: translate3d(0%, 0px, 0px);">
   <li class="Slideshow__slide">
-    <figure class="Slideshow__image " style="background-image: url();"></figure>
+    <figure class="Slideshow__image " style="background-image: url();" data-cy="track-artwork"></figure>
   </li>
 </ul>
 `;

@@ -1,3 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResponsiveBgImage renders 1`] = `<figure class="british-racing-green" style="background-image: url();"></figure>`;
+exports[`ResponsiveBgImage renders 1`] = `
+<figure class="british-racing-green" style="background-image: url();"
+data-cy="track-artwork"></figure>
+`;

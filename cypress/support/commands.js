@@ -66,8 +66,14 @@ Cypress.Commands.add('selectTab', tab => cy
 Cypress.Commands.add('clearTracks', () => cy
     .log('COMMAND: clearTracks')
     .selectTab('content')
-    .get('.elementor-repeater-fields')
-    .each(($el) => $el.find('.elementor-repeater-tool-remove').click())
+    .get('.elementor-repeater-fields-wrapper')
+    .then((wrapper) => {
+        if (wrapper.find('.elementor-repeater-fields').length) {
+            cy
+                .get('.elementor-repeater-fields')
+                .each(($el) => $el.find('.elementor-repeater-tool-remove').click());
+        }
+    })
 );
 
 /**
