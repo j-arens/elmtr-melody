@@ -8,7 +8,7 @@ exports[`Melody flourishes into a nice little application if the conditions are 
       style="transform: translate3d(0%, 0px, 0px);">
         <li class="Slideshow__slide">
           <figure class="Slideshow__image melody-c-artwork-size melody-c-artwork-repeat melody-c-artwork-position melody-c-artwork-attachment melody-c-image-filters"
-          style="background-image: url();"></figure>
+          style="background-image: url();" data-cy="track-artwork"></figure>
         </li>
       </ul>
       <div class="preview__header">
@@ -29,8 +29,10 @@ exports[`Melody flourishes into a nice little application if the conditions are 
         </button>
       </div>
       <div class="preview__marquee">
-        <p class="preview__title melody-c-title-font melody-c-title-shadow melody-c-title-color">lol-title</p>
-        <p class="preview__artist melody-c-artist-font melody-c-artist-shadow melody-c-artist-color">lol-artist</p>
+        <p class="preview__title melody-c-title-font melody-c-title-shadow melody-c-title-color"
+        data-cy="track-title">lol-title</p>
+        <p class="preview__artist melody-c-artist-font melody-c-artist-shadow melody-c-artist-color"
+        data-cy="track-artist">lol-artist</p>
       </div>
       <div class="preview__glider">
         <div class="glider elementor-tab-title">
