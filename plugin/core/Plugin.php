@@ -104,16 +104,16 @@ class Plugin {
      */
     public function overrideEditorStyles() {
         $style = '
-            *[class*="!melody-top-separator"] {
-                padding-top: 15px;
+            *[class*="!melody-bottom-separator"] {
+                padding-bottom: 30px;
             }
 
-            *[class*="!melody-top-separator"]::before {
+            *[class*="!melody-bottom-separator"]::after {
                 content: "";
                 position: absolute;
                 height: 1px;
                 width: 100%;
-                top: 0;
+                bottom: 15px;
                 left: 0;
                 background-color: #d5dadf;
             }
