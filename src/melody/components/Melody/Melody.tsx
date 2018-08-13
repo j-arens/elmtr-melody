@@ -228,9 +228,21 @@ export default class extends Component<Props, {}> {
     }
 
     onEnded = () => {
-        const { nextTrack, repeat } = this.props;
+        const {
+            nextTrack,
+            repeat,
+            tracks,
+            cycleState,
+            updateCurrentTime,
+        } = this.props;
 
         if (repeat) {
+            return;
+        }
+
+        if (tracks.length < 2) {
+            cycleState('STOP');
+            updateCurrentTime(0);
             return;
         }
 
