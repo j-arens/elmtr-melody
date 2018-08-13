@@ -82,6 +82,14 @@ export function nextTrack(state: AudioState, action: Action): AudioState {
 export function prevTrack(state: AudioState, action: Action): AudioState {
     const { tracks, currentTrack, lastTrack, shuffle } = state;
 
+    if (tracks.length < 2) {
+        return {
+            ...state,
+            currentTime: 0,
+            timeSync: state.timeSync + 1,
+        };
+    }
+
     if (shuffle) {
         return {
             ...state,

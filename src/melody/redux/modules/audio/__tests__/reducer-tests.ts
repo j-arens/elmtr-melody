@@ -106,6 +106,19 @@ describe('PREV_TRACK', () => {
         expect(newState.currentTrack).toBe(1);
         expect(newState.lastTrack).toBe(4);
     });
+
+    it('should reset the time to 0 if there is less than 2 tracks', () => {
+        const action = actions.prevTrack();
+        const state = {
+            ...initialState.audio,
+            currentTime: 100,
+            tracks: [{}],
+        };
+        const newState = reducer(state, action);
+        expect(newState.currentTrack).toBe(0);
+        expect(newState.currentTime).toBe(0);
+        expect(newState.timeSync).toBe(1);
+    });
 });
 
 describe('TOGGLE_SHUFFLE', () => {
