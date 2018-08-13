@@ -9,8 +9,7 @@ exports[`PrevButton renders 1`] = `
 `;
 
 exports[`PrevButton renders with a disabled class if totalTracks <= 1 1`] = `
-<button class="btn sapphire-blue playbackCtrl melody-playbackCtrl playbackCtrl--disabled"
-role="button">
+<button class="btn sapphire-blue playbackCtrl melody-playbackCtrl" role="button">
   <svg class="playbackCtrl__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"></path>
   </svg>
