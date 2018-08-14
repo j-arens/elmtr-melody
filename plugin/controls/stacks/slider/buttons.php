@@ -37,7 +37,8 @@ return [
                 'separator' => 'none',
                 'default' => '#B0AFAF',
                 'selectors' => [
-                    '{{WRAPPER}} .melody-c-btn-hover-color:hover' => 'color: {{VALUE}}'
+                    '{{WRAPPER}} .melody-c-btn-hover-color:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-btn-hover-color--hovered' => 'color: {{VALUE}}',
                 ],
             ],
         ],
@@ -50,7 +51,9 @@ return [
                 'default' => '#B0AFAF',
                 'selectors' => [
                     '{{WRAPPER}} .melody-shuffle.melody-c-shuffle-on' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .melody-repeat.melody-c-repeat-on' => 'color: {{VALUE}}'
+                    '{{WRAPPER}} .melody-repeat.melody-c-repeat-on' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-shuffle.melody-c-on-color--enabled' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-repeat.melody-c-on-color--enabled' => 'color: {{VALUE}}',
                 ],
             ],
         ],

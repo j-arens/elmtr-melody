@@ -1,4 +1,4 @@
-import { elementorEditor } from '../support/utils';
+import { elementorEditor } from '../../support/utils';
 
 describe('track picker', () => {
     beforeEach(() => {
@@ -16,18 +16,7 @@ describe('track picker', () => {
     it('adds a track from the media picker and clears it', () => {
         // this test expects no tracks
         cy.clearTracks();
-
-        cy  
-            .selectTab('content')
-            .get('.elementor-repeater-add')
-            .click()
-            .get('[data-setting="melody_audio_source"]')
-            .select('media-library')
-            .get('[data-melody-tp-trigger]')
-            .click()
-        
-        // select track from media library
-        cy.selectMediaAttachment(8001);
+        cy.addTrack(8001);
 
         const titleInput = 'input[data-setting="melody_track_title"]';
         const albumInput = 'input[data-setting="melody_track_album"]';

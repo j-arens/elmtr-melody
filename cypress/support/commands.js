@@ -26,6 +26,9 @@
 
 /**
  * Authenticate with wp-login
+ * 
+ * @param {string} username
+ * @param {string} password
  */
 Cypress.Commands.add('login', (username, password) => cy
     .log('COMMAND: login')
@@ -53,6 +56,8 @@ Cypress.Commands.add('getPreview', () => cy
 
 /**
  * Select a main widget editing tab in the elementor sidebar
+ * 
+ * @param {string} tab
  */
 Cypress.Commands.add('selectTab', tab => cy
     .log('COMMAND: selectTab')
@@ -78,6 +83,8 @@ Cypress.Commands.add('clearTracks', () => cy
 
 /**
  * Select an attachment by id from a media frame
+ * 
+ * @param {string|number} id
  */
 Cypress.Commands.add('selectMediaAttachment', id => cy
     .log('COMMAND: selectMediaAttachment')
@@ -86,3 +93,41 @@ Cypress.Commands.add('selectMediaAttachment', id => cy
     .get('.media-button-select')
     .click()
 );
+
+/**
+ * Adds a track from the media library
+ * 
+ * @param {string|number} id
+ */
+Cypress.Commands.add('addTrack', id => cy
+    .log('COMMAND: addTrack')
+    .selectTab('content')
+    .get('.elementor-repeater-add')
+    .click()
+    .get('[data-setting="melody_audio_source"]')
+    .select('media-library')
+    .get('[data-melody-tp-trigger]')
+    .click()
+    .selectMediaAttachment(id)
+);
+
+/**
+ * Selects the nearest color picker, sets a hex value, and closes it
+ * 
+ * @param {string} handle
+ * @param {string} hex
+ */
+Cypress.Commands.add('setColor', (handle, hex) => {
+    cy
+        .log('COMMAND: setColor')
+        .get(`.elementor-control-${handle} button.wp-color-result`)
+        .click()
+        .parent()
+        .find('input.wp-color-picker')
+        .clear()
+        .type(hex);
+
+    cy
+        .get(`.elementor-control-${handle} button.wp-color-result`)
+        .click();
+});
