@@ -37,7 +37,7 @@ chown -R www-data /var/www/html/wp-content/uploads
 
 # install and activate elementor
 if ! $(wp plugin is-installed elementor); then
-    wp plugin install elementor --activate
+    wp plugin install elementor
 fi
 
 # insert seed data
@@ -45,7 +45,8 @@ if [ $SEED_DB ]; then
     run_seeds
 fi
 
-# ensure melody is activated
+# ensure plugins are activated
+wp plugin activate elementor
 wp plugin activate elmtr-melody
 
 # restart apache and run it in the foreground so that the process doesn't exit

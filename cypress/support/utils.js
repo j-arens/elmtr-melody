@@ -8,21 +8,6 @@ export const elementorEditor = postId =>
     `/wp-admin/post.php?post=${postId}&action=elementor`;
 
 /**
- * Checks if a widget has any tracks set
- * 
- * @return {boolean}
- */
-export const widgetHasTracks = () => cy
-    .selectTab('content')
-    .get('.elementor-repeater-fields-wrapper')
-    .then((wrapper) => {
-        if (wrapper.find('.elementor-repeater-fields').length) {
-            return true;
-        }
-        return false;
-    });
-
-/**
  * Converts hex to rgb
  * 
  * @param {string} hex

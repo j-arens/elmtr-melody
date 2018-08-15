@@ -88,6 +88,8 @@ Cypress.Commands.add('clearTracks', () => cy
  */
 Cypress.Commands.add('selectMediaAttachment', id => cy
     .log('COMMAND: selectMediaAttachment')
+    .get('.media-router a:last-child')
+    .click()
     .get(`.attachments-browser [data-id="${id}"]`)
     .click()
     .get('.media-button-select')
@@ -131,3 +133,12 @@ Cypress.Commands.add('setColor', (handle, hex) => {
         .get(`.elementor-control-${handle} button.wp-color-result`)
         .click();
 });
+
+/**
+ * Elementor fires a prompt that causes the electron browser
+ * to hang if the editor has unsaved changes (basically every test)
+ */
+Cypress.Commands.add('disableUnloadAlert', () => cy
+    .window()
+    .then(w => w.elementor.$window.unbind('beforeunload'))
+);

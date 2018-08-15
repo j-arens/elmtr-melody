@@ -4,6 +4,7 @@ describe('slider button customizations', () => {
     before(() => {
         cy.login('admin', 'z');
         cy.visit(utils.elementorEditor(9900));
+        cy.disableUnloadAlert();
 
         cy
             .getPreview()
@@ -12,10 +13,10 @@ describe('slider button customizations', () => {
     });
 
     describe('color customizations', () => {
-        beforeEach(() => {
-            if (!utils.widgetHasTracks()) {
-                cy.addTrack(8001);
-            }
+        before(() => {
+            cy
+                .clearTracks()
+                .addTrack(8001);
         });
 
         it('primary color customization gets applied', () => {
