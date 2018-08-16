@@ -56,4 +56,39 @@ describe('slider button customizations', () => {
                 .each($btn => $btn.removeClass('melody-c-on-color--enabled'));
         });
     });
+
+    describe('placement customizations', () => {
+        it('size customization gets applied', () => {
+            cy
+                .selectTab('style')
+                .setSlider('melody_slider_buttons_btn_max_width', 'size', '25');
+
+            cy
+                .getPreview()
+                .find('.melody-playbackCtrl')
+                .should('have.css', 'max-width', '25px');
+        });
+
+        it('spacing customization gets applied', () => {
+            cy
+                .selectTab('style')
+                .setSlider('melody_slider_buttons_btn_space', 'size', '40');
+
+            cy
+                .getPreview()
+                .find('.melody-playbackCtrl:not(:first-child)')
+                .should('have.css', 'margin-left', '40px');
+        });
+
+        it('alignment customization gets applied', () => {
+            cy
+                .selectTab('style')
+                .setChoices('melody_slider_buttons_btn_flex_alignment', 0);
+
+            cy
+                .getPreview()
+                .find('[data-cy="controlbar"]')
+                .should('have.css', 'justify-content', 'flex-start');
+        });
+    });
 });
