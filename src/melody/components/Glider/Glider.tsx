@@ -3,8 +3,7 @@ import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
 import { ELEMENTOR_NO_DRAG } from '@constants';
 import { Action } from '@redux/type';
 import { MachineStates } from '@state-machine/type';
-import { getLayerX } from '@utils/index';
-import { NO_OP } from '@utils/index';
+import { cySelector, getLayerX, NO_OP } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 const s = require('./style.scss');
@@ -159,7 +158,11 @@ export default class extends Component<Props, State> {
                         style={{marginLeft: `${offset}%`}}
                         data-melody-scrubber-progress
                     >
-                        <div class={s.glider__handle} data-melody-scrubber-handle />
+                        <div
+                            class={s.glider__handle}
+                            data-melody-scrubber-handle
+                            {...cySelector('glider-handle')}
+                        />
                     </div>
                 </div>
             </div>

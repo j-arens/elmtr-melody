@@ -30,9 +30,12 @@
  * @param {string} username
  * @param {string} password
  */
-Cypress.Commands.add('login', (username, password) => cy
-    .log('COMMAND: login')
-    .request({
+Cypress.Commands.add('login', (username, password) => {
+    cy.log('COMMAND: login');
+    Cypress.Cookies.defaults({
+        whitelist: /wordpress_.*/,
+    });
+    cy.request({
         url: '/wp-login.php',
         method: 'POST',
         form: true,
@@ -40,7 +43,8 @@ Cypress.Commands.add('login', (username, password) => cy
             log: username,
             pwd: password,
         },
-    }));
+    });
+});
 
 /**
  * Select the elementor preview iframe and perform cy commands on it
@@ -141,4 +145,112 @@ Cypress.Commands.add('setColor', (handle, hex) => {
 Cypress.Commands.add('disableUnloadAlert', () => cy
     .window()
     .then(w => w.elementor.$window.unbind('beforeunload'))
+);
+
+/**
+ * Set a slider control value
+ * 
+ * @param {string} handle
+ * @param {string} setting
+ * @param {string} value
+ */
+Cypress.Commands.add('setSlider', (handle, setting, value) => cy
+    .log('COMMAND: setSlider')
+    .get(`.elementor-control-${handle} input[data-setting="${setting}"]`)
+    .clear()
+    .type(value)
+);
+
+/**
+ * Set a choose control value
+ * 
+ * @param {string} handle
+ * @param {number} index
+ */
+Cypress.Commands.add('setChoices', (handle, index) => cy
+    .log('COMMAND: setChoices')
+    .get(`.elementor-control-${handle} .elementor-choices label`)
+    .eq(index)
+    .then($label => {
+        if (!$label.prev().is(':checked')) {
+            $label.click();
+        }
+    })
+);
+
+/**
+ * Expand/close an accordion of controls
+ * 
+ * @param {string} handle
+ */
+Cypress.Commands.add('toggleAccordion', handle => cy
+    .log('COMMAND: toggleAccordion')
+    .get(`.elementor-control-${handle}`)
+    .click()
+);
+
+/**
+ * Set the value(s) of a dimension control
+ * 
+ * @param {string} handle
+ * @param {Object} config
+ * @param {boolean} config.linked
+ * @param {array<mixed>} config.values
+ */
+Cypress.Commands.add('setDimensions', (handle, { linked, values }) => {
+    cy
+        .log('COMMAND: setDimensions')
+        .get(`.elementor-control-${handle}`)
+        .find('button.elementor-link-dimensions')
+        .then($button => {
+            const shouldLink = $button.hasClass('unlinked') && linked;
+            const shouldUnlink = !shouldLink && !linked;
+            if (shouldLink || shouldUnlink) {
+                $button.click();
+            }
+        })
+        .closest('ul.elementor-control-dimensions')
+        .find('li.elementor-control-dimension input')
+        .then($inputs => values.forEach((value, i) => cy
+            .wrap($inputs[i])
+            .clear()
+            .type(value.toString())));
+});
+
+/**
+ * Set the value(s) of a box shadow control
+ * 
+ * @param {string} handle
+ * @param {string} popoverHandle
+ * @param {object} config
+ * @param {string} config.color
+ * @param {number} config.x
+ * @param {number} config.y
+ * @param {number} config.blur
+ * @param {number} config.spread
+ * @param {string} config.position
+ */
+Cypress.Commands.add('setBoxShadow', (handle, popoverHandle, config) => cy
+    .log('COMMAND: setBoxShadow')
+    .get(`.elementor-control-${handle}`)
+    .find('.elementor-control-popover-toggle-toggle')
+    .click({ force: true })
+    .closest(`.elementor-control-${handle}`)
+    .next()
+    .then($popover => {
+        const ctx = cy.wrap($popover);
+        const fns = {
+            color: value => ctx.setColor(popoverHandle, value),
+            x: value => ctx.setSlider(popoverHandle, 'horizontal', value),
+            y: value => ctx.setSlider(popoverHandle, 'vertical', value),
+            blur: value => ctx.setSlider(popoverHandle, 'blur', value),
+            spread: value => ctx.setSlider(popoverHandle, 'spread', value),
+            position: value => ctx.get(`[data-setting="${popoverHandle}_position"]`).select(value),
+        };
+        Object.keys(config).forEach(k => fns[k] ? fns[k](config[k]) : null);
+    })
+    .closest('.elementor-controls-popover')
+    .prev()
+    .find('.elementor-control-field')
+    .click()
 );

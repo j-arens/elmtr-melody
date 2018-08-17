@@ -2,6 +2,7 @@ import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
 import { WithOptionalClassName } from '@melody/components/type';
 import { Action } from '@redux/type';
+import { cySelector } from '@utils/index';
 import { Component, h } from 'preact';
 const throttle = require('lodash.throttle');
 const s = require('../style.scss');
@@ -50,6 +51,7 @@ export default class extends Component<Props, {}> {
                 onClick={toggleDock}
                 forwardRef={this.setRef}
                 className={`${s.dock__toggle} ${className}`}
+                {...cySelector('dock-toggle')}
             >
                 <Icon className={s.dock__toggleIcon} name="settings" />
             </BaseButton>
