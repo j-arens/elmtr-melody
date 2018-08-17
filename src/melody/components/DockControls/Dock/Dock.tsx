@@ -4,7 +4,7 @@ import Portal from '@components/Portal/Portal';
 import { WithOptionalClassName } from '@melody/components/type';
 import { DockToggleDims } from '@melody/redux/modules/ui/type';
 import { Action, Track } from '@redux/type';
-import { NO_OP, prefixClasses } from '@utils/index';
+import { cySelector, NO_OP, prefixClasses } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 import { dockPosition } from './helpers';
@@ -112,6 +112,7 @@ export default class extends Component<Props, State> {
                     visibility: showDock ? 'visible' : 'hidden',
                     ...controls,
                 }}
+                {...cySelector('dock-controls')}
             >
                 <span
                     class={classnames(
@@ -131,6 +132,7 @@ export default class extends Component<Props, State> {
                             'dock-controls-border-color',
                         ),
                     )}
+                    {...cySelector('dock-controls-wrap')}
                 >
                     {track.download_url &&
                         <BaseButton

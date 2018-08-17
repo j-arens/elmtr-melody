@@ -217,20 +217,40 @@ Cypress.Commands.add('setDimensions', (handle, { linked, values }) => {
             .type(value.toString())));
 });
 
-Cypress.Commands.add('setBoxShadow', (handle, config) => {
-    cy
-        .log('COMMAND: setBoxShadow')
-        .get(`.elementor-control-${handle}`)
-        .find('.elementor-control-popover-toggle-toggle')
-        .click({ force: true })
-        .closest(`.elementor-control-${handle}`)
-        .next()
-        .then($popover => Object.values(config).forEach(fn => fn(cy.wrap($popover))))
-        .closest('.elementor-controls-popover')
-        .prev()
-        .find('.elementor-control-field')
-        .click()
-});
-
-// elementor-control-popover-toggle-toggle - click to open (hidden input)
-// elementor-control-field - click to close
+/**
+ * Set the value(s) of a box shadow control
+ * 
+ * @param {string} handle
+ * @param {string} popoverHandle
+ * @param {object} config
+ * @param {string} config.color
+ * @param {number} config.x
+ * @param {number} config.y
+ * @param {number} config.blur
+ * @param {number} config.spread
+ * @param {string} config.position
+ */
+Cypress.Commands.add('setBoxShadow', (handle, popoverHandle, config) => cy
+    .log('COMMAND: setBoxShadow')
+    .get(`.elementor-control-${handle}`)
+    .find('.elementor-control-popover-toggle-toggle')
+    .click({ force: true })
+    .closest(`.elementor-control-${handle}`)
+    .next()
+    .then($popover => {
+        const ctx = cy.wrap($popover);
+        const fns = {
+            color: value => ctx.setColor(popoverHandle, value),
+            x: value => ctx.setSlider(popoverHandle, 'horizontal', value),
+            y: value => ctx.setSlider(popoverHandle, 'vertical', value),
+            blur: value => ctx.setSlider(popoverHandle, 'blur', value),
+            spread: value => ctx.setSlider(popoverHandle, 'spread', value),
+            position: value => ctx.get(`[data-setting="${popoverHandle}_position"]`).select(value),
+        };
+        Object.keys(config).forEach(k => fns[k] ? fns[k](config[k]) : null);
+    })
+    .closest('.elementor-controls-popover')
+    .prev()
+    .find('.elementor-control-field')
+    .click()
+);

@@ -41,14 +41,23 @@ describe('slider controlbar customizations', () => {
             .should('have.css', 'background-color', utils.hexToRgb('#697b7b'));
     });
 
-    // it('box shadow customization gets applied', () => {
-    //     cy.setBoxShadow('melody_slider_control_bar_box_shadow_box_shadow_type', {
-    //         color: ctx => ctx.setColor('melody_slider_control_bar_box_shadow_box_shadow', '#0c0003'),
-    //         x: ctx => ctx.setSlider('melody_slider_control_bar_box_shadow_box_shadow', 'horizontal', 20),
-    //         y: ctx => ctx.setSlider('melody_slider_control_bar_box_shadow_box_shadow', 'vertical', 20),
-    //         blur: ctx => ctx.setSlider('melody_slider_control_bar_box_shadow_box_shadow', 'blur', 20),
-    //         spread: ctx => ctx.setSlider('melody_slider_control_bar_box_shadow_box_shadow', 'spread', 20),
-    //         position: ctx => ctx.get('[data-setting="melody_slider_control_bar_box_shadow_box_shadow_position"]').select(' '),
-    //     });
-    // });
+    it('box shadow customization gets applied', () => {
+        const handle = 'melody_slider_control_bar_box_shadow_box_shadow_type';
+        const innerHandle = 'melody_slider_control_bar_box_shadow_box_shadow';
+        const shadow =  {
+            color: '#0c0003',
+            x: 20,
+            y: 20,
+            blur: 20,
+            spread: 20,
+            position: ' ',
+        };
+
+        cy.setBoxShadow(handle, innerHandle, shadow);
+
+        cy
+            .getPreview()
+            .find('[data-cy="controlbar"]')
+            .should('have.css', 'box-shadow', `${utils.hexToRgb('#0c0003')} 20px 20px 20px 20px`);
+    });
 });

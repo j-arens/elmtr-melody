@@ -12,7 +12,7 @@ import Glider from '@components/Glider/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
-import { prefixClasses, cySelector } from '@utils/index';
+import { cySelector, prefixClasses } from '@utils/index';
 import { h } from 'preact';
 import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
 const s = require('./style.scss');
@@ -85,7 +85,7 @@ export default () => (
                 <CurrentTimeLeft className={`${s.preview__time} ${timeClasses}`} />
             </div>
         </div>
-        <div 
+        <div
             class={`${s.controlbar} ${prefixClasses(c_prefix, 'controlbar')} melody-control-bar`}
             {...cySelector('controlbar')}
         >

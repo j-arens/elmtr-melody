@@ -2,10 +2,12 @@
 
 exports[`Dock is hidden if showDock is false 1`] = `
 <div class="dock elementor-element-undefined-dock-controls-primary-color"
-style="pointer-events: none; visibility: hidden; top: NaNpx; left: NaNpx;">
+style="pointer-events: none; visibility: hidden; top: NaNpx; left: NaNpx;"
+data-cy="dock-controls">
   <span class="dock__arrow elementor-element-undefined-dock-controls-arrow-color elementor-element-undefined-dock-controls-border-color"
   style="left: -6px;"></span>
-  <div class="dock__controlsGroup elementor-element-undefined-dock-controls-border-color">
+  <div class="dock__controlsGroup elementor-element-undefined-dock-controls-border-color"
+  data-cy="dock-controls-wrap">
     <button class="btn dock__control elementor-element-undefined-dock-controls-secondary-color elementor-element-undefined-dock-controls-text-color elementor-element-undefined-dock-controls-font"
     role="button">
       <svg class="dock__controlIcon elementor-element-undefined-dock-controls-icon-color"
