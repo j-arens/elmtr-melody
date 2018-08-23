@@ -2,16 +2,15 @@ const { EnvironmentPlugin } = require('webpack');
 const ExtractPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const WordPressChunkLoaderPlugin = require('../WordPressChunkLoaderPlugin/index');
+const { WordPressEnqueueChunksPlugin } = require('wordpress-enqueue-chunks-webpack-plugin');
 const paths = require('./paths');
 
 module.exports = (mode, libs) => {
     const plugins = [
-        new WordPressChunkLoaderPlugin({
-            context: 'plugin',
-            assetPath: 'elmtr-melody/public/js',
-            phpOutputDir: './plugin/assets',
-            handleNamespace: 'melody-js',
+        new WordPressEnqueueChunksPlugin({
+            assetsDir: 'elmtr-melody/public/js',
+            namespace: 'melody-js',
+            phpScriptDir: './plugin/assets',
         }),
         new EnvironmentPlugin({
             NODE_ENV: `${mode}`,
