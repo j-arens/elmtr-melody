@@ -3,7 +3,7 @@
 namespace Melody\Widgets;
 
 use DownShift\Container\Container;
-use WordPressChunkLoaderPlugin as wpcl;
+use function WordpressEnqueueChunksPlugin\registerScripts;
 use Melody\Enhancers\EnhancesImageAttachments;
 use Elementor\Widget_Base;
 
@@ -111,7 +111,7 @@ abstract class AbstractMelodyWidget extends Widget_Base {
             'all'
         );
 
-        wpcl\processManifest();
+        registerScripts(['adapter', 'melody']);
 
         wp_localize_script('melody-js-adapter', 'MELODY_ENV', [
             'pluginsUrl' => plugins_url(),

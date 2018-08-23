@@ -27,7 +27,7 @@
         },
         "files": [
             "./plugin/core/functions.php",
-            "./plugin/assets/WordPressChunkLoaderPlugin.php"
+            "./plugin/assets/wordpressEnqueueChunksPlugin.php"
         ]
     },
     "scripts": {
