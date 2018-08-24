@@ -64,7 +64,7 @@ const dockToggleClasses = prefixClasses(
 
 export default () => (
     <div class="melody__viewContainer">
-        <div class={`${s.preview} ${previewClasses}`}>
+        <div class={`${s.preview} ${previewClasses}`} {...cySelector('preview')}>
             <Slideshow
                 className={`${s.preview__slideshow} ${slideshowClasses}`}
                 artworkClassName={artworkClasses}
