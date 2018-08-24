@@ -254,3 +254,16 @@ Cypress.Commands.add('setBoxShadow', (handle, popoverHandle, config) => cy
     .find('.elementor-control-field')
     .click()
 );
+
+/**
+ * Set the value of a text-based input
+ * 
+ * @param {string} handle
+ * @param {string|number} value
+ */
+Cypress.Commands.add('setInput', (handle, value) => cy
+    .log('COMMAND: setInput')
+    .get(`.elementor-control-${handle} input[data-setting="${handle}"]`)
+    .clear()
+    .type(value)
+);

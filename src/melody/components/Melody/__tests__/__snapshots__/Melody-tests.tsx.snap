@@ -3,7 +3,8 @@
 exports[`Melody flourishes into a nice little application if the conditions are right 1`] = `
 <div class="Melody Melody--stopped">
   <div class="melody__viewContainer">
-    <div class="preview melody-c-preview-bg melody-c-preview-min-height melody-c-preview-padding">
+    <div class="preview melody-c-preview-bg melody-c-preview-min-height melody-c-preview-padding"
+    data-cy="preview">
       <ul class="Slideshow preview__slideshow melody-c-slider-transition melody-c-slider-timing"
       style="transform: translate3d(0%, 0px, 0px);">
         <li class="Slideshow__slide">
