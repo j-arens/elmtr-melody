@@ -123,10 +123,14 @@ Cypress.Commands.add('addTrack', id => cy
  * @param {string} handle
  * @param {string} hex
  */
-Cypress.Commands.add('setColor', (handle, hex) => {
+Cypress.Commands.add('setColor', (hex, handle = '') => {
+    const btn = 'button.wp-color-result';
+    const scope = handle ? `.elementor-control-${handle} ` : '';
+    const selector = scope + btn;
+
     cy
         .log('COMMAND: setColor')
-        .get(`.elementor-control-${handle} button.wp-color-result`)
+        .get(selector)
         .click()
         .parent()
         .find('input.wp-color-picker')
@@ -134,7 +138,7 @@ Cypress.Commands.add('setColor', (handle, hex) => {
         .type(hex);
 
     cy
-        .get(`.elementor-control-${handle} button.wp-color-result`)
+        .get(selector)
         .click();
 });
 
@@ -218,17 +222,50 @@ Cypress.Commands.add('setDimensions', (handle, { linked, values }) => {
 });
 
 /**
+ * Open a control's popover
+ * 
+ * @param {string} handle
+ */
+Cypress.Commands.add('openPopover', handle => cy
+    .log('COMMAND: openPopover')
+    .get(`.elementor-control-${handle}`)
+    .find('.elementor-control-popover-toggle-toggle')
+    .click({ force: true })
+    .closest(`.elementor-control-${handle}`)
+    .next()
+);
+
+/**
+ * Close a control's popover
+ * 
+ * @param {string} handle
+ */
+Cypress.Commands.add('closePopover', handle => cy
+    .log('COMMAND: closePopover')
+    .get(`.elementor-control-${handle}`)
+    .find('.elementor-control-popover-toggle-toggle')
+    .click({ force: true })
+);
+
+/**
+ * Run a series operations mapped by key within a scope
+ * 
+ * @param {jQuery} $scope
+ * @param {object} map
+ * @param {object} operations
+ */
+Cypress.Commands.add('subProcess', ($scope, map, operations) => {
+    cy.log('COMMAND: subProcess');
+    const ctx = cy.wrap($scope);
+    Object.keys(map).forEach(k => operations[k] ? operations[k](ctx, ...map[k]) : null);
+});
+
+/**
  * Set the value(s) of a box shadow control
  * 
  * @param {string} handle
  * @param {string} popoverHandle
  * @param {object} config
- * @param {string} config.color
- * @param {number} config.x
- * @param {number} config.y
- * @param {number} config.blur
- * @param {number} config.spread
- * @param {string} config.position
  */
 Cypress.Commands.add('setBoxShadow', (handle, popoverHandle, config) => cy
     .log('COMMAND: setBoxShadow')
@@ -240,7 +277,7 @@ Cypress.Commands.add('setBoxShadow', (handle, popoverHandle, config) => cy
     .then($popover => {
         const ctx = cy.wrap($popover);
         const fns = {
-            color: value => ctx.setColor(popoverHandle, value),
+            color: value => ctx.setColor(value, popoverHandle),
             x: value => ctx.setSlider(popoverHandle, 'horizontal', value),
             y: value => ctx.setSlider(popoverHandle, 'vertical', value),
             blur: value => ctx.setSlider(popoverHandle, 'blur', value),
@@ -266,4 +303,42 @@ Cypress.Commands.add('setInput', (handle, value) => cy
     .get(`.elementor-control-${handle} input[data-setting="${handle}"]`)
     .clear()
     .type(value)
+);
+
+/**
+ * Set the values of a font style control
+ * 
+ * @param {string} handle
+ * @param {object} config
+ */
+Cypress.Commands.add('setFontStyle', (handle, config) => cy
+    .log('COMMAND: setFontStyle')
+    .openPopover(handle)
+    .then($popover => cy.subProcess($popover, config, {
+        family: (ctx, selector, value) => ctx.get(selector).select(value, { force: true }),
+        size: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
+        weight: (ctx, selector, value) => ctx.get(selector).select(value),
+        transform: (ctx, selector, value) => ctx.get(selector).select(value),
+        style: (ctx, selector, value) => ctx.get(selector).select(value),
+        decoration: (ctx, selector, value) => ctx.get(selector).select(value),
+        lineHeight: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
+        letterSpacing: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
+    }))
+    .closePopover(handle)
+);
+
+/**
+ * @param {string} handle
+ * @param {object} config
+ */
+Cypress.Commands.add('setTextShadow', (handle, config) => cy
+    .log('COMMAND: setTextShadow')
+    .openPopover(handle)
+    .then($popover => cy.subProcess($popover, config, {
+        color: (ctx, value, selector) => ctx.setColor(value, selector),
+        blur: (ctx, selector, value) => ctx.setSlider(selector, 'blur', value),
+        x: (ctx, selector, value) => ctx.setSlider(selector, 'horizontal', value),
+        y: (ctx, selector, value) => ctx.setSlider(selector, 'vertical', value),
+    }))
+    .closePopover(handle)
 );

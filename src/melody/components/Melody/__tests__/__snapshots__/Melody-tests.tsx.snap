@@ -45,8 +45,10 @@ exports[`Melody flourishes into a nice little application if the conditions are 
         </div>
       </div>
       <div class="preview__footer">
-        <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
-        <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
+        <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color"
+        data-cy="time-elapsed">0:00</span>
+        <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color"
+        data-cy="time-left">0:00</span>
       </div>
     </div>
     <div class="controlbar melody-c-controlbar melody-control-bar" data-cy="controlbar">

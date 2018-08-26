@@ -33,7 +33,7 @@ describe('slider controlbar customizations', () => {
     });
 
     it('background color customization gets applied', () => {
-        cy.setColor('melody_slider_control_bar_bg_color', '#697b7b');
+        cy.setColor('#697b7b', 'melody_slider_control_bar_bg_color');
 
         cy
             .getPreview()
