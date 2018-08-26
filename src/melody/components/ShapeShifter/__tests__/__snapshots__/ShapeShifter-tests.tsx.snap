@@ -27,7 +27,8 @@ exports[`Melody renders the simple toolbar view 1`] = `
   </div>
   <div class="preview melody-c-preview-padding melody-c-trackinfo-width melody-c-trackinfo-order">
     <div class="preview__wrap melody-c-trackinfo-margin">
-      <span class="preview__time preview__time--left melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
+      <span class="preview__time preview__time--left melody-c-time-font melody-c-time-shadow melody-c-time-color"
+      data-cy="time-elapsed">0:00</span>
       <div class="preview__trackInfo">
         <p class="preview__title melody-c-title-font melody-c-title-shadow melody-c-title-color"
         data-cy="track-title">lol-title</p>
@@ -35,7 +36,8 @@ exports[`Melody renders the simple toolbar view 1`] = `
         <p class="preview__artist melody-c-artist-font melody-c-artist-shadow melody-c-artist-color"
         data-cy="track-artist">lol-artist</p>
       </div>
-      <span class="preview__time preview__time--right melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
+      <span class="preview__time preview__time--right melody-c-time-font melody-c-time-shadow melody-c-time-color"
+      data-cy="time-left">0:00</span>
     </div>
     <div class="glider elementor-tab-title">
       <div class="glider__playback">
@@ -153,8 +155,10 @@ exports[`Melody renders the slider view 1`] = `
       </div>
     </div>
     <div class="preview__footer">
-      <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
-      <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color">0:00</span>
+      <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color"
+      data-cy="time-elapsed">0:00</span>
+      <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color"
+      data-cy="time-left">0:00</span>
     </div>
   </div>
   <div class="controlbar melody-c-controlbar melody-control-bar" data-cy="controlbar">

@@ -22,7 +22,7 @@ describe('slider button customizations', () => {
         it('primary color customization gets applied', () => {
             cy
                 .selectTab('style')
-                .setColor('melody_slider_buttons_primary_color', '#bada55');
+                .setColor('#bada55', 'melody_slider_buttons_primary_color');
 
             cy
                 .getPreview()
@@ -33,7 +33,7 @@ describe('slider button customizations', () => {
         it('hover color customization gets applied', () => {
             cy
                 .selectTab('style')
-                .setColor('melody_slider_buttons_hover_color', '#0d9df7');
+                .setColor('#0d9df7', 'melody_slider_buttons_hover_color');
 
             cy
                 .getPreview()
@@ -46,7 +46,7 @@ describe('slider button customizations', () => {
         it('enabled color customization gets applied', () => {
             cy
                 .selectTab('style')
-                .setColor('melody_slider_buttons_on_color', '#e62b2b');
+                .setColor('#e62b2b', 'melody_slider_buttons_on_color');
 
             cy
                 .getPreview()

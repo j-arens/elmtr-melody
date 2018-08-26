@@ -22,7 +22,7 @@ describe('slider dock customizations', () => {
 
     describe('dock toggle customizations', () => {
         it('color customization gets applied', () => {
-            cy.setColor('melody_slider_dock_toggle_primary_color', '#28dfef');
+            cy.setColor('#28dfef', 'melody_slider_dock_toggle_primary_color');
 
             cy
                 .getPreview()
@@ -50,7 +50,7 @@ describe('slider dock customizations', () => {
         });
 
         it('primary color customization gets applied', () => {
-            cy.setColor('melody_slider_dock_controls_primary_color', '#23a455');
+            cy.setColor('#23a455', 'melody_slider_dock_controls_primary_color');
 
             cy
                 .getPreview()
@@ -60,7 +60,7 @@ describe('slider dock customizations', () => {
 
         // @TODO: test psuedo element color
         // it('secondary color customization gets applied', () => {
-        //     cy.setColor('melody_slider_dock_controls_secondary_color', '#242dd6');
+        //     cy.setColor('#242dd6', 'melody_slider_dock_controls_secondary_color');
 
         //     cy
         //         .getPreview()
@@ -69,7 +69,7 @@ describe('slider dock customizations', () => {
         // });
 
         it('border color customization gets applied', () => {
-            cy.setColor('melody_slider_dock_controls_border_color', '#d82bd8');
+            cy.setColor('#d82bd8', 'melody_slider_dock_controls_border_color');
 
             cy
                 .getPreview()
@@ -83,7 +83,7 @@ describe('slider dock customizations', () => {
         });
 
         it('icon color customization gets applied', () => {
-            cy.setColor('melody_slider_dock_controls_icon_color', '#ff0f0f');
+            cy.setColor('#ff0f0f', 'melody_slider_dock_controls_icon_color');
 
             cy
                 .getPreview()
@@ -92,7 +92,7 @@ describe('slider dock customizations', () => {
         });
 
         it('text color customization gets applied', () => {
-            cy.setColor('melody_slider_dock_controls_text_color', '#4f0f2f');
+            cy.setColor('#4f0f2f', 'melody_slider_dock_controls_text_color');
 
             cy
                 .getPreview()

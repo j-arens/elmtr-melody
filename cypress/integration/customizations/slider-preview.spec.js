@@ -21,7 +21,7 @@ describe('slider preview customizations', () => {
     });
 
     it('background color customization gets applied', () => {
-        cy.setColor('melody_preview_bg_color', '#61ce70');
+        cy.setColor('#61ce70', 'melody_preview_bg_color');
 
         cy
             .getPreview()

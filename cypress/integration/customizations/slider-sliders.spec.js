@@ -31,7 +31,7 @@ describe('slider sliders customizations', () => {
     // });
 
     it('handle color customization gets applied', () => {
-        cy.setColor('melody_sliders_handle_color', '#130dd8');
+        cy.setColor('#130dd8', 'melody_sliders_handle_color');
 
         cy
             .getPreview()
