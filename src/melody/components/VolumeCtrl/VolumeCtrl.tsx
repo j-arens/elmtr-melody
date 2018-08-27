@@ -5,6 +5,7 @@ import MutedMarkup from '@components/Icon/svg/muted';
 import { ELEMENTOR_NO_DRAG } from '@constants';
 import { WithOptionalClassName } from '@melody/components/type';
 import { Action } from '@redux/type';
+import { cySelector } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 const s = require('./style.scss');
@@ -129,6 +130,7 @@ export default class extends Component<Props, State> {
             <div
                 class={classes}
                 ref={(ref: HTMLElement) => setDragRef(ref)}
+                {...cySelector('vol-ctrl')}
             >
                 <svg
                     class={`${s.volumeCtrl__icon} ${ELEMENTOR_NO_DRAG}`}
