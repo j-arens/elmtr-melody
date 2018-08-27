@@ -48,7 +48,8 @@ exports[`Melody renders the simple toolbar view 1`] = `
     </div>
   </div>
   <div class="controls controls--right melody-controls-secondary">
-    <div class="melody-c-btn-primary-color melody-c-btn-width melody-c-btn-space volumeCtrl">
+    <div class="melody-c-btn-primary-color melody-c-btn-width melody-c-btn-space volumeCtrl"
+    data-cy="vol-ctrl">
       <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24">
         <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
@@ -123,7 +124,8 @@ exports[`Melody renders the slider view 1`] = `
       </li>
     </ul>
     <div class="preview__header">
-      <div class="melody-c-vol-primary-color melody-c-vol-hover-color melody-c-vol-width volumeCtrl">
+      <div class="melody-c-vol-primary-color melody-c-vol-hover-color melody-c-vol-width volumeCtrl"
+      data-cy="vol-ctrl">
         <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24">
           <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>

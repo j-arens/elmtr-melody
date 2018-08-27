@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`VolumeCtrl 50% volume is represented with a half outer circle 1`] = `
-<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+<div class="silverstone volumeCtrl volumeCtrl--isDragging" data-cy="vol-ctrl">
   <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24">
     <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
@@ -13,7 +13,7 @@ exports[`VolumeCtrl 50% volume is represented with a half outer circle 1`] = `
 `;
 
 exports[`VolumeCtrl full vol renders full vol icon 1`] = `
-<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+<div class="silverstone volumeCtrl volumeCtrl--isDragging" data-cy="vol-ctrl">
   <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24">
     <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
@@ -25,7 +25,7 @@ exports[`VolumeCtrl full vol renders full vol icon 1`] = `
 `;
 
 exports[`VolumeCtrl renders 1`] = `
-<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+<div class="silverstone volumeCtrl volumeCtrl--isDragging" data-cy="vol-ctrl">
   <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24">
     <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
@@ -37,7 +37,7 @@ exports[`VolumeCtrl renders 1`] = `
 `;
 
 exports[`VolumeCtrl vol < 0.8 && > 0.1 renders medium vol icon 1`] = `
-<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+<div class="silverstone volumeCtrl volumeCtrl--isDragging" data-cy="vol-ctrl">
   <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24">
     <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
@@ -49,7 +49,7 @@ exports[`VolumeCtrl vol < 0.8 && > 0.1 renders medium vol icon 1`] = `
 `;
 
 exports[`VolumeCtrl vol <= 0.1 renders muted icon 1`] = `
-<div class="silverstone volumeCtrl volumeCtrl--isDragging">
+<div class="silverstone volumeCtrl volumeCtrl--isDragging" data-cy="vol-ctrl">
   <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24">
     <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>

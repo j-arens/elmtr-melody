@@ -13,7 +13,8 @@ exports[`Melody flourishes into a nice little application if the conditions are 
         </li>
       </ul>
       <div class="preview__header">
-        <div class="melody-c-vol-primary-color melody-c-vol-hover-color melody-c-vol-width volumeCtrl">
+        <div class="melody-c-vol-primary-color melody-c-vol-hover-color melody-c-vol-width volumeCtrl"
+        data-cy="vol-ctrl">
           <svg class="volumeCtrl__icon elementor-tab-title" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24">
             <circle class="volumeCtrl__levelOutline" cx="12" cy="12" r="12"></circle>
