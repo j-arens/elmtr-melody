@@ -267,29 +267,18 @@ Cypress.Commands.add('subProcess', ($scope, map, operations) => {
  * @param {string} popoverHandle
  * @param {object} config
  */
-Cypress.Commands.add('setBoxShadow', (handle, popoverHandle, config) => cy
+Cypress.Commands.add('setBoxShadow', (handle, config) => cy
     .log('COMMAND: setBoxShadow')
-    .get(`.elementor-control-${handle}`)
-    .find('.elementor-control-popover-toggle-toggle')
-    .click({ force: true })
-    .closest(`.elementor-control-${handle}`)
-    .next()
-    .then($popover => {
-        const ctx = cy.wrap($popover);
-        const fns = {
-            color: value => ctx.setColor(value, popoverHandle),
-            x: value => ctx.setSlider(popoverHandle, 'horizontal', value),
-            y: value => ctx.setSlider(popoverHandle, 'vertical', value),
-            blur: value => ctx.setSlider(popoverHandle, 'blur', value),
-            spread: value => ctx.setSlider(popoverHandle, 'spread', value),
-            position: value => ctx.get(`[data-setting="${popoverHandle}_position"]`).select(value),
-        };
-        Object.keys(config).forEach(k => fns[k] ? fns[k](config[k]) : null);
-    })
-    .closest('.elementor-controls-popover')
-    .prev()
-    .find('.elementor-control-field')
-    .click()
+    .openPopover(handle)
+    .then($popover => cy.subProcess($popover, config, {
+        color: (ctx, value, selector) => ctx.setColor(value, selector),
+        x: (ctx, selector, value) => ctx.setSlider(selector, 'horizontal', value),
+        y: (ctx, selector, value) => ctx.setSlider(selector, 'vertical', value),
+        blur: (ctx, selector, value) => ctx.setSlider(selector, 'blur', value),
+        spread: (ctx, selector, value) => ctx.setSlider(selector, 'spread', value),
+        position: (ctx, selector, value) => ctx.get(selector).select(value),
+    }))
+    .closePopover(handle)
 );
 
 /**
@@ -328,6 +317,8 @@ Cypress.Commands.add('setFontStyle', (handle, config) => cy
 );
 
 /**
+ * Set the values of a text shadow control
+ * 
  * @param {string} handle
  * @param {object} config
  */
@@ -339,6 +330,24 @@ Cypress.Commands.add('setTextShadow', (handle, config) => cy
         blur: (ctx, selector, value) => ctx.setSlider(selector, 'blur', value),
         x: (ctx, selector, value) => ctx.setSlider(selector, 'horizontal', value),
         y: (ctx, selector, value) => ctx.setSlider(selector, 'vertical', value),
+    }))
+    .closePopover(handle)
+);
+
+/**
+ * Set the values of an image filter control
+ * 
+ * @param {string} handle
+ * @param {object} config
+ */
+Cypress.Commands.add('setImageFilter', (handle, config) => cy
+    .log('COMMAND: setImageFilter')
+    .openPopover(handle)
+    .then($popover => cy.subProcess($popover, config, {
+        blur: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
+        brightness: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
+        contrast: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
+        saturation: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
     }))
     .closePopover(handle)
 );

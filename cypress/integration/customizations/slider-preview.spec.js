@@ -86,8 +86,35 @@ describe('slider preview customizations', () => {
             .should('have.css', 'background-attachment', 'fixed');
     });
 
-    // @TODO: image filter customization tests
-    // it('image filter customizations get applied', () => {
+    it('image filter customizations get applied', () => {
+        cy.setImageFilter('meldoy_slider_preview_image_filters_css_filter', {
+            blur: ['meldoy_slider_preview_image_filters_blur', 1.2],
+            brightness: ['meldoy_slider_preview_image_filters_brightness', 34],
+            contrast: ['meldoy_slider_preview_image_filters_contrast', 65],
+            saturation: ['meldoy_slider_preview_image_filters_saturate', 177],
+        });
 
-    // });
+        cy
+            .getPreview()
+            .find('[data-cy="track-artwork"]')
+            .should('have.css', 'filter', 'brightness(0.34) contrast(0.65) saturate(1.77) blur(1.2px)');
+    });
+
+    it('slide animation duration gets applied', () => {
+        cy.setSlider('melody_preview_animation_duration', 'size', 400);
+
+        cy
+            .getPreview()
+            .find('[data-cy="artwork-slider"]')
+            .should('have.css', 'transition-duration', '0.4s');
+    });
+
+    it('slider animation timing function gets applied', () => {
+        cy.get('.elementor-control-melody_preview_animation_timing select').select('ease-in-out');
+
+        cy
+            .getPreview()
+            .find('[data-cy="artwork-slider"]')
+            .should('have.css', 'transition-timing-function', 'ease-in-out');
+    });
 });

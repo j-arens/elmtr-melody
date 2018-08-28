@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Slideshow renders 1`] = `
-<ul class="Slideshow yas-marina-blue" style="transform: translate3d(0%, 0px, 0px);">
+<ul class="Slideshow yas-marina-blue" style="transform: translate3d(0%, 0px, 0px);"
+data-cy="artwork-slider">
   <li class="Slideshow__slide">
     <figure class="Slideshow__image " style="background-image: url();" data-cy="track-artwork"></figure>
   </li>
@@ -9,7 +10,8 @@ exports[`Slideshow renders 1`] = `
 `;
 
 exports[`Slideshow translates based on the current track 1`] = `
-<ul class="Slideshow yas-marina-blue" style="transform: translate3d(-500%, 0px, 0px);">
+<ul class="Slideshow yas-marina-blue" style="transform: translate3d(-500%, 0px, 0px);"
+data-cy="artwork-slider">
   <li class="Slideshow__slide"></li>
 </ul>
 `;

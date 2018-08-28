@@ -42,18 +42,14 @@ describe('slider controlbar customizations', () => {
     });
 
     it('box shadow customization gets applied', () => {
-        const handle = 'melody_slider_control_bar_box_shadow_box_shadow_type';
-        const innerHandle = 'melody_slider_control_bar_box_shadow_box_shadow';
-        const shadow =  {
-            color: '#0c0003',
-            x: 20,
-            y: 20,
-            blur: 20,
-            spread: 20,
-            position: ' ',
-        };
-
-        cy.setBoxShadow(handle, innerHandle, shadow);
+        cy.setBoxShadow('melody_slider_control_bar_box_shadow_box_shadow_type', {
+            color: ['#0c0003', 'melody_slider_control_bar_box_shadow_box_shadow'],
+            x: ['melody_slider_control_bar_box_shadow_box_shadow', 20],
+            y: ['melody_slider_control_bar_box_shadow_box_shadow', 20],
+            blur: ['melody_slider_control_bar_box_shadow_box_shadow', 20],
+            spread: ['melody_slider_control_bar_box_shadow_box_shadow', 20],
+            position: ['[data-setting="melody_slider_control_bar_box_shadow_box_shadow_position"]', ' '],
+        });
 
         cy
             .getPreview()
