@@ -38,15 +38,20 @@ describe('slider typography customizations', () => {
                 .find('[data-cy="track-title"]')
                 .should('have.css', 'font-family', '"Indie Flower", sans-serif')
                 .should('have.css', 'font-size', '40px')
-                // @TODO: electron browser and chrome browser get different results for this
-                // .should('have.css', 'font-weight', '700')
-                // .should('have.css', 'font-weight', 'bold')
                 .should('have.css', 'text-transform', 'none')
                 .should('have.css', 'font-style', 'normal')
-                // @TODO: why does this have to include the color?
-                // .should('have.css', 'text-decoration', 'underline solid rgb(255, 255, 255)')
                 .should('have.css', 'line-height', '52px')
                 .should('have.css', 'letter-spacing', '1px');
+
+            cy
+                .getPreview()
+                .find('[data-cy="track-title"]')
+                .then($el => expect($el).css('font-weight').match(/400|regular/));
+
+            cy
+                .getPreview()
+                .find('[data-cy="track-title"]')
+                .then($el => expect($el).css('text-decoration').match(/^underline/));
         });
 
         it('shadow style customizations gets applied', () => {
@@ -91,15 +96,20 @@ describe('slider typography customizations', () => {
                 .find('[data-cy="track-artist"]')
                 .should('have.css', 'font-family', '"Source Sans Pro", sans-serif')
                 .should('have.css', 'font-size', '22px')
-                // @TODO: electron browser and chrome browser get different results for this
-                // .should('have.css', 'font-weight', '700')
-                // .should('have.css', 'font-weight', 'bold')
                 .should('have.css', 'text-transform', 'uppercase')
                 .should('have.css', 'font-style', 'normal')
-                // @TODO: why does this have to include the color?
-                // .should('have.css', 'text-decoration', 'underline solid rgb(255, 255, 255)')
                 .should('have.css', 'line-height', '22px')
                 .should('have.css', 'letter-spacing', '2px');
+
+            cy
+                .getPreview()
+                .find('[data-cy="track-artist"]')
+                .then($el => expect($el).css('font-weight').match(/700|bold/));
+
+            cy
+                .getPreview()
+                .find('[data-cy="track-title"]')
+                .then($el => expect($el).css('text-decoration').match(/^underline/));
         });
 
         it('shadow style customizations gets applied', () => {
@@ -145,15 +155,20 @@ describe('slider typography customizations', () => {
                     .find(selector)
                     .should('have.css', 'font-family', 'Muli, sans-serif')
                     .should('have.css', 'font-size', '21px')
-                    // @TODO: electron browser and chrome browser get different results for this
-                    // .should('have.css', 'font-weight', '700')
-                    // .should('have.css', 'font-weight', 'bold')
                     .should('have.css', 'text-transform', 'lowercase')
                     .should('have.css', 'font-style', 'normal')
-                    // @TODO: why does this have to include the color?
-                    // .should('have.css', 'text-decoration', 'underline solid rgb(255, 255, 255)')
                     .should('have.css', 'line-height', '50.4px')
                     .should('have.css', 'letter-spacing', '1.3px');
+
+                cy
+                    .getPreview()
+                    .find(selector)
+                    .then($el => expect($el).css('font-weight').match(/700|bold/));
+
+                cy
+                    .getPreview()
+                    .find(selector)
+                    .then($el => expect($el).css('text-decoration').match(/^overline/));
             });
         });
 

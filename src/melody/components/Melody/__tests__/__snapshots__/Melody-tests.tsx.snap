@@ -6,7 +6,7 @@ exports[`Melody flourishes into a nice little application if the conditions are 
     <div class="preview melody-c-preview-bg melody-c-preview-min-height melody-c-preview-padding"
     data-cy="preview">
       <ul class="Slideshow preview__slideshow melody-c-slider-transition melody-c-slider-timing"
-      style="transform: translate3d(0%, 0px, 0px);">
+      style="transform: translate3d(0%, 0px, 0px);" data-cy="artwork-slider">
         <li class="Slideshow__slide">
           <figure class="Slideshow__image melody-c-artwork-size melody-c-artwork-repeat melody-c-artwork-position melody-c-artwork-attachment melody-c-image-filters"
           style="background-image: url();" data-cy="track-artwork"></figure>

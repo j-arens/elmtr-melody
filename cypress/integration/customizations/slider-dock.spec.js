@@ -100,6 +100,37 @@ describe('slider dock customizations', () => {
                 .should('have.css', 'color', utils.hexToRgb('#4f0f2f'));
         });
 
-        // @TODO: test font style customizations
+        it('font style customizations get applied', () => {
+            cy.setFontStyle('melody_slider_dock_controls_font_typography', {
+                family: ['[data-setting="melody_slider_dock_controls_font_font_family"]', 'Suez One'],
+                size: ['melody_slider_dock_controls_font_font_size', 13],
+                weight: ['.elementor-control-melody_slider_dock_controls_font_font_weight select', '700'],
+                transform: ['.elementor-control-melody_slider_dock_controls_font_text_transform select', 'uppercase'],
+                style: ['.elementor-control-melody_slider_dock_controls_font_font_style select', 'italic'],
+                decoration: ['.elementor-control-melody_slider_dock_controls_font_text_decoration select', 'underline'],
+                lineHeight: ['melody_slider_dock_controls_font_line_height', 1.9],
+                letterSpacing: ['melody_slider_dock_controls_font_letter_spacing', 1.8],
+            });
+
+            cy
+                .getPreview()
+                .find('[data-cy="dock-controls-wrap"] button')
+                .should('have.css', 'font-family', '"Suez One", sans-serif')
+                .should('have.css', 'font-size', '13px')
+                .should('have.css', 'text-transform', 'uppercase')
+                .should('have.css', 'font-style', 'italic')
+                .should('have.css', 'line-height', '24.7px')
+                .should('have.css', 'letter-spacing', '1.8px');
+
+            cy
+                .getPreview()
+                .find('[data-cy="dock-controls-wrap"] button', { multiple: true })
+                .then($el => expect($el).css('font-weight').match(/700|bold/));
+
+            cy
+                .getPreview()
+                .find('[data-cy="dock-controls-wrap"] button', { multiple: true })
+                .then($el => expect($el).css('text-decoration').match(/^underline/));
+        });
     });
 });

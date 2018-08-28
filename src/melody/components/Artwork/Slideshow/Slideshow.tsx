@@ -1,6 +1,7 @@
 import ResponsiveBgImage from '@components/Artwork/ResponsiveBgImage';
 import { WithOptionalClassName } from '@components/type';
 import { Track } from '@redux/type';
+import { cySelector } from '@utils/index';
 import { h } from 'preact';
 import LazyLoadSlide from './LazyLoadSlide';
 const s = require('./style.scss');
@@ -27,6 +28,7 @@ export default ({
         style={{
             transform: `translate3d(${currentTrack * -100}%, 0px, 0px)`,
         }}
+        {...cySelector('artwork-slider')}
     >
         {tracks.map((track, i) => (
             <LazyLoadSlide
