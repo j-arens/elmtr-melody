@@ -2,7 +2,7 @@ import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
 import { WithOptionalClassName } from '@melody/components/type';
 import { Action } from '@redux/type';
-import { NO_OP } from '@utils/index';
+import { cySelector, NO_OP } from '@utils/index';
 import { h } from 'preact';
 const s = require('../styles.scss');
 
@@ -24,6 +24,7 @@ export default ({ totalTracks, nextTrack, className = '' }: Props) => {
             key="next"
             className={totalTracks > 1 ? defaultClass : disabledClass}
             onClick={totalTracks > 1 ? nextTrack : NO_OP}
+            {...cySelector('ctrl')}
         >
             <Icon className={s.playbackCtrl__icon} name="next" />
         </BaseButton>

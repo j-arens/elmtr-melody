@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CatalystButton renders with a buffering icon if current state is buffering 1`] = `
-<button data-playbackRate class="btn carrera-white playbackCtrl melody-playbackCtrl playbackCtrl--buffering melody-controlBar__catalyst"
+<button data-playbackRate data-cy="ctrl" class="btn carrera-white playbackCtrl melody-playbackCtrl playbackCtrl--buffering melody-controlBar__catalyst"
 role="button">
   <svg class="playbackCtrl__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <g>
@@ -17,7 +17,7 @@ role="button">
 `;
 
 exports[`CatalystButton renders with a pause icon if current state is playing 1`] = `
-<button data-playbackRate="xundefined" class="btn carrera-white playbackCtrl melody-playbackCtrl melody-controlBar__catalyst"
+<button data-playbackRate="xundefined" data-cy="ctrl" class="btn carrera-white playbackCtrl melody-playbackCtrl melody-controlBar__catalyst"
 role="button">
   <svg class="playbackCtrl__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <g>
@@ -29,7 +29,7 @@ role="button">
 `;
 
 exports[`CatalystButton renders with a play icon if current state is stopped 1`] = `
-<button data-playbackRate="xundefined" class="btn carrera-white playbackCtrl melody-playbackCtrl melody-controlBar__catalyst"
+<button data-playbackRate="xundefined" data-cy="ctrl" class="btn carrera-white playbackCtrl melody-playbackCtrl melody-controlBar__catalyst"
 role="button">
   <svg class="playbackCtrl__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <g>

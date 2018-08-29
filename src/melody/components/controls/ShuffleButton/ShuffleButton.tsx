@@ -2,6 +2,7 @@ import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
 import { WithOptionalClassName } from '@components/type';
 import { Action } from '@redux/type';
+import { cySelector } from '@utils/index';
 import { h } from 'preact';
 const s = require('../styles.scss');
 
@@ -23,6 +24,7 @@ export default ({ shuffle, toggleShuffle, className = '' }: Props) => {
             key="shuffle"
             className={shuffle ? activeClass : defaultClass}
             onClick={toggleShuffle}
+            {...cySelector('ctrl')}
         >
             <Icon className={s.playbackCtrl__icon} name="shuffle" />
         </BaseButton>
