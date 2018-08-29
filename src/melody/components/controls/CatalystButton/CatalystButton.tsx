@@ -5,6 +5,7 @@ import { Action } from '@redux/type';
 import stateMachine from '@state-machine/index';
 import { MachineAction, MachineStates } from '@state-machine/type';
 import {
+    cySelector,
     formatPlaybackRate,
     getNextMachineAction,
 } from '@utils/index';
@@ -36,6 +37,7 @@ export default ({
             key="catalyst"
             className={`${bufferClass} melody-controlBar__catalyst`}
             data-playbackRate=""
+            {...cySelector('ctrl')}
         >
             <Icon className={s.playbackCtrl__icon} name="buffer" />
         </BaseButton>
@@ -45,6 +47,7 @@ export default ({
             className={`${defaultClass} melody-controlBar__catalyst`}
             onClick={cycle}
             data-playbackRate={formatPlaybackRate(playbackRate)}
+            {...cySelector('ctrl')}
         >
             <Icon
                 className={s.playbackCtrl__icon}

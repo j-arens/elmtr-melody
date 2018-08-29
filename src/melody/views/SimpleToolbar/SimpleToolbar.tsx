@@ -11,7 +11,7 @@ import Glider from '@components/Glider/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
-import { prefixClasses } from '@utils/index';
+import { cySelector, prefixClasses } from '@utils/index';
 import { h } from 'preact';
 import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
 const s = require('./style.scss');
@@ -47,20 +47,32 @@ const timeClasses = prefixClasses(
 );
 
 export default () => (
-    <div class={`melody__viewContainer ${s.toolbar} ${prefixClasses(c_prefix, 'toolbar')}`}>
+    <div
+        class={`melody__viewContainer ${s.toolbar} ${prefixClasses(c_prefix, 'toolbar')}`}
+        {...cySelector('toolbar')}
+    >
         <div class={`${s.controls} ${s['controls--left']} melody-controls-primary`} >
             <PrevButton className={leftBtnClasses} />
             <CatalystButton className={leftBtnClasses} />
             <NextButton className={leftBtnClasses} />
         </div>
-        <div class={`${s.preview} ${prefixClasses(c_prefix, 'preview-padding trackinfo-width trackinfo-order')}`}>
-            <div class={`${s.preview__wrap} ${prefixClasses(c_prefix, 'trackinfo-margin')}`}>
+        <div
+            class={`${s.preview} ${prefixClasses(c_prefix, 'preview-padding trackinfo-width trackinfo-order')}`}
+            {...cySelector('track-info')}
+        >
+            <div
+                class={`${s.preview__wrap} ${prefixClasses(c_prefix, 'trackinfo-margin')}`}
+                {...cySelector('inner-track-info')}
+            >
                 <CurrentTimeElapsed
                     className={`${s.preview__time} ${s['preview__time--left']} ${timeClasses}`}
                 />
                 <div className={s.preview__trackInfo}>
                     <CurrentTrackTitle className={`${s.preview__title} ${titleClasses}`} />
-                    <span className={prefixClasses(c_prefix, 'separator')} />
+                    <span
+                        className={prefixClasses(c_prefix, 'separator')}
+                        {...cySelector('seperator')}
+                    />
                     <CurrentTrackArtist className={`${s.preview__artist} ${artistClasses}`} />
                 </div>
                 <CurrentTimeLeft

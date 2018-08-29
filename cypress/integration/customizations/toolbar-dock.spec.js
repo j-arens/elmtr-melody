@@ -1,9 +1,9 @@
 import * as utils from '../../support/utils';
 
-describe('slider dock customizations', () => {
+describe('toolbar dock customizations', () => {
     before(() => {
         cy.login('admin', 'z');
-        cy.visit(utils.elementorEditor(9900));
+        cy.visit(utils.elementorEditor(9901));
         cy.disableUnloadAlert();
 
         cy
@@ -17,28 +17,7 @@ describe('slider dock customizations', () => {
 
         cy
             .selectTab('style')
-            .toggleAccordion('section_melody_slider_dock');
-    });
-
-    // @TODO: the rest of the colors
-    describe('dock toggle customizations', () => {
-        it('color customization gets applied', () => {
-            cy.setColor('#28dfef', 'melody_slider_dock_toggle_primary_color');
-
-            cy
-                .getPreview()
-                .find('[data-cy="dock-toggle"]')
-                .should('have.css', 'color', utils.hexToRgb('#28dfef'));
-        });
-
-        it('size customiztion gets applied', () => {
-            cy.setSlider('melody_slider_dock_toggle_max_width', 'size', 25);
-
-            cy
-                .getPreview()
-                .find('[data-cy="dock-toggle"]')
-                .should('have.css', 'max-width', '25px');
-        });
+            .toggleAccordion('section_melody_toolbar_dock');
     });
 
     describe('dock controls customizations', () => {
@@ -51,7 +30,7 @@ describe('slider dock customizations', () => {
         });
 
         it('primary color customization gets applied', () => {
-            cy.setColor('#23a455', 'melody_slider_dock_controls_primary_color');
+            cy.setColor('#23a455', 'melody_toolbar_dock_controls_primary_color');
 
             cy
                 .getPreview()
@@ -70,7 +49,7 @@ describe('slider dock customizations', () => {
         // });
 
         it('border color customization gets applied', () => {
-            cy.setColor('#d82bd8', 'melody_slider_dock_controls_border_color');
+            cy.setColor('#d82bd8', 'melody_toolbar_dock_controls_border_color');
 
             cy
                 .getPreview()
@@ -84,7 +63,7 @@ describe('slider dock customizations', () => {
         });
 
         it('icon color customization gets applied', () => {
-            cy.setColor('#ff0f0f', 'melody_slider_dock_controls_icon_color');
+            cy.setColor('#ff0f0f', 'melody_toolbar_dock_controls_icon_color');
 
             cy
                 .getPreview()
@@ -93,7 +72,7 @@ describe('slider dock customizations', () => {
         });
 
         it('text color customization gets applied', () => {
-            cy.setColor('#4f0f2f', 'melody_slider_dock_controls_text_color');
+            cy.setColor('#4f0f2f', 'melody_toolbar_dock_controls_text_color');
 
             cy
                 .getPreview()
@@ -102,15 +81,15 @@ describe('slider dock customizations', () => {
         });
 
         it('font style customizations get applied', () => {
-            cy.setFontStyle('melody_slider_dock_controls_font_typography', {
-                family: ['[data-setting="melody_slider_dock_controls_font_font_family"]', 'Suez One'],
-                size: ['melody_slider_dock_controls_font_font_size', 13],
-                weight: ['.elementor-control-melody_slider_dock_controls_font_font_weight select', '700'],
-                transform: ['.elementor-control-melody_slider_dock_controls_font_text_transform select', 'uppercase'],
-                style: ['.elementor-control-melody_slider_dock_controls_font_font_style select', 'italic'],
-                decoration: ['.elementor-control-melody_slider_dock_controls_font_text_decoration select', 'underline'],
-                lineHeight: ['melody_slider_dock_controls_font_line_height', 1.9],
-                letterSpacing: ['melody_slider_dock_controls_font_letter_spacing', 1.8],
+            cy.setFontStyle('melody_toolbar_dock_controls_font_typography', {
+                family: ['[data-setting="melody_toolbar_dock_controls_font_font_family"]', 'Suez One'],
+                size: ['melody_toolbar_dock_controls_font_font_size', 13],
+                weight: ['.elementor-control-melody_toolbar_dock_controls_font_font_weight select', '700'],
+                transform: ['.elementor-control-melody_toolbar_dock_controls_font_text_transform select', 'uppercase'],
+                style: ['.elementor-control-melody_toolbar_dock_controls_font_font_style select', 'italic'],
+                decoration: ['.elementor-control-melody_toolbar_dock_controls_font_text_decoration select', 'underline'],
+                lineHeight: ['melody_toolbar_dock_controls_font_line_height', 1.9],
+                letterSpacing: ['melody_toolbar_dock_controls_font_letter_spacing', 1.8],
             });
 
             cy
