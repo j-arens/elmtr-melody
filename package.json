@@ -72,6 +72,7 @@
     "docker:start": "docker-compose start",
     "docker:stop": "docker-compose stop",
     "docker:bash": "docker exec -it $(docker ps -q -f name=melody_wordpress) /bin/bash",
+    "docker:reload": "npm run docker:up -- --build",
     "lint": "tslint src/**/*.{ts,tsx}",
     "lint:fix": "npm run lint -- --fix",
     "php:dumpautoload": "composer dumpautoload --no-dev",

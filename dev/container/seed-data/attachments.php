@@ -23,6 +23,16 @@ $attachments = [
             'file' => 'waves.jpeg',
         ],
     ],
+    8003 => [
+        'attributes' => [
+            'mimetype' => 'audio/mpeg',
+            'title' => 'Exhale',
+        ],
+        'fs' => [
+            'dir' => '/var/www/html/resources',
+            'file' => 'exhale-by-jeremy-blake.mp3',
+        ],
+    ],
 ];
 
 function generateLocations(array $attachment) {

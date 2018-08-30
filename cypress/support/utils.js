@@ -24,3 +24,15 @@ export const hexToRgb = hex => {
     const b = parseInt(result[3], 16);
     return result ? `rgb(${r}, ${g}, ${b})` : '';
 }
+
+/**
+ * Get a reference to the $preview window object
+ *
+ * @param {object} window
+ * @return {object} 
+ */
+export const getPreviewWindow = window => window
+    .elementor
+    .$preview
+    .get(0)
+    .contentWindow;

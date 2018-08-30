@@ -150,12 +150,12 @@ export function getNextMachineAction(
 /**
  * Makes a cypress test selector if not running production
  */
-export function cySelector(handle: string): object {
+export function cySelector(...handles: string[]): object {
     if (process.env
         && process.env.NODE_ENV
         && process.env.NODE_ENV !== 'production'
     ) {
-        return { 'data-cy': handle };
+        return { 'data-cy': handles.join(' ') };
     }
     return {};
 }

@@ -37,7 +37,7 @@ export default ({
             key="catalyst"
             className={`${bufferClass} melody-controlBar__catalyst`}
             data-playbackRate=""
-            {...cySelector('ctrl')}
+            {...cySelector('ctrl', 'catalyst')}
         >
             <Icon className={s.playbackCtrl__icon} name="buffer" />
         </BaseButton>
@@ -47,7 +47,7 @@ export default ({
             className={`${defaultClass} melody-controlBar__catalyst`}
             onClick={cycle}
             data-playbackRate={formatPlaybackRate(playbackRate)}
-            {...cySelector('ctrl')}
+            {...cySelector('ctrl', 'catalyst')}
         >
             <Icon
                 className={s.playbackCtrl__icon}
