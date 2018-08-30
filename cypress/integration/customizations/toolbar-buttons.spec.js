@@ -24,7 +24,7 @@ describe('toolbar button customizations', () => {
 
             cy
                 .getPreview()
-                .find('[data-cy="ctrl"]')
+                .find('[data-cy~="ctrl"]')
                 .should('have.css', 'color', utils.hexToRgb('#2a7df9'));
 
             cy
@@ -38,7 +38,7 @@ describe('toolbar button customizations', () => {
 
             cy
                 .getPreview()
-                .find('[data-cy="ctrl"]')
+                .find('[data-cy~="ctrl"]')
                 .each($btn => $btn.addClass('melody-c-btn-hover-color--hovered'))
                 .should('have.css', 'color', utils.hexToRgb('#ed5a9e'))
                 .each($btn => $btn.removeClass('melody-c-btn-hover-color--hovered'));
@@ -62,7 +62,7 @@ describe('toolbar button customizations', () => {
 
             cy
                 .getPreview()
-                .find('.melody-controls-primary [data-cy="ctrl"]')
+                .find('.melody-controls-primary [data-cy~="ctrl"]')
                 .should('have.css', 'max-width', '20px');
         });
 
@@ -71,7 +71,7 @@ describe('toolbar button customizations', () => {
 
             cy
                 .getPreview()
-                .find('.melody-controls-primary [data-cy="ctrl"]:not(:first-child)')
+                .find('.melody-controls-primary [data-cy~="ctrl"]:not(:first-child)')
                 .should('have.css', 'margin-left', '22px');
         });
 
@@ -91,7 +91,7 @@ describe('toolbar button customizations', () => {
 
             cy
                 .getPreview()
-                .find('.melody-controls-secondary [data-cy="ctrl"]')
+                .find('.melody-controls-secondary [data-cy~="ctrl"]')
                 .should('have.css', 'max-width', '20px');
         });
 
@@ -100,7 +100,7 @@ describe('toolbar button customizations', () => {
 
             cy
                 .getPreview()
-                .find('.melody-controls-secondary [data-cy="ctrl"]:not(:first-child)')
+                .find('.melody-controls-secondary [data-cy~="ctrl"]:not(:first-child)')
                 .should('have.css', 'margin-left', '22px');
         });
 

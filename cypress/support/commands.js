@@ -93,10 +93,18 @@ Cypress.Commands.add('clearTracks', () => cy
 Cypress.Commands.add('selectMediaAttachment', id => cy
     .log('COMMAND: selectMediaAttachment')
     .get('.media-router a:last-child')
+    .then($els => {
+        if ($els.length > 1) {
+            return cy.wrap($els.get($els.length - 1));
+        }
+        return cy.wrap($els.get(0));
+    })
     .click()
-    .get(`.attachments-browser [data-id="${id}"]`)
+    .closest('.media-frame')
+    .find(`.attachments-browser [data-id="${id}"]`)
     .click()
-    .get('.media-button-select')
+    .closest('.media-frame')
+    .find('.media-button-select')
     .click()
 );
 
@@ -111,8 +119,15 @@ Cypress.Commands.add('addTrack', id => cy
     .get('.elementor-repeater-add')
     .click()
     .get('[data-setting="melody_audio_source"]')
+    .then($els => {
+        if ($els.length > 1) {
+            return cy.wrap($els.get($els.length - 1));
+        }
+        return cy.wrap($els.get(0));
+    })
     .select('media-library')
-    .get('[data-melody-tp-trigger]')
+    .closest('.elementor-repeater-fields')
+    .find('[data-melody-tp-trigger]')
     .click()
     .selectMediaAttachment(id)
 );
@@ -348,6 +363,7 @@ Cypress.Commands.add('setImageFilter', (handle, config) => cy
         brightness: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
         contrast: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
         saturation: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
+        hue: (ctx, selector, value) => ctx.setSlider(selector, 'size', value),
     }))
     .closePopover(handle)
 );

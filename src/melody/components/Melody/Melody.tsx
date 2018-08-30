@@ -1,6 +1,7 @@
 import { ErrorCodes } from '@components/Fault/codes';
 import ErrorHandler from '@components/Fault/ErrorHandler';
 import ShapeShifter from '@components/ShapeShifter/';
+import { GLOBAL } from '@melody/constants';
 import { Track } from '@redux/type';
 import { Action } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
@@ -42,6 +43,9 @@ export default class extends Component<Props, {}> {
     componentDidMount() {
         this.bindAudioInterfaceEvents();
         this.setInterfaceSource(this.props);
+        if (process.env.NODE_ENV !== 'production') {
+            GLOBAL.MELODY.audioInterface = this.AudioInterface;
+        }
     }
 
     componentWillUnmount() {

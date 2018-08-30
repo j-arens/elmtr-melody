@@ -1,3 +1,5 @@
+import * as utils from '../../support/utils';
+
 describe('toolbar track info customizations', () => {
     before(() => {
         cy.login('admin', 'z');

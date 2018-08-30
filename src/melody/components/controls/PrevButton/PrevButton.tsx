@@ -17,7 +17,7 @@ export default ({ prevTrack, className = '' }: Props) => (
         key="prev"
         className={`${className} ${s.playbackCtrl} melody-playbackCtrl`}
         onClick={prevTrack}
-        {...cySelector('ctrl')}
+        {...cySelector('ctrl', 'prev')}
     >
         <Icon className={s.playbackCtrl__icon} name="prev" />
     </BaseButton>

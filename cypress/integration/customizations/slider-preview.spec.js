@@ -92,12 +92,13 @@ describe('slider preview customizations', () => {
             brightness: ['meldoy_slider_preview_image_filters_brightness', 34],
             contrast: ['meldoy_slider_preview_image_filters_contrast', 65],
             saturation: ['meldoy_slider_preview_image_filters_saturate', 177],
+            hue: ['meldoy_slider_preview_image_filters_hue', 219],
         });
 
         cy
             .getPreview()
             .find('[data-cy="track-artwork"]')
-            .should('have.css', 'filter', 'brightness(0.34) contrast(0.65) saturate(1.77) blur(1.2px)');
+            .should('have.css', 'filter', 'brightness(0.34) contrast(0.65) saturate(1.77) blur(1.2px) hue-rotate(219deg)');
     });
 
     it('slide animation duration gets applied', () => {
