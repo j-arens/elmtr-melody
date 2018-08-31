@@ -24,7 +24,7 @@ export default ({ totalTracks, nextTrack, className = '' }: Props) => {
             key="next"
             className={totalTracks > 1 ? defaultClass : disabledClass}
             onClick={totalTracks > 1 ? nextTrack : NO_OP}
-            {...cySelector('ctrl')}
+            {...cySelector('ctrl', 'next')}
         >
             <Icon className={s.playbackCtrl__icon} name="next" />
         </BaseButton>

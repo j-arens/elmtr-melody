@@ -155,6 +155,7 @@ export default class extends Component<Props, State> {
                     <BaseButton
                         onClick={playbackRate === 2 ? NO_OP : speedUp}
                         className={speedUpClasses}
+                        {...cySelector('speed-up')}
                     >
                         <Icon
                             className={classnames(
@@ -171,6 +172,7 @@ export default class extends Component<Props, State> {
                     <BaseButton
                         onClick={playbackRate === 0.5 ? NO_OP : slowDown}
                         className={slowDownClasses}
+                        {...cySelector('slow-down')}
                     >
                         <Icon
                             className={classnames(

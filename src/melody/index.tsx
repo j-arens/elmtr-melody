@@ -3,6 +3,7 @@ import { State } from '@redux/type';
 import { h, render } from 'preact';
 import { Provider } from 'preact-redux';
 import { Store } from 'redux';
+import { GLOBAL } from './constants';
 const s = require('./global-styles/base.scss');
 
 /**
@@ -35,6 +36,10 @@ export function makeError(e: Error) {
  * Render the app
  */
 export function makeApp(target: string, store: Store<State>) {
+    if (process.env.NODE_ENV !== 'production') {
+        GLOBAL.MELODY.store = store;
+    }
+
     const app = (
         <Provider store={store}>
             <div className={s.melody__base}>
@@ -44,5 +49,5 @@ export function makeApp(target: string, store: Store<State>) {
     );
 
     const root: HTMLElement = document.getElementById(target);
-    render(app, root, root.firstElementChild as HTMLElement);
+    return render(app, root, root.firstElementChild as HTMLElement);
 }

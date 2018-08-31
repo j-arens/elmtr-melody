@@ -4,6 +4,7 @@ import initialState from '@redux/initialState';
 import * as audioActions from '@redux/modules/audio/actions';
 import * as stateActions from '@redux/modules/machine/actions';
 import * as uiActions from '@redux/modules/ui/actions';
+import { unmountComponent } from 'preact/src/vdom/component';
 import { GLOBAL } from './constants';
 import { compose } from './helpers';
 import { prepareTracks } from './tracks/';
@@ -12,6 +13,8 @@ import {
     TrackMiddlewareParams,
 } from './type';
 const throttle = require('lodash.throttle');
+
+const instanceRepo: Map<string, Element> = new Map();
 
 /**
  * Dispatch action to load component style view
@@ -51,16 +54,16 @@ const initialize = compose(
 const newInstance = throttle((config: Config, id: string): void => {
     const store = configureStore(initialState);
     initialize({ dispatch: store.dispatch, config });
-
-    if (process.env.NODE_ENV === 'development') {
-        makeApp(id, store);
-    } else {
-        try {
-            makeApp(id, store);
-        } catch (e) {
-            makeError(e);
-            console.error(Error(e));
-        }
+    if (instanceRepo.has(id)) {
+        unmountComponent(instanceRepo.get(id));
+        instanceRepo.delete(id);
+    }
+    try {
+        const instance = makeApp(id, store);
+        instanceRepo.set(id, instance);
+    } catch (e) {
+        makeError(e);
+        console.error(e);
     }
 }, 500);
 

@@ -24,7 +24,7 @@ export default ({ shuffle, toggleShuffle, className = '' }: Props) => {
             key="shuffle"
             className={shuffle ? activeClass : defaultClass}
             onClick={toggleShuffle}
-            {...cySelector('ctrl')}
+            {...cySelector('ctrl', 'shuffle')}
         >
             <Icon className={s.playbackCtrl__icon} name="shuffle" />
         </BaseButton>

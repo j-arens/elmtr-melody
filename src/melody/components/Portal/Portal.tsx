@@ -33,7 +33,7 @@ export default class extends Component<Props, {}> {
 
 	componentWillUnmount() {
 		this.renderLayer(false);
-		this.isMounted = false;
+        this.isMounted = false;
 		if (this.remote) {
             this.remote.parentNode.removeChild(this.remote);
         }
@@ -52,11 +52,11 @@ export default class extends Component<Props, {}> {
 		if (this.props.into !== this.intoPointer) {
             this.intoPointer = this.props.into;
 
-			         if (this.into && this.remote) {
+            if (this.into && this.remote) {
 				this.remote = render(<PortalProxy />, this.into, this.remote);
             }
 
-			         this.into = this.findNode(this.props.into);
+            this.into = this.findNode(this.props.into);
 		}
 
 		this.remote = render((
