@@ -24,7 +24,7 @@ export default ({ repeat, toggleRepeat, className = '' }: Props) => {
             key="repeat"
             className={repeat ? activeClass : defaultClass}
             onClick={toggleRepeat}
-            {...cySelector('ctrl')}
+            {...cySelector('ctrl', 'repeat')}
         >
             <Icon className={s.playbackCtrl__icon} name="repeat" />
         </BaseButton>

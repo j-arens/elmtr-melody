@@ -8,7 +8,7 @@ data-cy="dock-controls">
   style="left: -6px;"></span>
   <div class="dock__controlsGroup elementor-element-undefined-dock-controls-border-color"
   data-cy="dock-controls-wrap">
-    <button class="btn dock__control elementor-element-undefined-dock-controls-secondary-color elementor-element-undefined-dock-controls-text-color elementor-element-undefined-dock-controls-font"
+    <button data-cy="speed-up" class="btn dock__control elementor-element-undefined-dock-controls-secondary-color elementor-element-undefined-dock-controls-text-color elementor-element-undefined-dock-controls-font"
     role="button">
       <svg class="dock__controlIcon elementor-element-undefined-dock-controls-icon-color"
       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -16,7 +16,7 @@ data-cy="dock-controls">
       </svg>
       <span class="dock__controlName">Speed up</span>
     </button>
-    <button class="btn dock__control elementor-element-undefined-dock-controls-secondary-color elementor-element-undefined-dock-controls-text-color elementor-element-undefined-dock-controls-font"
+    <button data-cy="slow-down" class="btn dock__control elementor-element-undefined-dock-controls-secondary-color elementor-element-undefined-dock-controls-text-color elementor-element-undefined-dock-controls-font"
     role="button">
       <svg class="dock__controlIcon elementor-element-undefined-dock-controls-icon-color"
       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
