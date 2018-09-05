@@ -9,11 +9,8 @@ describe('Download', function() {
     beforeEach(function() {
         $this->get_attached_file = stubGlobal('get_attached_file', 'Melody\Http\controllers');
         $this->get_post_mime_type = stubGlobal('get_post_mime_type', 'Melody\Http\controllers');
-        $this->makeInstance = function($clientId = null, $attachmentId = null) {
+        $this->makeInstance = function($attachmentId = null) {
             $_SERVER['REQUEST_METHOD'] = 'GET';
-            if ($clientId) {
-                $_GET['clientId'] = $clientId;
-            }
             if ($attachmentId) {
                 $_GET['attachment'] = $attachmentId;
             }
@@ -27,20 +24,14 @@ describe('Download', function() {
     });
 
     describe('vaildateRequest()', function() {
-        it('returns false if clientId is missing', function() {
+        it('returns false if attachmentId is missing', function() {
             $instance = $this->makeInstance();
             $validateRequest = overrideMethodAccess($instance, 'validateRequest');
             expect($validateRequest())->toBe(false);
         });
 
-        it('returns false if attachmentId is missing', function() {
-            $instance = $this->makeInstance('123');
-            $validateRequest = overrideMethodAccess($instance, 'validateRequest');
-            expect($validateRequest())->toBe(false);
-        });
-
         it('returns true if neccessary params are present', function() {
-            $instance = $this->makeInstance('123', '456');
+            $instance = $this->makeInstance('456');
             $validateRequest = overrideMethodAccess($instance, 'validateRequest');
             expect($validateRequest())->toBe(true);
         });
@@ -54,7 +45,7 @@ describe('Download', function() {
 
         it('bails if theres no attachment path', function() {
             expect('http_response_code')->toBeCalled()->once()->with(404);
-            $this->makeInstance('123', '456');
+            $this->makeInstance('456');
         });
     });
 
@@ -70,7 +61,7 @@ describe('Download', function() {
             error_reporting(0);
             expect('ob_get_length')->toBeCalled()->once();
             expect('ob_end_flush')->toBeCalled()->once();
-            $this->makeInstance('123', '456');
+            $this->makeInstance('456');
             error_reporting(E_ALL);
         });
 
@@ -79,7 +70,7 @@ describe('Download', function() {
             expect('header')->toBeCalled()->with('Content-Type: audio/mp3');
             expect('header')->toBeCalled()->with('Content-Disposition: attachment; filename="cool-song.mp3"');
             expect('readfile')->toBeCalled()->once()->with('lol/path/to/file/cool-song.mp3');
-            $this->makeInstance('123', '456');
+            $this->makeInstance('456');
             error_reporting(E_ALL);
         });
     });

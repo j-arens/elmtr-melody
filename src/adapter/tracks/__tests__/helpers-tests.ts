@@ -12,11 +12,8 @@ describe('getDownloadUrl()', () => {
     });
 
     it('should generate a download url for internal tracks', () => {
-        const mockMath = Object.create(global.Math);
-        mockMath.random = () => 0.1;
-        global.Math = mockMath;
         const result = getDownloadUrl(mediapickerTrack, 'internal');
-        expect(result).toBe('https://lolz-music.com?melody=/download&clientId=10000&attachment=1');
+        expect(result).toBe('https://lolz-music.com?melody=/download&attachment=1');
     });
 });
 

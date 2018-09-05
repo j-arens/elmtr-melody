@@ -367,3 +367,14 @@ Cypress.Commands.add('setImageFilter', (handle, config) => cy
     }))
     .closePopover(handle)
 );
+
+/**
+ * Toggle a switch control
+ *
+ * @param {string} handle
+ */
+Cypress.Commands.add('toggleSwitch', handle => cy
+    .log('COMMAND: setSwitch')
+    .get(`.elementor-control-${handle} label.elementor-switch`)
+    .click()
+);

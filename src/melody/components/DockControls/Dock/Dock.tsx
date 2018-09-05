@@ -50,12 +50,8 @@ export default class extends Component<Props, State> {
     }
 
     handleDownload = () => {
-        const { track: { download_url, attributes: { origin } } } = this.props;
-        if (origin === 'internal') {
-            window.location.href = download_url;
-        } else {
-            window.open(download_url);
-        }
+        const { track: { download_url } } = this.props;
+        window.open(download_url, '_blank');
     }
 
     portalDock(inner) {
@@ -138,6 +134,7 @@ export default class extends Component<Props, State> {
                         <BaseButton
                             onClick={this.handleDownload}
                             className={baseBtnClasses}
+                            {...cySelector('download')}
                         >
                             <Icon
                                 className={classnames(
