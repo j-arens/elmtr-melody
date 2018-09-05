@@ -1,6 +1,6 @@
 import * as utils from '../../support/utils';
 
-describe('speed up control', () => {
+describe('slow down control', () => {
     before(() => {
         cy
             .login('admin', 'z')

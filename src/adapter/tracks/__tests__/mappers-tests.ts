@@ -35,7 +35,7 @@ describe('media picker mapper', () => {
         const result = mediaPicker(mediapickerTrack);
         expect(result).toMatchObject({
             source_url: 'http://wpmp-track/track.mp3',
-            download_url: 'https://lolz-music.com?melody=/download&clientId=10000&attachment=1',
+            download_url: 'https://lolz-music.com?melody=/download&attachment=1',
             artwork: {
                 source_url: 'http://lol.com/track-artwork.jpg',
                 sizes: [],

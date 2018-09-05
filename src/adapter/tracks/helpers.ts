@@ -23,8 +23,7 @@ export const getDownloadUrl = (track: TrackData, origin: TrackOrigin): string =>
 
     if (track.melody_track_downloadable === 'yes') {
         const { melody_track_id: id } = track;
-        const clientId = Math.round(Math.random() * 99999);
-        return `${siteUrl}?melody=/download&clientId=${clientId}&attachment=${id}`;
+        return `${siteUrl}?melody=/download&attachment=${id}`;
     }
 
     return '';

@@ -7,6 +7,25 @@ use Melody\Http\Request;
 
 class Download extends Controller {
     /**
+     * {@inheritdoc}
+     */
+    protected function respond() {
+        if (!$this->validateRequest()) {
+            return http_response_code(403);
+        }
+
+        $attachmentId = $this->request->getParam('attachment');
+        $path = $this->getAttachmentPath($attachmentId);
+
+        if (!$path) {
+            return http_response_code(404);
+        }
+
+        $mime = get_post_mime_type($attachmentId);
+        $this->streamFile($path, $mime);
+    }
+    
+    /**
      * Get the full path for a wp attachment
      * 
      * @param string $id
@@ -28,10 +47,6 @@ class Download extends Controller {
      * @return boolean
      */
     protected function validateRequest() {
-        if (!$this->request->getParam('clientId')) {
-            return false;
-        }
-
         if (!$this->request->getParam('attachment')) {
             return false;
         }
@@ -52,25 +67,5 @@ class Download extends Controller {
         header("Content-Type: $mime");
         header('Content-Disposition: attachment; filename="'.basename($path).'"');
         readfile($path);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function respond() {
-        if (!$this->validateRequest()) {
-            return http_response_code(403);
-        }
-
-        $attachmentId = $this->request->getParam('attachment');
-        $path = $this->getAttachmentPath($attachmentId);
-
-        if (!$path) {
-            return http_response_code(404);
-        }
-
-        $mime = get_post_mime_type($attachmentId);
-        $clientId = $this->request->getParam('clientId');
-        $this->streamFile($path, $mime);
     }
 }
