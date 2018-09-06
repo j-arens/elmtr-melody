@@ -49,7 +49,9 @@ export default class extends Component<Props, {}> {
     }
 
     componentWillUnmount() {
+        this.AudioInterface.pause();
         this.removeAudioInterfaceEvents();
+        delete this.AudioInterface;
     }
 
     componentDidUpdate(prevProps: Props) {

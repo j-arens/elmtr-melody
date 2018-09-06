@@ -1,25 +1,10 @@
-import { compose } from '../helpers';
 import {
     tracks,
     view,
-} from '../index';
+} from '../initialize';
 const track = require('@fixtures/track');
 const uiActions = require('@mocks/uiActions');
 const audioActions = require('@mocks/audioActions');
-
-describe('compose', () => {
-    it('composes', () => {
-        const fn1 = jest.fn().mockReturnValue(1);
-        const fn2 = jest.fn().mockReturnValue(2);
-        const fn3 = jest.fn().mockReturnValue(3);
-        const composed = compose(fn1, fn2, fn3);
-        const result = composed(0);
-        expect(fn1).toHaveBeenCalledWith(0);
-        expect(fn2).toHaveBeenCalledWith(1);
-        expect(fn3).toHaveBeenCalledWith(2);
-        expect(result).toBe(3);
-    });
-});
 
 describe('initialize middlewares', () => {
     const dispatch = jest.fn();

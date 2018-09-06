@@ -1,4 +1,5 @@
 import { TrackSize } from '@adapter/type';
+import { GLOBAL } from '@melody/constants';
 import { Track } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
 
@@ -158,4 +159,14 @@ export function cySelector(...handles: string[]): object {
         return { 'data-cy': handles.join(' ') };
     }
     return {};
+}
+
+/**
+ * Check if melody is loaded in an instance of the elmentor editor
+ */
+export function isEditMode(): boolean {
+    if (GLOBAL.elementorFrontend && GLOBAL.elementorFrontend.isEditMode()) {
+        return true;
+    }
+    return false;
 }
