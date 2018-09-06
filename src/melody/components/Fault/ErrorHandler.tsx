@@ -1,4 +1,4 @@
-import { GLOBAL } from '@constants';
+import { isEditMode } from '@melody/utils/';
 import { h } from 'preact';
 import BadSource from './BadSource';
 import { ErrorCodes } from './codes';
@@ -21,7 +21,7 @@ export default ({ errors }: Props) => {
     }
 
     if (errors.has(ErrorCodes.MELODY_NO_TRACKS)) {
-        if (GLOBAL.elementorFrontend && GLOBAL.elementorFrontend.isEditMode()) {
+        if (isEditMode()) {
             return (
                 <FaultContainer allowReload={false}>
                     <NoTracksEditor />
