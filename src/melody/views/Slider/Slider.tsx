@@ -12,88 +12,43 @@ import Glider from '@components/Glider/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
-import { cySelector, prefixClasses } from '@utils/index';
+import { cySelector } from '@utils/index';
 import { h } from 'preact';
-import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
+import * as classes from './classes';
 const s = require('./style.scss');
-
-const volClasses = prefixClasses(
-    c_prefix,
-    'vol-primary-color vol-hover-color vol-width',
-);
-
-const btnClasses = prefixClasses(
-    c_prefix,
-    'btn-primary-color btn-hover-color btn-space',
-);
-
-const previewClasses = prefixClasses(
-    c_prefix,
-    'preview-bg preview-min-height preview-padding',
-);
-
-const slideshowClasses = prefixClasses(
-    c_prefix,
-    'slider-transition slider-timing',
-);
-
-const artworkClasses = prefixClasses(
-    c_prefix,
-    'artwork-size artwork-repeat artwork-position artwork-attachment image-filters',
-);
-
-const titleClasses = prefixClasses(
-    c_prefix,
-    'title-font title-shadow title-color',
-);
-
-const artistClasses = prefixClasses(
-    c_prefix,
-    'artist-font artist-shadow artist-color',
-);
-
-const timeClasses = prefixClasses(
-    c_prefix,
-    'time-font time-shadow time-color',
-);
-
-const dockToggleClasses = prefixClasses(
-    c_prefix,
-    'dock-toggle-color dock-toggle-size',
-);
 
 export default () => (
     <div class="melody__viewContainer">
-        <div class={`${s.preview} ${previewClasses}`} {...cySelector('preview')}>
+        <div class={`${s.preview} ${classes.preview}`} {...cySelector('preview')}>
             <Slideshow
-                className={`${s.preview__slideshow} ${slideshowClasses}`}
-                artworkClassName={artworkClasses}
+                className={`${s.preview__slideshow} ${classes.slideshow}`}
+                artworkClassName={classes.artwork}
             />
             <div class={s.preview__header}>
-                <VolumeCtrl className={volClasses} />
-                <DockToggle className={dockToggleClasses} />
+                <VolumeCtrl className={classes.volume} />
+                <DockToggle className={classes.dockToggle} />
             </div>
             <div class={s.preview__marquee}>
-                <CurrentTrackTitle className={`${s.preview__title} ${titleClasses}`} />
-                <CurrentTrackArtist className={`${s.preview__artist} ${artistClasses}`} />
+                <CurrentTrackTitle className={`${s.preview__title} ${classes.title}`} />
+                <CurrentTrackArtist className={`${s.preview__artist} ${classes.artist}`} />
             </div>
             <div className={s.preview__glider}>
                 <Glider />
             </div>
             <div class={s.preview__footer}>
-                <CurrentTimeElapsed className={`${s.preview__time} ${timeClasses}`} />
-                <CurrentTimeLeft className={`${s.preview__time} ${timeClasses}`} />
+                <CurrentTimeElapsed className={`${s.preview__time} ${classes.time}`} />
+                <CurrentTimeLeft className={`${s.preview__time} ${classes.time}`} />
             </div>
         </div>
         <div
-            class={`${s.controlbar} ${prefixClasses(c_prefix, 'controlbar')} melody-control-bar`}
+            class={`${s.controlbar} ${classes.controlBar} melody-control-bar`}
             {...cySelector('controlbar')}
         >
-            <ShuffleButton className={btnClasses} />
-            <PrevButton className={btnClasses} />
-            <CatalystButton className={btnClasses} />
-            <NextButton className={btnClasses} />
-            <RepeatButton className={btnClasses} />
+            <ShuffleButton className={classes.controls} />
+            <PrevButton className={classes.controls} />
+            <CatalystButton className={classes.controls} />
+            <NextButton className={classes.controls} />
+            <RepeatButton className={classes.controls} />
         </div>
         <Dock />
     </div>

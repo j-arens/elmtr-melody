@@ -121,8 +121,7 @@ export function getContextualTrackSizes(sizes: TrackSize[]): TrackSize[] {
 /**
  * Namespace customization classes
  */
-export const prefixClasses = (prefix: string, classes: string): string => classes
-    .split(' ')
+export const prefixClasses = (prefix: string, ...classes: string[]): string => classes
     .map(classname => `${prefix}${classname}`)
     .join(' ');
 

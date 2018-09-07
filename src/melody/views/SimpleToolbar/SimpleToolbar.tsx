@@ -13,79 +13,49 @@ import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
 import { cySelector, prefixClasses } from '@utils/index';
 import { h } from 'preact';
-import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
+import * as classes from './classes';
 const s = require('./style.scss');
-
-const leftBtnClasses = prefixClasses(
-    c_prefix,
-    'btn-primary-color btn-hover-color btn-width btn-space',
-);
-
-const shuffleRepeatClasses = prefixClasses(
-    c_prefix,
-    'btn-primary-color btn-hover-color btn-on-color btn-width btn-space',
-);
-
-const dockToggleClasses = prefixClasses(
-    c_prefix,
-    'btn-primary-color btn-hover-color btn-width btn-space',
-);
-
-const titleClasses = prefixClasses(
-    c_prefix,
-    'title-font title-shadow title-color',
-);
-
-const artistClasses = prefixClasses(
-    c_prefix,
-    'artist-font artist-shadow artist-color',
-);
-
-const timeClasses = prefixClasses(
-    c_prefix,
-    'time-font time-shadow time-color',
-);
 
 export default () => (
     <div
-        class={`melody__viewContainer ${s.toolbar} ${prefixClasses(c_prefix, 'toolbar')}`}
+        class={`melody__viewContainer ${s.toolbar} ${classes.toolbar}`}
         {...cySelector('toolbar')}
     >
         <div class={`${s.controls} ${s['controls--left']} melody-controls-primary`} >
-            <PrevButton className={leftBtnClasses} />
-            <CatalystButton className={leftBtnClasses} />
-            <NextButton className={leftBtnClasses} />
+            <PrevButton className={classes.primaryBtns} />
+            <CatalystButton className={classes.primaryBtns} />
+            <NextButton className={classes.primaryBtns} />
         </div>
         <div
-            class={`${s.preview} ${prefixClasses(c_prefix, 'preview-padding trackinfo-width trackinfo-order')}`}
+            class={`${s.preview} ${classes.trackInfo}`}
             {...cySelector('track-info')}
         >
             <div
-                class={`${s.preview__wrap} ${prefixClasses(c_prefix, 'trackinfo-margin')}`}
+                class={`${s.preview__wrap} ${classes.trackInfoInner}`}
                 {...cySelector('inner-track-info')}
             >
                 <CurrentTimeElapsed
-                    className={`${s.preview__time} ${s['preview__time--left']} ${timeClasses}`}
+                    className={`${s.preview__time} ${s['preview__time--left']} ${classes.time}`}
                 />
                 <div className={s.preview__trackInfo}>
-                    <CurrentTrackTitle className={`${s.preview__title} ${titleClasses}`} />
+                    <CurrentTrackTitle className={`${s.preview__title} ${classes.title}`} />
                     <span
-                        className={prefixClasses(c_prefix, 'separator')}
+                        className={classes.seperator}
                         {...cySelector('seperator')}
                     />
-                    <CurrentTrackArtist className={`${s.preview__artist} ${artistClasses}`} />
+                    <CurrentTrackArtist className={`${s.preview__artist} ${classes.artist}`} />
                 </div>
                 <CurrentTimeLeft
-                    className={`${s.preview__time} ${s['preview__time--right']} ${timeClasses}`}
+                    className={`${s.preview__time} ${s['preview__time--right']} ${classes.time}`}
                 />
             </div>
             <Glider />
         </div>
         <div class={`${s.controls} ${s['controls--right']} melody-controls-secondary`} >
-            <VolumeCtrl className={prefixClasses(c_prefix, 'btn-primary-color btn-width btn-space')} />
-            <ShuffleButton className={shuffleRepeatClasses} />
-            <RepeatButton className={shuffleRepeatClasses} />
-            <DockToggle className={dockToggleClasses} />
+            <VolumeCtrl className={classes.volume} />
+            <ShuffleButton className={classes.shuffleRepeatBtns} />
+            <RepeatButton className={classes.shuffleRepeatBtns} />
+            <DockToggle className={classes.dockToggle} />
         </div>
         <Dock />
     </div>

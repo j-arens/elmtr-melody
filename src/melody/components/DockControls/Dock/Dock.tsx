@@ -4,9 +4,10 @@ import Portal from '@components/Portal/Portal';
 import { WithOptionalClassName } from '@melody/components/type';
 import { DockToggleDims } from '@melody/redux/modules/ui/type';
 import { Action, Track } from '@redux/type';
-import { cySelector, NO_OP, prefixClasses } from '@utils/index';
+import { cySelector, NO_OP } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
+import * as classes from './classes';
 import { dockPosition } from './helpers';
 const s = require('../style.scss');
 
@@ -76,10 +77,7 @@ export default class extends Component<Props, State> {
 
         const baseBtnClasses = classnames(
             s.dock__control,
-            prefixClasses(
-                `elementor-element-${wrapperId}-`,
-                'dock-controls-secondary-color dock-controls-text-color dock-controls-font',
-            ),
+            classes.baseBtns(wrapperId),
         );
 
         const speedUpClasses = classnames(baseBtnClasses, {
@@ -98,10 +96,7 @@ export default class extends Component<Props, State> {
                 class={classnames(
                     s.dock,
                     className,
-                    prefixClasses(
-                        `elementor-element-${wrapperId}-`,
-                        'dock-controls-primary-color',
-                    ),
+                    classes.dockControls(wrapperId),
                 )}
                 style={{
                     pointerEvents: showDock ? 'all' : 'none',
@@ -113,20 +108,14 @@ export default class extends Component<Props, State> {
                 <span
                     class={classnames(
                         s.dock__arrow,
-                        prefixClasses(
-                            `elementor-element-${wrapperId}-`,
-                            'dock-controls-arrow-color dock-controls-border-color',
-                        ),
+                        classes.dockArrow(wrapperId),
                     )}
                     style={arrow}
                 />
                 <div
                     class={classnames(
                         s.dock__controlsGroup,
-                        prefixClasses(
-                            `elementor-element-${wrapperId}-`,
-                            'dock-controls-border-color',
-                        ),
+                        classes.controlsGroup(wrapperId),
                     )}
                     {...cySelector('dock-controls-wrap')}
                 >
@@ -139,10 +128,7 @@ export default class extends Component<Props, State> {
                             <Icon
                                 className={classnames(
                                     s.dock__controlIcon,
-                                    prefixClasses(
-                                        `elementor-element-${wrapperId}-`,
-                                        'dock-controls-icon-color',
-                                    ),
+                                    classes.controlIcon(wrapperId),
                                 )}
                                 name="download"
                             />
@@ -157,10 +143,7 @@ export default class extends Component<Props, State> {
                         <Icon
                             className={classnames(
                                 s.dock__controlIcon,
-                                prefixClasses(
-                                    `elementor-element-${wrapperId}-`,
-                                    'dock-controls-icon-color',
-                                ),
+                                classes.controlIcon(wrapperId),
                             )}
                             name="plus"
                         />
@@ -174,10 +157,7 @@ export default class extends Component<Props, State> {
                         <Icon
                             className={classnames(
                                 s.dock__controlIcon,
-                                prefixClasses(
-                                    `elementor-element-${wrapperId}-`,
-                                    'dock-controls-icon-color',
-                                ),
+                                classes.controlIcon(wrapperId),
                             )}
                             name="minus"
                         />
