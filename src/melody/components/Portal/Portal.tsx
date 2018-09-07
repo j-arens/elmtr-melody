@@ -5,7 +5,7 @@ import PortalProxy from './PortalProxy';
 // https://github.com/developit/preact-portal
 
 interface Props {
-    into: string;
+    into: string | Element;
 }
 
 export default class extends Component<Props, {}> {
@@ -15,7 +15,7 @@ export default class extends Component<Props, {}> {
 
     into: Element;
 
-    intoPointer: string;
+    intoPointer: string | Element;
 
 	componentDidUpdate(props) {
 		for (const i in props) {
