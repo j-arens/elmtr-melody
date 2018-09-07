@@ -2,6 +2,7 @@ import BaseButton from '@components/BaseButton/';
 import Icon from '@components/Icon/';
 import Portal from '@components/Portal/Portal';
 import { WithOptionalClassName } from '@melody/components/type';
+import { GLOBAL } from '@melody/constants';
 import { DockToggleDims } from '@melody/redux/modules/ui/type';
 import { Action, Track } from '@redux/type';
 import { cySelector, NO_OP } from '@utils/index';
@@ -10,6 +11,8 @@ import { Component, h } from 'preact';
 import * as classes from './classes';
 import { dockPosition } from './helpers';
 const s = require('../style.scss');
+
+const { jQuery: $ } = GLOBAL;
 
 export interface StateProps {
     showDock: boolean;
@@ -56,8 +59,11 @@ export default class extends Component<Props, State> {
     }
 
     portalDock(inner) {
+        const { wrapperId } = this.props;
+        const el = document.getElementById(`melody-widgetRoot:${wrapperId}`);
+        const node = $(el).closest('.elementor-section').get(0);
         return (
-            <Portal into="#elementor">
+            <Portal into={node}>
                 {inner}
             </Portal>
         );

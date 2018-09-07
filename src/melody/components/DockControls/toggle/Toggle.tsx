@@ -8,11 +8,12 @@ const throttle = require('lodash.throttle');
 const s = require('../style.scss');
 
 export interface DispatchProps {
-    toggleDock: (e: Event) => Action;
+    toggleDock: (target: EventTarget, wrapperId: string) => Action;
 }
 
 export interface StateProps {
     showDock: boolean;
+    wrapperId: string;
 }
 
 type Props = DispatchProps & StateProps & WithOptionalClassName;
@@ -36,6 +37,11 @@ export default class extends Component<Props, {}> {
         this.el = el;
     }
 
+    handleClick = ({ target }: Event) => {
+        const { wrapperId, toggleDock } = this.props;
+        toggleDock(target, wrapperId);
+    }
+
     // too lazy to update the dock controls coordinates on window resize,
     // just toggling the dock controls closed instead
     closeDock = throttle(() => {
@@ -45,10 +51,10 @@ export default class extends Component<Props, {}> {
         }
     }, 2000);
 
-    render({ toggleDock, className }: Props) {
+    render({ className }: Props) {
         return (
             <BaseButton
-                onClick={toggleDock}
+                onClick={this.handleClick}
                 forwardRef={this.setRef}
                 className={`${s.dock__toggle} ${className}`}
                 {...cySelector('dock-toggle')}
