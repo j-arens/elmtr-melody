@@ -2,11 +2,6 @@ version: '3.3'
 
 services:
 
-  melody_cypress:
-    image: cypress/base:10
-    container_name: 'melody_cypress'
-    network_mode: "host"
-
   melody_db:
     image: mysql:5.7
     volumes:
