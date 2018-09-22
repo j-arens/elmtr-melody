@@ -13,6 +13,7 @@ const FILES = [
     'docker-compose.yml',
     '.gitignore',
     'cypress.json',
+    'cloudbuild.yml',
 ];
 
 const DIRS = [
