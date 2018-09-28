@@ -8,60 +8,77 @@ import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 const s = require('./style.scss');
 
+import Slider from '@components/Slider/';
+
 interface Props extends DragProps {
     currentState: MachineStates;
     duration: number;
     currentTime: number;
     updateCurrentTime: (updatedTime: number) => Action;
-    toggleGliderDragging: () => Action;
+    // toggleGliderDragging: () => Action; ????
     triggerTimeSync: () => Action;
 }
 
 interface State {
-    transitionHandle: boolean;
+    // transitionHandle: boolean;
     offset: number;
-    clientX: number;
+    // clientX: number;
+    dragging: boolean;
 }
 
 const HANDLE_AREA: number = 14;
 const HANDLE_SPACING: number = 2;
 
+
+// dragging should update local offset
+// dragEnd should update actual time
+
 export default class extends Component<Props, State> {
     state = {
-        transitionHandle: false,
+        // transitionHandle: false,
         offset: 0,
-        clientX: 0,
+        dragging: false,
+        // clientX: 0,
     };
 
-    ref: HTMLElement;
+    // ref: HTMLElement;
 
-    componentDidMount() {
-        const { onDragStart, onDrag, onDragEnd } = this.props;
-        onDragStart(this.onDragStart);
-        onDrag(this.onDrag);
-        onDragEnd(this.onDragEnd);
-    }
+    // componentDidMount() {
+    //     const { onDragStart, onDrag, onDragEnd } = this.props;
+    //     onDragStart(this.onDragStart);
+    //     onDrag(this.onDrag);
+    //     onDragEnd(this.onDragEnd);
+    // }
+
+    // updateOffset(nextOffset: number) {
+    //     this.setState({ offset: nextOffset });
+    // }
 
     componentDidUpdate(prevProps: Props) {
-        if (this.props.currentTime !== prevProps.currentTime) {
+        const timeChanged = this.props.currentTime !== prevProps.currentTime;
+        if (timeChanged && !this.state.dragging) {
             const { duration, currentTime } = this.props;
             if (duration) {
-                const nextOffset: number = Math.round(100 / (duration / currentTime));
-                this.updateOffset(nextOffset);
+                // const nextOffset: number = Math.round(100 / (duration / currentTime));
+                const nextOffset = 100 / (duration / currentTime);
+                // this.updateOffset(nextOffset);
+                this.setState({ offset: nextOffset });
             } else {
-                this.updateOffset(0);
+                // this.updateOffset(0);
+                this.setState({ offset: 0 });
             }
         }
 
-        if (this.props.isDragging !== prevProps.isDragging) {
-            this.props.toggleGliderDragging();
-        }
+        // ?????
+        // if (this.props.isDragging !== prevProps.isDragging) {
+        //     this.props.toggleGliderDragging();
+        // }
     }
 
-    setRef = (ref: HTMLElement) => {
-        this.ref = ref;
-        this.props.setDragRef(ref);
-    }
+    // setRef = (ref: HTMLElement) => {
+    //     this.ref = ref;
+    //     this.props.setDragRef(ref);
+    // }
 
     eventGuard = fn => (...args) => {
         if (!this.props.duration) {
@@ -70,102 +87,156 @@ export default class extends Component<Props, State> {
         return fn(...args);
     }
 
-    updateOffset(nextOffset: number) {
-        this.setState({ offset: nextOffset });
+    handleClick = this.eventGuard(({ insideHandle, offset }: SliderBodyClickEvent) => {
+        if (insideHandle) {
+            return;
+        }
+        this.updateTime(offset);
+    });
+
+    handleDragging = this.eventGuard(({ offset }: SliderDragEvent) => 
+        this.setState({
+            offset,
+            dragging: true,
+        }));
+
+    handleDragEnd = this.eventGuard(({ offset }: SliderDragEvent) => {
+        this.setState({ dragging: false });
+        this.updateTime(offset)
+    });
+
+    updateTime(newOffset: number) {
+        const { offset } = this.state;
+        const { updateCurrentTime, triggerTimeSync, duration } = this.props;
+        const newTime = Math.round((newOffset * duration) / 100);
+        updateCurrentTime(newTime);
+        triggerTimeSync();
     }
 
-    onDragStart = this.eventGuard(({ clientX }: MelodyDragEvent) => {
-        this.setState({ clientX });
-    });
-
-    onDragEnd = this.eventGuard((e: MelodyDragEvent) => {
-        this.handleClick(e, false);
-    });
-
-    onDrag = this.eventGuard(({ clientX }: MelodyDragEvent) => {
-        if (!this.ref) {
-            return;
-        }
-
-        const originalClientX = this.state.clientX;
-
-        if (clientX === originalClientX) {
-            return;
-        }
-
-        const { offset } = this.state;
-        const { duration, updateCurrentTime } = this.props;
-        const width: number = this.ref.offsetWidth;
-        const x: number = getLayerX(this.ref, clientX);
-        let newOffset: number = Number(((x / width) * 100).toFixed(2));
-
-        if (newOffset > 100) {
-            newOffset = 100;
-        }
-
-        if (newOffset < 0) {
-            newOffset = 0;
-        }
-
-        this.updateOffset(newOffset);
-        const updatedTime: number = Number(((duration * newOffset) / 100).toFixed(0));
-        updateCurrentTime(updatedTime);
-    });
-
-    handleClick = this.eventGuard(({ clientX }: MouseEvent, ignoreHandle: boolean = true) => {
-        if (!this.ref) {
-            return;
-        }
-
-        const width: number = this.ref.offsetWidth;
-        const x: number = getLayerX(this.ref, clientX);
-
-        if (ignoreHandle) {
-            const currentOffset: number = this.state.offset;
-            const rightPadding: number = HANDLE_AREA / 2;
-            const handleCenter: number = (currentOffset * width) / 100;
-            const lowerBoundary: number = handleCenter - (HANDLE_AREA + HANDLE_SPACING) + rightPadding;
-            const upperBoundary: number = handleCenter + HANDLE_AREA + HANDLE_SPACING;
-            const withinHandle: boolean = x >= lowerBoundary && x <= upperBoundary;
-
-            if (withinHandle) {
-                return;
-            }
-        }
-
-        const { duration, updateCurrentTime, triggerTimeSync } = this.props;
-        const xPercent: number = 100 / (width / x);
-        const updatedTime: number = Number(((duration * xPercent) / 100).toFixed(0));
-        updateCurrentTime(updatedTime);
-        triggerTimeSync();
-    });
-
-    render({ setDragRef, currentState, isDragging }, { offset }) {
-        const defaultClass = s.glider__trackbar;
-        const shouldTransition = currentState === 'playing' && offset > 0 && !isDragging;
-        const classes = classnames(defaultClass, {
-            [`${defaultClass}--transition`]: shouldTransition,
-        });
+    render(_, { offset }: State) {
         return (
-            <div
-                ref={(ref: HTMLElement) => this.setRef(ref)}
-                class={`${s.glider} ${ELEMENTOR_NO_DRAG}`}
-                onMouseDown={this.handleClick}
-            >
-                <div class={s.glider__playback}>
-                    <div
-                        class={classes}
-                        style={{marginLeft: `${offset}%`}}
-                        data-melody-scrubber-progress
-                    >
-                        <div
-                            class={s.glider__handle}
-                            data-melody-scrubber-handle
-                            {...cySelector('glider-handle')}
-                        />
-                    </div>
-                </div>
-            </div>
+            <Slider
+                height={5}
+                handleSize={14}
+                eventRadius={8}
+                throttle={10}
+                offset={offset}
+                onBodyClick={this.handleClick}
+                onDragging={this.handleDragging}
+                onEndDrag={this.handleDragEnd}
+                // colors={}
+            />
         );
     }
+
+    // onDragStart = this.eventGuard(({ clientX }: MelodyDragEvent) => {
+    //     this.setState({ clientX });
+    // });
+
+    // onDragEnd = this.eventGuard((e: MelodyDragEvent) => {
+    //     this.handleClick(e, false);
+    // });
+
+    // onDrag = this.eventGuard(({ clientX }: MelodyDragEvent) => {
+    //     if (!this.ref) {
+    //         return;
+    //     }
+
+    //     const originalClientX = this.state.clientX;
+
+    //     if (clientX === originalClientX) {
+    //         return;
+    //     }
+
+    //     const { offset } = this.state;
+    //     const { duration, updateCurrentTime } = this.props;
+    //     const width: number = this.ref.offsetWidth;
+    //     const x: number = getLayerX(this.ref, clientX);
+    //     let newOffset: number = Number(((x / width) * 100).toFixed(2));
+
+    //     if (newOffset > 100) {
+    //         newOffset = 100;
+    //     }
+
+    //     if (newOffset < 0) {
+    //         newOffset = 0;
+    //     }
+
+    //     this.updateOffset(newOffset);
+    //     const updatedTime: number = Number(((duration * newOffset) / 100).toFixed(0));
+    //     updateCurrentTime(updatedTime);
+    // });
+
+    // handleClick = this.eventGuard(({ clientX }: MouseEvent, ignoreHandle: boolean = true) => {
+    //     if (!this.ref) {
+    //         return;
+    //     }
+
+    //     const width: number = this.ref.offsetWidth;
+    //     const x: number = getLayerX(this.ref, clientX);
+
+    //     if (ignoreHandle) {
+    //         const currentOffset: number = this.state.offset;
+    //         const rightPadding: number = HANDLE_AREA / 2;
+    //         const handleCenter: number = (currentOffset * width) / 100;
+    //         const lowerBoundary: number = handleCenter - (HANDLE_AREA + HANDLE_SPACING) + rightPadding;
+    //         const upperBoundary: number = handleCenter + HANDLE_AREA + HANDLE_SPACING;
+    //         const withinHandle: boolean = x >= lowerBoundary && x <= upperBoundary;
+
+    //         if (withinHandle) {
+    //             return;
+    //         }
+    //     }
+
+    //     const { duration, updateCurrentTime, triggerTimeSync } = this.props;
+    //     const xPercent: number = 100 / (width / x);
+    //     const updatedTime: number = Number(((duration * xPercent) / 100).toFixed(0));
+    //     updateCurrentTime(updatedTime);
+    //     triggerTimeSync();
+    // });
+
+    // render({ setDragRef, currentState, isDragging }, { offset }) {
+    //     const defaultClass = s.glider__trackbar;
+    //     const shouldTransition = currentState === 'playing' && offset > 0 && !isDragging;
+    //     const classes = classnames(defaultClass, {
+    //         [`${defaultClass}--transition`]: shouldTransition,
+    //     });
+    //     return (
+    //         <div
+    //             ref={(ref: HTMLElement) => this.setRef(ref)}
+    //             class={`${s.glider} ${ELEMENTOR_NO_DRAG}`}
+    //             onMouseDown={this.handleClick}
+    //         >
+    //             <div class={s.glider__playback}>
+    //                 <div
+    //                     class={classes}
+    //                     style={{marginLeft: `${offset}%`}}
+    //                     data-melody-scrubber-progress
+    //                 >
+    //                     <div
+    //                         class={s.glider__handle}
+    //                         data-melody-scrubber-handle
+    //                         {...cySelector('glider-handle')}
+    //                     />
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 }
+
+
+    // return (
+//     <Slider
+//         className={string}
+//         height={string}
+//         handleSize={string | number}
+//         offset={number}
+//         onHandleClick={fn}
+//         onBodyClick={fn}
+//         onBeginDrag={fn}
+//         onDragging={fn}
+//         onEndDrag={fn}
+//         colors={}
+//     />
+// );

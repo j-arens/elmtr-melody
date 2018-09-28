@@ -223,7 +223,7 @@ export default class extends Component<Props, {}> {
     }
 
     onTimeUpdate = () => {
-        const nextTime = Number(this.AudioInterface.currentTime.toFixed(0));
+        const nextTime = this.AudioInterface.currentTime;
         const { currentTime, updateCurrentTime, gliderIsDragging } = this.props;
 
         if (nextTime === currentTime || gliderIsDragging) {

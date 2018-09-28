@@ -1,0 +1,40 @@
+/**
+* Required styles
+*/
+.slider {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+
+    &__body {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    &__backfill,
+    &__handle {
+        position: absolute;
+        right: 100%;
+    }
+
+    &__backfill {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__handle {
+        cursor: pointer;
+        border-radius: 50%;
+    }
+}
+
+/**
+* Overrideable styles
+*/
+.slider {
+    [class="slider__body"] {
+        background-color: #333;
+    }
+}
