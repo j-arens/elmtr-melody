@@ -6,7 +6,7 @@ describe('getHandlePlacement()', () => {
         const handleWidth = 10;
         const offset = 50;
         const result = helpers.getHandlePlacement(sliderWidth, handleWidth, offset);
-        expect(result.transform).toBe('translate3d(52.5%, 0, 0)');
+        expect(result.transform).toBe('translate3d(520%, 0, 0)');
     });
 });
 

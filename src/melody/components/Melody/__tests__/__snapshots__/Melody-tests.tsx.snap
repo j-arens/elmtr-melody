@@ -31,24 +31,22 @@ exports[`Melody flourishes into a nice little application if the conditions are 
         </button>
       </div>
       <div class="preview__marquee">
-        <p class="preview__title melody-c-title-font melody-c-title-shadow melody-c-title-color"
+        <p class="melody-c-title-font melody-c-title-shadow melody-c-title-color"
         data-cy="track-title">lol-title</p>
-        <p class="preview__artist melody-c-artist-font melody-c-artist-shadow melody-c-artist-color"
+        <p class="melody-c-artist-font melody-c-artist-shadow melody-c-artist-color"
         data-cy="track-artist">lol-artist</p>
       </div>
       <div class="preview__glider">
-        <div class="glider elementor-tab-title">
-          <div class="glider__playback">
-            <div class="glider__trackbar" style="margin-left: 0%;" data-melody-scrubber-progress>
-              <div class="glider__handle" data-melody-scrubber-handle data-cy="glider-handle"></div>
-            </div>
+        <div class="slider elementor-tab-title undefined" style="padding: 8px 0;">
+          <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;">
+            <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"></div>
           </div>
         </div>
       </div>
       <div class="preview__footer">
-        <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color"
+        <span class="melody-c-time-font melody-c-time-shadow melody-c-time-color"
         data-cy="time-elapsed">0:00</span>
-        <span class="preview__time melody-c-time-font melody-c-time-shadow melody-c-time-color"
+        <span class="melody-c-time-font melody-c-time-shadow melody-c-time-color"
         data-cy="time-left">0:00</span>
       </div>
     </div>

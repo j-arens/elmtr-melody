@@ -150,7 +150,7 @@ class Slider extends Component<Props, State> {
                         style={{ transform: `translate3d(${offset}%, 0, 0)` }}
                     />
                 </div>
-                {width &&
+                {width ?
                     <div
                         class={`${s.slider__handle} ${classes.handle}`}
                         onMouseDown={onHandleClick}
@@ -160,6 +160,8 @@ class Slider extends Component<Props, State> {
                             height: `${handleSize}px`,
                         }}
                     />
+                    :
+                    null
                 }
             </div>
         );

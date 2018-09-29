@@ -26,7 +26,7 @@ return [
             'config' => [
                 'label' => __('Secondary Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#252525',
+                'default' => '#4D4D4D',
                 'selectors' => [
                     '{{WRAPPER}} .melody-c-scrubber-backfill-bg-color' => 'background-color: {{VALUE}}',
                 ],
