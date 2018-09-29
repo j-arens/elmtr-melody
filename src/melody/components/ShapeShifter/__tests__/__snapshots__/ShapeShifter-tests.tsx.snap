@@ -41,8 +41,10 @@ exports[`Melody renders the simple toolbar view 1`] = `
       data-cy="time-left">0:00</span>
     </div>
     <div class="slider elementor-tab-title undefined" style="padding: 8px 0;">
-      <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;">
-        <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"></div>
+      <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;"
+      data-cy="slider-body">
+        <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"
+        data-cy="slider-backfill"></div>
       </div>
     </div>
   </div>
@@ -148,8 +150,10 @@ exports[`Melody renders the slider view 1`] = `
     </div>
     <div class="preview__glider">
       <div class="slider elementor-tab-title undefined" style="padding: 8px 0;">
-        <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;">
-          <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"></div>
+        <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;"
+        data-cy="slider-body">
+          <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"
+          data-cy="slider-backfill"></div>
         </div>
       </div>
     </div>

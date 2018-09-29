@@ -2,8 +2,9 @@
 
 exports[`Slider renders 1`] = `
 <div class="slider elementor-tab-title lol-slider" style="padding: 10px 0;">
-  <div class="slider__body lol-body" style="height: 5px;">
-    <div class="slider__backfill lol-backfill" style="transform: translate3d(0%, 0, 0);"></div>
+  <div class="slider__body lol-body" style="height: 5px;" data-cy="slider-body">
+    <div class="slider__backfill lol-backfill" style="transform: translate3d(0%, 0, 0);"
+    data-cy="slider-backfill"></div>
   </div>
 </div>
 `;

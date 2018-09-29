@@ -2,8 +2,10 @@
 
 exports[`Glider renders 1`] = `
 <div class="slider elementor-tab-title undefined" style="padding: 8px 0;">
-  <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;">
-    <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"></div>
+  <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;"
+  data-cy="slider-body">
+    <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"
+    data-cy="slider-backfill"></div>
   </div>
 </div>
 `;

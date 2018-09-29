@@ -167,7 +167,6 @@ export default class extends Component<Props, {}> {
     }
 
     setInterfaceTime(nextTime: number) {
-        const { dragging } = this.props;
         this.AudioInterface.currentTime = nextTime;
     }
 

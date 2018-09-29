@@ -2,6 +2,7 @@ import DragHelper from '@components/DragHelper/';
 import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
 import { ELEMENTOR_NO_DRAG } from '@constants';
 import { GLOBAL } from '@melody/constants';
+import { cySelector } from '@utils/index';
 import { Component, h } from 'preact';
 import { getHandlePlacement, getNextOffset } from './helpers';
 import {
@@ -144,16 +145,19 @@ class Slider extends Component<Props, State> {
                 <div
                     class={`${s.slider__body} ${classes.body}`}
                     style={{ height: `${height}px` }}
+                    {...cySelector('slider-body')}
                 >
                     <div
                         class={`${s.slider__backfill} ${classes.backfill}`}
                         style={{ transform: `translate3d(${offset}%, 0, 0)` }}
+                        {...cySelector('slider-backfill')}
                     />
                 </div>
                 {width ?
                     <div
                         class={`${s.slider__handle} ${classes.handle}`}
                         onMouseDown={onHandleClick}
+                        {...cySelector('slider-handle')}
                         style={{
                             ...getHandlePlacement(width, handleSize, offset),
                             width: `${handleSize}px`,
