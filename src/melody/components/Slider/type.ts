@@ -1,13 +1,7 @@
-import { MelodyDragEvent, DragProps } from '@components/DragHelper/type';
+import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
 
 export interface HandleOffsetStyle {
-    transform: string
-};
-
-export interface SliderColors {
-    background: string;
-    backfill: string;
-    handle: string;
+    transform: string;
 }
 
 export interface SliderBodyClickEvent {
@@ -16,9 +10,21 @@ export interface SliderBodyClickEvent {
     insideHandle: boolean;
 }
 
-interface SliderDragHandlerData {
+export interface SliderDragEvent {
     event: MelodyDragEvent;
     offset: number;
 }
 
-export type SliderDragEventHandler = (data: SliderDragHandlerData) => any;
+export type SliderDragEventHandler = (data: SliderDragEvent) => any;
+
+export interface SliderClasses {
+    slider?: string;
+    body?: string;
+    backfill?: string;
+    handle?: string;
+}
+
+export interface SliderDims {
+    width: number;
+    left: number;
+}

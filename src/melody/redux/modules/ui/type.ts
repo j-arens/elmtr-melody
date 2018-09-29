@@ -3,3 +3,7 @@ export interface DockToggleDims {
     x: number;
     y: number;
 }
+
+export interface Dragging {
+    [component: string]: boolean;
+}

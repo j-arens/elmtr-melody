@@ -1,6 +1,3 @@
-/**
-* Required styles
-*/
 .slider {
     display: flex;
     align-items: center;
@@ -11,6 +8,7 @@
         position: relative;
         overflow: hidden;
         width: 100%;
+        background-color: $color_mine_shaft;
     }
 
     &__backfill,
@@ -22,19 +20,12 @@
     &__backfill {
         width: 100%;
         height: 100%;
+        background-color: $color_silver_chalice;
     }
 
     &__handle {
         cursor: pointer;
         border-radius: 50%;
-    }
-}
-
-/**
-* Overrideable styles
-*/
-.slider {
-    [class="slider__body"] {
-        background-color: #333;
+        background-color: $color_white;
     }
 }

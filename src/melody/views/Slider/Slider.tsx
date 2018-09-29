@@ -8,7 +8,7 @@ import CurrentTrackArtist from '@components/CurrentTrackArtist/';
 import CurrentTrackTitle from '@components/CurrentTrackTitle/';
 import Dock from '@components/DockControls/Dock/index';
 import DockToggle from '@components/DockControls/toggle/';
-import Glider from '@components/Glider/';
+import Scrubber from '@components/Scrubber/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
@@ -29,15 +29,15 @@ export default () => (
                 <DockToggle className={classes.dockToggle} />
             </div>
             <div class={s.preview__marquee}>
-                <CurrentTrackTitle className={`${s.preview__title} ${classes.title}`} />
-                <CurrentTrackArtist className={`${s.preview__artist} ${classes.artist}`} />
+                <CurrentTrackTitle className={classes.title} />
+                <CurrentTrackArtist className={classes.artist} />
             </div>
             <div className={s.preview__glider}>
-                <Glider />
+                <Scrubber />
             </div>
             <div class={s.preview__footer}>
-                <CurrentTimeElapsed className={`${s.preview__time} ${classes.time}`} />
-                <CurrentTimeLeft className={`${s.preview__time} ${classes.time}`} />
+                <CurrentTimeElapsed className={classes.time} />
+                <CurrentTimeLeft className={classes.time} />
             </div>
         </div>
         <div

@@ -15,7 +15,7 @@ const mapStateToProps = (state: State) => ({
     tracks: state.audio.tracks,
     currentTrack: state.audio.currentTrack,
     currentTime: state.audio.currentTime,
-    gliderIsDragging: state.ui.gliderIsDragging,
+    dragging: state.ui.dragging,
     volIsDragging: state.ui.volIsDragging,
     volume: state.audio.volume,
     timeSync: state.audio.timeSync,

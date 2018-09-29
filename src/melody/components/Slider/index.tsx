@@ -1,44 +1,29 @@
-import { Component, h } from 'preact';
-import { WithOptionalClassName } from '@components/type';
-import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
-import { GLOBAL } from '@melody/constants';
-import { getHandlePlacement } from './helpers';
-import { SliderColors, SliderBodyClickEvent, SliderDragEventHandler } from './type';
 import DragHelper from '@components/DragHelper/';
+import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
 import { ELEMENTOR_NO_DRAG } from '@constants';
+import { GLOBAL } from '@melody/constants';
+import { Component, h } from 'preact';
+import { getHandlePlacement, getNextOffset } from './helpers';
+import {
+    SliderBodyClickEvent,
+    SliderClasses,
+    SliderDragEventHandler,
+} from './type';
 const s = require('./style.scss');
 const throttle = require('lodash.throttle');
 
-// return (
-//     <Slider
-//         className={string}
-//         height={string}
-//         handleSize={string | number}
-//         offset={number}
-//         eventRadius={8}
-//         onHandleClick={fn}
-//         onBodyClick={fn}
-//         onBeginDrag={fn}
-//         onDragging={fn}
-//         onEndDrag={fn}
-//         colors={}
-//     />
-// );
-
-
-
-interface Props extends WithOptionalClassName, DragProps {
+interface Props extends DragProps {
     height: number;
     handleSize: number;
     offset: number;
-    throttle: number;
-    colors?: SliderColors;
+    throttle?: number;
     eventRadius?: number;
     onHandleClick?: (e: MouseEvent) => any;
     onBodyClick?: (data: SliderBodyClickEvent) => any;
-    onBeginDrag?: SliderDragEventHandler
-    onEndDrag?: SliderDragEventHandler
-    onDragging?: SliderDragEventHandler
+    onBeginDrag?: SliderDragEventHandler;
+    onEndDrag?: SliderDragEventHandler;
+    onDragging?: SliderDragEventHandler;
+    classes?: SliderClasses;
 }
 
 interface State {
@@ -47,16 +32,20 @@ interface State {
 }
 
 class Slider extends Component<Props, State> {
+    static defaultProps = {
+        throttle: 0,
+        classes: {
+            slider: '',
+            body: '',
+            backfill: '',
+            handle: '',
+        },
+    };
+
     state = {
         width: 0,
         left: 0,
-    }
-
-    defaultColors = {
-        bg: '#333',
-        backfill: '#a5a5a5',
-        handle: '#fff',
-    }
+    };
 
     componentDidMount() {
         this.setDimensions();
@@ -100,14 +89,6 @@ class Slider extends Component<Props, State> {
         }
     }
 
-    getNextOffset(x: number): number {
-        if (!this.slider) {
-            return 0;
-        }
-        const { left, width } = this.state;
-        return ((x - left) / width) * 100;
-    }
-
     handleDragEvent = throttle((
         event: MelodyDragEvent,
         handler?: SliderDragEventHandler | undefined,
@@ -116,12 +97,12 @@ class Slider extends Component<Props, State> {
             return;
         }
         const { clientX } = event;
-        const nextOffset = this.getNextOffset(clientX);
+        const nextOffset = getNextOffset(clientX, this.state);
         handler({
             event,
             offset: nextOffset,
         });
-    }, this.props.throttle = 0);
+    }, this.props.throttle);
 
     onMouseDown = (event: MouseEvent) => {
         const { onBodyClick } = this.props;
@@ -130,8 +111,8 @@ class Slider extends Component<Props, State> {
         }
         const { pageX } = event;
         const { offset, handleSize } = this.props;
-        const nextOffset = this.getNextOffset(pageX);
-        const overlap = (handleSize / this.state.width) * 100
+        const nextOffset = getNextOffset(pageX, this.state);
+        const overlap = (handleSize / this.state.width) * 100;
         const upperRange = offset + overlap;
         const lowerRange = offset - overlap;
         const insideHandle = (nextOffset >= lowerRange) && (nextOffset <= upperRange);
@@ -150,46 +131,33 @@ class Slider extends Component<Props, State> {
             handleSize,
             eventRadius,
             onHandleClick,
-            colors,
             height,
+            classes,
         } = props;
-        const color = {
-            ...this.defaultColors,
-            ...colors,
-        };
         return (
             <div
-                class={`${s.slider} ${ELEMENTOR_NO_DRAG}`}
+                class={`${s.slider} ${ELEMENTOR_NO_DRAG} ${classes.slider}`}
                 ref={this.setRef}
                 onMouseDown={this.onMouseDown}
-                style={{
-                    padding: eventRadius ? `${eventRadius}px 0` : 0, 
-                }}
+                style={{ padding: eventRadius ? `${eventRadius}px 0` : 0 }}
             >
                 <div
-                    class={s.slider__body}
-                    style={{
-                        height: `${height}px`,
-                        backgroundColor: color.bg,
-                    }}
+                    class={`${s.slider__body} ${classes.body}`}
+                    style={{ height: `${height}px` }}
                 >
                     <div
-                        class={s.slider__backfill}
-                        style={{
-                            transform: `translate3d(${offset}%, 0, 0)`,
-                            backgroundColor: color.backfill,
-                        }}
+                        class={`${s.slider__backfill} ${classes.backfill}`}
+                        style={{ transform: `translate3d(${offset}%, 0, 0)` }}
                     />
                 </div>
                 {width &&
                     <div
-                        class={s.slider__handle}
+                        class={`${s.slider__handle} ${classes.handle}`}
                         onMouseDown={onHandleClick}
                         style={{
                             ...getHandlePlacement(width, handleSize, offset),
                             width: `${handleSize}px`,
                             height: `${handleSize}px`,
-                            backgroundColor: color.handle,
                         }}
                     />
                 }

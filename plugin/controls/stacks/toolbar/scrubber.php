@@ -4,42 +4,42 @@ use Elementor\Controls_Manager;
 
 return [
     'version' => '1.0.0',
-    'handle' => 'section_sliders_style',
+    'handle' => 'section_toolbar_scrubber_style',
     'config' => [
-        'label' => __('Sliders', 'melody'),
+        'label' => __('Scrubber', 'melody'),
         'tab' => Controls_Manager::TAB_STYLE,
     ],
     'inputs' => [
         [
-            'handle' => 'melody_sliders_primary_color',
+            'handle' => 'melody_toolbar_scrubber_primary_color',
             'config' => [
                 'label' => __('Primary Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#fff',
+                'default' => '#B0AFAF',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-scrubber-progress]::before' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-scrubber-body-bg-color' => 'background-color: {{VALUE}}',
                 ],
             ],
         ],
         [
-            'handle' => 'melody_sliders_background_color',
+            'handle' => 'melody_toolbar_scrubber_secondary_color',
             'config' => [
                 'label' => __('Background Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#B0AFAF',
+                'default' => '#252525',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-scrubber-progress]::after' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-scrubber-backfill-bg-color' => 'background-color: {{VALUE}}',
                 ],
             ],
         ],
         [
-            'handle' => 'melody_sliders_handle_color',
+            'handle' => 'melody_toolbar_scrubber_handle_color',
             'config' => [
                 'label' => __('Handle Color', 'melody'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#fff',
                 'selectors' => [
-                    '{{WRAPPER}} [data-melody-scrubber-handle]' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .melody-c-scrubber-handle-bg-color' => 'background-color: {{VALUE}}',
                 ],
             ],
         ],
