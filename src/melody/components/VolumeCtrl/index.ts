@@ -1,30 +1,22 @@
 import DragHelper from '@components/DragHelper/';
 import { WithOptionalClassName } from '@melody/components/type';
 import { updateVolume } from '@redux/modules/audio/actions';
-import { toggleVolDragging } from '@redux/modules/ui/actions';
+import { toggleComponentDragging } from '@redux/modules/ui/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
-import { compose } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import VolumeCtrl, { DispatchProps, StateProps } from './VolumeCtrl';
 
-const mapStateToProps = (state: State) => ({
+const mapState = (state: State) => ({
     volume: state.audio.volume,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    toggleVolDragging: () => dispatch(toggleVolDragging()),
-    updateVolume: (newLevel: number) => dispatch(updateVolume(newLevel)),
-});
+const mapDispatch = dispatch => bindActionCreators({
+    toggleComponentDragging,
+    updateVolume,
+}, dispatch);
 
-// @TODO: update preact for better types, make this work
-// export default compose(
-//     connect<StateProps, DispatchProps, WithOptionalClassName>(mapStateToProps, mapDispatchToProps),
-//     DragHelper,
-//     VolumeCtrl,
-// );
-
-export default connect<
-    StateProps,
-    DispatchProps,
-    WithOptionalClassName
->(mapStateToProps, mapDispatchToProps)(DragHelper(VolumeCtrl));
+export default compose(
+    connect<StateProps, DispatchProps, WithOptionalClassName>(mapState, mapDispatch),
+    DragHelper,
+)(VolumeCtrl);

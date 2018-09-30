@@ -2,6 +2,8 @@ public/js/*
 public/css/*
 dev/release/temp
 elementor-melody.zip
+cypress/videos/*
+cypress/screenshots/*
 
 # Created by https://www.gitignore.io/api/node,linux,composer,visualstudiocode
 

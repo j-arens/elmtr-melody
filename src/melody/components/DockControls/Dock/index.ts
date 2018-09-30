@@ -1,9 +1,10 @@
 import { slowDown, speedUp } from '@redux/modules/audio/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
+import { bindActionCreators } from 'redux';
 import Dock, { DispatchProps, StateProps } from './Dock';
 
-const mapStateToProps = (state: State) => ({
+const mapState = (state: State) => ({
     showDock: state.ui.showDock,
     track: state.audio.tracks[state.audio.currentTrack],
     playbackRate: state.audio.playbackRate,
@@ -11,13 +12,13 @@ const mapStateToProps = (state: State) => ({
     wrapperId: state.ui.wrapperId,
 });
 
-const mapDispatchToProps = dispatch => ({
-    speedUp: () => dispatch(speedUp()),
-    slowDown: () => dispatch(slowDown()),
-});
+const mapDispatch = dispatch => bindActionCreators({
+    speedUp,
+    slowDown,
+}, dispatch);
 
 export default connect<
     StateProps,
     DispatchProps,
     {}
->(mapStateToProps, mapDispatchToProps)(Dock);
+>(mapState, mapDispatch)(Dock);

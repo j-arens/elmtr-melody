@@ -50,16 +50,6 @@ export function toggleComponentDragging(state: UiState, action: Action): UiState
 }
 
 /**
- * TOGGLE_VOL_DRAGGING
- */
-export function toggleVolDragging(state: UiState, action: Action): UiState {
-    return {
-        ...state,
-        volIsDragging: !state.volIsDragging,
-    };
-}
-
-/**
  * SET_WRAPPER_ID
  */
 export function setWrapperId(state: UiState, action: Action): UiState {

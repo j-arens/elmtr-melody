@@ -2,14 +2,6 @@ import initialState from '@redux/initialState';
 import * as actions from '../actions';
 import reducer from '../index';
 
-describe('TOGGLE_VOL_DRAGGING', () => {
-    it('should toggle volIsDragging flag', () => {
-        const action = actions.toggleVolDragging();
-        const newState = reducer(initialState.ui, action);
-        expect(newState.volIsDragging).toBe(true);
-    });
-});
-
 describe('TOGGLE_COMPONENT_DRAGGING', () => {
     it('should track dragging state of components', () => {
         const action1 = actions.toggleComponentDragging('scrubber', true);
