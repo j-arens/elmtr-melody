@@ -15,8 +15,8 @@ export default function(
         case getType(actions.toggleDock): {
             return reducers.toggleDock(state, action);
         }
-        case getType(actions.toggleGliderDragging): {
-            return reducers.toggleGliderDragging(state, action);
+        case getType(actions.toggleComponentDragging): {
+            return reducers.toggleComponentDragging(state, action);
         }
         case getType(actions.toggleVolDragging): {
             return reducers.toggleVolDragging(state, action);

@@ -2,6 +2,7 @@ import { ErrorCodes } from '@components/Fault/codes';
 import ErrorHandler from '@components/Fault/ErrorHandler';
 import ShapeShifter from '@components/ShapeShifter/';
 import { GLOBAL } from '@melody/constants';
+import { Dragging } from '@redux/modules/ui/type';
 import { Track } from '@redux/type';
 import { Action } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
@@ -20,7 +21,7 @@ export interface StateProps {
     tracks: Track[];
     currentTrack: number;
     currentTime: number;
-    gliderIsDragging: boolean;
+    dragging: Dragging;
     volIsDragging: boolean;
     volume: number;
     timeSync: number;
@@ -223,13 +224,11 @@ export default class extends Component<Props, {}> {
     }
 
     onTimeUpdate = () => {
-        const nextTime = Number(this.AudioInterface.currentTime.toFixed(0));
-        const { currentTime, updateCurrentTime, gliderIsDragging } = this.props;
-
-        if (nextTime === currentTime || gliderIsDragging) {
+        const nextTime = this.AudioInterface.currentTime;
+        const { currentTime, updateCurrentTime, dragging } = this.props;
+        if (nextTime === currentTime || dragging.scrubber) {
             return;
         }
-
         updateCurrentTime(nextTime);
     }
 
@@ -280,7 +279,7 @@ export default class extends Component<Props, {}> {
         return errors;
     }
 
-    render({ currentState, gliderIsDragging, volIsDragging, tracks }: Props) {
+    render({ currentState, dragging, volIsDragging, tracks }: Props) {
         const errors = this.getErrors();
         if (errors.size) {
             return <ErrorHandler errors={errors} />;
@@ -289,7 +288,7 @@ export default class extends Component<Props, {}> {
         const classes = classnames(
             s.Melody,
             s[`Melody--${currentState}`],
-            { [s['Melody--isDragging']]: gliderIsDragging || volIsDragging },
+            { [s['Melody--isDragging']]: dragging.scrubber || volIsDragging },
         );
 
         return (

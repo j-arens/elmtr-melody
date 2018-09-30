@@ -24,9 +24,13 @@ export const toggleVolDragging = createAction(constants.TOGGLE_VOL_DRAGGING,
     }),
 );
 
-export const toggleGliderDragging = createAction(constants.TOGGLE_GLIDER_DRAGGING,
-    () => ({
-        type: constants.TOGGLE_GLIDER_DRAGGING,
+export const toggleComponentDragging = createAction(constants.TOGGLE_COMPONENT_DRAGGING,
+    (component: string, isDragging: boolean) => ({
+        type: constants.TOGGLE_COMPONENT_DRAGGING,
+        payload: {
+            component,
+            isDragging,
+        },
     }),
 );
 

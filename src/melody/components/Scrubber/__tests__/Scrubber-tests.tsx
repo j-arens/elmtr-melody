@@ -1,17 +1,17 @@
 import { NO_OP } from '@utils';
 import { h } from 'preact';
 import { render } from 'preact-render-to-string';
-import Glider from '../Glider';
+import Scrubber from '../Scrubber';
 
 describe('Glider', () => {
     it('renders', () => {
         const component = render(
-            <Glider
+            <Scrubber
                 currentState="stopped"
                 duration={100}
                 currentTime={0}
                 updateCurrentTime={NO_OP}
-                toggleGliderDragging={NO_OP}
+                toggleComponentDragging={NO_OP}
                 triggerTimeSync={NO_OP}
             />,
         );

@@ -19,21 +19,6 @@ export enum NetworkStates {
 export const NO_OP = () => {}; // tslint:disable-line no-empty
 
 /**
- * Event layerX polyfill
- */
-export function getLayerX(node: HTMLElement, clientX: number): number {
-    let el: any = node;
-    let x: number = 0;
-
-    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
-        x += el.offsetLeft - el.scrollLeft;
-        el = el.offsetParent;
-    }
-
-    return clientX - x;
-}
-
-/**
  * Get a random number within a range
  */
 export function getRandomNumInRange(min: number, max: number): number {

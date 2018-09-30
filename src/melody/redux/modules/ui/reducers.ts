@@ -33,12 +33,19 @@ export function toggleDock(state: UiState, action: Action): UiState {
 }
 
 /**
- * TOGGLE_GLIDER_DRAGGING
+ * TOGGLE_COMPONENT_DRAGGING
  */
-export function toggleGliderDragging(state: UiState, action: Action): UiState {
+export function toggleComponentDragging(state: UiState, action: Action): UiState {
+    if (!action.payload) {
+        return state;
+    }
+    const { payload: { component, isDragging } } = action;
     return {
         ...state,
-        gliderIsDragging: !state.gliderIsDragging,
+        dragging: {
+            ...state.dragging,
+            [component]: isDragging,
+        },
     };
 }
 

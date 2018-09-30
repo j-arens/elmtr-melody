@@ -7,7 +7,7 @@ import CurrentTrackArtist from '@components/CurrentTrackArtist/';
 import CurrentTrackTitle from '@components/CurrentTrackTitle/';
 import Dock from '@components/DockControls/Dock/index';
 import DockToggle from '@components/DockControls/toggle/';
-import Glider from '@components/Glider/';
+import Scrubber from '@components/Scrubber/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
@@ -49,7 +49,7 @@ export default () => (
                     className={`${s.preview__time} ${s['preview__time--right']} ${classes.time}`}
                 />
             </div>
-            <Glider />
+            <Scrubber />
         </div>
         <div class={`${s.controls} ${s['controls--right']} melody-controls-secondary`} >
             <VolumeCtrl className={classes.volume} />

@@ -22,7 +22,7 @@ const initial: State = {
     ui: {
         wrapperId: '',
         view: 'slider' as View,
-        gliderIsDragging: false,
+        dragging: {},
         volIsDragging: false,
         showDock: false,
         dockCoordinates: {

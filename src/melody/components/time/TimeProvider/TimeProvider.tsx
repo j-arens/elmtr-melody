@@ -22,7 +22,7 @@ export default (WrappedComponent: AnyComponent<any, any>) =>
                 return formatTime(0);
             }
 
-            return formatTime(time);
+            return formatTime(Math.round(time));
         };
 
         return (

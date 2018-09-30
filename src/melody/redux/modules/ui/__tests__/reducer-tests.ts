@@ -10,11 +10,14 @@ describe('TOGGLE_VOL_DRAGGING', () => {
     });
 });
 
-describe('TOGGLE_GLIDER_DRAGGING', () => {
-    it('should toggle gliderIsDragging flag', () => {
-        const action = actions.toggleGliderDragging();
-        const newState = reducer(initialState.ui, action);
-        expect(newState.gliderIsDragging).toBe(true);
+describe('TOGGLE_COMPONENT_DRAGGING', () => {
+    it('should track dragging state of components', () => {
+        const action1 = actions.toggleComponentDragging('scrubber', true);
+        const action2 = actions.toggleComponentDragging('scrubber', false);
+        const newState1 = reducer(initialState.ui, action1);
+        const newState2 = reducer(newState1, action2);
+        expect(newState1.dragging.scrubber).toBe(true);
+        expect(newState2.dragging.scrubber).toBe(false);
     });
 });
 
