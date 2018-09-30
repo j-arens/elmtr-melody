@@ -18,9 +18,6 @@ export default function(
         case getType(actions.toggleComponentDragging): {
             return reducers.toggleComponentDragging(state, action);
         }
-        case getType(actions.toggleVolDragging): {
-            return reducers.toggleVolDragging(state, action);
-        }
         case getType(actions.setWrapperId): {
             return reducers.setWrapperId(state, action);
         }

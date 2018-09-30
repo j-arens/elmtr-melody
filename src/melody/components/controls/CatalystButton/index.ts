@@ -14,4 +14,8 @@ const mapDispatch = dispatch => ({
     cycleState: (action: MachineAction) => dispatch(cycleState(action)),
 });
 
-export default connect<StateProps, DispatchProps, WithOptionalClassName>(mapState, mapDispatch)(CatalystButton);
+export default connect<
+    StateProps,
+    DispatchProps,
+    WithOptionalClassName
+>(mapState, mapDispatch)(CatalystButton);

@@ -3,7 +3,7 @@ import { State } from '@redux/type';
 import { connect } from 'preact-redux';
 import CurrentTrackArtist, { StateProps } from './CurrentTrackArtist';
 
-const mapStateToProps = (state: State) => {
+const mapState = (state: State) => {
     const { audio: { currentTrack, tracks } } = state;
     const activeTrack = tracks[currentTrack];
     return {
@@ -11,4 +11,8 @@ const mapStateToProps = (state: State) => {
     };
 };
 
-export default connect<StateProps, {}, WithOptionalClassName>(mapStateToProps)(CurrentTrackArtist);
+export default connect<
+    StateProps,
+    {},
+    WithOptionalClassName
+>(mapState)(CurrentTrackArtist);

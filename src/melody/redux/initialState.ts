@@ -23,7 +23,6 @@ const initial: State = {
         wrapperId: '',
         view: 'slider' as View,
         dragging: {},
-        volIsDragging: false,
         showDock: false,
         dockCoordinates: {
             width: 0,

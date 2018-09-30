@@ -22,7 +22,6 @@ export interface StateProps {
     currentTrack: number;
     currentTime: number;
     dragging: Dragging;
-    volIsDragging: boolean;
     volume: number;
     timeSync: number;
     repeat: boolean;
@@ -279,7 +278,7 @@ export default class extends Component<Props, {}> {
         return errors;
     }
 
-    render({ currentState, dragging, volIsDragging, tracks }: Props) {
+    render({ currentState, dragging, tracks }: Props) {
         const errors = this.getErrors();
         if (errors.size) {
             return <ErrorHandler errors={errors} />;
@@ -288,7 +287,7 @@ export default class extends Component<Props, {}> {
         const classes = classnames(
             s.Melody,
             s[`Melody--${currentState}`],
-            { [s['Melody--isDragging']]: dragging.scrubber || volIsDragging },
+            { [s['Melody--isDragging']]: dragging.scrubber || dragging.volume },
         );
 
         return (

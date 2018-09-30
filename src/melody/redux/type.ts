@@ -52,7 +52,6 @@ export interface UiState {
     readonly wrapperId: string;
     readonly view: View;
     readonly dragging: Dragging;
-    readonly volIsDragging: boolean;
     readonly showDock: boolean;
     readonly dockCoordinates: DockToggleDims;
 }

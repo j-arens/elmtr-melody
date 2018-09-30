@@ -19,7 +19,7 @@ export interface StateProps {
 }
 
 export interface DispatchProps {
-    toggleVolDragging: () => Action;
+    toggleComponentDragging: (component: string, isDragging: boolean) => Action;
     updateVolume: (newVol: number) => Action;
 }
 
@@ -46,16 +46,22 @@ export default class extends Component<Props, State> {
     };
 
     componentDidMount() {
-        const { onDragStart, onDrag, onDragEnd, toggleVolDragging } = this.props;
+        const { onDragStart, onDrag, onDragEnd } = this.props;
 
         onDragStart(this.dragStart);
         onDrag(this.setVolume);
-        onDragEnd(toggleVolDragging);
+        onDragEnd(this.dragEnd);
     }
 
     dragStart = ({ clientY }: MelodyDragEvent) => {
-        this.props.toggleVolDragging();
+        const { toggleComponentDragging } = this.props;
+        toggleComponentDragging('volume', true);
         this.setState({ originalClientY: clientY });
+    }
+
+    dragEnd = () => {
+        const { toggleComponentDragging } = this.props;
+        toggleComponentDragging('volume', false);
     }
 
     setVolume = ({ clientY }: MelodyDragEvent) => {

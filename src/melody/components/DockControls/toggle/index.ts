@@ -11,7 +11,8 @@ const mapState = (state: State) => ({
     wrapperId: state.ui.wrapperId,
 });
 
-const mapDispatchToProps = dispatch => ({
+// @TODO: move this logic into a reducer
+const mapDispatch = dispatch => ({
     toggleDock: (target: EventTarget, wrapperId: string) => {
         const el = document.getElementById(`melody-widgetRoot:${wrapperId}`);
         const wrapperRect = $(el)
@@ -31,4 +32,4 @@ export default connect<
     StateProps,
     DispatchProps,
     {}
->(mapState, mapDispatchToProps)(Toggle);
+>(mapState, mapDispatch)(Toggle);

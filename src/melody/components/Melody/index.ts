@@ -9,21 +9,20 @@ import { MachineAction } from '@state-machine/type';
 import { connect } from 'preact-redux';
 import Melody, { DispatchProps, StateProps } from './Melody';
 
-const mapStateToProps = (state: State) => ({
+const mapState = (state: State) => ({
     currentState: state.machine.currentState,
     lastState: state.machine.lastState,
     tracks: state.audio.tracks,
     currentTrack: state.audio.currentTrack,
     currentTime: state.audio.currentTime,
     dragging: state.ui.dragging,
-    volIsDragging: state.ui.volIsDragging,
     volume: state.audio.volume,
     timeSync: state.audio.timeSync,
     repeat: state.audio.repeat,
     playbackRate: state.audio.playbackRate,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatch = (dispatch) => ({
     cycleState: (action: MachineAction) => dispatch(cycleState(action)),
     updateCurrentTime: (nextTime: number) => dispatch(updateCurrentTime(nextTime)),
     nextTrack: () => dispatch(nextTrack()),
@@ -34,4 +33,4 @@ export default connect<
     StateProps,
     DispatchProps,
     {}
->(mapStateToProps, mapDispatchToProps)(Melody);
+>(mapState, mapDispatch)(Melody);
