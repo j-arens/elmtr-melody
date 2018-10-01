@@ -2,8 +2,6 @@ import { GLOBAL } from '@constants';
 import { Component, h } from 'preact';
 import { EventsMap, MediaStreamEventHandler } from './type';
 
-// @TODO: TEST!!! - need to mock global.Audio
-
 export interface Props {
     src: string;
     volume?: number;

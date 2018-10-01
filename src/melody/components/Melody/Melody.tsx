@@ -8,11 +8,7 @@ import { Dragging } from '@redux/modules/ui/type';
 import { Track } from '@redux/type';
 import { Action } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
-import {
-    getRandomNumInRange,
-    NetworkStates,
-    timeout,
-} from '@utils/index';
+import { NetworkStates, timeout } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 const s = require('./style.scss');

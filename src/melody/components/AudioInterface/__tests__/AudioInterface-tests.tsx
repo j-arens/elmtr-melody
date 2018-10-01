@@ -46,7 +46,7 @@ describe('AudioInterface', () => {
     it('overrides the current time', () => {
         const component = new AudioInterface({ src: '', play: true, overrideCurrentTime: 100 });
         component.componentDidMount();
-        expect(component.Audio.currentTime).toBe(100); 
+        expect(component.Audio.currentTime).toBe(100);
     });
 
     it('sets the volume', () => {
