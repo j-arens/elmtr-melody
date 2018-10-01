@@ -1,3 +1,5 @@
+import AudioInterface, { Props as AudioInterfaceProps } from '@components/AudioInterface/';
+import { AudioInterfaceState } from '@components/AudioInterface/type';
 import { ErrorCodes } from '@components/Fault/codes';
 import ErrorHandler from '@components/Fault/ErrorHandler';
 import ShapeShifter from '@components/ShapeShifter/';
@@ -6,11 +8,7 @@ import { Dragging } from '@redux/modules/ui/type';
 import { Track } from '@redux/type';
 import { Action } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
-import {
-    getRandomNumInRange,
-    NetworkStates,
-    timeout,
-} from '@utils/index';
+import { NetworkStates, timeout } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 const s = require('./style.scss');
@@ -38,156 +36,23 @@ export interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 export default class extends Component<Props, {}> {
-    AudioInterface: HTMLAudioElement = new Audio();
+    lastTimeSync: number = 0;
 
-    componentDidMount() {
-        this.bindAudioInterfaceEvents();
-        this.setInterfaceSource(this.props);
-        if (process.env.NODE_ENV !== 'production') {
-            GLOBAL.MELODY.audioInterface = this.AudioInterface;
-        }
-    }
-
-    componentWillUnmount() {
-        this.AudioInterface.pause();
-        this.removeAudioInterfaceEvents();
-        delete this.AudioInterface;
-    }
+    interfaceRef: HTMLAudioElement;
 
     componentDidUpdate(prevProps: Props) {
-        const {
-            currentState,
-            volume,
-            tracks,
-            currentTrack,
-            timeSync,
-            repeat,
-            playbackRate,
-            currentTime,
-        } = this.props;
-
-        const stateChanged = prevProps.currentState !== currentState;
-        const volumeChanged = prevProps.volume !== volume;
-        const tracksChanged = prevProps.tracks !== tracks;
-        const currentTrackChanged = prevProps.currentTrack !== currentTrack;
-        const timeSyncChanged = prevProps.timeSync !== timeSync;
-        const repeatChanged = prevProps.repeat !== repeat;
-        const playbackRateChanged = prevProps.playbackRate !== playbackRate;
-
-        if (stateChanged) {
-            this.updateInterfaceState(currentState);
-        }
-
-        if (tracksChanged || currentTrackChanged) {
-            this.setInterfaceSource(this.props);
-        }
-
-        if (volumeChanged) {
-            this.setInterfaceVolume(volume);
-        }
-
-        if (timeSyncChanged) {
-            this.setInterfaceTime(currentTime);
-        }
-
-        if (repeatChanged) {
-            this.setInterfaceRepeat(repeat);
-        }
-
-        if (playbackRateChanged) {
-            this.setInterfacePlaybackRate(playbackRate);
-        }
+        this.lastTimeSync = prevProps.timeSync;
     }
 
-    bindAudioInterfaceEvents() {
-        this.AudioInterface.addEventListener('waiting', this.onInterfaceBuffering);
-        this.AudioInterface.addEventListener('canplay', this.onCanPlay);
-        this.AudioInterface.addEventListener('timeupdate', this.onTimeUpdate);
-        this.AudioInterface.addEventListener('ended', this.onEnded);
-        this.AudioInterface.addEventListener('loadedmetadata', this.onLoadedMeta);
-    }
-
-    removeAudioInterfaceEvents() {
-        this.AudioInterface.removeEventListener('waiting', this.onInterfaceBuffering);
-        this.AudioInterface.removeEventListener('canplay', this.onCanPlay);
-        this.AudioInterface.removeEventListener('timeupdate', this.onTimeUpdate);
-        this.AudioInterface.removeEventListener('ended', this.onEnded);
-        this.AudioInterface.removeEventListener('loadedmetadata', this.onLoadedMeta);
-    }
-
-    updateInterfaceState(nextState: MachineStates) {
-        switch (nextState) {
-            case 'fetching':
-            case 'stopped':
-            case 'fault': {
-                this.AudioInterface.pause();
-                break;
-            }
-            case 'playing': {
-                this.AudioInterface.play().catch(this.onPlayError);
-                break;
-            }
-            case 'buffering': {
-                break;
-            }
-            default: {
-                this.AudioInterface.pause();
-                break;
-            }
-        }
-    }
-
-    async setInterfaceSource({ currentState, currentTrack, tracks } = this.props) {
-        if (!tracks.length) {
-            this.AudioInterface.src = '';
-            return;
-        }
-
-        const { cycleState } = this.props;
-        const nextSource = tracks[currentTrack].source_url;
-
-        if (this.AudioInterface.src === nextSource) {
-            return;
-        }
-
-        const load = (source) => {
-            this.AudioInterface.src = source;
-            this.AudioInterface.load();
-        };
-
-        if (currentState === 'playing') {
-            await cycleState('STOP');
-            load(nextSource);
-            cycleState('PLAY');
-            return;
-        }
-
-        load(nextSource);
-    }
-
-    setInterfaceTime(nextTime: number) {
-        this.AudioInterface.currentTime = nextTime;
-    }
-
-    setInterfaceVolume(newVolume: number) {
-        this.AudioInterface.volume = newVolume;
-    }
-
-    setInterfaceRepeat(repeat: boolean) {
-        this.AudioInterface.loop = repeat;
-    }
-
-    setInterfacePlaybackRate(rate: number) {
-        this.AudioInterface.playbackRate = rate;
+    setInterfaceRef = (ref: HTMLAudioElement) => {
+        this.interfaceRef = ref;
     }
 
     onInterfaceBuffering = () => {
         const { cycleState, currentState } = this.props;
-
         if (currentState === 'buffering') {
             return;
         }
-
         const clear = timeout(10000, () => {
             if (this.props.currentState === 'buffering') {
                 cycleState('FAILED');
@@ -195,35 +60,27 @@ export default class extends Component<Props, {}> {
                 clear();
             }
         });
-
         cycleState('LOADING');
     }
 
-    onCanPlay = () => {
+    onInterfaceReady = () => {
         const { currentState, lastState, cycleState } = this.props;
-
         if (currentState !== 'buffering') {
             return;
         }
-
         if (lastState === 'playing') {
             cycleState('PROCEED');
             return;
         }
-
         cycleState('READY');
     }
 
-    onPlayError = (e) => {
+    onInterfaceError = (e) => {
         const { cycleState } = this.props;
-        if (e.name && e.name !== 'AbortError') {
-            console.error('Melody', Error(e));
-            cycleState('FAILED');
-        }
+        cycleState('FAILED');
     }
 
-    onTimeUpdate = () => {
-        const nextTime = this.AudioInterface.currentTime;
+    onInterfaceTimeUpdate = (nextTime: number) => {
         const { currentTime, updateCurrentTime, dragging } = this.props;
         if (nextTime === currentTime || dragging.scrubber) {
             return;
@@ -231,7 +88,7 @@ export default class extends Component<Props, {}> {
         updateCurrentTime(nextTime);
     }
 
-    onEnded = () => {
+    onInterfaceEnded = () => {
         const {
             nextTrack,
             repeat,
@@ -239,25 +96,53 @@ export default class extends Component<Props, {}> {
             cycleState,
             updateCurrentTime,
         } = this.props;
-
         if (repeat) {
             return;
         }
-
         if (tracks.length < 2) {
             cycleState('STOP');
             updateCurrentTime(0);
             return;
         }
-
         nextTrack();
     }
 
-    onLoadedMeta = () => {
+    onInterfaceLoadedMeta = ({ duration }: HTMLAudioElement) => {
         const { setFilelength } = this.props;
-        const { duration } = this.AudioInterface;
         setFilelength(duration);
     }
+
+    getSrc(): string {
+        const { tracks, currentTrack } = this.props;
+        if (!tracks.length || !tracks[currentTrack]) {
+            return '';
+        }
+        return tracks[currentTrack].source_url;
+    }
+
+    maybeOverrideCurrentTime() {
+        const { timeSync, currentTime } = this.props;
+        if (timeSync !== this.lastTimeSync) {
+            return { overrideCurrentTime: currentTime };
+        }
+        return {};
+    }
+
+    mapAudioProps = (): AudioInterfaceProps => ({
+        src: this.getSrc(),
+        play: this.props.currentState === 'playing',
+        volume: this.props.volume,
+        repeat: this.props.repeat,
+        playbackRate: this.props.playbackRate,
+        onBuffering: this.onInterfaceBuffering,
+        onReady: this.onInterfaceReady,
+        onLoadedMeta: this.onInterfaceLoadedMeta,
+        onEnded: this.onInterfaceEnded,
+        onTimeUpdate: this.onInterfaceTimeUpdate,
+        onError: this.onInterfaceError,
+        interfaceRef: this.setInterfaceRef,
+        ...this.maybeOverrideCurrentTime(),
+    })
 
     getErrors(): Set<ErrorCodes> {
         const { currentState, tracks } = this.props;
@@ -265,9 +150,11 @@ export default class extends Component<Props, {}> {
 
         if (currentState === 'fault') {
             errors.add(ErrorCodes.MELODY_GENERIC_FAULT);
-            const networkState = this.AudioInterface.networkState;
-            if (networkState === NetworkStates.NETWORK_NO_SOURCE) {
-                errors.add(ErrorCodes.MELODY_BAD_SOURCE);
+            if (this.interfaceRef) {
+                const networkState = this.interfaceRef.networkState;
+                if (networkState === NetworkStates.NETWORK_NO_SOURCE) {
+                    errors.add(ErrorCodes.MELODY_BAD_SOURCE);
+                }
             }
         }
 
@@ -293,6 +180,7 @@ export default class extends Component<Props, {}> {
         return (
             <div class={classes}>
                 <ShapeShifter />
+                <AudioInterface {...this.mapAudioProps()} />
             </div>
         );
     }
