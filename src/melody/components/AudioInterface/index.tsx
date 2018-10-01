@@ -73,6 +73,9 @@ export default class extends Component<Props, {}> {
     }
 
     componentDidMount() {
+        if (process.env.NODE_ENV !== 'production') {
+            GLOBAL.MELODY.audioInterface = this.Audio;
+        }
         const { interfaceRef } = this.props;
         if (interfaceRef && typeof interfaceRef === 'function') {
             interfaceRef(this.Audio);

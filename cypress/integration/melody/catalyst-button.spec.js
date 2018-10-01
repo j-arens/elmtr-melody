@@ -23,6 +23,7 @@ describe('catalyst button', () => {
             .window()
             .then(window => {
                 const { MELODY: { audioInterface } } =  utils.getPreviewWindow(window);
+                console.log(window);
                 expect(audioInterface.played.length).to.be.greaterThan(0);
                 expect(audioInterface.paused).to.be.false;
             });
