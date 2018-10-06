@@ -6,15 +6,17 @@ describe('getHandlePlacement()', () => {
         const handleWidth = 10;
         const offset = 50;
         const result = helpers.getHandlePlacement(sliderWidth, handleWidth, offset);
-        expect(result.transform).toBe('translate3d(520%, 0, 0)');
+        expect(result.transform).toBe('translate3d(500%, 0, 0)');
     });
 });
 
 describe('getNextOffset()', () => {
     it('converts clientX/pageX coord into a percent', () => {
-        const dims = { width: 100, left: 0 };
+        const area = 100;
+        const base = 0;
         const x = 50;
-        const result = helpers.getNextOffset(x, dims);
+        const orientation = 'horizontal';
+        const result = helpers.getNextOffset(x, base, area, orientation);
         expect(result).toBe(50);
     });
 });

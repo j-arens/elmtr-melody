@@ -1,18 +1,26 @@
-import { HandleOffsetStyle, SliderDims } from './type';
+import { HandleOffsetStyle, SliderOrientation } from './type';
 
 export const getHandlePlacement = (
-    sliderWidth: number,
-    handleWidth: number,
+    sliderArea: number,
+    handleSize: number,
     offset: number,
 ): HandleOffsetStyle => {
-    const placement = (sliderWidth / handleWidth) * offset;
-    const correction = sliderWidth / (handleWidth / 2); // offset for handle width
+    const placement = (sliderArea / handleSize) * offset;
     return {
-        transform: `translate3d(${placement + correction}%, 0, 0)`,
+        transform: `translate3d(${placement}%, 0, 0)`,
+        right: `calc(100% - ${handleSize / 2}px)`,
     };
 };
 
 export const getNextOffset = (
-    x: number,
-    { left, width }: SliderDims,
-): number => ((x - left) / width) * 100;
+    delta: number,
+    base: number,
+    area: number,
+    orientation: SliderOrientation,
+): number => {
+    const offset = ((delta - base) / area) * 100;
+    if (orientation === 'vertical') {
+        return offset < 0 ? Math.abs(offset) : -Math.abs(offset);
+    }
+    return offset;
+};

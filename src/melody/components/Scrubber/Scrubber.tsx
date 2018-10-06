@@ -83,7 +83,7 @@ export default class extends Component<Props, State> {
     render(_, { offset }: State) {
         return (
             <Slider
-                height={5}
+                bodySize={5}
                 handleSize={14}
                 eventRadius={8}
                 throttle={10}

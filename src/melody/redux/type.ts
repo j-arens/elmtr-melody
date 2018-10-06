@@ -1,6 +1,7 @@
 import { TrackSize } from '@adapter/type';
 import { DockToggleDims, Dragging } from '@melody/redux/modules/ui/type';
 import * as audioActions from '@redux/modules/audio/actions';
+import * as machineActions from '@redux/modules/machine/actions';
 import * as uiActions from '@redux/modules/ui/actions';
 import { MachineStates } from '@state-machine/type';
 import { getReturnOfExpression } from 'typesafe-actions';
@@ -67,6 +68,7 @@ export type Dispatch = (params: any) => Action;
 const returnOfActions = [
     ...Object.values(audioActions),
     ...Object.values(uiActions),
+    ...Object.values(machineActions),
 ].map(getReturnOfExpression);
 
 interface PayloadAction {

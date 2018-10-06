@@ -1,7 +1,10 @@
 import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
 
+export type SliderOrientation = 'vertical' | 'horizontal';
+
 export interface HandleOffsetStyle {
     transform: string;
+    right: string;
 }
 
 export interface SliderBodyClickEvent {
@@ -22,9 +25,4 @@ export interface SliderClasses {
     body?: string;
     backfill?: string;
     handle?: string;
-}
-
-export interface SliderDims {
-    width: number;
-    left: number;
 }

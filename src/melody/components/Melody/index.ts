@@ -5,8 +5,8 @@ import {
 } from '@redux/modules/audio/actions';
 import { cycleState } from '@redux/modules/machine/actions';
 import { State } from '@redux/type';
-import { MachineAction } from '@state-machine/type';
 import { connect } from 'preact-redux';
+import { bindActionCreators } from 'redux';
 import Melody, { DispatchProps, StateProps } from './Melody';
 
 const mapState = (state: State) => ({
@@ -22,12 +22,12 @@ const mapState = (state: State) => ({
     playbackRate: state.audio.playbackRate,
 });
 
-const mapDispatch = (dispatch) => ({
-    cycleState: (action: MachineAction) => dispatch(cycleState(action)),
-    updateCurrentTime: (nextTime: number) => dispatch(updateCurrentTime(nextTime)),
-    nextTrack: () => dispatch(nextTrack()),
-    setFilelength: (length: number) => dispatch(setFilelength(length)),
-});
+const mapDispatch = dispatch => bindActionCreators({
+    cycleState,
+    updateCurrentTime,
+    nextTrack,
+    setFilelength,
+}, dispatch);
 
 export default connect<
     StateProps,

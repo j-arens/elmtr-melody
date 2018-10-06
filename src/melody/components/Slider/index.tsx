@@ -3,18 +3,21 @@ import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
 import { ELEMENTOR_NO_DRAG } from '@constants';
 import { GLOBAL } from '@melody/constants';
 import { cySelector } from '@utils/index';
+import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 import { getHandlePlacement, getNextOffset } from './helpers';
 import {
     SliderBodyClickEvent,
     SliderClasses,
     SliderDragEventHandler,
+    SliderOrientation,
 } from './type';
 const s = require('./style.scss');
 const throttle = require('lodash.throttle');
 
 interface Props extends DragProps {
-    height: number;
+    orientation?: SliderOrientation;
+    bodySize: number;
     handleSize: number;
     offset: number;
     throttle?: number;
@@ -28,24 +31,21 @@ interface Props extends DragProps {
 }
 
 interface State {
-    width: number;
-    left: number;
+    area: number;
+    base: number;
 }
 
-class Slider extends Component<Props, State> {
-    static defaultProps = {
-        throttle: 0,
-        classes: {
-            slider: '',
-            body: '',
-            backfill: '',
-            handle: '',
-        },
-    };
+const defaultClasses = {
+    slider: '',
+    body: '',
+    backfill: '',
+    handle: '',
+};
 
+class Slider extends Component<Props, State> {
     state = {
-        width: 0,
-        left: 0,
+        area: 0,
+        base: 0,
     };
 
     componentDidMount() {
@@ -74,10 +74,11 @@ class Slider extends Component<Props, State> {
 
     setDimensions = throttle(() => {
         if (this.slider) {
+            const { orientation } = this.props;
             const rect = this.slider.getBoundingClientRect();
             this.setState({
-                width: rect.width,
-                left: rect.left,
+                area: orientation === 'vertical' ? rect.height : rect.width,
+                base: orientation === 'vertical' ? rect.bottom : rect.left,
             });
         }
     }, 1000);
@@ -97,23 +98,27 @@ class Slider extends Component<Props, State> {
         if (!this.slider || typeof handler !== 'function') {
             return;
         }
-        const { clientX } = event;
-        const nextOffset = getNextOffset(clientX, this.state);
+        const { orientation } = this.props;
+        const { base, area } = this.state;
+        const { clientX, clientY } = event;
+        const delta = orientation === 'vertical' ? clientY : clientX;
+        const nextOffset = getNextOffset(delta, base, area, orientation);
         handler({
             event,
             offset: nextOffset,
         });
-    }, this.props.throttle);
+    }, this.props.throttle = 0);
 
     onMouseDown = (event: MouseEvent) => {
-        const { onBodyClick } = this.props;
+        const { onBodyClick, orientation, offset, handleSize } = this.props;
         if (!this.slider || typeof onBodyClick !== 'function') {
             return;
         }
-        const { pageX } = event;
-        const { offset, handleSize } = this.props;
-        const nextOffset = getNextOffset(pageX, this.state);
-        const overlap = (handleSize / this.state.width) * 100;
+        const { base, area } = this.state;
+        const { pageX, pageY } = event;
+        const delta = orientation === 'vertical' ? pageY : pageX;
+        const nextOffset = getNextOffset(delta, base, area, orientation);
+        const overlap = (handleSize / this.state.area) * 100;
         const upperRange = offset + overlap;
         const lowerRange = offset - overlap;
         const insideHandle = (nextOffset >= lowerRange) && (nextOffset <= upperRange);
@@ -126,40 +131,41 @@ class Slider extends Component<Props, State> {
 
     slider: HTMLElement;
 
-    render(props: Props, { width }: State) {
+    render(props: Props, { area }: State) {
         const {
             offset,
             handleSize,
             eventRadius,
             onHandleClick,
-            height,
+            bodySize,
             classes,
         } = props;
+        const userClasses = Object.assign(defaultClasses, classes);
         return (
             <div
-                class={`${s.slider} ${ELEMENTOR_NO_DRAG} ${classes.slider}`}
+                class={`${s.slider} ${ELEMENTOR_NO_DRAG} ${userClasses.slider}`}
                 ref={this.setRef}
                 onMouseDown={this.onMouseDown}
                 style={{ padding: eventRadius ? `${eventRadius}px 0` : 0 }}
             >
                 <div
-                    class={`${s.slider__body} ${classes.body}`}
-                    style={{ height: `${height}px` }}
+                    class={`${s.slider__body} ${userClasses.body}`}
+                    style={{ height: `${bodySize}px` }}
                     {...cySelector('slider-body')}
                 >
                     <div
-                        class={`${s.slider__backfill} ${classes.backfill}`}
+                        class={`${s.slider__backfill} ${userClasses.backfill}`}
                         style={{ transform: `translate3d(${offset}%, 0, 0)` }}
                         {...cySelector('slider-backfill')}
                     />
                 </div>
-                {width ?
+                {area ?
                     <div
-                        class={`${s.slider__handle} ${classes.handle}`}
+                        class={`${s.slider__handle} ${userClasses.handle}`}
                         onMouseDown={onHandleClick}
                         {...cySelector('slider-handle')}
                         style={{
-                            ...getHandlePlacement(width, handleSize, offset),
+                            ...getHandlePlacement(area, handleSize, offset),
                             width: `${handleSize}px`,
                             height: `${handleSize}px`,
                         }}

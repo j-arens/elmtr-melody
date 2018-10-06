@@ -40,7 +40,7 @@ exports[`Melody renders the simple toolbar view 1`] = `
       <span class="preview__time preview__time--right melody-c-time-font melody-c-time-shadow melody-c-time-color"
       data-cy="time-left">0:00</span>
     </div>
-    <div class="slider elementor-tab-title undefined" style="padding: 8px 0;">
+    <div class="slider elementor-tab-title " style="padding: 8px 0;">
       <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;"
       data-cy="slider-body">
         <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"
@@ -149,7 +149,7 @@ exports[`Melody renders the slider view 1`] = `
       data-cy="track-artist">lol-artist</p>
     </div>
     <div class="preview__glider">
-      <div class="slider elementor-tab-title undefined" style="padding: 8px 0;">
+      <div class="slider elementor-tab-title " style="padding: 8px 0;">
         <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;"
         data-cy="slider-body">
           <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"
