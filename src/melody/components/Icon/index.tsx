@@ -3,6 +3,7 @@ import { h } from 'preact';
 import BufferMarkup from './svg/buffer';
 import DownloadMarkup from './svg/download';
 import ErrorMarkup from './svg/error';
+import VolumeMarkup from './svg/fullVol';
 import MinusMarkup from './svg/minus';
 import NextMarkup from './svg/next';
 import PauseMarkup from './svg/pause';
@@ -29,57 +30,31 @@ type IconType =
     | 'download'
     | 'plus'
     | 'minus'
-    | 'settings';
+    | 'settings'
+    | 'volume';
 
-export default ({ name, className = '' }: Props) => {
-    const getMarkup = (icon: IconType): JSX.Element => {
-        switch (icon) {
-            case 'shuffle': {
-                return ShuffleMarkup;
-            }
-            case 'prev': {
-                return PrevMarkup;
-            }
-            case 'play': {
-                return PlayMarkup;
-            }
-            case 'pause': {
-                return PauseMarkup;
-            }
-            case 'next': {
-                return NextMarkup;
-            }
-            case 'repeat': {
-                return RepeatMarkup;
-            }
-            case 'buffer': {
-                return BufferMarkup;
-            }
-            case 'error': {
-                return ErrorMarkup;
-            }
-            case 'download': {
-                return DownloadMarkup;
-            }
-            case 'plus': {
-                return PlusMarkup;
-            }
-            case 'minus': {
-                return MinusMarkup;
-            }
-            case 'settings': {
-                return SettingsMarkup;
-            }
-        }
-    };
-
-    return (
-        <svg
-            class={className}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-        >
-            {getMarkup(name)}
-        </svg>
-    );
+const iconMap = {
+    shuffle: ShuffleMarkup,
+    prev: PrevMarkup,
+    play: PlayMarkup,
+    pause: PauseMarkup,
+    next: NextMarkup,
+    repeat: RepeatMarkup,
+    buffer: BufferMarkup,
+    error: ErrorMarkup,
+    download: DownloadMarkup,
+    plus: PlusMarkup,
+    minus: MinusMarkup,
+    settings: SettingsMarkup,
+    volume: VolumeMarkup,
 };
+
+export default ({ name, className = '' }: Props) => (
+    <svg
+        class={className}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+    >
+        {iconMap[name] || null}
+    </svg>
+);

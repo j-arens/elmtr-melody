@@ -68,7 +68,7 @@ return [
             'handle' => 'melody_toolbar_primary_controls_width',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Primary Controls Width (%)', 'melody'),
+                'label' => __('Width (%)', 'melody'),
                 'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
@@ -100,7 +100,7 @@ return [
             'handle' => 'melody_toolbar_primary_controls_order',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Primary Controls Order', 'melody'),
+                'label' => __('Order', 'melody'),
                 'separator' => 'none',
                 'label_block' => true,
                 'type' => Controls_Manager::NUMBER,
@@ -127,7 +127,7 @@ return [
             'handle' => 'melody_toolbar_secondary_controls_width',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Secondary Controls Width (%)', 'melody'),
+                'label' => __('Width (%)', 'melody'),
                 'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
@@ -159,7 +159,7 @@ return [
             'handle' => 'melody_toolbar_secondary_controls_order',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Secondary Controls Order', 'melody'),
+                'label' => __('Order', 'melody'),
                 'separator' => 'none',
                 'label_block' => true,
                 'type' => Controls_Manager::NUMBER,
@@ -186,7 +186,7 @@ return [
             'handle' => 'melody_toolbar_trackinfo_width',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Track Info Width (%)', 'melody'),
+                'label' => __('Width (%)', 'melody'),
                 'separator' => 'before',
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['%'],
@@ -218,7 +218,7 @@ return [
             'handle' => 'melody_toolbar_trackinfo_order',
             'isResponsive' => true,
             'config' => [
-                'label' => __('Track Info Controls Order', 'melody'),
+                'label' => __('Order', 'melody'),
                 'separator' => 'none',
                 'label_block' => true,
                 'type' => Controls_Manager::NUMBER,

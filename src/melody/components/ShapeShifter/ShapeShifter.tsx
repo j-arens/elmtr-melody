@@ -20,7 +20,7 @@ export default ({ view }: Props) => {
             return <Slider />;
         }
         default: {
-            return <Slider />;
+            return null;
         }
     }
 };

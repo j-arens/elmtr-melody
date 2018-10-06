@@ -37,7 +37,7 @@ exports[`Melody flourishes into a nice little application if the conditions are 
         data-cy="track-artist">lol-artist</p>
       </div>
       <div class="preview__glider">
-        <div class="slider elementor-tab-title undefined" style="padding: 8px 0;">
+        <div class="slider elementor-tab-title " style="padding: 8px 0;">
           <div class="slider__body melody-c-scrubber-body-bg-color" style="height: 5px;"
           data-cy="slider-body">
             <div class="slider__backfill melody-c-scrubber-backfill-bg-color" style="transform: translate3d(0%, 0, 0);"
