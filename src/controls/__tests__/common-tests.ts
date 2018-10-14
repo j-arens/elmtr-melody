@@ -25,16 +25,17 @@ describe('triggerChange()', () => {
 
     beforeEach(() => {
         map = [
-            ['melody_track_id', 1],
-            ['melody_track_title', 'title'],
-            ['melody_track_artist', 'artist'],
+            { key: 'melody_track_id' },
+            { key: 'melody_track_title' },
+            { key: 'melody_track_artist' },
+            { key: 'melody_track_artwork.url' },
         ];
         model.trigger = jest.fn();
     });
 
     it('calls the trigger method on the model for each map item', () => {
         common.triggerChange(model, map);
-        expect(model.trigger).toHaveBeenCalledTimes(3);
+        expect(model.trigger).toHaveBeenCalledTimes(4);
     });
 
     it ('the trigger method is called with the correct arguments', () => {
@@ -43,6 +44,7 @@ describe('triggerChange()', () => {
         expect(calls[0]).toEqual(['change:external:melody_track_id', model]);
         expect(calls[1]).toEqual(['change:external:melody_track_title', model]);
         expect(calls[2]).toEqual(['change:external:melody_track_artist', model]);
+        expect(calls[3]).toEqual(['change:external:melody_track_artwork', model]);
     });
 });
 
@@ -66,12 +68,34 @@ describe('mutationMapper()', () => {
         };
 
         mutationMap = [
-            ['melody_track_id', 'id'],
-            ['melody_track_title', 'title'],
-            ['melody_track_album', 'meta.album'],
-            ['melody_track_artist', 'meta.artist'],
-            ['melody_internal_track_url', 'url'],
-            ['melody_track_artwork', { url: 'image.src', id: 'image.id' }],
+            {
+                key: 'melody_track_id',
+                path: 'id',
+            },
+            {
+                key: 'melody_track_title',
+                path: 'title',
+            },
+            {
+                key: 'melody_track_album',
+                path: 'meta.album',
+            },
+            {
+                key: 'melody_track_artist',
+                path: 'meta.artist',
+            },
+            {
+                key: 'melody_internal_track_url',
+                path: 'url',
+            },
+            {
+                key: 'melody_track_artwork.url',
+                path: 'image.src',
+            },
+            {
+                key: 'melody_track_artwork.id',
+                path: 'image.id',
+            },
         ];
     });
 
@@ -101,10 +125,16 @@ describe('mutateSettings()', () => {
     it('should call the set method on the settings model', () => {
         const settings = {};
         settings.set = jest.fn();
-        const mutation = {
-            melody_track_album: 'album',
-            melody_track_title: 'title',
-        };
+        const mutation = [
+            {
+                key: 'melody_track_album',
+                path: 'album',
+            },
+            {
+                key: 'melody_track_title',
+                path: 'title',
+            },
+        ];
         common.mutateSettings(settings, mutation);
         expect(settings.set).toHaveBeenCalled();
         expect(settings.set.mock.calls[0][0]).toMatchObject(mutation);
@@ -119,9 +149,9 @@ describe('clearAllSettings()', () => {
         settingsModel.set = jest.fn();
         settingsModel.trigger = jest.fn();
         map = [
-            ['melody_track_id', 1],
-            ['melody_track_title', 'title'],
-            ['melody_track_artist', 'artist'],
+            { key: 'melody_track_id' },
+            { key: 'melody_track_title' },
+            { key: 'melody_track_artist' },
         ];
     });
 

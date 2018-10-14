@@ -38,11 +38,21 @@ export interface Mutation {
     melody_track_title?: string;
     melody_track_album?: string;
     melody_track_artist?: string;
-    melody_track_url?: string;
-    melody_track_image?: string;
+    melody_internal_track_url?: string;
+    melody_track_id?: number;
+    melody_track_artwork?: {
+        url?: string;
+        id?: string;
+    };
+    melody_track_picker_control?: number;
 }
 
-export type MutationMap = Array<[string, string | object]>;
+export interface MutationMap {
+    key: string;
+    path: string;
+    validate?: (value: any) => boolean;
+    fallback?: any;
+}
 
 export interface AudioAttachment {
     id?: number;
@@ -62,6 +72,6 @@ export type Attachment =
 
 export interface SelectionParams {
     model: SettingsModel;
-    map: MutationMap;
+    map: MutationMap[];
     frame: Mediaframe;
 }

@@ -125,7 +125,7 @@ exports[`Melody flourishes into a nice little application if the conditions are 
 
 exports[`Melody renders an editor specific error message if there arent any tracks 1`] = `
 <div class="errorContainer">
-  <p class="ErrorMsg">No tracks loaded, click here to get started.</p>
+  <p class="ErrorMsg">No tracks loaded, click here to open the settings in the sidebar.</p>
 </div>
 `;
 
