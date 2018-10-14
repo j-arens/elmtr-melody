@@ -12,6 +12,13 @@ const set = require('lodash.set');
 const get = require('lodash.get');
 
 /**
+ * Dynamic type validators
+ */
+const isType = (type: string, value: any): boolean => typeof value === type;
+export const isString = isType.bind(null, 'string');
+export const isNumber = isType.bind(null, 'number');
+
+/**
  * Create an initialization fn for a new control
  */
 export const makeControlFactory = (handle: string, onReady: () => any) => () => {
@@ -33,28 +40,25 @@ export const getSelection = (frame: Mediaframe): Attachment => frame
  */
 export const triggerChange = (
     model: SettingsModel,
-    map: MutationMap,
-): void => {
-    map.forEach(mapping =>
-        model.trigger(`change:external:${mapping[0]}`, model),
+    map: MutationMap[],
+) => map.forEach(mapping =>
+        model.trigger(`change:external:${mapping.key.split('.')[0]}`, model),
     );
-};
 
 /**
  * Map atttachment properties into a mutation
  */
 export const mutationMapper = (
-    map: MutationMap,
+    map: MutationMap[],
     attachment: Attachment,
 ): Mutation => map
     .reduce((mutation, mapping) => {
-        if (typeof mapping[1] === 'object') {
-            Object.entries(mapping[1]).forEach(([ key, path ]) =>
-                set(mutation, [mapping[0], key], get(attachment, path, '')),
-            );
-            return mutation;
+        const { key, path, validate, fallback } = mapping;
+        let value = get(attachment, path, '');
+        if (validate && !validate(value)) {
+            value = fallback;
         }
-        mutation[mapping[0]] = get(attachment, mapping[1], '');
+        set(mutation, key, value);
         return mutation;
     }, {});
 
@@ -71,7 +75,7 @@ export const mutateSettings = (
  */
 export const clearAllSettings = (
     model: SettingsModel,
-    map: MutationMap,
+    map: MutationMap[],
 ): void => {
     const mutation: Mutation = mutationMapper(map, {});
     mutateSettings(model, mutation);

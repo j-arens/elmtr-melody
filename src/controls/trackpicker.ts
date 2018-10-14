@@ -1,6 +1,8 @@
 import {
     clearAllSettings,
     getSelection,
+    isNumber,
+    isString,
     makeControlFactory,
     mutateSettings,
     mutationMapper,
@@ -24,14 +26,55 @@ import {
     TriggerEvent,
  } from './type';
 
-const mutationMap: MutationMap = [
-    ['melody_track_id', 'id'],
-    ['melody_track_title', 'title'],
-    ['melody_track_album', 'meta.album'],
-    ['melody_track_artist', 'meta.artist'],
-    ['melody_internal_track_url', 'url'],
-    ['melody_track_artwork', { url: 'image.src', id: 'image.id' }],
-    ['melody_track_picker_control', { id: 'id' }],
+const mutationMap: MutationMap[] = [
+    {
+        key: 'melody_track_id',
+        path: 'id',
+        validate: isNumber,
+        fallback: 0,
+    },
+    {
+        key: 'melody_track_title',
+        path: 'title',
+        validate: isString,
+        fallback: '',
+    },
+    {
+        key: 'melody_track_album',
+        path: 'meta.album',
+        validate: isString,
+        fallback: '',
+    },
+    {
+        key: 'melody_track_artist',
+        path: 'meta.artist',
+        validate: isString,
+        fallback: '',
+    },
+    {
+        key: 'melody_internal_track_url',
+        path: 'url',
+        validate: isString,
+        fallback: '',
+    },
+    {
+        key: 'melody_track_artwork.url',
+        path: 'image.src',
+        validate: isString,
+        fallback: '',
+    },
+    {
+        key: 'melody_track_artwork.id',
+        path: 'image.id',
+        validate: isString,
+        fallback: '0',
+    },
+    {
+        key: 'melody_track_picker_control.id',
+        path: 'id',
+        validate: isNumber,
+        fallback: 0,
+    },
 ];
 
 /**
