@@ -7,6 +7,7 @@ import CurrentTrackArtist from '@components/CurrentTrackArtist/';
 import CurrentTrackTitle from '@components/CurrentTrackTitle/';
 import Dock from '@components/DockControls/Dock/index';
 import DockToggle from '@components/DockControls/toggle/';
+import ScrollingMarquee from '@components/ScrollingMarquee/';
 import Scrubber from '@components/Scrubber/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
@@ -38,12 +39,14 @@ export default () => (
                     className={`${s.preview__time} ${s['preview__time--left']} ${classes.time}`}
                 />
                 <div className={s.preview__trackInfo}>
-                    <CurrentTrackTitle className={`${s.preview__title} ${classes.title}`} />
-                    <span
-                        className={classes.seperator}
-                        {...cySelector('seperator')}
-                    />
-                    <CurrentTrackArtist className={`${s.preview__artist} ${classes.artist}`} />
+                    <ScrollingMarquee>
+                        <CurrentTrackTitle className={`${s.preview__title} ${classes.title}`} />
+                        <span
+                            className={classes.seperator}
+                            {...cySelector('seperator')}
+                        />
+                        <CurrentTrackArtist className={`${s.preview__artist} ${classes.artist}`} />
+                    </ScrollingMarquee>
                 </div>
                 <CurrentTimeLeft
                     className={`${s.preview__time} ${s['preview__time--right']} ${classes.time}`}

@@ -1,0 +1,11 @@
+.scrollingMarquee {
+    &__wrap {
+        overflow: hidden;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+    }
+}
