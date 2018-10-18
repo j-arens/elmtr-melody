@@ -24,7 +24,7 @@ describe('trackpicker internal track selecting', () => {
 
         // assert track has been added
         cy.get(titleInput).should('have.value', 'Sunspots');
-        cy.get(albumInput).should('have.value', 'false');
+        cy.get(albumInput).should('have.value', '');
         cy.get(artistInput).should('have.value', 'Jeremy Blake');
         cy.get(artwork).then(el => expect(el).css('background-image').match(artworkPattern));
 
