@@ -1,70 +1,80 @@
 import { WithOptionalClassName } from '@components/type';
 import { Component, h } from 'preact';
+import {
+    calculateDimensions,
+    canScroll,
+    didResize,
+    getNextOffset,
+    getScrollStatus,
+    getScrollStyles,
+    ScrollStatus,
+} from './helpers';
 const s = require('./style.scss');
 
 interface Props extends WithOptionalClassName {
     children?: JSX.Element;
 }
 
-interface State {
+export interface State {
     offset: number;
-    target: number;
+    overlapTarget: number;
     scrolling: boolean;
     intervalId: number | NodeJS.Timer;
     direction: string; // left | right
+    recordedWidth: number;
 }
 
-interface ScrollStyles {
-    transition?: string;
-    transform?: string;
-}
-
-const SCROLL_INTERVAL = 50;
+export const SCROLL_INTERVAL = 50;
 
 export default class extends Component<Props, State> {
     state = {
         offset: 0,
-        target: 0,
+        overlapTarget: 0,
         scrolling: false,
         intervalId: 0,
         direction: 'left',
+        recordedWidth: 0,
     };
 
     componentDidMount() {
-        this.calculateOverflow();
+        this.setDimensions();
     }
 
     componentDidUpdate(prevProps: Props) {
         if (this.props.children !== prevProps.children) {
             this.reset();
-            this.calculateOverflow();
+            this.setDimensions();
         }
     }
 
     reset() {
         this.setState({
             offset: 0,
-            target: 0,
+            overlapTarget: 0,
             scrolling: false,
             intervalId: 0,
             direction: 'left',
         });
     }
 
-    calculateOverflow() {
-        const offsetWidth = this.contentRef.offsetWidth;
-        const scrollWidth = this.contentRef.scrollWidth;
-        if (offsetWidth < scrollWidth) {
-            const target = Math.ceil((scrollWidth - offsetWidth) / offsetWidth * 100);
-            this.setState({ target });
+    setDimensions(callback = () => {}) { // tslint:disable-line
+        if (this.contentRef) {
+            this.setState(calculateDimensions(this.contentRef), callback);
         }
     }
 
-    startScrolling = () => {
-        const { scrolling, target } = this.state;
-        if (scrolling || !target) {
+    maybeScroll = () => {
+        if (!this.contentRef) {
             return;
         }
+        if (didResize(this.contentRef, this.state)) {
+            this.setDimensions(() => canScroll(this.state) && this.startScrolling());
+        } else if (canScroll(this.state)) {
+            this.startScrolling();
+        }
+    }
+
+    startScrolling() {
         const intervalId = setInterval(this.updateScroll, SCROLL_INTERVAL);
         this.setState({
             intervalId,
@@ -84,28 +94,24 @@ export default class extends Component<Props, State> {
     }
 
     updateScroll = () => {
-        const { offset, target, direction } = this.state;
-        if (offset === target && direction === 'left') {
-            this.setState({ direction: 'right' });
-            return;
+        switch (getScrollStatus(this.state)) {
+            case ScrollStatus.LIMIT_LEFT: {
+                this.setState({ direction: 'right' });
+                break;
+            }
+            case ScrollStatus.LIMIT_RIGHT: {
+                this.stopScrolling();
+                break;
+            }
+            case ScrollStatus.IN_RANGE: {
+                this.setState({ offset: getNextOffset(this.state) });
+                break;
+            }
+            default: {
+                this.stopScrolling();
+                break;
+            }
         }
-        if (offset === 0 && direction === 'right') {
-            this.stopScrolling();
-            return;
-        }
-        const nextOffset = direction === 'right' ? offset - 1 : offset + 1;
-        this.setState({ offset: nextOffset });
-    }
-
-    getStyle(): ScrollStyles {
-        const { scrolling, target, offset } = this.state;
-        if (!scrolling || !target) {
-            return {};
-        }
-        return {
-            transform: `translate3d(-${offset}%, 0, 0)`,
-            transition: `transform ${SCROLL_INTERVAL}ms linear`,
-        };
     }
 
     setRef = (el: HTMLElement) => {
@@ -118,12 +124,12 @@ export default class extends Component<Props, State> {
         return (
             <div
                 class={`${s.scrollingMarquee__wrap} ${className}`}
-                onMouseEnter={this.startScrolling}
+                onMouseEnter={this.maybeScroll}
             >
                 <div
                     ref={this.setRef}
                     class={s.scrollingMarquee__content}
-                    style={this.getStyle()}
+                    style={getScrollStyles(this.state)}
                 >
                     {children}
                 </div>

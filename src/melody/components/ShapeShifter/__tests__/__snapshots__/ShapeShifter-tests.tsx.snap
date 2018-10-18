@@ -31,11 +31,15 @@ exports[`Melody renders the simple toolbar view 1`] = `
       <span class="preview__time preview__time--left melody-c-time-font melody-c-time-shadow melody-c-time-color"
       data-cy="time-elapsed">0:00</span>
       <div class="preview__trackInfo">
-        <p class="preview__title melody-c-title-font melody-c-title-shadow melody-c-title-color"
-        data-cy="track-title">lol-title</p>
-        <span class="melody-c-separator" data-cy="seperator"></span>
-        <p class="preview__artist melody-c-artist-font melody-c-artist-shadow melody-c-artist-color"
-        data-cy="track-artist">lol-artist</p>
+        <div class="scrollingMarquee__wrap ">
+          <div class="scrollingMarquee__content">
+            <p class="preview__title melody-c-title-font melody-c-title-shadow melody-c-title-color"
+            data-cy="track-title">lol-title</p>
+            <span class="melody-c-separator" data-cy="seperator"></span>
+            <p class="preview__artist melody-c-artist-font melody-c-artist-shadow melody-c-artist-color"
+            data-cy="track-artist">lol-artist</p>
+          </div>
+        </div>
       </div>
       <span class="preview__time preview__time--right melody-c-time-font melody-c-time-shadow melody-c-time-color"
       data-cy="time-left">0:00</span>
