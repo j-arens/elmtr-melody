@@ -20,21 +20,14 @@
     flex-grow: 0;
     flex-shrink: 0;
 
-    &__wrap,
-    &__trackInfo {
-        display: flex;
-    }
-
     &__wrap {
+        display: flex;
         position: relative;
         justify-content: center;
     }
 
     &__trackInfo {
-        align-items: center;
         max-width: 50%;
-        white-space: nowrap;
-        overflow: hidden;
     }
 
     &__time {
