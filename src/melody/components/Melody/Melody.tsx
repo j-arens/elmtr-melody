@@ -128,9 +128,19 @@ export default class extends Component<Props, {}> {
         return {};
     }
 
+    shouldPlay(): boolean {
+        const { currentState, lastState } = this.props;
+        const isPlaying = currentState === 'playing';
+        const isBufferWhilePlaying = currentState === 'buffering' && lastState === 'playing';
+        if (isPlaying || isBufferWhilePlaying) {
+            return true;
+        }
+        return false;
+    }
+
     mapAudioProps = (): AudioInterfaceProps => ({
         src: this.getSrc(),
-        play: this.props.currentState === 'playing',
+        play: this.shouldPlay(),
         volume: this.props.volume,
         repeat: this.props.repeat,
         playbackRate: this.props.playbackRate,
@@ -150,6 +160,9 @@ export default class extends Component<Props, {}> {
 
         if (currentState === 'fault') {
             errors.add(ErrorCodes.MELODY_GENERIC_FAULT);
+            if (!this.getSrc()) {
+                errors.add(ErrorCodes.MELODY_BAD_SOURCE);
+            }
             if (this.interfaceRef) {
                 const networkState = this.interfaceRef.networkState;
                 if (networkState === NetworkStates.NETWORK_NO_SOURCE) {

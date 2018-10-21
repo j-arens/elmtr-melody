@@ -83,6 +83,7 @@ export default class extends Component<Props, State> {
 
         const baseBtnClasses = classnames(
             s.dock__control,
+            'elementor-element',
             classes.baseBtns(wrapperId),
         );
 
@@ -101,6 +102,7 @@ export default class extends Component<Props, State> {
                 ref={el => this.el = el as HTMLElement}
                 class={classnames(
                     s.dock,
+                    'elementor-element',
                     className,
                     classes.dockControls(wrapperId),
                 )}
@@ -114,6 +116,7 @@ export default class extends Component<Props, State> {
                 <span
                     class={classnames(
                         s.dock__arrow,
+                        'elementor-element',
                         classes.dockArrow(wrapperId),
                     )}
                     style={arrow}
@@ -121,6 +124,7 @@ export default class extends Component<Props, State> {
                 <div
                     class={classnames(
                         s.dock__controlsGroup,
+                        'elementor-element',
                         classes.controlsGroup(wrapperId),
                     )}
                     {...cySelector('dock-controls-wrap')}
@@ -134,6 +138,7 @@ export default class extends Component<Props, State> {
                             <Icon
                                 className={classnames(
                                     s.dock__controlIcon,
+                                    'elementor-element',
                                     classes.controlIcon(wrapperId),
                                 )}
                                 name="download"
@@ -149,6 +154,7 @@ export default class extends Component<Props, State> {
                         <Icon
                             className={classnames(
                                 s.dock__controlIcon,
+                                'elementor-element',
                                 classes.controlIcon(wrapperId),
                             )}
                             name="plus"
@@ -163,6 +169,7 @@ export default class extends Component<Props, State> {
                         <Icon
                             className={classnames(
                                 s.dock__controlIcon,
+                                'elementor-element',
                                 classes.controlIcon(wrapperId),
                             )}
                             name="minus"

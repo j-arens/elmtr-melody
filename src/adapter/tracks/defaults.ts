@@ -1,12 +1,11 @@
 import { Track } from '@redux/type';
 import { GLOBAL } from '../constants';
-const { MELODY_ENV: { pluginsUrl } } = GLOBAL;
 
 /**
  * A default track shape to merge against
  */
 export const defaultTrack: Track = {
-    source_url: `${pluginsUrl}/elmtr-melody/public/resources/placeholder-track.mp3`,
+    source_url: '',
     download_url: '',
     artwork: {
         source_url: '',

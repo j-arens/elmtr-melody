@@ -114,7 +114,6 @@ abstract class AbstractMelodyWidget extends Widget_Base {
         registerScripts(['adapter', 'melody']);
 
         wp_localize_script('melody-js-adapter', 'MELODY_ENV', [
-            'pluginsUrl' => plugins_url(),
             'siteUrl' => get_site_url(),
         ]);
 
