@@ -87,31 +87,32 @@ exports[`Melody flourishes into a nice little application if the conditions are 
         </svg>
       </button>
     </div>
-    <div class="dock elementor-element--dock-controls-primary-color" style="pointer-events: none; visibility: hidden; top: 12px; left: 0px;"
+    <div class="dock elementor-element elementor-element--dock-controls-primary-color"
+    style="pointer-events: none; visibility: hidden; top: 12px; left: 0px;"
     data-cy="dock-controls">
-      <span class="dock__arrow elementor-element--dock-controls-arrow-color elementor-element--dock-controls-border-color"
+      <span class="dock__arrow elementor-element elementor-element--dock-controls-arrow-color elementor-element--dock-controls-border-color"
       style="left: -6px;"></span>
-      <div class="dock__controlsGroup elementor-element--dock-controls-border-color"
+      <div class="dock__controlsGroup elementor-element elementor-element--dock-controls-border-color"
       data-cy="dock-controls-wrap">
-        <button data-cy="download" class="btn dock__control elementor-element--dock-controls-secondary-color elementor-element--dock-controls-text-color elementor-element--dock-controls-font"
+        <button data-cy="download" class="btn dock__control elementor-element elementor-element--dock-controls-secondary-color elementor-element--dock-controls-text-color elementor-element--dock-controls-font"
         role="button">
-          <svg class="dock__controlIcon elementor-element--dock-controls-icon-color"
+          <svg class="dock__controlIcon elementor-element elementor-element--dock-controls-icon-color"
           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path>
           </svg>
           <span class="dock__controlName">Download</span>
         </button>
-        <button data-cy="speed-up" class="btn dock__control elementor-element--dock-controls-secondary-color elementor-element--dock-controls-text-color elementor-element--dock-controls-font"
+        <button data-cy="speed-up" class="btn dock__control elementor-element elementor-element--dock-controls-secondary-color elementor-element--dock-controls-text-color elementor-element--dock-controls-font"
         role="button">
-          <svg class="dock__controlIcon elementor-element--dock-controls-icon-color"
+          <svg class="dock__controlIcon elementor-element elementor-element--dock-controls-icon-color"
           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
           </svg>
           <span class="dock__controlName">Speed up</span>
         </button>
-        <button data-cy="slow-down" class="btn dock__control elementor-element--dock-controls-secondary-color elementor-element--dock-controls-text-color elementor-element--dock-controls-font"
+        <button data-cy="slow-down" class="btn dock__control elementor-element elementor-element--dock-controls-secondary-color elementor-element--dock-controls-text-color elementor-element--dock-controls-font"
         role="button">
-          <svg class="dock__controlIcon elementor-element--dock-controls-icon-color"
+          <svg class="dock__controlIcon elementor-element elementor-element--dock-controls-icon-color"
           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M19 13H5v-2h14v2z"></path>
           </svg>

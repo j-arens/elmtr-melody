@@ -7,7 +7,7 @@ import {
 import { defaultTrack } from './defaults';
 
 const mergewith = require('lodash.mergewith');
-const { MELODY_ENV: { pluginsUrl, siteUrl } } = GLOBAL;
+const { MELODY_ENV: { siteUrl } } = GLOBAL;
 
 /**
  * Get the full download url for a track if it's downloadable

@@ -111,6 +111,14 @@ export default class extends Component<Props, {}> {
         const handler = this.eventsMap[type];
         if (this.props[handler] && typeof this.props[handler] === 'function') {
             switch (type) {
+                case 'ended': {
+                    // don't interrupt playback
+                    if (this.props.play) {
+                        this.play = true;
+                    }
+                    this.props[handler](e);
+                    break;
+                }
                 case 'loadedmetadata':
                     this.props[handler](this.Audio);
                     break;

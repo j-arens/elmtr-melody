@@ -44,7 +44,7 @@ describe('Melody', () => {
             },
             audio: {
                 ...state.audio,
-                tracks: [{}],
+                tracks: [{ source_url: 'lol' }],
             },
         };
         const store = configureStore(testState);

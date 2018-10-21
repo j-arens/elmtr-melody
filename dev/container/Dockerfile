@@ -4,7 +4,7 @@ FROM php:7.1-apache
 # copy files/folders into container
 COPY dev/container/functions.sh /usr/local/bin
 COPY dev/container/.htaccess /var/www/html
-COPY public/resources /var/www/html/resources
+COPY dev/resources /var/www/html/resources
 COPY dev/container/seed-data /usr/local/bin/seed-data
 COPY dev/container/docker-entrypoint.sh /usr/local/bin
 

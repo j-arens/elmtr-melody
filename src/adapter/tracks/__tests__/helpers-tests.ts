@@ -25,7 +25,7 @@ describe('mergeIntoDefault()', () => {
             },
         });
         expect(result).toMatchObject({
-            source_url: 'http://my-site.com/plugins-url/elmtr-melody/public/resources/placeholder-track.mp3',
+            source_url: '',
             download_url: '',
             artwork: {
                 source_url: '',
