@@ -1,8 +1,9 @@
+import Wiretap from '@adapter/Wiretap';
 import DragHelper from '@components/DragHelper/';
 import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
 import { ELEMENTOR_NO_DRAG } from '@constants';
 import { GLOBAL } from '@melody/constants';
-import { cySelector } from '@utils/index';
+import { cySelector, isEditMode } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 import { getHandlePlacement, getNextOffset } from './helpers';
@@ -15,7 +16,11 @@ import {
 const s = require('./style.scss');
 const throttle = require('lodash.throttle');
 
-interface Props extends DragProps {
+export interface StateProps {
+    wrapperId: string;
+}
+
+export interface OwnProps {
     orientation?: SliderOrientation;
     bodySize: number;
     handleSize: number;
@@ -35,6 +40,8 @@ interface State {
     base: number;
 }
 
+type Props = StateProps & OwnProps & DragProps;
+
 const defaultClasses = {
     slider: '',
     body: '',
@@ -48,14 +55,23 @@ class Slider extends Component<Props, State> {
         base: 0,
     };
 
+    tap: Wiretap;
+
     componentDidMount() {
         this.setDimensions();
         this.bindDragHandlers();
         GLOBAL.addEventListener('resize', this.setDimensions);
+        if (isEditMode()) {
+            this.tap = new Wiretap();
+            this.tap.on('editor', 'change', this.handleEditorChange);
+        }
     }
 
     componentWillUnmount() {
         GLOBAL.removeEventListener('resize', this.setDimensions);
+        if (isEditMode() && this.tap) {
+            this.tap.off('editor', 'change', this.handleEditorChange);
+        }
     }
 
     bindDragHandlers() {
@@ -90,6 +106,13 @@ class Slider extends Component<Props, State> {
             setDragRef(el);
         }
     }
+
+    handleEditorChange = throttle((_, { model: { id } }) => {
+        const { wrapperId } = this.props;
+        if (wrapperId === id) {
+            this.setDimensions();
+        }
+    }, 1000);
 
     handleDragEvent = throttle((
         event: MelodyDragEvent,

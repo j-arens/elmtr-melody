@@ -7,16 +7,18 @@ describe('PrevButton', () => {
         const component = render(
             <PrevButton
                 totalTracks={100}
+                currentTime={1}
                 className="sapphire-blue"
             />,
         );
         expect(component).toMatchSnapshot();
     });
 
-    it('renders with a disabled class if totalTracks <= 1', () => {
+    it('renders with a disabled class if theres only one track and currentTime is 0', () => {
         const component = render(
             <PrevButton
                 totalTracks={1}
+                currentTime={0}
                 className="sapphire-blue"
             />,
         );
