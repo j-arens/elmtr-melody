@@ -32,6 +32,7 @@ module.exports = {
         '@views(.*)$': '<rootDir>/src/melody/views/$1',
         '@redux(.*)$': '<rootDir>/src/melody/redux$1',
         '@melody(.*)$': '<rootDir>/src/melody/$1',
+        '@adapter(.*)$': '<rootDir>/src/adapter/$1',
         '\\.(scss)$': 'identity-obj-proxy',
     },
 };

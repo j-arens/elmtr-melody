@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { render } from 'preact-render-to-string';
-import Slider from '../';
+import Slider from '../Slider';
 
 describe('Slider', () => {
     it('renders', () => {
