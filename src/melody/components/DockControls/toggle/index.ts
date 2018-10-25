@@ -1,8 +1,10 @@
+import EditorChangeListener from '@components/EditorChangeListener/';
 import { GLOBAL } from '@melody/constants';
 import { toggleDock } from '@redux/modules/ui/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
-import Toggle, { DispatchProps, StateProps } from './Toggle';
+import { compose } from 'redux';
+import Toggle, { DispatchProps, OwnProps, StateProps } from './Toggle';
 
 const { jQuery: $ } = GLOBAL;
 
@@ -28,8 +30,7 @@ const mapDispatch = dispatch => ({
     },
 });
 
-export default connect<
-    StateProps,
-    DispatchProps,
-    {}
->(mapState, mapDispatch)(Toggle);
+export default compose(
+    connect<StateProps, DispatchProps, OwnProps>(mapState, mapDispatch),
+    EditorChangeListener,
+)(Toggle);
