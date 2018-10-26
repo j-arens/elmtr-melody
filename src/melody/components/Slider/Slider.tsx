@@ -1,5 +1,3 @@
-import Wiretap from '@adapter/Wiretap';
-import DragHelper from '@components/DragHelper/';
 import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
 import { ELEMENTOR_NO_DRAG } from '@constants';
 import { GLOBAL } from '@melody/constants';
@@ -20,7 +18,11 @@ export interface StateProps {
     wrapperId: string;
 }
 
-export interface OwnProps {
+interface HOCProps extends DragProps {
+    onEditorChange: (cb: () => any) => void;
+}
+
+export interface OwnProps extends HOCProps {
     orientation?: SliderOrientation;
     bodySize: number;
     handleSize: number;
@@ -40,7 +42,7 @@ interface State {
     base: number;
 }
 
-type Props = StateProps & OwnProps & DragProps;
+type Props = StateProps & OwnProps;
 
 const defaultClasses = {
     slider: '',
@@ -49,29 +51,22 @@ const defaultClasses = {
     handle: '',
 };
 
-class Slider extends Component<Props, State> {
+export default class extends Component<Props, State> {
     state = {
         area: 0,
         base: 0,
     };
 
-    tap: Wiretap;
-
     componentDidMount() {
+        const { onEditorChange } = this.props;
         this.setDimensions();
         this.bindDragHandlers();
+        onEditorChange(this.setDimensions);
         GLOBAL.addEventListener('resize', this.setDimensions);
-        if (isEditMode()) {
-            this.tap = new Wiretap();
-            this.tap.on('editor', 'change', this.handleEditorChange);
-        }
     }
 
     componentWillUnmount() {
         GLOBAL.removeEventListener('resize', this.setDimensions);
-        if (isEditMode() && this.tap) {
-            this.tap.off('editor', 'change', this.handleEditorChange);
-        }
     }
 
     bindDragHandlers() {
@@ -106,13 +101,6 @@ class Slider extends Component<Props, State> {
             setDragRef(el);
         }
     }
-
-    handleEditorChange = throttle((_, { model: { id } }) => {
-        const { wrapperId } = this.props;
-        if (wrapperId === id) {
-            this.setDimensions();
-        }
-    }, 1000);
 
     handleDragEvent = throttle((
         event: MelodyDragEvent,
@@ -200,5 +188,3 @@ class Slider extends Component<Props, State> {
         );
     }
 }
-
-export default DragHelper(Slider);

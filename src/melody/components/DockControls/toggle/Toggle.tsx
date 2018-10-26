@@ -16,7 +16,13 @@ export interface StateProps {
     wrapperId: string;
 }
 
-type Props = DispatchProps & StateProps & WithOptionalClassName;
+interface HOCProps {
+    onEditorChange: (cb: () => any) => void;
+}
+
+export type OwnProps = WithOptionalClassName;
+
+type Props = DispatchProps & StateProps & HOCProps & OwnProps;
 
 export default class extends Component<Props, {}> {
     static defaultProps = {
@@ -26,6 +32,8 @@ export default class extends Component<Props, {}> {
     el: HTMLElement;
 
     componentDidMount() {
+        const { onEditorChange } = this.props;
+        onEditorChange(this.closeDock);
         window.addEventListener('resize', this.closeDock);
     }
 
@@ -49,7 +57,7 @@ export default class extends Component<Props, {}> {
         if (showDock) {
             this.el.dispatchEvent(new Event('click'));
         }
-    }, 2000);
+    }, 1000);
 
     render({ className }: Props) {
         return (
