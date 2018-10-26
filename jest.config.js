@@ -22,6 +22,7 @@ module.exports = {
         'preact/src/vdom/component': '<rootDir>/dev/jest/mocks/preact',
         '@redux/modules/ui/actions': '<rootDir>/dev/jest/mocks/uiActions',
         '@redux/modules/audio/actions': '<rootDir>/dev/jest/mocks/audioActions',
+        '@adapter/Wiretap': '<rootDir>/dev/jest/mocks/Wiretap',
         '@mocks(.*)$': '<rootDir>/dev/jest/mocks/$1',
         '@tracks': '<rootDir>/dev/fixtures/tracks',
         '@fixtures(.*)$': '<rootDir>/dev/fixtures/$1',
