@@ -8,12 +8,11 @@ const throttle = require('lodash.throttle');
 const s = require('../style.scss');
 
 export interface DispatchProps {
-    toggleDock: (target: EventTarget, wrapperId: string) => Action;
+    toggleDock: (target: EventTarget) => Action;
 }
 
 export interface StateProps {
     showDock: boolean;
-    wrapperId: string;
 }
 
 interface HOCProps {
@@ -45,10 +44,7 @@ export default class extends Component<Props, {}> {
         this.el = el;
     }
 
-    handleClick = ({ target }: Event) => {
-        const { wrapperId, toggleDock } = this.props;
-        toggleDock(target, wrapperId);
-    }
+    handleClick = ({ target }: Event) => this.props.toggleDock(target);
 
     // too lazy to update the dock controls coordinates on window resize,
     // just toggling the dock controls closed instead

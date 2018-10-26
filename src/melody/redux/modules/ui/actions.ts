@@ -12,9 +12,9 @@ export const changeView = createAction(constants.CHANGE_VIEW,
 );
 
 export const toggleDock = createAction(constants.TOGGLE_DOCK,
-    (dimensions: DockToggleDims) => ({
+    (target: EventTarget) => ({
         type: constants.TOGGLE_DOCK,
-        payload: dimensions,
+        payload: target,
     }),
 );
 

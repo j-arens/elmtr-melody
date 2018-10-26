@@ -14,14 +14,42 @@ describe('TOGGLE_COMPONENT_DRAGGING', () => {
 });
 
 describe('TOGGLE_DOCK', () => {
-    it('should toggle showing the dock', () => {
-        const action = actions.toggleDock({
-            width: 10,
-            x: 100,
-            y: 100,
+    const target = document.createElement('div');
+
+    beforeAll(() => {
+        global.jQuery = () => ({
+            closest: () => global.jQuery(),
+            get: () => global.jQuery(),
+            getBoundingClientRect: jest.fn(() => ({
+                left: 100,
+                top: 100,
+            })),
         });
+    });
+
+    afterAll(() => {
+        global.jQuery = jest.fn();
+    });
+
+    it('should toggle showing the dock', () => {
+        const action = actions.toggleDock(target);
         const newState = reducer(initialState.ui, action);
         expect(newState.showDock).toBe(true);
+    });
+
+    it('should calculate the dock coordinates', () => {
+        target.getBoundingClientRect = jest.fn(() => ({
+            width: 100,
+            left: 100,
+            bottom: 100,
+        }));
+        const action = actions.toggleDock(target);
+        const newState = reducer(initialState.ui, action);
+        expect(newState.dockCoordinates).toMatchObject({
+            width: 100,
+            x: 0,
+            y: 0,
+        });
     });
 });
 
