@@ -1,3 +1,4 @@
+import { GLOBAL } from '@melody/constants';
 import { Action, UiState } from '@redux/type';
 
 /**
@@ -24,11 +25,24 @@ export function toggleDock(state: UiState, action: Action): UiState {
     if (!action.payload) {
         return state;
     }
-
+    const { jQuery: $ } = GLOBAL;
+    const { payload } = action;
+    const { wrapperId, showDock } = state;
+    const app = document.getElementById(`melody-widgetRoot:${wrapperId}`);
+    const appRect = $(app)
+        .closest('.elementor-section')
+        .get(0)
+        .getBoundingClientRect();
+    const toggleRect = (payload as HTMLElement).getBoundingClientRect();
+    const dockCoordinates = {
+        width: toggleRect.width,
+        x: toggleRect.left - appRect.left,
+        y: toggleRect.bottom - appRect.top,
+    };
     return {
         ...state,
-        showDock: !state.showDock,
-        dockCoordinates: action.payload,
+        dockCoordinates,
+        showDock: !showDock,
     };
 }
 

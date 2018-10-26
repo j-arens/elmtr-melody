@@ -10,3 +10,4 @@ global.MELODY_ENV = {
 
 // set global elementor mock
 global.elementor = elementor;
+global.jQuery = jest.fn();
