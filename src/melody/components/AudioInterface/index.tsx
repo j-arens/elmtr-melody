@@ -53,6 +53,17 @@ export default class extends Component<Props, {}> {
     }
 
     set overrideCurrentTime(nextTime: number) {
+        if (nextTime > this.Audio.duration) {
+            // the ended event doesn't reliably fire on time when setting
+            // the currentTime to a value that is equal to or greater than
+            // the duration of the current source
+            this.Audio.currentTime = this.Audio.duration - 0.1;
+            return;
+        }
+        if (nextTime < 0) {
+            this.Audio.currentTime = 0;
+            return;
+        }
         if (this.Audio.currentTime !== nextTime) {
             this.Audio.currentTime = nextTime;
         }
