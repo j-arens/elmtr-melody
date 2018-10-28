@@ -1,21 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ErrorHandler render NoTracksFront component if there are no tracks and user is not in edit mode 1`] = `
-<div class="errorContainer">
-  <p class="ErrorMsg">No tracks are loaded. If you think this an error try refreshing the page,
-    otherwise please contact support.</p>
-</div>
-`;
-
-exports[`ErrorHandler renders BadSource component if error codes contains bad source error 1`] = `
-<div class="errorContainer">
-  <p class="ErrorMsg">Unable to load track, the source was not found.</p>
-  <button class="btn errorContainer__reloadBtn"
-  role="button">Reload</button>
-</div>
-`;
-
-exports[`ErrorHandler renders DefaultError component for unhandled errors 1`] = `
+exports[`ErrorHandler renders errors if there are any 1`] = `
 <div class="errorContainer">
   <p class="ErrorMsg">Something went wrong! Please try refreshing the page, otherwise contact
     support.</p>
@@ -23,9 +8,8 @@ exports[`ErrorHandler renders DefaultError component for unhandled errors 1`] = 
 </div>
 `;
 
-exports[`ErrorHandler renders NoTracksEditor component if there are no tracks and user is in edit mode 1`] = `
-<div class="errorContainer">
-  <p class="ErrorMsg">No tracks are loaded. If you think this an error try refreshing the page,
-    otherwise please contact support.</p>
+exports[`ErrorHandler renders its children if there are no errors 1`] = `
+<div class="melody-errorhandler">
+  <p>lol</p>
 </div>
 `;

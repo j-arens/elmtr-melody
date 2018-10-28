@@ -37,6 +37,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.1.2",
     "jest-serializer-html-string": "^1.0.1",
+    "lodash.clonedeep": "^4.5.0",
     "node-sass": "^4.7.2",
     "node-wp-i18n": "^1.2.0",
     "postcss-loader": "^2.0.10",

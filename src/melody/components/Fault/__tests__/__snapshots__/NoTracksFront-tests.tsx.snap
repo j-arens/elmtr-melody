@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NoTracksFront renders 1`] = `
-<p class="ErrorMsg">No tracks are loaded. If you think this an error try refreshing the page,
+<p class="ErrorMsg" data-cy="error-msg">No tracks are loaded. If you think this an error try refreshing the page,
   otherwise please contact support.</p>
 `;

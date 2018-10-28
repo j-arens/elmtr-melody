@@ -1,12 +1,10 @@
 import AudioInterface, { Props as AudioInterfaceProps } from '@components/AudioInterface/';
 import { AudioInterfaceState } from '@components/AudioInterface/type';
-import { ErrorCodes } from '@components/Fault/codes';
-import ErrorHandler from '@components/Fault/ErrorHandler';
+import ErrorHandler from '@components/Fault/ErrorHandler/';
 import ShapeShifter from '@components/ShapeShifter/';
 import { GLOBAL } from '@melody/constants';
 import { Dragging } from '@redux/modules/ui/type';
-import { Track } from '@redux/type';
-import { Action } from '@redux/type';
+import { Action, Track } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
 import { NetworkStates, timeout } from '@utils/index';
 import * as classnames from 'classnames';
@@ -154,46 +152,18 @@ export default class extends Component<Props, {}> {
         ...this.maybeOverrideCurrentTime(),
     })
 
-    getErrors(): Set<ErrorCodes> {
-        const { currentState, tracks } = this.props;
-        const errors = new Set();
-
-        if (currentState === 'fault') {
-            errors.add(ErrorCodes.MELODY_GENERIC_FAULT);
-            if (!this.getSrc()) {
-                errors.add(ErrorCodes.MELODY_BAD_SOURCE);
-            }
-            if (this.interfaceRef) {
-                const networkState = this.interfaceRef.networkState;
-                if (networkState === NetworkStates.NETWORK_NO_SOURCE) {
-                    errors.add(ErrorCodes.MELODY_BAD_SOURCE);
-                }
-            }
-        }
-
-        if (currentState !== 'fetching' && !tracks.length) {
-            errors.add(ErrorCodes.MELODY_NO_TRACKS);
-        }
-
-        return errors;
-    }
-
     render({ currentState, dragging, tracks }: Props) {
-        const errors = this.getErrors();
-        if (errors.size) {
-            return <ErrorHandler errors={errors} />;
-        }
-
         const classes = classnames(
             s.Melody,
             s[`Melody--${currentState}`],
             { [s['Melody--isDragging']]: dragging.scrubber || dragging.volume },
         );
-
         return (
             <div class={classes}>
-                <ShapeShifter />
-                <AudioInterface {...this.mapAudioProps()} />
+                <ErrorHandler audioInterface={this.interfaceRef}>
+                    <ShapeShifter />
+                    <AudioInterface {...this.mapAudioProps()} />
+                </ErrorHandler>
             </div>
         );
     }

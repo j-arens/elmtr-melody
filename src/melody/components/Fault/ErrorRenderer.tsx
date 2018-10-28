@@ -12,14 +12,7 @@ interface Props {
 }
 
 export default ({ errors }: Props) => {
-    if (errors.has(ErrorCodes.MELODY_BAD_SOURCE)) {
-        return (
-            <FaultContainer allowReload>
-                <BadSource />
-            </FaultContainer>
-        );
-    }
-
+    // this check needs to be before the bad source check
     if (errors.has(ErrorCodes.MELODY_NO_TRACKS)) {
         if (isEditMode()) {
             return (
@@ -34,7 +27,13 @@ export default ({ errors }: Props) => {
             </FaultContainer>
         );
     }
-
+    if (errors.has(ErrorCodes.MELODY_BAD_SOURCE)) {
+        return (
+            <FaultContainer allowReload>
+                <BadSource />
+            </FaultContainer>
+        );
+    }
     return (
         <FaultContainer allowReload>
             <DefaultError />
