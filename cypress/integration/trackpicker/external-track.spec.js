@@ -38,7 +38,6 @@ describe('trackpicker external track selecting', () => {
         cy.get(artwork).then(el => expect(el).css('background-image').match(artworkPattern));
 
         // // assert track is loaded in the melody instance
-        cy.getPreview().find('[data-cy="track-title"]').should('contain', 'lol title');
-        cy.getPreview().find('[data-cy="track-artist"]').should('contain', 'lol artist');
+        cy.getPreview().find('[data-cy="error-msg"]').should('contain', 'Unable to load track, the source was not found');
     });
 });

@@ -45,7 +45,6 @@ describe('trackpicker internal track selecting', () => {
         cy.get(artistInput).should('have.value', '');
 
         // assert track has been cleared in the melody instance
-        cy.getPreview().find('[data-cy="track-title"]').should('contain', 'Title');
-        cy.getPreview().find('[data-cy="track-artist"]').should('contain', 'Artist');
+        cy.getPreview().find('[data-cy="error-msg"]').should('contain', 'Unable to load track, the source was not found');
     });
 });
