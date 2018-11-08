@@ -1,8 +1,8 @@
 <?php
 
-namespace Melody\Http\controllers;
+namespace Melody\Http\Controllers;
 
-use Melody\Http\controllers\Controller;
+use Melody\Http\Controllers\Controller;
 use Melody\Http\Request;
 
 class Download extends Controller {

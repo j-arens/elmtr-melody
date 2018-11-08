@@ -1,14 +1,14 @@
 <?php
 
 use Melody\Http\Request;
-use Melody\Http\controllers\Download;
+use Melody\Http\Controllers\Download;
 use function Melody\Test\Helpers\overrideMethodAccess;
 use function Eloquent\Phony\Kahlan\stubGlobal;
 
 describe('Download', function() {
     beforeEach(function() {
-        $this->get_attached_file = stubGlobal('get_attached_file', 'Melody\Http\controllers');
-        $this->get_post_mime_type = stubGlobal('get_post_mime_type', 'Melody\Http\controllers');
+        $this->get_attached_file = stubGlobal('get_attached_file', 'Melody\Http\Controllers');
+        $this->get_post_mime_type = stubGlobal('get_post_mime_type', 'Melody\Http\Controllers');
         $this->makeInstance = function($attachmentId = null) {
             $_SERVER['REQUEST_METHOD'] = 'GET';
             if ($attachmentId) {

@@ -16,7 +16,6 @@ class View implements ViewInterface {
             throw new InvalidArgumentException(
                 "Could not locate template at {$path}"   
             );
-            return;
         }
 
         return true;

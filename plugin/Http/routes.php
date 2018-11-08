@@ -12,7 +12,7 @@ $router = new Router('melody');
 /**
  * Load routes
  */
-$router->get('/download', 'Melody\Http\controllers\Download');
+$router->get('/download', 'Melody\Http\Controllers\Download');
 
 
 

@@ -62,7 +62,7 @@
         }
 
         &--disabled {
-            cursor: not-allowed;
+            cursor: not-allowed !important;
             color: #ccc !important;
             opacity: 0.5;
 
