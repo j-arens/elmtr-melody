@@ -1,6 +1,6 @@
 <?php
 
-namespace Melody\Controls\custom;
+namespace Melody\Controls\Custom;
 
 use Melody\Core\ViewInterface;
 use Melody\Enhancers\EnhancesAudioAttachments;

@@ -19,14 +19,10 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Melody\\Core\\": "./plugin/core",
-            "Melody\\Widgets\\": "./plugin/widgets",
-            "Melody\\Controls\\": "./plugin/controls",
-            "Melody\\Http\\": "./plugin/http",
-            "Melody\\Enhancers\\": "./plugin/enhancers"
+            "Melody\\": "./plugin/"
         },
         "files": [
-            "./plugin/core/functions.php",
+            "./plugin/Core/functions.php",
             "./plugin/assets/wordpressEnqueueChunksPlugin.php"
         ]
     },

@@ -2,7 +2,7 @@
 
 namespace Melody\Core;
 
-use Melody\Controls\custom\TrackPicker;
+use Melody\Controls\Custom\TrackPicker;
 use Melody\Widgets\Slider;
 use Melody\Widgets\SimpleToolbar;
 use Elementor\Widgets_Manager;
@@ -126,6 +126,6 @@ class Plugin {
      * Load plugin text domain for translation
      */
     protected function i18n() {
-        load_plugin_textdomain(MELODY_TEXT_DOMAIN, false, MELODY_ROOT . '/languages/');
+        load_plugin_textdomain('melody', false, MELODY_ROOT . '/languages');
     }
 }

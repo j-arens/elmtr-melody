@@ -1,6 +1,6 @@
 <?php
 
-namespace Melody\Http\controllers;
+namespace Melody\Http\Controllers;
 
 use Melody\Http\Request;
 
