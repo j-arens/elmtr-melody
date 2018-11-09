@@ -1,5 +1,4 @@
 import EditorChangeListener from '@components/EditorChangeListener/';
-import { GLOBAL } from '@melody/constants';
 import { toggleDock } from '@redux/modules/ui/actions';
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';

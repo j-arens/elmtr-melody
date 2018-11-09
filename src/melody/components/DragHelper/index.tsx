@@ -1,5 +1,4 @@
-import { WithOptionalClassName } from '@melody/components/type';
-import { AnyComponent, Component, ComponentConstructor, h } from 'preact';
+import { AnyComponent, Component, h } from 'preact';
 import {
     EventRegistry,
     Handler,

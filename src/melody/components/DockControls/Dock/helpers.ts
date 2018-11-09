@@ -1,4 +1,4 @@
-import { DockToggleDims } from '@melody/redux/modules/ui/type';
+import { DockToggleDims } from '@redux/modules/ui/type';
 
 export interface DockCoordinates {
     controls: {

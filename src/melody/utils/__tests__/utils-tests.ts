@@ -28,6 +28,13 @@ describe('shuffleTracks()', () => {
         expect(result).toBeGreaterThan(-1);
         expect(result).toBeLessThan(tracks.length + 1);
     });
+
+    it('should bail and return 0 if theres only one track', () => {
+        const currentTrack = 0;
+        const audioTracks = [{}];
+        const result = utils.shuffleTracks(audioTracks, currentTrack);
+        expect(result).toBe(0);
+    });
 });
 
 describe('timeout()', () => {

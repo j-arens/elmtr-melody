@@ -1,6 +1,6 @@
 import { WithOptionalClassName } from '@components/type';
 import { formatTime } from '@utils/index';
-import { AnyComponent, Component, h } from 'preact';
+import { AnyComponent, h } from 'preact';
 
 export interface StateProps {
     currentTime: number;

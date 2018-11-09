@@ -1,3 +1,4 @@
+import { isEditMode } from '@utils/index';
 import { GLOBAL } from './constants';
 import * as InstanceManager from './InstanceManager';
 import Wiretap from './Wiretap';
@@ -20,7 +21,6 @@ export const onRemove = ({ id }) => {
  * Listen for element:before:remove events from the elementor editor
  */
 export const listen = () => {
-    const { elementorFrontend: { isEditMode } } = GLOBAL;
     if (!isEditMode()) {
         return;
     }

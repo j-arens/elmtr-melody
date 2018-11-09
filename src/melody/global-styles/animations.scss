@@ -2,7 +2,6 @@
 * KEYFRAME ANIMATIONS
 */
 
-// buffering
 @keyframes buffer {
     0% {
         transform: scale(0);
@@ -19,7 +18,6 @@
     }
 }
 
-// throbber
 @keyframes melody-throbber-pulse {
     to {
         transform: scale(1.4);

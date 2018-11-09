@@ -12,7 +12,7 @@ import Scrubber from '@components/Scrubber/';
 import CurrentTimeElapsed from '@components/time/CurrentTimeElapsed';
 import CurrentTimeLeft from '@components/time/CurrentTimeLeft';
 import VolumeCtrl from '@components/VolumeCtrl/';
-import { cySelector, prefixClasses } from '@utils/index';
+import { cySelector } from '@utils/index';
 import { h } from 'preact';
 import * as classes from './classes';
 const s = require('./style.scss');

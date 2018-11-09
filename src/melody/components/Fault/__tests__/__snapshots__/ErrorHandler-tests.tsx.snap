@@ -3,8 +3,9 @@
 exports[`ErrorHandler renders errors if there are any 1`] = `
 <div class="errorContainer">
   <p class="ErrorMsg">Something went wrong! Please try refreshing the page, otherwise contact
-    support.</p>
-  <button class="btn errorContainer__reloadBtn" role="button">Reload</button>
+    the site administrator.</p>
+  <button class="btn errorContainer__reloadBtn"
+  role="button">Reload</button>
 </div>
 `;
 

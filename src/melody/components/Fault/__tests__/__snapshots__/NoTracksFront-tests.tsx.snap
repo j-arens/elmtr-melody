@@ -2,5 +2,5 @@
 
 exports[`NoTracksFront renders 1`] = `
 <p class="ErrorMsg" data-cy="error-msg">No tracks are loaded. If you think this an error try refreshing the page,
-  otherwise please contact support.</p>
+  otherwise please contact the site administrator.</p>
 `;

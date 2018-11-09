@@ -1,15 +1,15 @@
 <?php
 
 /*
-Plugin Name: Elementor-Melody
-Plugin URI: 
+Plugin Name: Melody
+Plugin URI: https://github.com/j-arens/elmtr-melody
 Version: 1.0.0-alpha.1
-Description:
+Description: A highly customizable audio widget for Elementor with advanced capabilities.
 Author: <a href="https://github.com/j-arens">Josh Arens</a>
 Author URI: https://github.com/j-arens
-Text Domain: elmtr-melody
+Text Domain: melody
 Domain Path: /languages
-Tags:
+Tags: audio player, mp3 player, elementor, elementor audio widget 
 */
 
 require 'constants.php';

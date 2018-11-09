@@ -1,4 +1,3 @@
-import initialState from '@redux/initialState';
 import { Action, MachineState } from '@redux/type';
 import StateMachine from '@state-machine/index';
 import { MachineStates } from '@state-machine/type';
@@ -28,11 +27,9 @@ export function cycleState(state: MachineState, action: Action): MachineState {
         };
     }
 
-    const newState = {
+    return {
         ...state,
         currentState: nextState,
         lastState: currentState,
     };
-
-    return newState;
 }

@@ -3,8 +3,8 @@ import Icon from '@components/Icon/';
 import { WithOptionalClassName } from '@melody/components/type';
 import { Action } from '@redux/type';
 import { cySelector } from '@utils/index';
+import * as throttle from 'lodash.throttle';
 import { Component, h } from 'preact';
-const throttle = require('lodash.throttle');
 const s = require('../style.scss');
 
 export interface DispatchProps {
@@ -46,8 +46,6 @@ export default class extends Component<Props, {}> {
 
     handleClick = ({ target }: Event) => this.props.toggleDock(target);
 
-    // too lazy to update the dock controls coordinates on window resize,
-    // just toggling the dock controls closed instead
     closeDock = throttle(() => {
         const { showDock } = this.props;
         if (showDock) {

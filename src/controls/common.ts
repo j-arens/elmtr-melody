@@ -1,4 +1,6 @@
 import { Model } from 'backbone';
+import * as get from 'lodash.get';
+import * as set from 'lodash.set';
 import { GLOBAL } from './constants';
 import {
     Attachment,
@@ -8,9 +10,6 @@ import {
     SettingsModel,
 } from './type';
 
-const set = require('lodash.set');
-const get = require('lodash.get');
-
 /**
  * Dynamic type validators
  */
@@ -19,7 +18,7 @@ export const isString = isType.bind(null, 'string');
 export const isNumber = isType.bind(null, 'number');
 
 /**
- * Create an initialization fn for a new control
+ * Create an initialization fn for a new elementor control
  */
 export const makeControlFactory = (handle: string, onReady: () => any) => () => {
     const { elementor, elementor: { modules: { controls: { BaseData } } } } = GLOBAL;
