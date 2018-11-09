@@ -2,11 +2,10 @@ import AudioInterface, { Props as AudioInterfaceProps } from '@components/AudioI
 import { AudioInterfaceState } from '@components/AudioInterface/type';
 import ErrorHandler from '@components/Fault/ErrorHandler/';
 import ShapeShifter from '@components/ShapeShifter/';
-import { GLOBAL } from '@melody/constants';
 import { Dragging } from '@redux/modules/ui/type';
 import { Action, Track } from '@redux/type';
 import { MachineAction, MachineStates } from '@state-machine/type';
-import { NetworkStates, timeout } from '@utils/index';
+import { timeout } from '@utils/index';
 import * as classnames from 'classnames';
 import { Component, h } from 'preact';
 const s = require('./style.scss');

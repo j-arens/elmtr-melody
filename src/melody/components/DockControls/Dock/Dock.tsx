@@ -34,11 +34,6 @@ interface State {
 type Props = StateProps & DispatchProps & WithOptionalClassName;
 
 export default class extends Component<Props, State> {
-    static defaultProps = {
-        className: '',
-        customizationClasses: '',
-    };
-
     state = {
         width: null,
     };

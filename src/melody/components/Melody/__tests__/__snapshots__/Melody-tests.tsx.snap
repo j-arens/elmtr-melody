@@ -138,8 +138,9 @@ exports[`Melody renders an error if the currentState is fault 1`] = `
 <div class="Melody Melody--fault">
   <div class="errorContainer">
     <p class="ErrorMsg">Something went wrong! Please try refreshing the page, otherwise contact
-      support.</p>
-    <button class="btn errorContainer__reloadBtn" role="button">Reload</button>
+      the site administrator.</p>
+    <button class="btn errorContainer__reloadBtn"
+    role="button">Reload</button>
   </div>
 </div>
 `;
@@ -148,7 +149,7 @@ exports[`Melody renders an error if there arent any tracks 1`] = `
 <div class="Melody Melody--stopped">
   <div class="errorContainer">
     <p class="ErrorMsg" data-cy="error-msg">No tracks are loaded. If you think this an error try refreshing the page,
-      otherwise please contact support.</p>
+      otherwise please contact the site administrator.</p>
   </div>
 </div>
 `;

@@ -2,5 +2,5 @@
 
 exports[`DefaultError renders 1`] = `
 <p class="ErrorMsg">Something went wrong! Please try refreshing the page, otherwise contact
-  support.</p>
+  the site administrator.</p>
 `;

@@ -1,5 +1,4 @@
 import { WithOptionalClassName } from '@components/type';
-import { Track } from '@redux/type';
 import { h } from 'preact';
 
 interface Props extends WithOptionalClassName {

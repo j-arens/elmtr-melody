@@ -1,4 +1,4 @@
-import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
+import { MelodyDragEvent } from '@components/DragHelper/type';
 
 export type SliderOrientation = 'vertical' | 'horizontal';
 

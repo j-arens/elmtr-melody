@@ -1,5 +1,7 @@
 <?php
 
+namespace Melody\Http;
+
 use DownShift\WordPress\Router;
 
 /**

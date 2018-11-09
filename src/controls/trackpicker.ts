@@ -26,6 +26,9 @@ import {
     TriggerEvent,
  } from './type';
 
+const CLEAR_TRACK = 'CLEAR_TRACK';
+const SELECT_TRACK = 'SELECT_TRACK';
+
 const mutationMap: MutationMap[] = [
     {
         key: 'melody_track_id',
@@ -95,7 +98,7 @@ const handleSelection = ({ model, map, frame }: SelectionParams): void => {
     triggerChange(model, map);
     swapTrigger({
         $trigger: frame._melody_$trigger,
-        action: 'CLEAR_TRACK',
+        action: CLEAR_TRACK,
         text: 'Clear Track',
     });
 };
@@ -106,16 +109,16 @@ const handleSelection = ({ model, map, frame }: SelectionParams): void => {
 export const onTriggerClick = ({ $trigger, model, frame }: TriggerEvent): number => {
     const action: TPTriggerAction = $trigger.attr(TP_TRIGGER_ACTION);
     switch (action) {
-        case 'SELECT_TRACK': {
+        case SELECT_TRACK: {
             frame._melody_$trigger = $trigger;
             frame.open();
             return 1;
         }
-        case 'CLEAR_TRACK': {
+        case CLEAR_TRACK: {
             clearAllSettings(model, mutationMap);
             swapTrigger({
                 $trigger,
-                action: 'SELECT_TRACK',
+                action: SELECT_TRACK,
                 text: 'Select Track',
             });
             return 2;

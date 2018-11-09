@@ -1,6 +1,6 @@
 import Wiretap from '@adapter/Wiretap';
+import * as throttle from 'lodash.throttle';
 import { AnyComponent, Component, h } from 'preact';
-const throttle = require('lodash.throttle');
 
 export interface StateProps {
     wrapperId: string;

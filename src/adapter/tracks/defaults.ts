@@ -1,5 +1,4 @@
 import { Track } from '@redux/type';
-import { GLOBAL } from '../constants';
 
 /**
  * A default track shape to merge against

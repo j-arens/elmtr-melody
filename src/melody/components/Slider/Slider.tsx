@@ -1,8 +1,8 @@
 import { DragProps, MelodyDragEvent } from '@components/DragHelper/type';
 import { ELEMENTOR_NO_DRAG } from '@constants';
 import { GLOBAL } from '@melody/constants';
-import { cySelector, isEditMode } from '@utils/index';
-import * as classnames from 'classnames';
+import { cySelector } from '@utils/index';
+import * as throttle from 'lodash.throttle';
 import { Component, h } from 'preact';
 import { getHandlePlacement, getNextOffset } from './helpers';
 import {
@@ -12,7 +12,6 @@ import {
     SliderOrientation,
 } from './type';
 const s = require('./style.scss');
-const throttle = require('lodash.throttle');
 
 export interface StateProps {
     wrapperId: string;

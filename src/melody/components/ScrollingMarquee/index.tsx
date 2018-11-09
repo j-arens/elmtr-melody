@@ -1,4 +1,5 @@
 import { WithOptionalClassName } from '@components/type';
+import { NO_OP } from '@utils/index';
 import { Component, h } from 'preact';
 import {
     calculateDimensions,
@@ -57,7 +58,7 @@ export default class extends Component<Props, State> {
         });
     }
 
-    setDimensions(callback = () => {}) { // tslint:disable-line
+    setDimensions(callback = NO_OP) {
         if (this.contentRef) {
             this.setState(calculateDimensions(this.contentRef), callback);
         }

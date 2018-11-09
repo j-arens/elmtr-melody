@@ -29,6 +29,10 @@ export function getRandomNumInRange(min: number, max: number): number {
  * Get a random track index
  */
 export function shuffleTracks(tracks: Track[], currentTrack: number): number {
+    if (tracks.length <= 1) {
+        return 0;
+    }
+
     let index = getRandomNumInRange(0, tracks.length);
 
     while (index === currentTrack) {
@@ -136,10 +140,7 @@ export function getNextMachineAction(
  * Makes a cypress test selector if not running production
  */
 export function cySelector(...handles: string[]): object {
-    if (process.env
-        && process.env.NODE_ENV
-        && process.env.NODE_ENV !== 'production'
-    ) {
+    if (process.env.NODE_ENV !== 'production') {
         return { 'data-cy': handles.join(' ') };
     }
     return {};

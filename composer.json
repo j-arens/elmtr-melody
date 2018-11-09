@@ -1,6 +1,6 @@
 {
-    "name": "stele/elmtr-melody",
-    "type": "Elementor addon",
+    "name": "j-arens/elmtr-melody",
+    "type": "Elementor widget",
     "require": {
         "downshiftorg/wp-router": "~3.0",
         "downshiftorg/container": "~2.0"

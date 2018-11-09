@@ -1,9 +1,8 @@
-import { TrackSize } from '@adapter/type';
 import { WithOptionalClassName } from '@components/type';
 import { TrackArtwork } from '@redux/type';
 import { cySelector, getContextualTrackSizes } from '@utils/index';
+import * as throttle from 'lodash.throttle';
 import { Component, h } from 'preact';
-const throttle = require('lodash.throttle');
 
 interface Props extends WithOptionalClassName {
     artwork: TrackArtwork;

@@ -1,4 +1,5 @@
 import { Track } from '@redux/type';
+import * as mergewith from 'lodash.mergewith';
 import { GLOBAL } from '../constants';
 import {
     TrackData,
@@ -6,27 +7,21 @@ import {
 } from '../type';
 import { defaultTrack } from './defaults';
 
-const mergewith = require('lodash.mergewith');
 const { MELODY_ENV: { siteUrl } } = GLOBAL;
 
 /**
  * Get the full download url for a track if it's downloadable
  */
 export const getDownloadUrl = (track: TrackData, origin: TrackOrigin): string => {
-    if (origin === 'external') {
-        if (track.melody_track_downloadable === 'yes') {
-            return track.melody_track_download_source;
-        }
-
+    const { melody_track_downloadable } = track;
+    if (!melody_track_downloadable) {
         return '';
     }
-
-    if (track.melody_track_downloadable === 'yes') {
-        const { melody_track_id: id } = track;
-        return `${siteUrl}?melody=/download&attachment=${id}`;
+    if (origin === 'external') {
+        return track.melody_track_download_source || '';
     }
-
-    return '';
+    const { melody_track_id: id } = track;
+    return `${siteUrl}?melody=/download&attachment=${id}`;
 };
 
 /**

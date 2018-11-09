@@ -4,13 +4,27 @@ namespace Melody;
 
 class Checks {
     /**
+     * @var string
+     */
+    const MIN_PHP = '5.6';
+
+    /**
+     * @var string
+     */
+    const MIN_WP = '4.7';
+
+    /**
+     * @var string
+     */
+    const MIN_ELEMENTOR = '2.1.0';
+
+    /**
      * PHP version check
      *
      * @return boolean
      */
     public static function phpCheck() {
-        $min = '5.6';
-        if (version_compare(PHP_VERSION, $min, '<')) {
+        if (version_compare(PHP_VERSION, self::MIN_PHP, '<')) {
             add_action('all_admin_notices', 'Melody\\Notices::phpVersionNotice');
             return false;
         }
@@ -23,8 +37,7 @@ class Checks {
      * @return boolean
      */
     public static function wpCheck() {
-        $min = '4.7';
-        if (version_compare(get_bloginfo('version'), $min, '<')) {
+        if (version_compare(get_bloginfo('version'), self::MIN_WP, '<')) {
             add_action('all_admin_notices', 'Melody\\Notices::wpVersionNotice');
             return false;
         }
@@ -37,11 +50,10 @@ class Checks {
      * @return boolean
      */
     public static function elementorCheck() {
-        $min = '2.1.0';
         if (!defined('ELEMENTOR_VERSION')) {
             return false;
         }
-        if (version_compare(ELEMENTOR_VERSION, $min, '<')) {
+        if (version_compare(ELEMENTOR_VERSION, self::MIN_ELEMENTOR, '<')) {
             add_action('all_admin_notices', 'Melody\\Notices::elementorVersionNotice');
             return false;
         }

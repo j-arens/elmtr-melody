@@ -40,7 +40,7 @@ export function setTracks(state: AudioState, action: Action): AudioState {
  * UPDATE_CURRENT_TIME
  */
 export function updateCurrentTime(state: AudioState, action: Action): AudioState {
-    if (action.payload === undefined) {
+    if (!action.payload && action.payload !== 0) {
         return state;
     }
 
@@ -196,11 +196,7 @@ export function slowDown(state: AudioState): AudioState {
  * SET_FILE_LENGTH
  */
 export function setFilelength(state: AudioState, action: Action): AudioState {
-    if (!action.payload) {
-        return state;
-    }
-
-    if (isNaN(action.payload)) {
+    if (!action.payload || isNaN(action.payload)) {
         return state;
     }
 

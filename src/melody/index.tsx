@@ -7,7 +7,7 @@ import { GLOBAL } from './constants';
 const s = require('./global-styles/base.scss');
 
 /**
- * Render a dismissible error message with a detailed error report
+ * Render a dismissible error message
  */
 export function makeError(e: Error) {
     // don't render more than one error message

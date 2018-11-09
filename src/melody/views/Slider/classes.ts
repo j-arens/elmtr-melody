@@ -1,5 +1,5 @@
+import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '@melody/constants';
 import { prefixClasses } from '@utils/index';
-import { MELODY_CUSTOMIZATION_CLASS_PREFIX as c_prefix } from '../../constants';
 
 export const controlBar = prefixClasses(c_prefix, 'controlbar');
 
