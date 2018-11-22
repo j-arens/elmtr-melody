@@ -7,7 +7,7 @@ describe('ErrorHandler', () => {
     it('renders errors if there are any', () => {
         jest.spyOn(collectors, 'default').mockImplementationOnce(() => new Set([1]));
         const component = render(
-            <ErrorHandler state={{}} audioInterface={{}}>
+            <ErrorHandler getState={jest.fn()} audioInterface={{}}>
                 <p>lol</p>
             </ErrorHandler>,
         );
@@ -17,7 +17,7 @@ describe('ErrorHandler', () => {
     it('renders its children if there are no errors', () => {
         jest.spyOn(collectors, 'default').mockImplementationOnce(() => new Set());
         const component = render(
-            <ErrorHandler state={{}} audioInterface={{}}>
+            <ErrorHandler getState={jest.fn()} audioInterface={{}}>
                 <p>lol</p>
             </ErrorHandler>,
         );

@@ -1,4 +1,5 @@
 import {
+    getCurrentTime,
     nextTrack,
     setFilelength,
     updateCurrentTime,
@@ -14,7 +15,6 @@ const mapState = (state: State) => ({
     lastState: state.machine.lastState,
     tracks: state.audio.tracks,
     currentTrack: state.audio.currentTrack,
-    currentTime: state.audio.currentTime,
     dragging: state.ui.dragging,
     volume: state.audio.volume,
     timeSync: state.audio.timeSync,
@@ -27,6 +27,7 @@ const mapDispatch = dispatch => bindActionCreators({
     updateCurrentTime,
     nextTrack,
     setFilelength,
+    getCurrentTime,
 }, dispatch);
 
 export default connect<

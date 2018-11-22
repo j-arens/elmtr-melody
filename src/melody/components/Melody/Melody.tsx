@@ -15,7 +15,6 @@ export interface StateProps {
     lastState: MachineStates;
     tracks: Track[];
     currentTrack: number;
-    currentTime: number;
     dragging: Dragging;
     volume: number;
     timeSync: number;
@@ -28,6 +27,7 @@ export interface DispatchProps {
     updateCurrentTime: (nextTime: number) => Action;
     nextTrack: () => Action;
     setFilelength: (length: number) => Action;
+    getCurrentTime: any;
 }
 
 type Props = StateProps & DispatchProps;
@@ -78,8 +78,8 @@ export default class extends Component<Props, {}> {
     }
 
     onInterfaceTimeUpdate = (nextTime: number) => {
-        const { currentTime, updateCurrentTime, dragging } = this.props;
-        if (nextTime === currentTime || dragging.scrubber) {
+        const { updateCurrentTime, dragging } = this.props;
+        if (dragging.scrubber) {
             return;
         }
         updateCurrentTime(nextTime);
@@ -118,9 +118,9 @@ export default class extends Component<Props, {}> {
     }
 
     maybeOverrideCurrentTime() {
-        const { timeSync, currentTime } = this.props;
+        const { timeSync, getCurrentTime } = this.props;
         if (timeSync !== this.lastTimeSync) {
-            return { overrideCurrentTime: currentTime };
+            return { overrideCurrentTime: getCurrentTime() };
         }
         return {};
     }

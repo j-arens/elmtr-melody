@@ -1,11 +1,16 @@
 import { State } from '@redux/type';
 import { connect } from 'preact-redux';
-import ErrorHandler, { OwnProps, StateProps } from './ErrorHandler';
+import { bindActionCreators } from 'redux';
+import ErrorHandler, { DispatchProps, OwnProps } from './ErrorHandler';
 
-const mapState = (state: State) => ({ state });
+const stateThunk = () => (_, getState: () => State) => getState();
+
+const mapDispatch = dispatch => bindActionCreators({
+    getState: stateThunk,
+}, dispatch);
 
 export default connect<
-    StateProps,
     {},
+    DispatchProps,
     OwnProps
->(mapState)(ErrorHandler);
+>(null, mapDispatch)(ErrorHandler);
