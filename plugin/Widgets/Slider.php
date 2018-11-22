@@ -40,11 +40,9 @@ final class Slider extends AbstractMelodyWidget implements WidgetInterface {
      * @var array
      */
     protected $imageSizes = [
-        'melody-xs' => 320,
-        'melody-sm' => 480,
+        'melody-sm' => 320,
         'melody-md' => 768,
-        'melody-lg' => 992,
-        'melody-xl' => 1200,
+        'melody-lg' => 1200,
     ];
 
     /**

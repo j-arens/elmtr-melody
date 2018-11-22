@@ -3,8 +3,8 @@ import { h } from 'preact';
 import collectErrors from '../Collector';
 import ErrorRenderer from '../ErrorRenderer';
 
-export interface StateProps {
-    state: State;
+export interface DispatchProps {
+    getState: any;
 }
 
 export interface OwnProps {
@@ -12,10 +12,10 @@ export interface OwnProps {
     audioInterface: HTMLAudioElement;
 }
 
-type Props = StateProps & OwnProps;
+type Props = DispatchProps & OwnProps;
 
-export default ({ state, audioInterface, children }: Props) => {
-    const errors = collectErrors(state, audioInterface);
+export default ({ getState, audioInterface, children }: Props) => {
+    const errors = collectErrors(getState(), audioInterface);
     if (errors.size) {
         return <ErrorRenderer errors={errors} />;
     }

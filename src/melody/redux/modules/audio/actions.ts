@@ -1,4 +1,4 @@
-import { View } from '@redux/type';
+import { State, View } from '@redux/type';
 import { createAction } from 'typesafe-actions';
 import * as constants from './constants';
 
@@ -78,3 +78,10 @@ export const setFilelength = createAction(constants.SET_FILE_LENGTH,
         payload: filelength,
     }),
 );
+
+// hacky perf optimization, prevents having to pass in currentTime
+// as a prop, which would cause a component to update every second
+export const getCurrentTime = () => (_, getState: () => State) => {
+    const state = getState();
+    return state.audio.currentTime;
+};
