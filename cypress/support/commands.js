@@ -163,7 +163,7 @@ Cypress.Commands.add('setColor', (hex, handle = '') => {
  */
 Cypress.Commands.add('disableUnloadAlert', () => cy
     .window()
-    .then(w => w.elementor.$window.unbind('beforeunload'))
+    .then(w => w.jQuery(w).unbind('beforeunload'))
 );
 
 /**
